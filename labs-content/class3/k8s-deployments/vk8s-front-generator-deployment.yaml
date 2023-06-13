@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentence-frontend
+spec:
+  selector:
+    matchLabels:
+      app: sentence-frontend
+  template:
+    metadata:
+      labels:
+        app: sentence-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: registry.gitlab.com/sentence-app/frontend:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PREFIX
+              value: "sentence"
+            - name: NAMESPACE
+              value: "YOUR_NS"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentence-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: sentence-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentence-generator
+spec:
+  selector:
+    matchLabels:
+      app: sentence-generator
+  template:
+    metadata:
+      labels:
+        app: sentence-generator
+    spec:
+      containers:
+        - name: generator
+          image: registry.gitlab.com/sentence-app/generator:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PREFIX
+              value: "sentence"
+            - name: NAMESPACE
+              value: "YOUR_NS"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentence-generator
+spec:
+  type: ClusterIP
+  selector:
+    app: sentence-generator
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
