@@ -4,9 +4,16 @@ Lab 1 - Architecture of the lab
 The application used in the lab
 *******************************
 
-For this lab, we will use this application : https://arcadia.emea.f5se.com
+For this lab, we will use this application A
 
-This application is a modern application simulating a banking application. You can buy and sell stocks, or make money transfer to friends.
+.. raw:: html   
+
+    <script>       
+        const info = localStorage.getItem('data');
+        displayJSON(info);  
+    </script>
+
+This application is a modern application simulating a banking application. **You** can buy and sell stocks, or make money transfer to friends.
 
 .. image:: ../pictures/lab1/app-arcadia.png
    :align: center
