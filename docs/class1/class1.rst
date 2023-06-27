@@ -1,19 +1,48 @@
-Class1 - F5XC WAAP Use Cases
-############################
+Class 1 - F5 XC Services
+########################
 
 Lab Maintainers:
 
   Matthieu Dierick <m.dierick@f5.com>
 
-  Sorin Boiangiu <s.boiangiu@f5.com>
+  Sorin Boiangiu <s.boiangiu@f5.com>   
 
 |
 
-.. note:: In this Class, you will focus mainly on the deployment models. You are going to see how you can deploy F5XC WAAP in many environments.
+The application used in the lab
+-------------------------------
 
-|
+For this lab, we will use the **Arcadia Crypto** application.
 
-.. note:: Before you procced please enter the email that you have joined the UDF with in order to populate any dynamic content.
+This application is a modern application simulating a crypto trading platform app where you can buy and sell crypto currency.
+
+The following components are used within the application:
+
+* **Frontend** - serves the non dynamic content for like html, js, css and images
+* **Login** - in in charge of dealing with anything related to the login user functionality
+* **Users** - all user data interaction is done through this microservice only
+* **Stocks** - connects to external resources to get the latest crypto data and serves it to the application clients
+* **Stocks Transaction** - Deal with all related to buying or selling crypto currencies. It interact with other microservices like Users and Stocks
+* **Database** - Database were all information is stored
+
+
+The lab architecture
+--------------------
+
+As you can notice in the chart below, the Arcadia Crypto application is running in our own datacenter, and is already available on internet.
+
+During this class we will:
+
+* Explore security services include but not limited to: WAF, DDoS, Basic API, Bot Protection
+* Expose the application on the internet and protect it with the F5 XC Global Network (RE only)
+* Expose and protect the application with F5 XC Global Network while the app iteself is not exposed on internet and only available in a private zone (VPC, VNET, internal VLAN …) and protected by F5 XC Global Network (RE + CE)
+* Expose and protect the app directly on the customer site while the application is not exposed directly to the internet (CE only)
+
+
+.. image:: ./module1/pictures/class1.gif
+   :align: center
+
+.. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content. If all good the button will turn green.
 
 .. raw:: html
 
