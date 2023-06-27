@@ -141,7 +141,6 @@ During this class we will:
     </style>
 
 
-
 .. toctree::
    :maxdepth: 2
    :glob:
