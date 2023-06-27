@@ -1,5 +1,5 @@
 Lab 1 - Expose the application
-#####################################
+##############################
 
 Create the networking objects
 *****************************

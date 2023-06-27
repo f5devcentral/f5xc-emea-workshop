@@ -1,3 +1,4 @@
+#######################
 Publish the application
 #######################
 
@@ -8,7 +9,7 @@ This will first provide us with built in visibility for the application behaviou
 **Module 1 - All sections**
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :glob:
 
    lab*/lab*

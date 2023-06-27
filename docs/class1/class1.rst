@@ -10,7 +10,6 @@ Lab Maintainers:
 |
 
 The application used in the lab
--------------------------------
 
 For this lab, we will use the **Arcadia Crypto** application.
 
@@ -27,7 +26,6 @@ The following components are used within the application:
 
 
 The lab architecture
---------------------
 
 As you can notice in the chart below, the Arcadia Crypto application is running in our own datacenter, and is already available on internet.
 

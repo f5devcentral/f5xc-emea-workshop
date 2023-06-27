@@ -1,2 +1,4 @@
-/docs/_build/
-!/docs/_build/html/assets/
+/docs/_build/*
+#!/docs/_build/html/
+#/docs/_build/html/*
+#!/docs/_build/html/assets/
