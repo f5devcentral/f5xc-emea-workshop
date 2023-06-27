@@ -1,4 +1,4 @@
-Lab 1 - Expose the application
+Lab 2 - Expose the public application
 #####################################
 
 Create the networking objects
@@ -7,42 +7,25 @@ Create the networking objects
 For this lab, we will use the following configuration
 
 1. Create the Origin Pool targeting Arcadia public app
- 
-a) Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool -> Fill the bellow data
 
-.. table:: Origin Pool
-   :widths: auto
-
-   ==============================    ========================================================================================
-   Object                            Value
-   ==============================    ========================================================================================
-   **Name**                          arcadia-public-endpoint
-   
-   **Port**                          443 
-
-   **TLS**                           Enable
-
-   **Origin Server Verification**    Skip Verification 
-   ==============================    ========================================================================================
-
-b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> Apply -> Save and exit
-
-.. table:: Origin Server
+.. table:: Origin Pool Config
    :widths: auto
 
    ====================    ========================================================================================
    Object                  Value
    ====================    ========================================================================================
-   **DNS name**            $$hostArcadia$$
+   **Name**                arcadia-public-endpoint
+   
+   **Endpoint**            arcadia.emea.f5se.com
+
+   **Port**                443 
+
+   **TLS**                 Enable
+
+   **TLS Verification**    Disable 
    ====================    ========================================================================================
 
-.. raw:: html   
-
-    <script>c1m1l2a();</script>  
-
 2. Create the HTTP LB
-
-Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer 
 
 .. table:: Configuration
    :widths: auto
@@ -59,9 +42,7 @@ Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Loa
    **Automatically Manage DNS Records**    Enable 
    ====================================    ========================================================================================
 
-.. raw:: html   
-
-    <script>c1m1l2b();</script>  
+|
 
 3. So far, Arcadia is not protected but exposed all over the world on all F5XC RE. 
 Check your Arcadia application is exposed and reachable from the F5XC Global Network by browsing to http://arcadia-re-$$makeId$$.workshop.emea.f5se.com
