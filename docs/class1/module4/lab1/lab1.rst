@@ -1,5 +1,5 @@
-Lab 1 - IPI config
-####################
+Lab 1 - IP Inteligence config
+#############################
 
 
 1. Enabling IP Intelligence it is very simple and it is done at the **HTTP Load Balancer** level. In our example we will enable only **Spam Sources** and **Anonymous Proxies**
@@ -17,3 +17,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the
    
       **List of IP Threat Categories to choose**    Spam Sources, Anonymous Proxies
       ==========================================    ========================================================================================
+
+   .. raw:: html   
+
+      <script>c1m4l1a();</script>  

@@ -282,3 +282,69 @@ function c1m3l1c() {
     }
     displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
+
+function c1m4l1a() {
+  const info = JSON.parse(localStorage.getItem('data'));
+  const config = {
+      "metadata": {
+        "name": "arcadia-re-lb",
+        "namespace": info.namespace,
+        "labels": {},
+        "annotations": {},
+        "disable": false
+      },
+      "spec": {
+        "domains": [
+          `arcadia-re-${info.makeId}.workshop.emea.f5se.com`
+        ],
+        "http": {
+          "dns_volterra_managed": true,
+          "port": 80
+        },
+        "downstream_tls_certificate_expiration_timestamps": [],
+        "advertise_on_public_default_vip": {},
+        "default_route_pools": [
+          {
+            "pool": {
+              "tenant": "f5-emea-workshop-dblyrrcj",
+              "namespace": info.namespace,
+              "name": "arcadia-public-endpoint",
+              "kind": "origin_pool"
+            },
+            "weight": 1,
+            "priority": 1,
+            "endpoint_subsets": {}
+          }
+        ],
+        "app_firewall": {
+          "tenant": "f5-emea-workshop-dblyrrcj",
+          "namespace": info.namespace,
+          "name": "arcadia-waf",
+          "kind": "app_firewall"
+        },
+        "active_service_policies": {
+          "policies": [
+            {
+              "tenant": "f5-emea-workshop-dblyrrcj",
+              "namespace": info.namespace,
+              "name": "arcadia-parameter-inspection",
+              "kind": "service_policy"
+            },
+            {
+              "tenant": "f5-emea-workshop-dblyrrcj",
+              "namespace": info.namespace,
+              "name": "default-allow",
+              "kind": "service_policy"
+            }
+          ]
+        },
+        "enable_ip_reputation": {
+          "ip_threat_categories": [
+            "SPAM_SOURCES",
+            "PROXY"
+          ]
+        }
+      }
+    }
+    displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
