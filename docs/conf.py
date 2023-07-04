@@ -22,6 +22,9 @@ import pkgutil
 import string
 sys.path.insert(0, os.path.abspath('.'))
 import f5_sphinx_theme
+import custom_roles
+
+
 
 year = time.strftime("%Y")
 eventname = "Agility %s Hands-on Lab Guide" % (year)
@@ -195,7 +198,7 @@ html_static_path = ['_static']
 
 html_js_files = [
     'js/data.js',
-    'js/c1m1.js'
+    'js/c1.js'
 ]
 # -- Options for HTMLHelp output ------------------------------------------
 
