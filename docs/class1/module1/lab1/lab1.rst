@@ -1,9 +1,6 @@
 Lab 1 - Expose the application
 ##############################
 
-Create the networking objects
-*****************************
-
 For this lab, we will use the following configuration
 
 1. Create the Origin Pool targeting Arcadia public app
@@ -64,6 +61,6 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP 
       <script>c1m1l2b();</script>  
 
 3. So far, Arcadia is not protected but exposed all over the world on all F5XC RE. 
-Check your Arcadia application is exposed and reachable from the F5XC Global Network by browsing to http://arcadia-re-$$makeId$$.workshop.emea.f5se.com
+Check your Arcadia application is exposed and reachable from the F5XC Global Network by browsing to :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com`
 
 .. warning:: Some Service Providers have a very long recursive cache. It can take several minutes to get a DNS response. You can change your DNS server to 1.1.1.1 or 8.8.8.8 to fix that.

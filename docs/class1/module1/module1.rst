@@ -5,6 +5,9 @@ Publish the application
 In this section, we will expose an existing and public internet facing application through F5 XC Global Network.
 This will first provide us with built in visibility for the application behaviour and the capability in the next steps to add security services.
 
+.. image:: ./pictures/Slide1.png
+   :align: center
+
 
 **Module 1 - All sections**
 

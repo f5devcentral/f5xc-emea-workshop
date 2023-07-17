@@ -46,19 +46,22 @@ function replacePlaceholderWithValue(placeholder, value) {
     const toggleButton = document.createElement('button');
     const statusLabel = document.createElement('span');
     const content = document.createElement('pre');
-  
+    const toolTip = document.createElement('span'); // Tooltip element
+
     // Set IDs for later use
     jsonContainer.id = 'jsonContainer';
     copyButton.id = 'copyButton';
     toggleButton.id = 'toggleButton';
     content.id = 'content';
     statusLabel.id = 'statusLabel';
-  
+    toolTip.id = 'toolTip'; // Tooltip ID
+
     // Set innerHTML of buttons and label
     copyButton.innerHTML = 'Copy';
     toggleButton.innerHTML = 'Show';
     statusLabel.innerHTML = '1 Click Config';
-  
+    toolTip.innerHTML = 'Copied'; // Tooltip text
+
     // Set CSS styles
     jsonContainer.style.position = 'relative';
     jsonContainer.style.margin = '1em 0';
@@ -69,11 +72,23 @@ function replacePlaceholderWithValue(placeholder, value) {
     jsonContainer.style.fontFamily = 'Courier, monospace';
     jsonContainer.style.fontSize = '16px';
     jsonContainer.style.minHeight = '25px'; 
-  
+
+    // Tooltip styles
+    toolTip.style.position = 'absolute';
+    toolTip.style.bottom = '100%';
+    toolTip.style.backgroundColor = '#555';
+    toolTip.style.color = '#fff';
+    toolTip.style.textAlign = 'center';
+    toolTip.style.borderRadius = '12px';
+    toolTip.style.padding = '5px 0';
+    toolTip.style.zIndex = '1';
+    toolTip.style.opacity = '0';
+    toolTip.style.transition = 'opacity 0.3s';
+
     buttonContainer.style.position = 'absolute';
     buttonContainer.style.top = '5px';
     buttonContainer.style.right = '5px';
-  
+
     copyButton.style.padding = '5px 10px';
     copyButton.style.marginLeft = '10px';
     copyButton.style.borderRadius = '3px';
@@ -81,46 +96,54 @@ function replacePlaceholderWithValue(placeholder, value) {
     copyButton.style.backgroundColor = '#0366d6';
     copyButton.style.color = '#fff';
     copyButton.style.cursor = 'pointer';
-  
+
     toggleButton.style.padding = '5px 10px';
     toggleButton.style.borderRadius = '3px';
     toggleButton.style.border = 'none';
     toggleButton.style.backgroundColor = '#0366d6';
     toggleButton.style.color = '#fff';
     toggleButton.style.cursor = 'pointer';
-  
+
     statusLabel.style.display = 'block';
     statusLabel.style.marginTop = '0px';
-  
+
     content.style.display = 'none';
     content.style.whiteSpace = 'pre-wrap'; 
     content.style.wordWrap = 'break-word'; 
-  
+
+    // Add tooltip to copy button
+    copyButton.appendChild(toolTip);
+
     // Add buttons to their container
     buttonContainer.appendChild(toggleButton);
     buttonContainer.appendChild(copyButton);
-  
+
     // Add elements to container
     jsonContainer.appendChild(buttonContainer);
     jsonContainer.appendChild(statusLabel);
     jsonContainer.appendChild(content);
-  
+
     // Append after current script tag
     const currentScript = document.currentScript;
     currentScript.parentNode.insertBefore(jsonContainer, currentScript.nextSibling);
-  
+
     // Set JSON data into content
     content.textContent = JSON.stringify(jsonInput, null, 2);
-  
+
     // Set copy button click event
     copyButton.addEventListener('click', function() {
       navigator.clipboard.writeText(content.textContent).then(function() {
-        alert('JSON copied to clipboard!');
+        // Show tooltip
+        toolTip.style.opacity = '1';
+        // Hide tooltip after 3 seconds
+        setTimeout(function() {
+          toolTip.style.opacity = '0';
+        }, 1500);
       }).catch(function() {
         alert('Failed to copy JSON to clipboard.');
       });
     });
-  
+
     // Set toggle button click event
     toggleButton.addEventListener('click', function() {
       if (content.style.display === 'none') {
@@ -136,7 +159,7 @@ function replacePlaceholderWithValue(placeholder, value) {
         statusLabel.style.marginTop = '0px';
       }
     });
-  }
+}
   
   
 
@@ -145,9 +168,10 @@ function replacePlaceholderWithValue(placeholder, value) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const data = JSON.parse(localStorage.getItem('data'))
-    const { makeId, hostArcadia, ceArcadia, namespace } = data;
+    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem } = data;
     replacePlaceholderWithValue('makeId', makeId);
     replacePlaceholderWithValue('hostArcadia', hostArcadia);
     replacePlaceholderWithValue('ceArcadia', ceArcadia);
     replacePlaceholderWithValue('namespace', namespace);
+    replacePlaceholderWithValue('ceOnPrem.clusterName', ceOnPrem.clusterName);
   });

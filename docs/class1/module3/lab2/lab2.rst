@@ -9,7 +9,7 @@ Lab 2 - Testing
 
 
 
-2. Now let's do the same but with the invalid email paramter. This time the request will get blocked.
+2. Now let's do the same but with the invalid email parameter. This time the request will get blocked.
 
    .. code-block:: none
 
