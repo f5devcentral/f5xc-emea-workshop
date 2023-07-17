@@ -1,168 +1,7 @@
 
-const info = JSON.parse(localStorage.getItem('data'));
-
-const lbConfig = ({
-  name,
-  namespace,
-  domains,
-  poolName,
-  wafPolicy,
-  activeServicePolicies,
-  ipi,
-  userIdentification,
-  botDefense,
-  ddos,
-  advertiseCustom
-
-}) => {
-    const config = {
-      "metadata": {
-        "name": name,
-        "namespace": namespace,
-        "labels": {},
-        "annotations": {},
-        "disable": false
-      },
-      "spec": {
-        "domains": domains,
-        "http": {
-          "dns_volterra_managed": true,
-          "port": 80
-        },
-        "downstream_tls_certificate_expiration_timestamps": [],        
-        "default_route_pools": [
-          {
-            "pool": {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": namespace,
-              "name": poolName,
-              "kind": "origin_pool"
-            },
-            "weight": 1,
-            "priority": 1,
-            "endpoint_subsets": {}
-          }
-        ]
-      }
-    }
-
-
-    if (wafPolicy) config.spec.app_firewall = {
-                    "tenant": "f5-emea-workshop-dblyrrcj",
-                    "namespace": namespace,
-                    "name": wafPolicy,
-                    "kind": "app_firewall"
-                  }
-
-    if (activeServicePolicies) {
-      config.spec.active_service_policies = {policies: []};
-      activeServicePolicies.forEach((item) => {
-        config.spec.active_service_policies.policies.push({
-          "tenant": "f5-emea-workshop-dblyrrcj",
-          "namespace": namespace,
-          "name": item,
-          "kind": "service_policy"
-        })
-      });          
-    }
-
-    if (ipi) {
-      config.spec.enable_ip_reputation = {
-        ip_threat_categories: []
-      }
-      ipi.forEach((item) => {
-        config.spec.enable_ip_reputation.ip_threat_categories.push(item);
-      })
-    }
-    
-    if (userIdentification) {
-      config.spec.enable_malicious_user_detection = {};
-      config.spec.user_identification = {
-        "tenant": "f5-emea-workshop-dblyrrcj",
-        "namespace": namespace,
-        "name": userIdentification,
-        "kind": "user_identification"
-      }
-    }
-
-    if (botDefense) {
-      config.spec.bot_defense = {
-        "regional_endpoint": "EU",
-        "policy": {
-          "protected_app_endpoints": [
-            {
-              "metadata": {
-                "name": "login",
-                "disable": false
-              },
-              "http_methods": [
-                "METHOD_POST"
-              ],
-              "undefined_flow_label": {},
-              "protocol": "BOTH",
-              "any_domain": {},
-              "path": {
-                "prefix": "/v1/login"
-              },
-              "web": {},
-              "mitigation": {
-                "block": {
-                  "status": "OK",
-                  "body": "string:///VGhlIHJlcXVlc3RlZCBVUkwgd2FzIHJlamVjdGVkLiBQbGVhc2UgY29uc3VsdCB3aXRoIHlvdXIgYWRtaW5pc3RyYXRvci4="
-                }
-              },
-              "mitigate_good_bots": {}
-            }
-          ],
-          "js_insert_all_pages": {
-            "javascript_location": "AFTER_HEAD"
-          },
-          "js_download_path": "/common.js",
-          "javascript_mode": "ASYNC_JS_NO_CACHING",
-          "disable_mobile_sdk": {}
-        },
-        "timeout": 1000
-      }
-    }
-
-    if (ddos) {
-      config.spec.enable_ddos_detection = {
-        enable_auto_mitigation: {}
-      }
-    }
-
-    if (advertiseCustom) {
-      config.spec.http = {
-        "dns_volterra_managed": false
-      }
-      config.spec['advertise_custom'] = {
-        "advertise_where": [
-          {
-            "site": {
-              "network": "SITE_NETWORK_INSIDE_AND_OUTSIDE",
-              "site": {
-                "tenant": "f5-emea-workshop-dblyrrcj",
-                "namespace": "system",
-                "name": advertiseCustom,
-                "kind": "site"
-              }
-            },
-            "use_default_port": {}
-          }
-        ]
-        
-      }
-    }
-
-    return config;
-}
-
-
 
 function c1m1l2a() {    
-    
-    const info = JSON.parse(localStorage.getItem('data'));
-    
+        
     const config = {
         "metadata": {
           "name": "arcadia-public-endpoint",
@@ -199,7 +38,7 @@ function c1m1l2a() {
 }
 
 function c1m1l2b() {
-    const info = JSON.parse(localStorage.getItem('data'));
+    
     const config = lbConfig({
       name: 'arcadia-re-lb',
       namespace: info.namespace,
@@ -211,7 +50,7 @@ function c1m1l2b() {
 }
 
 function c1m2l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = {
     "metadata": {
       "name": "arcadia-waf",
@@ -233,7 +72,7 @@ function c1m2l1a() {
 }
 
 function c1m2l1b() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = lbConfig({
     name: 'arcadia-re-lb',
     namespace: info.namespace,
@@ -245,7 +84,7 @@ function c1m2l1b() {
 }
 
 function c1m3l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = {
     "metadata": {
       "name": "default-allow",
@@ -261,7 +100,7 @@ function c1m3l1a() {
 }
 
 function c1m3l1b() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = {
     "metadata": {
       "name": "arcadia-parameter-inspection",
@@ -327,7 +166,6 @@ function c1m3l1b() {
 }
 
 function c1m3l1c() {
-  const info = JSON.parse(localStorage.getItem('data'));
   
   const config = lbConfig({
     name: 'arcadia-re-lb',
@@ -343,7 +181,7 @@ function c1m3l1c() {
 }
 
 function c1m4l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = lbConfig({
     name: 'arcadia-re-lb',
     namespace: info.namespace,
@@ -358,7 +196,7 @@ function c1m4l1a() {
 
 
 function c1m5l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = {
       "metadata": {
         "name": "arcadia-user-identification",
@@ -382,7 +220,7 @@ function c1m5l1a() {
 }
 
 function c1m5l1b() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = lbConfig({
     name: 'arcadia-re-lb',
     namespace: info.namespace,
@@ -397,7 +235,7 @@ function c1m5l1b() {
 }
 
 function c1m6l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = {
     "metadata": {
       "name": "arcadia-waf",
@@ -424,7 +262,7 @@ function c1m6l1a() {
 
 
 function c1m7l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = lbConfig({
     name: 'arcadia-re-lb',
     namespace: info.namespace,
@@ -440,7 +278,7 @@ function c1m7l1a() {
 }
 
 function c1m8l1a() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
   const config = lbConfig({
     name: 'arcadia-re-lb',
     namespace: info.namespace,
@@ -456,10 +294,7 @@ function c1m8l1a() {
     displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
-function c1m9l1a() {    
-    
-  const info = JSON.parse(localStorage.getItem('data'));
-  
+function c1m9l1a() {        
   const config = {
     "metadata": {
       "name": "arcadia-onprem-private-endpoint",
@@ -492,9 +327,8 @@ function c1m9l1a() {
   displayJSON(config,'Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
-function c1m9l1b({ instructions }) {
-  const info = JSON.parse(localStorage.getItem('data'));
-
+function c1m9l1b({ instructions } = { instructions: 'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit' }) {
+  
   const config = lbConfig({
     name: 'arcadia-re-lb',
     namespace: info.namespace,
@@ -507,13 +341,12 @@ function c1m9l1b({ instructions }) {
     botDefense: 'enable',
     ddos: 'enable',
   });
-
   
-    displayJSON(config, instructions || 'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+  displayJSON(config, instructions);    
 }
 
-function c1m9l1c({ instructions }) {
-  const info = JSON.parse(localStorage.getItem('data'));
+function c1m9l1c({ instructions } = { instructions: 'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit' }) {
+  
 
   const config = lbConfig({
     name: 'arcadia-re-lb',
@@ -529,11 +362,11 @@ function c1m9l1c({ instructions }) {
   });
 
   
-    displayJSON(config, instructions || 'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+    displayJSON(config, instructions );    
 }
 
 function c1ma1l1b() {
-  const info = JSON.parse(localStorage.getItem('data'));
+  
 
   const config = lbConfig({
     name: 'arcadia-ce-lb',

@@ -198,9 +198,10 @@ html_static_path = ['_static']
 
 html_js_files = [
     'js/data.js',
-    'js/c1.js'
-]
-# -- Options for HTMLHelp output ------------------------------------------
+    'js/c1.js',
+    'js/c2.js',
+    'js/c3.js'
+]# -- Options for HTMLHelp output ------------------------------------------
 
 cleanname = re.sub('\W+','',classname)
 

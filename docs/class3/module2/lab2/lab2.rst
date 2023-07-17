@@ -1,7 +1,8 @@
 Lab 2 - Testing and Visibility
 ##############################
 
-In order to make sure all is working we will need to login into the application and look at the relevant dashboards.
+Let's see that what we have configured is working.
+
 
 1. Login into the app while using the **arcadia-re-lb** load balancer :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com`
 
@@ -14,13 +15,10 @@ In order to make sure all is working we will need to login into the application 
       **Username**                                  satoshi@bitcoin.com
    
       **Password**                                  bitcoin
-      ==========================================    ========================================================================================   
+      ==========================================    ========================================================================================
 
-2. Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-re-lb**
+2. Let's look where each request is going
 
-a) Observe the different overall statistics provided by the **Dashboard** dashboard
+a) Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-re-lb** -> Requests
 
-b) Observe the requests and plethora of information that can be seen for each request provided by the **Requests** dashboard
-
-
-
+b) In the **Search** input enter **/v1/stock/ticker/all** . When you observe the **Origin Server** column you can see that it mentions **tn2-lon** which is the Virtual Kubernetes F5 XC point of presence
