@@ -1,3 +1,164 @@
+
+const info = JSON.parse(localStorage.getItem('data'));
+
+const lbConfig = ({
+  name,
+  namespace,
+  domains,
+  poolName,
+  wafPolicy,
+  activeServicePolicies,
+  ipi,
+  userIdentification,
+  botDefense,
+  ddos,
+  advertiseCustom
+
+}) => {
+    const config = {
+      "metadata": {
+        "name": name,
+        "namespace": namespace,
+        "labels": {},
+        "annotations": {},
+        "disable": false
+      },
+      "spec": {
+        "domains": domains,
+        "http": {
+          "dns_volterra_managed": true,
+          "port": 80
+        },
+        "downstream_tls_certificate_expiration_timestamps": [],        
+        "default_route_pools": [
+          {
+            "pool": {
+              "tenant": "f5-emea-workshop-dblyrrcj",
+              "namespace": namespace,
+              "name": poolName,
+              "kind": "origin_pool"
+            },
+            "weight": 1,
+            "priority": 1,
+            "endpoint_subsets": {}
+          }
+        ]
+      }
+    }
+
+
+    if (wafPolicy) config.spec.app_firewall = {
+                    "tenant": "f5-emea-workshop-dblyrrcj",
+                    "namespace": namespace,
+                    "name": wafPolicy,
+                    "kind": "app_firewall"
+                  }
+
+    if (activeServicePolicies) {
+      config.spec.active_service_policies = {policies: []};
+      activeServicePolicies.forEach((item) => {
+        config.spec.active_service_policies.policies.push({
+          "tenant": "f5-emea-workshop-dblyrrcj",
+          "namespace": namespace,
+          "name": item,
+          "kind": "service_policy"
+        })
+      });          
+    }
+
+    if (ipi) {
+      config.spec.enable_ip_reputation = {
+        ip_threat_categories: []
+      }
+      ipi.forEach((item) => {
+        config.spec.enable_ip_reputation.ip_threat_categories.push(item);
+      })
+    }
+    
+    if (userIdentification) {
+      config.spec.enable_malicious_user_detection = {};
+      config.spec.user_identification = {
+        "tenant": "f5-emea-workshop-dblyrrcj",
+        "namespace": namespace,
+        "name": userIdentification,
+        "kind": "user_identification"
+      }
+    }
+
+    if (botDefense) {
+      config.spec.bot_defense = {
+        "regional_endpoint": "EU",
+        "policy": {
+          "protected_app_endpoints": [
+            {
+              "metadata": {
+                "name": "login",
+                "disable": false
+              },
+              "http_methods": [
+                "METHOD_POST"
+              ],
+              "undefined_flow_label": {},
+              "protocol": "BOTH",
+              "any_domain": {},
+              "path": {
+                "prefix": "/v1/login"
+              },
+              "web": {},
+              "mitigation": {
+                "block": {
+                  "status": "OK",
+                  "body": "string:///VGhlIHJlcXVlc3RlZCBVUkwgd2FzIHJlamVjdGVkLiBQbGVhc2UgY29uc3VsdCB3aXRoIHlvdXIgYWRtaW5pc3RyYXRvci4="
+                }
+              },
+              "mitigate_good_bots": {}
+            }
+          ],
+          "js_insert_all_pages": {
+            "javascript_location": "AFTER_HEAD"
+          },
+          "js_download_path": "/common.js",
+          "javascript_mode": "ASYNC_JS_NO_CACHING",
+          "disable_mobile_sdk": {}
+        },
+        "timeout": 1000
+      }
+    }
+
+    if (ddos) {
+      config.spec.enable_ddos_detection = {
+        enable_auto_mitigation: {}
+      }
+    }
+
+    if (advertiseCustom) {
+      config.spec.http = {
+        "dns_volterra_managed": false
+      }
+      config.spec['advertise_custom'] = {
+        "advertise_where": [
+          {
+            "site": {
+              "network": "SITE_NETWORK_INSIDE_AND_OUTSIDE",
+              "site": {
+                "tenant": "f5-emea-workshop-dblyrrcj",
+                "namespace": "system",
+                "name": advertiseCustom,
+                "kind": "site"
+              }
+            },
+            "use_default_port": {}
+          }
+        ]
+        
+      }
+    }
+
+    return config;
+}
+
+
+
 function c1m1l2a() {    
     
     const info = JSON.parse(localStorage.getItem('data'));
@@ -39,40 +200,14 @@ function c1m1l2a() {
 
 function c1m1l2b() {
     const info = JSON.parse(localStorage.getItem('data'));
-    const config = {
-        "metadata": {
-          "name": "arcadia-re-lb",
-          "namespace": info.namespace,
-          "labels": {},
-          "annotations": {},
-          "disable": false
-        },
-        "spec": {
-          "domains": [
-            `arcadia-re-${info.makeId}.workshop.emea.f5se.com`
-          ],
-          "http": {
-            "dns_volterra_managed": true,
-            "port": 80
-          },
-          "downstream_tls_certificate_expiration_timestamps": [],
-          "advertise_on_public_default_vip": {},
-          "default_route_pools": [
-            {
-              "pool": {
-                "tenant": "f5-emea-workshop-dblyrrcj",
-                "namespace": info.namespace,
-                "name": "arcadia-public-endpoint",
-                "kind": "origin_pool"
-              },
-              "weight": 1,
-              "priority": 1,
-              "endpoint_subsets": {}
-            }
-          ]
-        }
-      }
-      displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit');    
+    const config = lbConfig({
+      name: 'arcadia-re-lb',
+      namespace: info.namespace,
+      poolName: 'arcadia-public-endpoint',
+      domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`]
+    });
+    
+    displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
 function c1m2l1a() {
@@ -99,45 +234,13 @@ function c1m2l1a() {
 
 function c1m2l1b() {
   const info = JSON.parse(localStorage.getItem('data'));
-  const config = {
-      "metadata": {
-        "name": "arcadia-re-lb",
-        "namespace": info.namespace,
-        "labels": {},
-        "annotations": {},
-        "disable": false
-      },
-      "spec": {
-        "domains": [
-          `arcadia-re-${info.makeId}.workshop.emea.f5se.com`
-        ],
-        "http": {
-          "dns_volterra_managed": true,
-          "port": 80
-        },
-        "downstream_tls_certificate_expiration_timestamps": [],
-        "advertise_on_public_default_vip": {},
-        "default_route_pools": [
-          {
-            "pool": {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-public-endpoint",
-              "kind": "origin_pool"
-            },
-            "weight": 1,
-            "priority": 1,
-            "endpoint_subsets": {}
-          }
-        ],
-        "app_firewall": {
-          "tenant": "f5-emea-workshop-dblyrrcj",
-          "namespace": info.namespace,
-          "name": "arcadia-waf",
-          "kind": "app_firewall"
-        },
-      }
-    }
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf'
+  });
     displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
@@ -225,128 +328,32 @@ function c1m3l1b() {
 
 function c1m3l1c() {
   const info = JSON.parse(localStorage.getItem('data'));
-  const config = {
-      "metadata": {
-        "name": "arcadia-re-lb",
-        "namespace": info.namespace,
-        "labels": {},
-        "annotations": {},
-        "disable": false
-      },
-      "spec": {
-        "domains": [
-          `arcadia-re-${info.makeId}.workshop.emea.f5se.com`
-        ],
-        "http": {
-          "dns_volterra_managed": true,
-          "port": 80
-        },
-        "downstream_tls_certificate_expiration_timestamps": [],
-        "advertise_on_public_default_vip": {},
-        "default_route_pools": [
-          {
-            "pool": {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-public-endpoint",
-              "kind": "origin_pool"
-            },
-            "weight": 1,
-            "priority": 1,
-            "endpoint_subsets": {}
-          }
-        ],
-        "app_firewall": {
-          "tenant": "f5-emea-workshop-dblyrrcj",
-          "namespace": info.namespace,
-          "name": "arcadia-waf",
-          "kind": "app_firewall"
-        },
-        "active_service_policies": {
-          "policies": [
-            {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-parameter-inspection",
-              "kind": "service_policy"
-            },
-            {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "default-allow",
-              "kind": "service_policy"
-            }
-          ]
-        },
-      }
-    }
+  
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow']
+  });
+  
+  
     displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
 function c1m4l1a() {
   const info = JSON.parse(localStorage.getItem('data'));
-  const config = {
-      "metadata": {
-        "name": "arcadia-re-lb",
-        "namespace": info.namespace,
-        "labels": {},
-        "annotations": {},
-        "disable": false
-      },
-      "spec": {
-        "domains": [
-          `arcadia-re-${info.makeId}.workshop.emea.f5se.com`
-        ],
-        "http": {
-          "dns_volterra_managed": true,
-          "port": 80
-        },
-        "downstream_tls_certificate_expiration_timestamps": [],
-        "advertise_on_public_default_vip": {},
-        "default_route_pools": [
-          {
-            "pool": {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-public-endpoint",
-              "kind": "origin_pool"
-            },
-            "weight": 1,
-            "priority": 1,
-            "endpoint_subsets": {}
-          }
-        ],
-        "app_firewall": {
-          "tenant": "f5-emea-workshop-dblyrrcj",
-          "namespace": info.namespace,
-          "name": "arcadia-waf",
-          "kind": "app_firewall"
-        },
-        "active_service_policies": {
-          "policies": [
-            {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-parameter-inspection",
-              "kind": "service_policy"
-            },
-            {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "default-allow",
-              "kind": "service_policy"
-            }
-          ]
-        },
-        "enable_ip_reputation": {
-          "ip_threat_categories": [
-            "SPAM_SOURCES",
-            "PROXY"
-          ]
-        }
-      }
-    }
-    displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY']
+  });
+  displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
 
@@ -376,79 +383,16 @@ function c1m5l1a() {
 
 function c1m5l1b() {
   const info = JSON.parse(localStorage.getItem('data'));
-  const config = {
-      "metadata": {
-        "name": "arcadia-re-lb",
-        "namespace": info.namespace,
-        "labels": {},
-        "annotations": {},
-        "disable": false
-      },
-      "spec": {
-        "domains": [
-          `arcadia-re-${info.makeId}.workshop.emea.f5se.com`
-        ],
-        "http": {
-          "dns_volterra_managed": true,
-          "port": 80
-        },
-        "downstream_tls_certificate_expiration_timestamps": [],
-        "advertise_on_public_default_vip": {},
-        "default_route_pools": [
-          {
-            "pool": {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-public-endpoint",
-              "kind": "origin_pool"
-            },
-            "weight": 1,
-            "priority": 1,
-            "endpoint_subsets": {}
-          }
-        ],
-        "app_firewall": {
-          "tenant": "f5-emea-workshop-dblyrrcj",
-          "namespace": info.namespace,
-          "name": "arcadia-waf",
-          "kind": "app_firewall"
-        },
-        "enable_challenge": {
-          "default_mitigation_settings": {},
-          "default_js_challenge_parameters": {},
-          "default_captcha_challenge_parameters": {}
-        },
-        "user_identification": {
-          "tenant": "f5-emea-workshop-dblyrrcj",
-          "namespace": info.namespace,
-          "name": "arcadia-user-identification",
-          "kind": "user_identification"
-        },
-        "active_service_policies": {
-          "policies": [
-            {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "arcadia-parameter-inspection",
-              "kind": "service_policy"
-            },
-            {
-              "tenant": "f5-emea-workshop-dblyrrcj",
-              "namespace": info.namespace,
-              "name": "default-allow",
-              "kind": "service_policy"
-            }
-          ]
-        },
-        "enable_malicious_user_detection": {},
-        "enable_ip_reputation": {
-          "ip_threat_categories": [
-            "SPAM_SOURCES",
-            "PROXY"
-          ]
-        }
-      }
-    }
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY'],
+    userIdentification: 'arcadia-user-identification'
+  });
     displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
@@ -476,4 +420,135 @@ function c1m6l1a() {
     },
   }
     displayJSON(config,'Web App & API Protection -> App Firewall -> Click the 3 dots under the arcadia-waf row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+
+function c1m7l1a() {
+  const info = JSON.parse(localStorage.getItem('data'));
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY'],
+    userIdentification: 'arcadia-user-identification',
+    botDefense: 'enable'
+  });
+  displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+function c1m8l1a() {
+  const info = JSON.parse(localStorage.getItem('data'));
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY'],
+    userIdentification: 'arcadia-user-identification',
+    botDefense: 'enable',
+    ddos: 'enable',
+  });
+    displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+function c1m9l1a() {    
+    
+  const info = JSON.parse(localStorage.getItem('data'));
+  
+  const config = {
+    "metadata": {
+      "name": "arcadia-onprem-private-endpoint",
+      "disable": false
+    },
+    "spec": {
+      "origin_servers": [
+        {
+          "private_ip": {
+            "ip": "10.1.1.6",
+            "site_locator": {
+              "site": {
+                "tenant": "f5-emea-workshop-dblyrrcj",
+                "namespace": "system",
+                "name": info.ceOnPrem.clusterName,
+                "kind": "site"
+              }
+            },
+            "outside_network": {}
+          }
+        }
+      ],
+      "no_tls": {},
+      "port": 31970,
+      "same_as_endpoint_port": {},
+      "loadbalancer_algorithm": "LB_OVERRIDE",
+      "endpoint_selection": "LOCAL_PREFERRED"
+    }
+  }
+  displayJSON(config,'Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+function c1m9l1b({ instructions }) {
+  const info = JSON.parse(localStorage.getItem('data'));
+
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-onprem-private-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY'],
+    userIdentification: 'arcadia-user-identification',
+    botDefense: 'enable',
+    ddos: 'enable',
+  });
+
+  
+    displayJSON(config, instructions || 'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+function c1m9l1c({ instructions }) {
+  const info = JSON.parse(localStorage.getItem('data'));
+
+  const config = lbConfig({
+    name: 'arcadia-re-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-public-endpoint',
+    domains: [`arcadia-re-${info.makeId}.workshop.emea.f5se.com`],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY'],
+    userIdentification: 'arcadia-user-identification',
+    botDefense: 'enable',
+    ddos: 'enable',
+  });
+
+  
+    displayJSON(config, instructions || 'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+function c1ma1l1b() {
+  const info = JSON.parse(localStorage.getItem('data'));
+
+  const config = lbConfig({
+    name: 'arcadia-ce-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-onprem-private-endpoint',
+    domains: [info.ceArcadia],
+    wafPolicy: 'arcadia-waf',
+    activeServicePolicies: ['arcadia-parameter-inspection','default-allow'],
+    ipi: ['SPAM_SOURCES','PROXY'],
+    userIdentification: 'arcadia-user-identification',
+    botDefense: 'enable',
+    ddos: 'enable',
+    advertiseCustom: info.ceOnPrem.clusterName
+  });
+
+  
+    displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-re-lb row -> Manage Configuration -> Edit Configuration -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }

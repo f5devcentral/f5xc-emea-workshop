@@ -168,9 +168,10 @@ function replacePlaceholderWithValue(placeholder, value) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const data = JSON.parse(localStorage.getItem('data'))
-    const { makeId, hostArcadia, ceArcadia, namespace } = data;
+    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem } = data;
     replacePlaceholderWithValue('makeId', makeId);
     replacePlaceholderWithValue('hostArcadia', hostArcadia);
     replacePlaceholderWithValue('ceArcadia', ceArcadia);
     replacePlaceholderWithValue('namespace', namespace);
+    replacePlaceholderWithValue('ceOnPrem.clusterName', ceOnPrem.clusterName);
   });

@@ -1,64 +1,43 @@
-Lab 1 - Malicious User Detection config
-#######################################
+Lab 1 - Configuring the CE
+##########################
 
 
-1. Enabling Malicious User Detection is done at the **HTTP Load Balancer** level. In our example we will enable only **Spam Sources** and **Anonymous Proxies**
+1. We shall expose the application service directly on the CE while keeping the level of protection as the main load balancer.
 
-a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Fill the bellow data
-
-
-   .. table::
-      :widths: auto
-
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Malicious User Detection**                  Enable
-   
-      **User Identifier**                           Under the new **User Identification Policy** field chose **Add Item**
-      ==========================================    ========================================================================================
-
-b) Fill the bellow data -> **Configure**
+a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the **arcadia-re-lb** row -> Clone Object
 
    .. table::
       :widths: auto
 
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Name**                                      arcadia-user-identification
-      ==========================================    ========================================================================================
 
-c) Click **Add Item** -> Fill the bellow data -> Apply
+      =====================================    ========================================================================================
+      Object                                   Value
+      =====================================    ========================================================================================
+      **Name**                                 arcadia-ce-lb
 
-   .. table::
-      :widths: auto
+      **Domains**                              $$ceArcadia$$
+      
+      **Automatically Manage DNS Records**     Unchecked
 
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Identifier Type**                           HTTP Header Name
+      **VIP Advertisement**                    Custom      
+      =====================================    ========================================================================================
 
-      **HTTP Header Name**                          Authorization
-      ==========================================    ========================================================================================
-
-d) Click **Add Item** -> Fill the bellow data -> Apply -> Apply -> Continue -> Save and Exit
+b) On the same page click **Configure** under **VIP Advertisement -> Custom** -> Add Item -> Fill the bellow data -> Apply -> Save and exit
 
    .. table::
       :widths: auto
 
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Identifier Type**                           Client IP Address
-      ==========================================    ========================================================================================
+      ================================    ========================================================================================
+      Object                              Value
+      ================================    ========================================================================================
+      **Site Reference**                  system/$$ceOnPrem.clusterName$$
 
+      **Domains**                         $$ceArcadia$$      
 
-
+      **VIP Advertisement**               Custom      
+      ================================    ========================================================================================
+  
+ 
    .. raw:: html   
 
-      <script>c1m5l1a();</script>  
-
-   .. raw:: html   
-
-      <script>c1m5l1b();</script>        
+      <script>c1ma1l1b();</script> 

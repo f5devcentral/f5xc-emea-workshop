@@ -1,9 +1,6 @@
 Lab 1 - Expose the application
 ##############################
 
-Create the networking objects
-*****************************
-
 For this lab, we will use the following configuration
 
 1. Create the Origin Pool targeting Arcadia public app

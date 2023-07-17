@@ -1,5 +1,5 @@
-Lab 1 - Malicious User Detection config
-#######################################
+Lab 1 - Bot advanced config
+###########################
 
 
 1. Enabling Malicious User Detection is done at the **HTTP Load Balancer** level. In our example we will enable only **Spam Sources** and **Anonymous Proxies**
@@ -13,12 +13,12 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the
       ==========================================    ========================================================================================
       Object                                        Value
       ==========================================    ========================================================================================
-      **Malicious User Detection**                  Enable
+      **Bot Defense**                               Enable
    
-      **User Identifier**                           Under the new **User Identification Policy** field chose **Add Item**
+      **Bot Defense Region**                        EU
       ==========================================    ========================================================================================
 
-b) Fill the bellow data -> **Configure**
+b) On the same place click **Configure** under **Bot Defense Policy** -> Configure -> Add Item -> Fill the bellow data -> Apply -> Apply -> Apply -> Save and Exit
 
    .. table::
       :widths: auto
@@ -26,39 +26,17 @@ b) Fill the bellow data -> **Configure**
       ==========================================    ========================================================================================
       Object                                        Value
       ==========================================    ========================================================================================
-      **Name**                                      arcadia-user-identification
+      **Name**                                      Login
+   
+      **HTTP Methods**                              POST
+
+      **Prefix**                                    /v1/login
+
+      **Select Bot Mitigation action**              Block      
       ==========================================    ========================================================================================
-
-c) Click **Add Item** -> Fill the bellow data -> Apply
-
-   .. table::
-      :widths: auto
-
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Identifier Type**                           HTTP Header Name
-
-      **HTTP Header Name**                          Authorization
-      ==========================================    ========================================================================================
-
-d) Click **Add Item** -> Fill the bellow data -> Apply -> Apply -> Continue -> Save and Exit
-
-   .. table::
-      :widths: auto
-
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Identifier Type**                           Client IP Address
-      ==========================================    ========================================================================================
-
 
 
    .. raw:: html   
 
-      <script>c1m5l1a();</script>  
+      <script>c1m7l1a();</script>     
 
-   .. raw:: html   
-
-      <script>c1m5l1b();</script>        

@@ -1,64 +1,50 @@
-Lab 1 - Malicious User Detection config
-#######################################
+Lab 1 - RE + CE configuration
+#############################
 
 
-1. Enabling Malicious User Detection is done at the **HTTP Load Balancer** level. In our example we will enable only **Spam Sources** and **Anonymous Proxies**
+1. First we need to create a new origin pool which will point directly to the private IP address of the servers.
 
-a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Fill the bellow data
+a) Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool -> Fill the bellow data
 
-
-   .. table::
+   .. table:: Origin Pool
       :widths: auto
 
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Malicious User Detection**                  Enable
-   
-      **User Identifier**                           Under the new **User Identification Policy** field chose **Add Item**
-      ==========================================    ========================================================================================
+      ==============================    ========================================================================================
+      Object                            Value
+      ==============================    ========================================================================================
+      **Name**                          arcadia-onprem-private-endpoint
+      
+      **Port**                          31970
+      ==============================    ========================================================================================
 
-b) Fill the bellow data -> **Configure**
+b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> Apply -> Save and exit
 
-   .. table::
+   .. table:: Origin Server
       :widths: auto
 
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Name**                                      arcadia-user-identification
-      ==========================================    ========================================================================================
+      ================================    ========================================================================================
+      Object                              Value
+      ================================    ========================================================================================
+      **Select Type of Origin Server**    IP address of Origin Server on given Sites
 
-c) Click **Add Item** -> Fill the bellow data -> Apply
+      **IP**                              10.1.1.6
 
-   .. table::
-      :widths: auto
+      **Site**                            system/$$ceOnPrem.clusterName$$
 
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Identifier Type**                           HTTP Header Name
-
-      **HTTP Header Name**                          Authorization
-      ==========================================    ========================================================================================
-
-d) Click **Add Item** -> Fill the bellow data -> Apply -> Apply -> Continue -> Save and Exit
-
-   .. table::
-      :widths: auto
-
-      ==========================================    ========================================================================================
-      Object                                        Value
-      ==========================================    ========================================================================================
-      **Identifier Type**                           Client IP Address
-      ==========================================    ========================================================================================
+      **Select Network on the site**      Outside Network
+      ================================    ========================================================================================
 
 
 
    .. raw:: html   
 
-      <script>c1m5l1a();</script>  
+      <script>c1m9l1a();</script>        
+
+2. Our next step is to change the default pool of the **arcadia-re-lb** to point directly to the internal origin pool
+
+a) Web App & API Protection -> App Firewall ->  Click the 3 dots under the **arcadia-waf** row -> Manage Configuration -> Edit Configuration -> Click the **pen icon** under the **arcadia-public-endpoint origin pool** -> Change the **Origin Pool** field from **$$namespace$$/arcadia-public-endpoint** to **$$namespace$$/arcadia-onprem-private-endpoint** -> Apply -> Save and Exit
+
 
    .. raw:: html   
 
-      <script>c1m5l1b();</script>        
+         <script>c1m9l1b();</script>   
