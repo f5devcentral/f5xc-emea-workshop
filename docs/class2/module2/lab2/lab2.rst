@@ -1,7 +1,7 @@
 Lab 2 - Testing and Visibility
 ##############################
 
-In order to make sure all is working we will need to login into the application and look at the relevant dashboards.
+Now let's try again and make a transaction
 
 1. Login into the app while using the **arcadia-re-lb** load balancer :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com`
 
@@ -14,13 +14,13 @@ In order to make sure all is working we will need to login into the application 
       **Username**                                  satoshi@bitcoin.com
    
       **Password**                                  bitcoin
-      ==========================================    ========================================================================================   
+      ==========================================    ========================================================================================
 
-2. Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-re-lb**
+2. Go ahead and buy or sell crypto currency, this time it will work.
 
-a) Observe the different overall statistics provided by the **Dashboard** dashboard
+3. Let look at some statistics
 
-b) Observe the requests and plethora of information that can be seen for each request provided by the **Requests** dashboard
+a) Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-aws-to-onprem-lb** -> Requests
 
-
+b) Observe the **PATCH** request that has been sent by the **Transactions** microservice on AWS to the on prem **Users** microservice in order to update the wallet balance of the user
 

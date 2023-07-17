@@ -198,7 +198,8 @@ html_static_path = ['_static']
 
 html_js_files = [
     'js/data.js',
-    'js/c1.js'
+    'js/c1.js',
+    'js/c2.js'
 ]
 # -- Options for HTMLHelp output ------------------------------------------
 

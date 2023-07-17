@@ -42,8 +42,7 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
 
 2. Our next step is to change the default pool of the **arcadia-re-lb** to point directly to the internal origin pool
 
-a) Web App & API Protection -> App Firewall ->  Click the 3 dots under the **arcadia-waf** row -> Manage Configuration -> Edit Configuration -> Click the **pen icon** under the **arcadia-public-endpoint origin pool** -> Change the **Origin Pool** field from **$$namespace$$/arcadia-public-endpoint** to **$$namespace$$/arcadia-onprem-private-endpoint** -> Apply -> Save and Exit
-
+a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Click the **pen icon** under the **arcadia-public-endpoint origin pool** -> Change the **Origin Pool** field from **$$namespace$$/arcadia-public-endpoint** to **$$namespace$$/arcadia-onprem-private-endpoint** -> Apply -> Save and Exit
 
    .. raw:: html   
 

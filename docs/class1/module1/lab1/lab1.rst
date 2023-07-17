@@ -7,7 +7,7 @@ For this lab, we will use the following configuration
  
 a) Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool -> Fill the bellow data
 
-   .. table:: Origin Pool
+   .. table:: 
       :widths: auto
 
       ==============================    ========================================================================================
@@ -24,7 +24,7 @@ a) Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool 
 
 b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> Apply -> Save and exit
 
-   .. table:: Origin Server
+   .. table:: 
       :widths: auto
 
       ====================    ========================================================================================
@@ -41,7 +41,7 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
 
 a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer 
 
-   .. table:: Configuration
+   .. table:: 
       :widths: auto
 
       ====================================    ========================================================================================
@@ -52,8 +52,10 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP 
       **Domain**                              arcadia-re-$$makeId$$.workshop.emea.f5se.com
 
       **Load Balancer Type**                  HTTP
-                                                                           
+                                                                                 
       **Automatically Manage DNS Records**    Enable 
+
+      **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-public-endpoint
       ====================================    ========================================================================================
 
    .. raw:: html   
