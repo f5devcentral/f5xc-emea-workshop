@@ -1,7 +1,8 @@
 Lab 2 - Testing and Visibility
 ##############################
 
-Now let's try again and make a transaction
+Let's see that what we have configured is working.
+
 
 1. Login into the app while using the **arcadia-re-lb** load balancer :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com`
 
@@ -16,11 +17,8 @@ Now let's try again and make a transaction
       **Password**                                  bitcoin
       ==========================================    ========================================================================================
 
-2. Go ahead and buy or sell crypto currency, this time it will work.
+2. Let's look where each request is going
 
-3. Let look at some statistics
+a) Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-re-lb** -> Requests
 
-a) Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-aws-to-onprem-lb** -> Requests
-
-b) Observe the **PATCH** request that has been sent by the **Transactions** microservice on AWS to the on prem **Users** microservice in order to update the wallet balance of the user
-
+b) In the **Search** input enter **/v1/stock/ticker/all** . When you observe the **Origin Server** column you can see that it mentions **tn2-lon** which is the Virtual Kubernetes F5 XC point of presence

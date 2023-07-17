@@ -1,12 +1,8 @@
-Connecting Clouds
-#################
+Routing to Virtual Kubernetes Pod
+#################################
 
-In this section we will provide connectivity between the app on AWS which need to access the **Users** service on the on prem environment.
+In this section we will finish the configuration and route only relevant traffic to the Pod that we have just deployed
 
-Do you know know why the previous transaction didn't work ?
-
-.. image:: ./pictures/Slide1.png
-   :align: center
 
 **Module 2 - All sections**
 
