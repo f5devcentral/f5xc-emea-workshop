@@ -71,3 +71,4 @@ function c2m1l2a() {
     
     displayJSON(config,'Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
+

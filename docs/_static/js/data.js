@@ -163,13 +163,15 @@ function displayJSON(jsonInput, statusText) {
   
 document.addEventListener("DOMContentLoaded", function() {
     const data = JSON.parse(localStorage.getItem('data'))
-    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName } = data;
+    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName } = data;
     replacePlaceholderWithValue('makeId', makeId);
     replacePlaceholderWithValue('hostArcadia', hostArcadia);
     replacePlaceholderWithValue('ceArcadia', ceArcadia);
     replacePlaceholderWithValue('namespace', namespace);
     replacePlaceholderWithValue('ceOnPrem.clusterName', ceOnPrem.clusterName);
     replacePlaceholderWithValue('awsSiteName', awsSiteName);
+    replacePlaceholderWithValue('awsSiteName', vk8sName);
+    
     
   });
 
