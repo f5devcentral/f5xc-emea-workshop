@@ -67,3 +67,9 @@ In order to test we will behave as a bad actor.
 4. Hacker understands that he can't attack the internal APIs and decides to move to public endpoints. We will simulate this by browsing to the following URLs :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/?a=/etc/passwd`  and holding **F5 button** on the keyboard to generate multiple requests
 
 5. Since the user has not logged in we will block it based on IP address go to the **Malicious Users** dashboard like in step 3 and you will be able to follow and indetify these attacks
+
+6. Right now your IP is being blocked temporarily and we need to allow it in order to continue with the lab. 
+
+   Go to the **Malicious Users** dashboard and click on the IP identifier ( it should look similar to this **IP-156.33.44.55** ) -> Click **Add To Allow List** -> Apply -> Apply -> Save and Exit
+
+7. Close all previous application tabs and open a new one, when browsing :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/` the app will be fine.

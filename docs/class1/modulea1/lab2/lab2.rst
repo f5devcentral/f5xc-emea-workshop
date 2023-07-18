@@ -15,18 +15,8 @@ We have listed bellow a few tests that you can try out.
    .. code-block:: none
 
       curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"11223344\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/v1/login
-
-3. IP Inteligence
-
-   Proxy sites to use:
-
-   :ext_link:`https://www.hidemyass.com/en-us/proxy`
-
-   :ext_link:`https://hide.me/en/proxy`
-
-   URL to browse to with the proxy :ext_link:`https://$$ceArcadia$$/`
    
-4. BOT Protection
+3. BOT Protection
 
    .. code-block:: none
 

@@ -17,7 +17,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the
 
       **Malicious User Mitigation And Challenges**    Enable
    
-      **User Identifier**                             Under the new **User Identification Policy** field chose **Add Item**
+      **User Identifier**                             Under the new **User Identification Policy** field choose **Add Item**
       ============================================    ========================================================================================
 
 b) Fill the bellow data -> **Configure**

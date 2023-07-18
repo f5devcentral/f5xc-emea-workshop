@@ -22,7 +22,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the
       **VIP Advertisement**                    Custom      
       =====================================    ========================================================================================
 
-b) On the same page click **Configure** under **VIP Advertisement -> Custom** -> Add Item -> Fill the bellow data -> Apply -> Save and exit
+b) On the same page click **Configure** under **VIP Advertisement -> Custom** -> Add Item -> Fill the bellow data -> Apply -> Apply -> Save and exit
 
    .. table::
       :widths: auto
@@ -31,10 +31,6 @@ b) On the same page click **Configure** under **VIP Advertisement -> Custom** ->
       Object                              Value
       ================================    ========================================================================================
       **Site Reference**                  system/$$ceOnPrem.clusterName$$
-
-      **Domains**                         $$ceArcadia$$      
-
-      **VIP Advertisement**               Custom      
       ================================    ========================================================================================
   
  

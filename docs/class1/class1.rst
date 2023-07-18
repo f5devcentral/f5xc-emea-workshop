@@ -9,8 +9,6 @@ Lab Maintainers:
 
 |
 
-The application used in the lab
-
 For this lab, we will use the **Arcadia Crypto** application.
 
 This application is a modern application simulating a crypto trading platform app where you can buy and sell crypto currency.
@@ -23,9 +21,6 @@ The following components are used within the application:
 * **Stocks** - connects to external resources to get the latest crypto data and serves it to the application clients
 * **Stocks Transaction** - Deal with all related to buying or selling crypto currencies. It interact with other microservices like Users and Stocks
 * **Database** - Database were all information is stored
-
-
-The lab architecture
 
 As you can notice in the chart below, the Arcadia Crypto application is running in our own datacenter, and is already available on internet.
 

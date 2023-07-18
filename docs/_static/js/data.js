@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function() {
     replacePlaceholderWithValue('namespace', namespace);
     replacePlaceholderWithValue('ceOnPrem.clusterName', ceOnPrem.clusterName);
     replacePlaceholderWithValue('awsSiteName', awsSiteName);
-    replacePlaceholderWithValue('awsSiteName', vk8sName);
+    replacePlaceholderWithValue('vk8sName', vk8sName);
     
     
   });
