@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<head>
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PPZPQ6');</script>
+  <!-- End Google Tag Manager -->
+    <title>Lab 2 - Testing</title>
+  
+
+  <meta charset="utf-8">
+  <!-- Twitter Bootstrap viewport setting -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- F5 metadata -->
+  <meta name="title" content="Lab 2 - Testing"/>
+  <meta name="product" content="F5 XC EMEA Workshop"/>
+  <meta name="version" content=""/>
+  <meta name="updated_date"  content="2023-07-19 07:27:33"/>
+  <meta name="archived" content="Archived documents excluded"/>
+  <meta name="doc_type" content="Manual"/>
+  <meta name="lifecycle" content="release"/>
+  <meta name="F5 XC EMEA Workshop" content=""/>
+
+
+  
+
+  
+  <link href="https://cdn.f5.com/favicon.ico" rel="icon">
+
+</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lab 2 - Testing &#8212; F5 XC EMEA Workshop  documentation</title>
+    <link rel="stylesheet" href="../../../_static/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/f5.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/f5-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/CoveoFullSearch.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/21fb8a09c3.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../../_static/js/data.js"></script>
+    <script type="text/javascript" src="../../../_static/js/c1.js"></script>
+    <script type="text/javascript" src="../../../_static/js/c2.js"></script>
+    <script type="text/javascript" src="../../../_static/js/c3.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Bot Advanced" href="../../module7/module7.html" />
+    <link rel="prev" title="Lab 1 - Malicious User Detection config" href="../lab1/lab1.html" /> 
+  </head><body>
+  <div id="clouddocs-header"></div>
+
+    <div id="sidebar" class="section-nav">
+      <!-- javascript code to maintain the sidebar scroll positon when loaded -->
+      <script type="text/javascript">
+        $(function() {
+          if (localStorage.tempScrollTop) {
+            $('#sidebar').scrollTop(localStorage.tempScrollTop);
+          }
+        });
+        $('#sidebar').on("scroll", function() {
+          localStorage.setItem("tempScrollTop", $('#sidebar').scrollTop());
+        });
+      </script>
+      
+      <!--  version selector ------------------>
+      <div id="version_selector_wrapper">
+      </div>
+      <nav class="nav-sidebartoc">
+
+        
+         <h5>F5 XC EMEA Workshop  </h5>
+        
+<div id="searchbox" role="search">
+  <form class="search" action="../../../search.html" method="get">
+    <input type="text" class="search" name="q" placeholder=" Search..." />
+    <button type="submit" class="btn btn-info navbar-btn"><i class="fa fa-search"></i></button>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        <hr>
+        <span class="nav-sidebartoc">
+            <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../class1.html">Class 1 - F5 XC Services</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../module1/module1.html">Publish the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module2/module2.html">Web Application Firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module3/module3.html">Parameter Inspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module4/module4.html">IP Intelligence</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../module5.html">Malicious User Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module7/module7.html">Bot Advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module8/module8.html">Layer 7 DDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module9/module9.html">RE + CE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulea1/modulea1.html">CE Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulea2/modulea2.html">1 Click Config</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../class2/class2.html">Class 2 - Multi Cloud Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../class3/class3.html">Class 3 - Virtual Kubernetes</a></li>
+</ul>
+
+        </span><!-- Use this file to add extra links to the bottom of the ToC sidebar -->
+<hr>
+  <span class="nav-sidebartoc">
+ <!-- insert content here -->
+  </span>
+      </nav>
+    </div>
+
+
+    <div id="right-sidebar">
+      <h7 style="font-weight:normal">On this page:</h7>
+      <nav class="nav-sidebartoc">
+        <span class="nav-sidebartoc">
+            <ul>
+<li><a class="reference internal" href="#">Lab 2 - Testing</a></li>
+</ul>
+
+         </span>
+      </nav>
+    </div>
+
+
+
+
+
+  
+  <div class="main active" id="content" >
+    <article class="docs-container site-article-inner">
+              <!-- custom breadcrumb -->
+        <h5>
+            <a href="../../../index.html">F5 XC EMEA Workshop</a>
+              &gt; <a href="../../class1.html">Class 1 - F5 XC Services</a>
+              &gt; <a href="../module5.html">Malicious User Detection</a>
+
+          <span class="right">
+             <a href="../../../_sources/class1/module5/lab2/lab2.rst.txt" rel="nofollow">Source</a> |
+          </span>
+        </h5>
+        <!-- end custom breadcrumb -->
+      
+
+
+    <!--a title="Export PDF" id="export-pdf" class="btn btn btn-link pull-right">View PDF</a-->
+    <button type="button" id="export-pdf" class="btn btn-link right">PDF</button>
+
+
+    
+     
+         <div class="sidebar" id="version-warning" style="display: none;">
+           <p class="first sidebar-title">
+           <span class="icon fa fa-info-circle fa-lg"></span> Version notice:</p>
+           <p class="last" id="currentVersion"></p>
+          </div>
+
+
+     <div role="main">
+        
+  <div class="section" id="lab-2-testing">
+<h1>Lab 2 - Testing<a class="headerlink" href="#lab-2-testing" title="Permalink to this headline">¶</a></h1>
+<p>In order to test we will behave as a bad actor.</p>
+<ol class="arabic">
+<li><p class="first">Browse to the app <a href="http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/" target="_blank">http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/</a> and login</p>
+<table border="1" class="colwidths-auto docutils">
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Object</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Username</strong></td>
+<td><a class="reference external" href="mailto:satoshi&#37;&#52;&#48;bitcoin&#46;com">satoshi<span>&#64;</span>bitcoin<span>&#46;</span>com</a></td>
+</tr>
+<tr class="row-odd"><td><strong>Password</strong></td>
+<td>bitcoin</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">Now we have access to authenticated APIs which we now can try and break. Copy and paste the bellow Javascript code into your brower console.
+The code will try and attack the internal APIs of the application that can only be accessed after authentication.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>// A helper function to delay execution
+function sleep(ms) {
+return new Promise(resolve =&gt; setTimeout(resolve, ms));
+}
+
+async function runRequests() {
+const requests = [
+    {url: &#39;/v1/stockt&#39;, method: &#39;POST&#39;, data: &#39;{&quot;symbol&quot;:&quot;&lt;script&quot;,&quot;transactionType&quot;:&quot;buy&quot;,&quot;amount&quot;:1}&#39; },
+    {url: &#39;/v1/stockt&#39;, method: &#39;POST&#39;, data: &#39;{&quot;symbol&quot;:&quot;ltc&quot;,&quot;transactionType&quot;:&quot;SELECT ItemName FROM Items WHERE ItemNumber = 999; DROP TABLE USERS &quot;,&quot;amount&quot;:1}&#39; },
+    {url: &#39;/v1/stockt&#39;, method: &#39;POST&#39;, data: &#39;{&quot;symbol&quot;:&quot;/etc/passwd&quot;,&quot;transactionType&quot;:&quot;buy&quot;,&quot;amount&quot;:1}&#39; },
+    {url: &#39;/v1/fuzzingattack&#39;, method: &#39;GET&#39;},
+];
+
+while(true) { // infinite loop to start over when all requests have been processed
+    for(let i = 0; i &lt; requests.length; i++) { // process each request
+    let item = requests[i];
+    let headers = { &#39;Authorization&#39;: `Bearer ${JSON.parse(sessionStorage.getItem(&#39;authUser&#39;)).jwt}` };
+
+    let requestOptions = {
+        method: item.method,
+        headers: headers,
+    };
+
+    if(item.method === &#39;POST&#39;) {
+        headers[&#39;Content-Type&#39;] = &#39;application/json&#39;;
+        requestOptions.body = item.data;
+    }
+
+    // Fetch returns a Promise that resolves to the Response to that request, whether it is successful or not
+    await fetch(location.origin + item.url, requestOptions);
+
+    await sleep(1000); // Wait for 3 seconds before the next request
+    }
+}
+}
+
+runRequests();
+</pre></div>
+</div>
+</li>
+<li><p class="first">In the browser network tab follow the request and you will observe that after some short time F5 XC will start blocking the user by returning a HTTP 503</p>
+<p>We will be able to track this user in the F5XC console to <strong>Web App &amp; API Protection</strong> -&gt; <strong>Dashboards</strong> -&gt; <strong>Security</strong> -&gt; Click on the <strong>arcadia-re-lb</strong> Load Balancer -&gt; <strong>Malicious Users</strong> -&gt; <strong>Refresh</strong></p>
+</li>
+<li><p class="first">Hacker understands that he can’t attack the internal APIs and decides to move to public endpoints. We will simulate this by browsing to the following URLs <a href="http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/?a=/etc/passwd" target="_blank">http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/?a=/etc/passwd</a>  and holding <strong>F5 button</strong> on the keyboard to generate multiple requests</p>
+</li>
+<li><p class="first">Since the user has not logged in we will block it based on IP address go to the <strong>Malicious Users</strong> dashboard like in step 3 and you will be able to follow and indetify these attacks</p>
+</li>
+<li><p class="first">Right now your IP is being blocked temporarily and we need to allow it in order to continue with the lab.</p>
+<p>Go to the <strong>Malicious Users</strong> dashboard and click on the IP identifier ( it should look similar to this <strong>IP-156.33.44.55</strong> ) -&gt; Click <strong>Add To Allow List</strong> -&gt; Apply -&gt; Apply -&gt; Save and Exit</p>
+</li>
+<li><p class="first">Close all previous application tabs and open a new one, when browsing <a href="http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/" target="_blank">http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/</a> the app will be fine.</p>
+</li>
+</ol>
+</div>
+
+
+     </div>
+    
+     <div class="row next-prev-btn-row">
+       <div class="col-lg-12">
+       
+        <a href="../lab1/lab1.html" title="Lab 1 - Malicious User Detection config" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
+       
+       
+          <a href="../../module7/module7.html" title="Bot Advanced" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+       
+     </div>
+     </div>
+    
+
+    </article>
+  </div>
+
+</div>
+
+
+  <div id="clouddocs-footer"></div>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script src="../../../_static/js/index.js"></script>
+  <script src="../../../_static/js/jquery.appear.js"></script>
+  <script src="../../../_static/js/printThis.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/clouddocs.js"></script>
+  <script src="/assets/js/CoveoJsSearch.Lazy.min.js"></script>
+  </body>
+</html>
