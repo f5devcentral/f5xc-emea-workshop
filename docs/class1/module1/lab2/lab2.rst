@@ -1,47 +1,26 @@
-Lab 2 - Expose the public application
-#####################################
+Lab 2 - Testing and Visibility
+##############################
 
-Create the networking objects
-*****************************
+In order to make sure all is working we will need to login into the application and look at the relevant dashboards.
 
-For this lab, we will use the following object naming convention
+1. Login into the app while using the **arcadia-re-lb** load balancer :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com`
 
-.. table:: Naming Convention
-   :widths: auto
+   .. table::
+      :widths: auto
 
-   ===============    ========================================================================================
-   Object               Value
-   ===============    ========================================================================================
-   HTTP LB              **EMEA-SE** tenant : https://arcadia-<se_name>.emea-ent.f5demos.com
-                        
-                        **F5-EMEA-WORKSHOP** tenant : https://arcadia-<student_name>.workshop.emea.f5se.com
+      ==========================================    ========================================================================================
+      Object                                        Value
+      ==========================================    ========================================================================================
+      **Username**                                  satoshi@bitcoin.com
+   
+      **Password**                                  bitcoin
+      ==========================================    ========================================================================================   
 
-                        **F5-CHANNEL** tenant : https://arcadia-<partner-name>.f5-channel.f5demos.com
-                        
-                        Enable HTTPS AutoCert
+2. Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-re-lb**
 
-   Origin Pool          https://arcadia.emea.f5se.com
+a) Observe the different overall statistics provided by the **Dashboard** dashboard
 
-                        Port 443 
+b) Observe the requests and plethora of information that can be seen for each request provided by the **Requests** dashboard
 
-                        Enable TLS
 
-                        Disable TLS Verification
-   ===============    ========================================================================================
 
-* Check you are in your Namespace
-* Create the Origin Pool targeting Arcadia public app
-* Create the HTTPS LB
-
-.. warning:: Disable TLS verification in the Origin Pool because the certification on https://arcadia.emea.f5se.com does not contain the Cert Chain.
-
-|
-
-Test your Anycast HTTPS LB
-**************************
-
-* Check your Arcadia application is exposed and reachable from the F5XC Global Network
-
-.. note:: So far, Arcadia is not protected but exposed all over the world on all F5XC RE.
-
-.. warning:: Some Service Providers have a very long recursive cache. It can take several minutes to get a DNS response. You can change your DNS server to 1.1.1.1 or 8.8.8.8 to fix that.

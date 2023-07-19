@@ -22,6 +22,9 @@ import pkgutil
 import string
 sys.path.insert(0, os.path.abspath('.'))
 import f5_sphinx_theme
+import custom_roles
+
+
 
 year = time.strftime("%Y")
 eventname = "Agility %s Hands-on Lab Guide" % (year)
@@ -193,8 +196,12 @@ extlinks = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-
-# -- Options for HTMLHelp output ------------------------------------------
+html_js_files = [
+    'js/data.js',
+    'js/c1.js',
+    'js/c2.js',
+    'js/c3.js'
+]# -- Options for HTMLHelp output ------------------------------------------
 
 cleanname = re.sub('\W+','',classname)
 

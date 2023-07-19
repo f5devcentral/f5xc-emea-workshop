@@ -1,20 +1,13 @@
-Module 1 - Use Case 1 - Expose public application and protect it with F5XC WAAP
-###############################################################################
+#######################
+Publish the application
+#######################
 
-In this section, we will expose an existing and public internet facing application through F5XC Global Network.
+In this section, we will expose an existing and public internet facing application through F5 XC Global Network.
+This will first provide us with built in visibility for the application behaviour and the capability in the next steps to add security services.
 
-The use case is simple:
-
-* An application is already up and running somewhere (Datacenter, public cloud ...)
-* This application has a public IP address or FQDN
-* We will use and leverage the F5XC Global Network to expose this application
-* The application will be available everywhere though all F5XC Regional Edge locations
-* We will apply a WAAP policy
-
-Today (May 2023), the worldwide POPs map is as below
-
-.. image:: ./pictures/map.jpeg
+.. image:: ./pictures/Slide1.png
    :align: center
+
 
 **Module 1 - All sections**
 
