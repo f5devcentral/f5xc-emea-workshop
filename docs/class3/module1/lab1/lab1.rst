@@ -30,7 +30,7 @@ b) In the same screen -> Configure -> Under **Containers** click Add Item -> Fil
       **Image Name**                      registry.hub.docker.com/sorinboiaf5/arcadia-stocks:ocp
       ================================    ========================================================================================
 
-c) In the same screen -> Configure -> Under **Where to Deploy the workload** choose **Regional Edge Sites** -> Configure -> Fill the bellow data -> Apply 
+c) In the same screen ->  Under **Where to Deploy the workload** choose **Regional Edge Sites** -> Configure -> Fill the bellow data -> Apply 
 
    .. table::
       :widths: auto

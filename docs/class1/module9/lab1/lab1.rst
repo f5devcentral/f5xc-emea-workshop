@@ -6,7 +6,7 @@ Lab 1 - RE + CE configuration
 
 a) Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool -> Fill the bellow data
 
-   .. table:: Origin Pool
+   .. table::
       :widths: auto
 
       ==============================    ========================================================================================
@@ -19,7 +19,7 @@ a) Web App & API Protection -> Load Balancers -> Origin Pool -> Add Origin Pool 
 
 b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> Apply -> Save and exit
 
-   .. table:: Origin Server
+   .. table::
       :widths: auto
 
       ================================    ========================================================================================

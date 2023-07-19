@@ -44,7 +44,7 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
 
 2. Our next step is to change the routing of the **arcadia-re-lb** to point to the new created origin pool for the **/v1/stock/** route.
 
-a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Under **Routes** and click **Edit Configuration** -> Add Item -> Fill the bellow data -> Apply ->
+a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Under **Routes** and click **Edit Configuration** -> Add Item -> Fill the bellow data -> Apply -> Apply -> Save and Exit
 
    
    .. table:: 
@@ -57,7 +57,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the
 
       **Prefix**                          /v1/stock/
 
-      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-stocks-vk8s
+      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-stocks-vk8s -> Apply
       ================================    ========================================================================================================
 
    .. raw:: html 

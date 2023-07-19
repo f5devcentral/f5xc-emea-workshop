@@ -26,7 +26,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP 
       ====================================    ================================================================================================
 
 
-b) On the same page click **Configure** under **VIP Advertisement -> Custom** -> Add Item -> Fill the bellow data -> Apply -> Save and exit
+b) On the same page click **Configure** under **VIP Advertisement -> Custom** -> Add Item -> Fill the bellow data -> Apply -> Apply -> Save and exit
 
    .. table::
       :widths: auto

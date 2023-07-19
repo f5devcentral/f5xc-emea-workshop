@@ -44,4 +44,6 @@ It covers:
    :caption: Contents:
    :glob:
 
+   intro*/intro*
    class*/class*
+   

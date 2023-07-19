@@ -25,7 +25,7 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
       ================================    ========================================================================================
       Object                              Value
       ================================    ========================================================================================
-      **Select Type of Origin Server**    DNS Name of Origin Server on gven Sites
+      **Select Type of Origin Server**    DNS Name of Origin Server on given Sites
 
       **DNS Name**                        arcadiaaws.aws.internal
 
@@ -59,7 +59,7 @@ b) On the same page go to **Routes** and click **Configure** -> Add Item -> Fill
       **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-onprem-private-endpoint -> Apply
       ================================    ========================================================================================================
 
-c) On the same page go to **Routes** and click **Configure** -> Add Item -> Fill in the bellow -> Apply -> Apply -> Save and Exit
+c) Add Item -> Fill in the bellow -> Apply -> Apply -> Save and Exit
    
    .. table:: 
       :widths: auto

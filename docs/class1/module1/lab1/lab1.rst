@@ -39,24 +39,24 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
 
 2. Create the HTTP LB
 
-a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer 
+a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer -> Fill the bellow data -> Save and exit
 
    .. table:: 
       :widths: auto
 
-      ====================================    ========================================================================================
+      ====================================    =================================================================================================
       Object                                  Value
-      ====================================    ========================================================================================
+      ====================================    =================================================================================================
       **Name**                                arcadia-re-lb
                      
-      **Domain**                              arcadia-re-$$makeId$$.workshop.emea.f5se.com
+      **Domains**                             arcadia-re-$$makeId$$.workshop.emea.f5se.com
 
       **Load Balancer Type**                  HTTP
                                                                                  
       **Automatically Manage DNS Records**    Enable 
 
-      **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-public-endpoint
-      ====================================    ========================================================================================
+      **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-public-endpoint -> Apply
+      ====================================    =================================================================================================
 
    .. raw:: html   
 

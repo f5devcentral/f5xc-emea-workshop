@@ -11,9 +11,7 @@ Lab Maintainers:
 
 Welcome to the Multi Cloud Networking ( MCN ) F5 XC class.
 
-If you have reached this stage after finishing **Class 1** you can simply continue if not go to the **1 Click** section of **Class 1** and run throught the configuration.
-
-The application used in the lab
+.. note:: If you have reached this stage after finishing **Class 1** you can simply continue if not go to the **1 Click** section of **Class 1** and run throught the configuration.
 
 For this lab, we will use the **Arcadia Crypto** application.
 

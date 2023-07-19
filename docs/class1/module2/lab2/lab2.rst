@@ -10,7 +10,7 @@ Lab 2 - Testing and Visibility
 
 2. Let's look at the blocked attack
 
-a) Web App & API Protection -> Dashboards -> Security Dashboard -> Scrool down to the **Load Balancers** section and clikc on **arcadia-re-lb** -> Security Analytics
+a) Web App & API Protection -> Dashboards -> Security Dashboard -> Scrool down to the **Load Balancers** section and click on **arcadia-re-lb** -> Security Analytics
 
    Here you will me able to see all blocked attacks. 
 
