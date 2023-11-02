@@ -30,7 +30,7 @@
 
         var email = emailInput.value;
         localStorage.setItem('email', email);
-        fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/${btoa(email)}`, {
+        fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/f5xcemeaworkshop/${btoa(email)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
