@@ -1,50 +1,22 @@
-Lab 2 - Expose the public application
-#####################################
+Lab 2 - Testing and Visibility
+##############################
 
-Create the networking objects
-*****************************
+1. First lets try and attack out application with an **XSS attack** using the bellow URL. Th attack will be blocked and a **support ID** will be provided. Save the **support ID** as it will be used in the next step.
 
-For this lab, we will use the following configuration
 
-1. Create the Origin Pool targeting Arcadia public app
+   :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/?a=%3Cscript%3Ealert(%27xss%27)`
 
-.. table:: Origin Pool Config
-   :widths: auto
 
-   ====================    ========================================================================================
-   Object                  Value
-   ====================    ========================================================================================
-   **Name**                arcadia-public-endpoint
-   
-   **Endpoint**            arcadia.emea.f5se.com
 
-   **Port**                443 
+2. Let's look at the blocked attack
 
-   **TLS**                 Enable
+a) Web App & API Protection -> Dashboards -> Security Dashboard -> Scrool down to the **Load Balancers** section and click on **arcadia-re-lb** -> Security Analytics
 
-   **TLS Verification**    Disable 
-   ====================    ========================================================================================
+   Here you will me able to see all blocked attacks. 
 
-2. Create the HTTP LB
+3. If you want to filter a specific request that has been blocked
 
-.. table:: Configuration
-   :widths: auto
+a) On the current page -> Add Filter -> Enter req_id -> In -> Enter the previous support ID -> In case nothing is shown click on the Refresh button
 
-   ====================================    ========================================================================================
-   Object                                  Value
-   ====================================    ========================================================================================
-   **Name**                                arcadia-re-lb
-                    
-   **Domain**                              arcadia-re-$$makeId$$.workshop.emea.f5se.com
+   Click the down arrow and you will see all the request details and why it has been blocked
 
-   **Load Balancer Type**                  HTTP
-                                                                        
-   **Automatically Manage DNS Records**    Enable 
-   ====================================    ========================================================================================
-
-|
-
-3. So far, Arcadia is not protected but exposed all over the world on all F5XC RE. 
-Check your Arcadia application is exposed and reachable from the F5XC Global Network by browsing to http://arcadia-re-$$makeId$$.workshop.emea.f5se.com
-
-.. warning:: Some Service Providers have a very long recursive cache. It can take several minutes to get a DNS response. You can change your DNS server to 1.1.1.1 or 8.8.8.8 to fix that.
