@@ -1,5 +1,5 @@
 F5 Distributed Cloud EMEA Workshop
-==================================
+##################################
 
 Welcome
 -------
@@ -44,4 +44,6 @@ It covers:
    :caption: Contents:
    :glob:
 
+   intro*/intro*
    class*/class*
+   
