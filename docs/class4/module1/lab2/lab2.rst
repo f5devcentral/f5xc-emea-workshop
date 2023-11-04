@@ -60,7 +60,7 @@ In the slide below, you can understand the difference:
 
 .. image:: ../pictures/slide-api-protection.png
    :align: center
-   :scale: 70%
+   :scale: 40%
 
 
 Create the default API Protection rule
