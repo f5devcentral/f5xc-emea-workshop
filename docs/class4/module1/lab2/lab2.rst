@@ -13,7 +13,7 @@ Upload file
 In your Namespace, upload the file into ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files``
 
 .. image:: ../pictures/add-oas.png
-   :align: center
+   :align: left
 
 Create API Definition
 ^^^^^^^^^^^^^^^^^^^^^
@@ -21,7 +21,7 @@ You can't assign an OAS spec file to a Load Balancer or a listener (Virtual Serv
 In your Namespace, create anew API Definition the file into ``Web and API Protection`` > ``Manage`` > ``API Management`` > ``API Definition``
 
 .. image:: ../pictures/menu-api-def.png
-   :align: center
+   :align: left
    :scale: 50%
 
 Create a new API Definition and select the File created in the previous step. Select the version (so far, we have only one version)
