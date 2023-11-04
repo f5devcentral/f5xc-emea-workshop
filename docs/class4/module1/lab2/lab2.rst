@@ -86,13 +86,13 @@ As a reminder, the endpoint ``/colors`` is not defined in the specification file
    #. Rule 1: allows the methods and endpoints defined in the OAS file.
 
       .. image:: ../pictures/allow-all-rule.png
-         :align: center
+         :align: left
          :scale: 50%
 
    #. Rule 2: deny the rest
 
       .. image:: ../pictures/deny-unknown.png
-         :align: center
+         :align: left
          :scale: 50%
 
 #. You should now have 2 rules. Save all your configurations.
