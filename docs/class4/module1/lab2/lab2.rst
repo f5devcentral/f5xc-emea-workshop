@@ -42,6 +42,82 @@ Assign API definition to the LB
 Apply API Protection rules
 --------------------------
 
+Understand the difference between API Protection and API Validation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before enforcing any policy, it is important to understand the differences between ``API Protection`` and ``API Validation`` (+API Discovery)
+
+In the slide below, you can understand the difference:
+
+* API Protection only allow ``known API endpoints and methods`` and does not enforce responses.
+   * API Protection is ``Failed-Close`` by design
+
+* API Validation ``validates`` the OpenAPI Spec file with methods, endpoints and parameters. It validates also the responses.
+   * API Validation is ``Failed-Open`` by design
+
+* API Discovery is on top of ``API Validation`` and will disovery unknown specifications (methods, endpoints and parameters)
+   * API Discovery can be used alone without API Validation if API Dev can't deliver with OAS file.
+
+.. image:: ../pictures/slide-api-protection.png
+   :align: center
+   :scale: 70%
+
+
 Create the default API Protection rule
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In this lab, we will create an ``API Protection rule`` to enforce and only allow ``known specifications``. The endpoints defined in the OAS files are:
+
+* /adjectives
+* /animals
+* /locations
+
+As a reminder, the endpoint ``/colors`` is not defined in the specification file, and the base path is ``/api/``
+
+#. Edit your Sentence Application LB
+#. In ``API Protection rules`` , create a new rule
+
+   .. image:: ../pictures/api-protection-rule1.png
+      :align: center
+      :scale: 70%
+
+#. Create 2 rules in ``Server URLs and API Groups``
+  
+   #. Rule 1: allows the methods and endpoints defined in the OAS file.
+
+      .. image:: ../pictures/allow-all-rule.png
+         :align: center
+         :scale: 50%
+
+   #. Rule 2: deny the rest
+
+      .. image:: ../pictures/deny-unknown.png
+         :align: center
+         :scale: 50%
+
+#. You should now have 2 rules. Save all your configurations.
+
+   .. image:: ../pictures/all-rules.png
+      :align: center
+      :scale: 50%
+
+
+Test your API Protection LB
+---------------------------
+
+#. Open Postman
+#. Run the below calls
+
+   #. GET /api/adjectives
+   #. GET /api/animals
+   #. GET /api/locations
+   
+   .. note:: The 3 calls are successful because there are defined in the OAS file (method + endpoint)
+
+#. Now, run the below call
+
+   #. GET /api/colors
+
+   .. note:: This call is denied because not part of the OAS file
+
 
