@@ -102,22 +102,4 @@ As a reminder, the endpoint ``/colors`` is not defined in the specification file
       :scale: 50%
 
 
-Test your API Protection LB
----------------------------
-
-#. Open Postman
-#. Run the below calls
-
-   #. GET /api/adjectives
-   #. GET /api/animals
-   #. GET /api/locations
-   
-   .. note:: The 3 calls are successful because there are defined in the OAS file (method + endpoint)
-
-#. Now, run the below call
-
-   #. GET /api/colors
-
-   .. note:: This call is denied because not part of the OAS file
-
-
+.. note:: You are good to test your first API Protection Load Balancer in F5 Distributes Cloud
