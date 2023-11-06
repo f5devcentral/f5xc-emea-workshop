@@ -8,7 +8,9 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
 * Expose the onprem applications through F5 XC without exposing the app localy to the internet
 
 1. First we need to register the **CE**.
-   Go to the **UDF deployment** click **Components** on the **F5XC CE ( On prem )** component click **Access**.  A drop down will open, click **Site UI**, a new tab will shell access will open.
+
+   Go to the **UDF deployment** click **Components** on the **F5XC CE ( On prem )** component click **Access**.  A drop down will open, click **Site UI**, a new tab will open.
+
    Enter the default credentials as described bellow.
 
    .. table::
@@ -35,7 +37,7 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       ==========================================    ========================================================================================
       **Token**                                     771e948b-f6ef-4338-9b50-953762f7a2a7
    
-      **Cluster name**                              ce-k8s-$$makeId$$
+      **Cluster name**                              $$ceOnPrem.clusterName$$
 
       **Hostname**                                  master
 
@@ -47,4 +49,20 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       ==========================================    ========================================================================================   
 
 3. Make sure you have logged in the F5 XC console. If you haven't yet follow the instrictions found :doc:`here <../../../intro/steps/intro3>` and then return to the guide.
+
+   We will need to approve on the F5 XC console the newly deployed **CE**.
+
+   Go to **Multi-Cloud Network Connect** -> **Site Management** -> **Registrations** .
+
+   You will see in the **Pending Registrations** multiple **CE** entries that need to be approved.
+
+   On the line respective to the **Cluster Name** **$$ceOnPrem.clusterName$$** click the **V** and after that **Save and Exit**.
+
+   This will approve and trigger the initialization of the **CE**.
+
+4. The initialization process takes around 15 - 20 minutes.
+
+   We can observe the status by going to **Multi-Cloud Network Connect** -> **Overview** -> **Sites**.
+
+   Once the health score of **$$ceOnPrem.clusterName$$** will reach 100% the **CE** will be fully operational.
 
