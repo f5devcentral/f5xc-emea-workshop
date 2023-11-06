@@ -1,17 +1,11 @@
-Class 2 - Multi Cloud Networking
-################################
+Class 5 - F5 XC K8s
+###################
 
 Lab Maintainers:
-
-  Matthieu Dierick <m.dierick@f5.com>
 
   Sorin Boiangiu <s.boiangiu@f5.com>   
 
 |
-
-Welcome to the Multi Cloud Networking ( MCN ) F5 XC class.
-
-.. note:: If you have reached this stage after finishing **Class 1** you can simply continue if not go to the **1 Click** section of **Class 1** and run throught the configuration.
 
 For this lab, we will use the **Arcadia Crypto** application.
 
@@ -27,15 +21,8 @@ The following components are used within the application:
 * **Database** - Database were all information is stored
 
 
-Our on prem infrastracture is no longer able to handle the load of our application which boomed due to mass crypto currency addoption.
 
-We need to quickly expand and this can be done with any of the cloud providers while keeping the same level of application security and workflows.
-
-During this class we will:
-
-* Explore expanding parts of our service to AWS
-* Providing connectivity for communication between different data centers
-
+During this class we will explore how F5 XC can help publish Kubernetes deployed application while making sure they are fast and secure.
 
 
 .. image:: ./module1/pictures/class1.gif
@@ -69,7 +56,7 @@ During this class we will:
 
         var email = emailInput.value;
         localStorage.setItem('email', email);
-        fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/f5xcemeaworkshop/${btoa(email)}`, {
+        fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/f5xcemeak8sworkshop/${btoa(email)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
