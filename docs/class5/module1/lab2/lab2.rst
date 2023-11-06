@@ -25,7 +25,7 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
 
 
 
-2. On the newlly opened page click **Dashboard** and **Configure Now**, fill in the data as per the bellow table and finish by clicking **Save configuration**
+2. On the newly opened page click **Dashboard** and **Configure Now**, fill in the data as per the bellow table and finish by clicking **Save configuration**
 
    .. table::
       :widths: auto
@@ -46,11 +46,5 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       **Longitude**                                 0
       ==========================================    ========================================================================================   
 
-2. Browse to Web App & API Protection -> Dashboards -> Performance Dashboard -> Under **Load Balancers** click **arcadia-re-lb**
-
-a) Observe the different overall statistics provided by the **Dashboard** dashboard
-
-b) Observe the requests and plethora of information that can be seen for each request provided by the **Requests** dashboard
-
-
+3. Make sure you have logged in the F5 XC console. If you haven't yet follow the instrictions found :doc:`here <../../../intro/steps/intro3>` and then return to the guide.
 
