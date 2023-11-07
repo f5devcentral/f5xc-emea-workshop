@@ -1,5 +1,5 @@
-Class 5 - F5 XC K8s
-###################
+Class 5 - F5 XC K8s - UNDER CONSTRUCTION
+########################################
 
 Lab Maintainers:
 

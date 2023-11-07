@@ -24,7 +24,7 @@ For this lab, we will need to access the on prem Kubernetes environment and depl
 
    .. code-block:: none
 
-      kubectl apply -f arcadia.yaml -f ingress.yaml
+      kubectl apply -f arcadia.yaml
 
 5. The application has been deployed. Check that all application PODs are up and **Running**
 

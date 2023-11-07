@@ -1,17 +1,17 @@
-Lab 2 - Deploy the Customer Edge
-################################
+Lab 3 - Expose the application to the world
+###########################################
 
-The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into the local onprem environment and will enable us to use capabilities otherwise not possible:
+The **Customer Edge** is up an running in order to expose the inernal K8s application we will need to go through a few steps:
 
-* Load balance and provide high availability for the the onprem Kubernetes Worker nodes
-* Automatically discover Kubernetes services
-* Expose the onprem applications through F5 XC without exposing the app localy to the internet
+* **CE** will discover the K8s
+* Publish the application on the F5 XC platform and define the routing to each service based on the HTTP Path.
 
-1. First we need to register the **CE**.
 
-   Go to the **UDF deployment** click **Components** on the **F5XC CE ( On prem )** component click **Access**.  A drop down will open, click **Site UI**, a new tab will open.
+1. First we need to import the **kubeconfig** file that will be used to access the Kubernetes API in order to discover the application service.
 
-   Enter the default credentials as described bellow.
+   Go to the **Multi-Cloud App Connect** -> **Manage** -> **Service Discoveries** -> **Add Discovery** -> Fill in the bellow data -> **Save and Exit** .
+
+   
 
    .. table::
       :widths: auto
@@ -21,10 +21,11 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       ==========================================    ========================================================================================
       **Username**                                  admin
    
-      **Password**                                  Volterra123
+      **Kubeconfig**                                `YAML file`
       ==========================================    ========================================================================================      
 
-
+   .. _YAML file: ./files/kubeconfig.yaml
+       :target: _blank
 
 
 2. On the newly opened page click **Dashboard** and **Configure Now**, fill in the data as per the bellow table and finish by clicking **Save configuration**
