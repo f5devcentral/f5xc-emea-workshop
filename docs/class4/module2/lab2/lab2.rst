@@ -1,18 +1,10 @@
-API Discovery outcomes
-======================
+Enable API discovery
+====================
 
-Endpoint Discovery
-------------------
-
-
-PII Discovery
--------------
+Enable Endpoint Discovery
+-------------------------
 
 
+Enable PII Discovery
+--------------------
 
-Authentication Discovery
-------------------------
-
-
-AI/ML Security Posture
-----------------------
