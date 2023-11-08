@@ -69,7 +69,7 @@ Update your API Load Balancer
 * Enable API Validation for ``All Endpoints``
 
    .. image:: ../pictures/enable-api-validation.png
-      :align: center
+      :align: left
       :scale: 50%
 
 * Click on ``View Configuration`` to customize the settings``
@@ -77,7 +77,7 @@ Update your API Load Balancer
 * Keep the setting ``Fall Through Mode`` to ``Allow``
 
    .. image:: ../pictures/api-validation-settings.png
-      :align: center
+      :align: left
       :scale: 50%
 
 .. note:: The ``Fall Through Mode`` to ``Allow`` tells the system to let unknwon endpoints pass. In a nutshell, any unknown API endpoint will not be blocked and it is the API Discovery process which will take care of it.
