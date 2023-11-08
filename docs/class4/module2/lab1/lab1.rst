@@ -60,3 +60,31 @@ Example below
                 id: 4
                 name: worried
 
+Having said, let's enable API Validation, and disable API Protection. It does not make sense to use both at the same time except if you need a specific rule for a specific endpoint.
+
+Update your API Load Balancer
+-----------------------------
+
+* Edit your Load Balancer and remove all API Protection rules (click on Reset Configuration and confirm)
+* Enable API Validation for ``All Endpoints``
+
+   .. image:: ../pictures/enable-api-validation.png
+      :align: center
+      :scale: 50%
+
+* Click on ``View Configuration`` to customize the settings``
+* Enable the ``Validation`` for ``Request`` and ``Response`` and select all the properties
+* Keep the setting ``Fall Through Mode`` to ``Allow``
+
+   .. image:: ../pictures/api-validation-settings.png
+      :align: center
+      :scale: 50%
+
+.. note:: The ``Fall Through Mode`` to ``Allow`` tells the system to let unknwon endpoints pass. In a nutshell, any unknown API endpoint will not be blocked and it is the API Discovery process which will take care of it.
+
+.. warning:: Why not to block unknown endpoint ? Because this endpoint can be legitimate from Dev Teams, but SecOps are not aware. And it is better to have a visilibity on what is unknown instead of breaking the business
+
+* SAVE your Load Balancer
+
+.. note:: We do not test now our configuration. We must enable API Discovery first, in order to have a full protection and visibility.
+
