@@ -1,18 +1,23 @@
 Test your modern API application protection
 ===========================================
 
-#. Open Postman
+#. If you have curl on your machine, go to the next step. Else, connect with SSH or WEBSSH to the Jumphost machine
 #. Run the below calls
 
-   #. GET /api/adjectives
-   #. GET /api/animals
-   #. GET /api/locations
+   .. code-block:: bash
+
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations
+
    
    .. note:: The 3 calls are successful because there are defined in the OAS file (method + endpoint)
 
 #. Now, run the below call
 
-   #. GET /api/colors
+   .. code-block:: bash
+
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/colors
 
    .. note:: This call is denied because not part of the OAS file
 
@@ -27,3 +32,4 @@ Check the logs
 
 .. image:: ../pictures/api-protect-event.png
    :align: center
+
