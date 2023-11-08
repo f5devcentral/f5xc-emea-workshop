@@ -88,3 +88,14 @@ Authentication Discovery
 AI/ML Security Posture
 ----------------------
 
+* Click on an endpoint with the highest ``Risk Score``
+* And click on the ``Security Posture`` tab
+* Review the recommandations done by AI/ML engines
+
+.. image:: ../pictures/security-posture.png
+   :align: left
+   :scale: 50%
+
+* You can click on the ``Evidence`` link to get more details about the logs who generated this security posture.
+
+.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developpers, but also providing visibility for unkown traffic
