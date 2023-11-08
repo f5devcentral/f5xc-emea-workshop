@@ -41,12 +41,13 @@ Create custom PII
 * In Sensitive Data Protection, click on ``configure``
 * Add 2 new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
 
- * French SSN, use this regex [12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})
- * French Mobile Phone, use this regex ^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$
+  * French SSN, use this regex [12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})
+  
+  * French Mobile Phone, use this regex ^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$
 
 .. image:: ../pictures/pii.png
    :align: left
-   :scale: 50%
+   :scale: 40%
 
 * SAVE your Load Balancer
 
