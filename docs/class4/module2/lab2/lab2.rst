@@ -22,20 +22,21 @@ Enable Endpoint Discovery
 Enable PII Discovery
 --------------------
 
-OWASP Top10 API requires to detect and discover sensitive datas in Request and Response. To do so, F5 Distributed Cloud has a list of known PII (PPersonal Identifiable Information), such as:
+OWASP Top10 API requires to detect and discover sensitive datas in Request and Response. To do so, F5 Distributed Cloud has a list of known PII (Personal Identifiable Information), such as:
 
-   * email
-   * credit card number
-   * US Social Security Number
-   * IP address
+* email
+* credit card number
+* US Social Security Number
+* IP address
 
 But you want to detect your own PII, such as:
 
-   * French Social Security Number
-   * French Mobile Phone Number
-   * Etc ...
+* French Social Security Number
+* French Mobile Phone Number
+* Etc ...
 
-Let's create those custom PII.
+Create custom PII
+^^^^^^^^^^^^^^^^^
 
 * In Sensitive Data Protection, click on ``configure``
 * Add 2 new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
@@ -45,7 +46,7 @@ Let's create those custom PII.
 
 .. image:: ../pictures/pii.png
    :align: left
-   :scale: 40%
+   :scale: 50%
 
 * SAVE your Load Balancer
 
