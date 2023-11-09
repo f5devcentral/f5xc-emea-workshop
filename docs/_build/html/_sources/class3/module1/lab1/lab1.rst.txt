@@ -2,7 +2,7 @@ Lab 1 - Workload config
 #######################
 
 
-1. First we need to create a new origin pool which will point directly to application in the **AWS Datacenter**.
+1. We now need to create the workload that will define the configuration on how and where to deploy the **Stocks** POD
 
 a) Distributed Apps -> Applications -> Virtual K8s -> Click on **$$vk8sName$$** -> Workloads -> Add VK8s Workload
 

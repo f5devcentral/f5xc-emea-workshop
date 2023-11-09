@@ -163,7 +163,7 @@ function displayJSON(jsonInput, statusText) {
   
 document.addEventListener("DOMContentLoaded", function() {
     const data = JSON.parse(localStorage.getItem('data'))
-    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName } = data;
+    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName, kubeconfig } = data;
     replacePlaceholderWithValue('makeId', makeId);
     replacePlaceholderWithValue('hostArcadia', hostArcadia);
     replacePlaceholderWithValue('ceArcadia', ceArcadia);
@@ -171,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
     replacePlaceholderWithValue('ceOnPrem.clusterName', ceOnPrem.clusterName);
     replacePlaceholderWithValue('awsSiteName', awsSiteName);
     replacePlaceholderWithValue('vk8sName', vk8sName);
+    replacePlaceholderWithValue('kubeconfig', kubeconfig);
     
     
   });
@@ -366,3 +367,97 @@ const lbConfig = ({
 
     return config;
 }
+
+function getStudentData(courseId) {
+  // Create the container div and its internal HTML  
+  var appContainer = document.createElement('div');
+  appContainer.id = 'app';
+  appContainer.innerHTML = `
+    <label>Email:  
+        <input type="text" id="email" />
+    </label>
+    <button id="getDataBtn">Get Data</button>
+    <br/><br/>
+  `;
+
+  // Insert the container into the body of the page
+  
+  const currentScript = document.currentScript;
+  currentScript.parentNode.insertBefore(appContainer, currentScript.nextSibling);
+
+  // Create and insert CSS styles
+  var style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = `
+    #app {
+        font-family: Arial, sans-serif;
+    }
+    .output {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 4px;
+    }
+    .green {
+        background-color: green;
+        color: white;
+    }
+    .red {
+        background-color: red;
+        color: white;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Get references to the new elements
+  var emailInput = document.getElementById('email');
+  var getDataBtn = document.getElementById('getDataBtn');
+
+  // Load the email from localStorage if available
+  emailInput.value = localStorage.getItem('email') || '';
+
+  // Define the event handlers
+  emailInput.oninput = function() {
+    // Logic to handle input can be added here
+  };
+
+  getDataBtn.onclick = function() {
+    emailInput.disabled = true;
+    getDataBtn.disabled = true;
+
+    var email = emailInput.value;
+    localStorage.setItem('email', email);
+
+    fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/${courseId}/${btoa(email)}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      localStorage.setItem('data', JSON.stringify(data));
+      getDataBtn.title = JSON.stringify(data, null, 2);
+      getDataBtn.classList.remove('red', 'green'); // remove previous classes
+      getDataBtn.classList.add("green");
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      getDataBtn.title = "An error occurred";
+      getDataBtn.classList.remove('red', 'green'); // remove previous classes
+      getDataBtn.classList.add("red");
+    })
+    .finally(() => {
+      emailInput.disabled = false;
+      getDataBtn.disabled = false;
+    });
+  };  
+}
+
+
