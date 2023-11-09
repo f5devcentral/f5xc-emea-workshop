@@ -14,7 +14,7 @@
   <meta name="title" content="Class 1 - F5 XC Services"/>
   <meta name="product" content="F5 XC EMEA Workshop"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2023-06-27 08:09:47"/>
+  <meta name="updated_date"  content="2023-11-09 14:12:43"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -54,12 +54,14 @@
     <script type="text/javascript" src="../_static/clipboard.min.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <script type="text/javascript" src="../_static/js/data.js"></script>
-    <script type="text/javascript" src="../_static/js/c1m1.js"></script>
+    <script type="text/javascript" src="../_static/js/c1.js"></script>
+    <script type="text/javascript" src="../_static/js/c2.js"></script>
+    <script type="text/javascript" src="../_static/js/c3.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Publish the application" href="module1/module1.html" />
-    <link rel="prev" title="F5 Distributed Cloud EMEA Workshop" href="../index.html" /> 
+    <link rel="prev" title="Password Reset and Login" href="../intro/steps/intro3.html" /> 
   </head><body>
   <div id="clouddocs-header"></div>
 
@@ -97,11 +99,23 @@
         <span class="nav-sidebartoc">
             <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Intro</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Class 1 - F5 XC Services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-application-used-in-the-lab">The application used in the lab</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-lab-architecture">The lab architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1/module1.html">Publish the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2/module2.html">Web Application Firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3/module3.html">Parameter Inspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4/module4.html">IP Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5/module5.html">Malicious User Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module7/module7.html">Bot Advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8/module8.html">Layer 7 DDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module9/module9.html">RE + CE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulea1/modulea1.html">CE Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulea2/modulea2.html">1 Click Config</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../class2/class2.html">Class 2 - Multi Cloud Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../class3/class3.html">Class 3 - Virtual Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../class4/class4.html">Class 4 - API Protection</a></li>
 </ul>
 
         </span><!-- Use this file to add extra links to the bottom of the ToC sidebar -->
@@ -118,11 +132,7 @@
       <nav class="nav-sidebartoc">
         <span class="nav-sidebartoc">
             <ul>
-<li><a class="reference internal" href="#">Class 1 - F5 XC Services</a><ul>
-<li><a class="reference internal" href="#the-application-used-in-the-lab">The application used in the lab</a></li>
-<li><a class="reference internal" href="#the-lab-architecture">The lab architecture</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Class 1 - F5 XC Services</a></li>
 </ul>
 
          </span>
@@ -173,8 +183,6 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="section" id="the-application-used-in-the-lab">
-<h2>The application used in the lab<a class="headerlink" href="#the-application-used-in-the-lab" title="Permalink to this headline">¶</a></h2>
 <p>For this lab, we will use the <strong>Arcadia Crypto</strong> application.</p>
 <p>This application is a modern application simulating a crypto trading platform app where you can buy and sell crypto currency.</p>
 <p>The following components are used within the application:</p>
@@ -186,9 +194,6 @@
 <li><strong>Stocks Transaction</strong> - Deal with all related to buying or selling crypto currencies. It interact with other microservices like Users and Stocks</li>
 <li><strong>Database</strong> - Database were all information is stored</li>
 </ul>
-</div>
-<div class="section" id="the-lab-architecture">
-<h2>The lab architecture<a class="headerlink" href="#the-lab-architecture" title="Permalink to this headline">¶</a></h2>
 <p>As you can notice in the chart below, the Arcadia Crypto application is running in our own datacenter, and is already available on internet.</p>
 <p>During this class we will:</p>
 <ul class="simple">
@@ -298,16 +303,50 @@ function saveAndLoad() {
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="module1/module1.html">Publish the application</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="module1/lab1/lab1.html">Lab 1 - Expose the application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module1/lab2/lab2.html">Lab 2 - Visibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1/lab2/lab2.html">Lab 2 - Testing and Visibility</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="module2/module2.html">Protect the appliction with Cloud WAAP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module2/lab1/lab1.html">Lab 1 - Protect your app with WAAP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module2/lab2/lab2.html">Lab 2 - Expose the public application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module2/module2.html">Web Application Firewall</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module2/lab1/lab1.html">Lab 1 - Waf config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2/lab2/lab2.html">Lab 2 - Testing and Visibility</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="module3/module3.html">Parameter Inspection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module3/lab1/lab1.html">Lab 1 - Rules config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3/lab2/lab2.html">Lab 2 - Testing</a></li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="module4/module4.html">IP Intelligence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module4/lab1/lab1.html">Lab 1 - IP Inteligence config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4/lab2/lab2.html">Lab 2 - Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="module5/module5.html">Malicious User Detection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module5/lab1/lab1.html">Lab 1 - Malicious User Detection config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5/lab2/lab2.html">Lab 2 - Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="module7/module7.html">Bot Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module7/lab1/lab1.html">Lab 1 - Bot advanced config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module7/lab2/lab2.html">Lab 2 - Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="module8/module8.html">Layer 7 DDOS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module8/lab1/lab1.html">Lab 1 - DDOS protection config</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="module9/module9.html">RE + CE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module9/lab1/lab1.html">Lab 1 - RE + CE configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module9/lab2/lab2.html">Lab 2 - Testing and Visibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modulea1/modulea1.html">CE Only</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modulea1/lab1/lab1.html">Lab 1 - Configuring the CE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulea1/lab2/lab2.html">Lab 2 - Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modulea2/modulea2.html">1 Click Config</a></li>
+</ul>
 </div>
 </div>
 
@@ -317,7 +356,7 @@ function saveAndLoad() {
      <div class="row next-prev-btn-row">
        <div class="col-lg-12">
        
-        <a href="../index.html" title="F5 Distributed Cloud EMEA Workshop" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
+        <a href="../intro/steps/intro3.html" title="Password Reset and Login" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
        
        
           <a href="module1/module1.html" title="Publish the application" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>

@@ -14,7 +14,7 @@
   <meta name="title" content="Lab 1 - Expose the application"/>
   <meta name="product" content="F5 XC EMEA Workshop"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2023-06-27 08:07:10"/>
+  <meta name="updated_date"  content="2023-11-09 14:12:43"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -54,11 +54,13 @@
     <script type="text/javascript" src="../../../_static/clipboard.min.js"></script>
     <script type="text/javascript" src="../../../_static/copybutton.js"></script>
     <script type="text/javascript" src="../../../_static/js/data.js"></script>
-    <script type="text/javascript" src="../../../_static/js/c1m1.js"></script>
+    <script type="text/javascript" src="../../../_static/js/c1.js"></script>
+    <script type="text/javascript" src="../../../_static/js/c2.js"></script>
+    <script type="text/javascript" src="../../../_static/js/c3.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Lab 2 - Visibility" href="../lab2/lab2.html" />
+    <link rel="next" title="Lab 2 - Testing and Visibility" href="../lab2/lab2.html" />
     <link rel="prev" title="Publish the application" href="../module1.html" /> 
   </head><body>
   <div id="clouddocs-header"></div>
@@ -97,11 +99,23 @@
         <span class="nav-sidebartoc">
             <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/intro.html">Intro</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../class1.html">Class 1 - F5 XC Services</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../class1.html#the-application-used-in-the-lab">The application used in the lab</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../class1.html#the-lab-architecture">The lab architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../module1.html">Publish the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module2/module2.html">Web Application Firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module3/module3.html">Parameter Inspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module4/module4.html">IP Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module5/module5.html">Malicious User Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module7/module7.html">Bot Advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module8/module8.html">Layer 7 DDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module9/module9.html">RE + CE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulea1/modulea1.html">CE Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulea2/modulea2.html">1 Click Config</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../class2/class2.html">Class 2 - Multi Cloud Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../class3/class3.html">Class 3 - Virtual Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../class4/class4.html">Class 4 - API Protection</a></li>
 </ul>
 
         </span><!-- Use this file to add extra links to the bottom of the ToC sidebar -->
@@ -118,10 +132,7 @@
       <nav class="nav-sidebartoc">
         <span class="nav-sidebartoc">
             <ul>
-<li><a class="reference internal" href="#">Lab 1 - Expose the application</a><ul>
-<li><a class="reference internal" href="#create-the-networking-objects">Create the networking objects</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Lab 1 - Expose the application</a></li>
 </ul>
 
          </span>
@@ -166,17 +177,13 @@
         
   <div class="section" id="lab-1-expose-the-application">
 <h1>Lab 1 - Expose the application<a class="headerlink" href="#lab-1-expose-the-application" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="create-the-networking-objects">
-<h2>Create the networking objects<a class="headerlink" href="#create-the-networking-objects" title="Permalink to this headline">¶</a></h2>
 <p>For this lab, we will use the following configuration</p>
 <ol class="arabic simple">
 <li>Create the Origin Pool targeting Arcadia public app</li>
 </ol>
-<ol class="loweralpha simple">
-<li>Web App &amp; API Protection -&gt; Load Balancers -&gt; Origin Pool -&gt; Add Origin Pool -&gt; Fill the bellow data</li>
-</ol>
-<table border="1" class="colwidths-auto docutils" id="id1">
-<caption><span class="caption-text">Origin Pool</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<ol class="loweralpha">
+<li><p class="first">Web App &amp; API Protection -&gt; Load Balancers -&gt; Origin Pool -&gt; Add Origin Pool -&gt; Fill the bellow data</p>
+<table border="1" class="colwidths-auto docutils">
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Object</th>
 <th class="head">Value</th>
@@ -197,11 +204,9 @@
 </tr>
 </tbody>
 </table>
-<ol class="loweralpha simple" start="2">
-<li>In the same screen -&gt; Origin Servers -&gt; Add Item -&gt; Fill the bellow data -&gt; Apply -&gt; Save and exit</li>
-</ol>
-<table border="1" class="colwidths-auto docutils" id="id2">
-<caption><span class="caption-text">Origin Server</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+</li>
+<li><p class="first">In the same screen -&gt; Origin Servers -&gt; Add Item -&gt; Fill the bellow data -&gt; Apply -&gt; Save and exit</p>
+<table border="1" class="colwidths-auto docutils">
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Object</th>
 <th class="head">Value</th>
@@ -213,12 +218,14 @@
 </tr>
 </tbody>
 </table>
-<script>c1m1l2a();</script><ol class="arabic simple" start="2">
+<script>c1m1l2a();</script></li>
+</ol>
+<ol class="arabic simple" start="2">
 <li>Create the HTTP LB</li>
 </ol>
-<p>Web App &amp; API Protection -&gt; Load Balancers -&gt; HTTP Load Balancer -&gt; Add HTTP Load Balancer</p>
-<table border="1" class="colwidths-auto docutils" id="id3">
-<caption><span class="caption-text">Configuration</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<ol class="loweralpha">
+<li><p class="first">Web App &amp; API Protection -&gt; Load Balancers -&gt; HTTP Load Balancer -&gt; Add HTTP Load Balancer -&gt; Fill the bellow data -&gt; Save and exit</p>
+<table border="1" class="colwidths-auto docutils">
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Object</th>
 <th class="head">Value</th>
@@ -228,7 +235,7 @@
 <tr class="row-even"><td><strong>Name</strong></td>
 <td>arcadia-re-lb</td>
 </tr>
-<tr class="row-odd"><td><strong>Domain</strong></td>
+<tr class="row-odd"><td><strong>Domains</strong></td>
 <td>arcadia-re-$$makeId$$.workshop.emea.f5se.com</td>
 </tr>
 <tr class="row-even"><td><strong>Load Balancer Type</strong></td>
@@ -237,14 +244,18 @@
 <tr class="row-odd"><td><strong>Automatically Manage DNS Records</strong></td>
 <td>Enable</td>
 </tr>
+<tr class="row-even"><td><strong>Origin Pools</strong></td>
+<td>Click <strong>Add Item</strong>, for the <strong>Origin Pool</strong> select $$namespace$$/arcadia-public-endpoint -&gt; Apply</td>
+</tr>
 </tbody>
 </table>
-<script>c1m1l2b();</script><p>3. So far, Arcadia is not protected but exposed all over the world on all F5XC RE.
-Check your Arcadia application is exposed and reachable from the F5XC Global Network by browsing to <a class="reference external" href="http://arcadia-re-$$makeId$$.workshop.emea.f5se.com">http://arcadia-re-$$makeId$$.workshop.emea.f5se.com</a></p>
+<script>c1m1l2b();</script></li>
+</ol>
+<p>3. So far, Arcadia is not protected but exposed all over the world on all F5XC RE.
+Check your Arcadia application is exposed and reachable from the F5XC Global Network by browsing to <a href="http://arcadia-re-$$makeId$$.workshop.emea.f5se.com" target="_blank">http://arcadia-re-$$makeId$$.workshop.emea.f5se.com</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Some Service Providers have a very long recursive cache. It can take several minutes to get a DNS response. You can change your DNS server to 1.1.1.1 or 8.8.8.8 to fix that.</p>
-</div>
 </div>
 </div>
 
@@ -257,7 +268,7 @@ Check your Arcadia application is exposed and reachable from the F5XC Global Net
         <a href="../module1.html" title="Publish the application" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
        
        
-          <a href="../lab2/lab2.html" title="Lab 2 - Visibility" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+          <a href="../lab2/lab2.html" title="Lab 2 - Testing and Visibility" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
        
      </div>
      </div>
