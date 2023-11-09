@@ -23,7 +23,7 @@ APIs change frequently:
 
 .. raw:: html
     
-    <script>getStudentData('f5xcemeak8sworkshop');</script>
+    <script>getStudentData('f5xcemeaapiworkshop');</script>
 
 .. toctree::
    :maxdepth: 2
