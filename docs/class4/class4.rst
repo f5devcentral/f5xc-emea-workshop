@@ -19,7 +19,11 @@ APIs change frequently:
 * Generate API schema and Swagger files to minimize manual tracking of API endpoints. 
 * Reduce time spent configuring and deploying API security policies.
 
+.. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content. If all good the button will turn green.
 
+.. raw:: html
+    
+    <script>getStudentData('f5xcemeaapiworkshop');</script>
 
 .. toctree::
    :maxdepth: 2
