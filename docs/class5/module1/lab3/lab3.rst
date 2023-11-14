@@ -52,64 +52,68 @@ The **Customer Edge** is up an running in order to expose the inernal K8s applic
       **HTTP HealthCheck**                          Click **Edit Configuration** -> Change the **Path** to **/healthz** -> Apply
       ==========================================    ====================================================================================================================      
 
+   .. raw:: html   
+
+      <script>c5m1l3a();</script>  
+
 4. Next we need to create the **Origin Pools** which will point to our services.
 
    Go to **Multi-Cloud App Connect** -> **Manage** -> **Load Balancers** -> **Origin Pools**
 
    We will need to create 5 **Origin Pools** each represeting the services that need to be accessed by users, create the **Origin Pools** based on the bellow data.
 
-   a) Click **Add Origin Pool**
+a) Click **Add Origin Pool**
 
-      .. table::
-         :widths: auto
+   .. table::
+      :widths: auto
 
-         ==========================================    ====================================================================================================================      
-         Object                                        Value
-         ==========================================    ====================================================================================================================      
-         **Name**                                      arcadia-frontend
-            
-         **Port**                                      80
+      ==========================================    ====================================================================================================================      
+      Object                                        Value
+      ==========================================    ====================================================================================================================      
+      **Name**                                      arcadia-frontend
+         
+      **Port**                                      80
 
-         **Health Checks**                             Click **Add Item** -> In the new dropdown choose **$$namespace$$/arcadia-hc**
-         ==========================================    ====================================================================================================================      
+      **Health Checks**                             Click **Add Item** -> In the new dropdown choose **$$namespace$$/arcadia-hc**
+      ==========================================    ====================================================================================================================      
 
-   b) Under **Origin Servers** click **Add Item** -> Fill the bellow data -> **Apply** -> **Save and Exit**
+b) Under **Origin Servers** click **Add Item** -> Fill the bellow data -> **Apply** -> **Save and Exit**
 
-      .. table::
-         :widths: auto
+   .. table::
+      :widths: auto
 
-         ==========================================    ====================================================================================================================      
-         Object                                        Value
-         ==========================================    ====================================================================================================================      
-         **Select Type of Origin Server**              K8s Service Name of Origin Server on given Sites
+      ==========================================    ====================================================================================================================      
+      Object                                        Value
+      ==========================================    ====================================================================================================================      
+      **Select Type of Origin Server**              K8s Service Name of Origin Server on given Sites
 
-         **Service Name**                              arcadia-frontend.arcadiacrypto
+      **Service Name**                              arcadia-frontend.arcadiacrypto
 
-         **Site**                                      system/$$ceOnPrem.clusterName$$
+      **Site**                                      system/$$ceOnPrem.clusterName$$
 
-         **Select Network on the site**                Outside Network
-         ==========================================    ====================================================================================================================      
-   
-
-   c) Repeat steps **a** and **b** for the other application services, the only thing that needs to be changed is the **Name** and **Service Name**.
+      **Select Network on the site**                Outside Network
+      ==========================================    ====================================================================================================================      
 
 
-      The additional services are:
+c) Repeat steps **a** and **b** for the other application services, the only thing that needs to be changed is the **Name** and **Service Name**.
 
-      .. table::
-         :widths: auto
 
-         ==========================================    ====================================================================================================================      
-         Name                                          Service Name
-         ==========================================    ====================================================================================================================      
-         arcadia-login                                 arcadia-login.arcadiacrypto
+   The additional services are:
 
-         arcadia-stock-transaction                     arcadia-stock-transaction.arcadiacrypto
+   .. table::
+      :widths: auto
 
-         arcadia-stocks                                arcadia-stocks.arcadiacrypto
+      ==========================================    ====================================================================================================================      
+      Name                                          Service Name
+      ==========================================    ====================================================================================================================      
+      arcadia-login                                 arcadia-login.arcadiacrypto
 
-         arcadia-users                                 arcadia-users.arcadiacrypto
-         ==========================================    ====================================================================================================================      
+      arcadia-stock-transaction                     arcadia-stock-transaction.arcadiacrypto
+
+      arcadia-stocks                                arcadia-stocks.arcadiacrypto
+
+      arcadia-users                                 arcadia-users.arcadiacrypto
+      ==========================================    ====================================================================================================================      
 
 5. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
 

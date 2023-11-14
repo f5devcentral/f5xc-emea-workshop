@@ -64,3 +64,54 @@ For this lab, we will create the Virtual Kubernetes environment, add the Stocks 
 
 3. Check that the **Stocks** pod is up and running by clicking the **Pods** tabs in the Virtual Kubernetes
 
+4. We need to create an Origin Pool which will dicover the POD
+
+   a) **Web App & API Protection** -> **Load Balancers** -> **Origin Pool** -> **Add Origin Pool** -> Fill the bellow data
+
+      .. table::
+         :widths: auto
+
+         ==============================    ========================================================================================
+         Object                            Value
+         ==============================    ========================================================================================
+         **Name**                          arcadia-stocks-vk8s
+         
+         **Port**                          80
+         ==============================    ========================================================================================
+
+   b) In the same screen -> **Origin Servers** -> **Add Item** -> **Fill the bellow data** -> **Apply** -> **Save and exit**
+
+      .. table::
+         :widths: auto
+
+         ================================    ========================================================================================
+         Object                              Value
+         ================================    ========================================================================================
+         **Select Type of Origin Server**    K8s Service Name of Origin Server on given Sitess
+
+         **Service Name**                    arcadia-stocks.$$namespace$$
+
+         **Site or Virtual Site**            Virtual Site
+
+         **Virtual Site**                    ves-io-shared/ves-io-all-res
+
+         **Select Network on the site**      vK8s Networks on Site
+         ================================    ========================================================================================
+
+5. We need to change the routing to of the **Stocks** service to point to the Pod Origin Pool
+
+ Go to **Web App & API Protection** -> **Load Balancers** -> **HTTP Load Balancer** -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Under **Routes** and click **Edit Configuration** -> **Add Item** -> Fill the bellow data -> Apply -> Apply -> Save and Exit
+
+   
+   .. table:: 
+      :widths: auto
+
+      ================================    ========================================================================================================
+      Object                              Value
+      ================================    ========================================================================================================
+      **HTTP Method**                     Any
+
+      **Prefix**                          /v1/stock/
+
+      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-stocks-vk8s -> Apply
+      ================================    ========================================================================================================         
