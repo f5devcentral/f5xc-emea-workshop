@@ -60,7 +60,7 @@ It is time to run a traffic generator script to populate the logs and the AI/ML 
 * SSH or WEBSSH to the Jumphost
 * Run this script
 
-.. code-block:: bash
+.. code-block:: none
 
    sh api-all.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
 
