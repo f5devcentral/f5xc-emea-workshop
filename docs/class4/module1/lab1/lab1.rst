@@ -70,9 +70,6 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
       **DNS name**            sentence.emea.f5se.com
       ====================    ========================================================================================
 
-   .. raw:: html   
-
-      <script>c1m1l2a();</script>  
 
 1. Create the HTTP LB
 
