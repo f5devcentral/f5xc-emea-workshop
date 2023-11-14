@@ -163,11 +163,7 @@ function displayJSON(jsonInput, statusText) {
   
 document.addEventListener("DOMContentLoaded", function() {
     const data = JSON.parse(localStorage.getItem('data'))
-<<<<<<< HEAD
     const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName, kubeconfig } = data;
-=======
-    const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName } = data;
->>>>>>> class4-api
     replacePlaceholderWithValue('makeId', makeId);
     replacePlaceholderWithValue('hostArcadia', hostArcadia);
     replacePlaceholderWithValue('ceArcadia', ceArcadia);
@@ -175,10 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
     replacePlaceholderWithValue('ceOnPrem.clusterName', ceOnPrem.clusterName);
     replacePlaceholderWithValue('awsSiteName', awsSiteName);
     replacePlaceholderWithValue('vk8sName', vk8sName);
-<<<<<<< HEAD
     replacePlaceholderWithValue('kubeconfig', kubeconfig);
-=======
->>>>>>> class4-api
     
     
   });
@@ -373,7 +366,6 @@ const lbConfig = ({
     }
 
     return config;
-<<<<<<< HEAD
 }
 
 function getStudentData(courseId) {
@@ -469,6 +461,3 @@ function getStudentData(courseId) {
 }
 
 
-=======
-}
->>>>>>> class4-api
