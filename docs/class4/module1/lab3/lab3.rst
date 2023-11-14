@@ -4,7 +4,7 @@ Test your modern API application protection
 #. If you have curl on your machine, go to the next step. Else, connect with SSH or WEBSSH to the Jumphost machine
 #. Run the below calls
 
-   .. code-block:: bash
+   .. code-block:: none
 
       curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives
       curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals
@@ -15,7 +15,7 @@ Test your modern API application protection
 
 #. Now, run the below call
 
-   .. code-block:: bash
+   .. code-block:: none
 
       curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/colors
 
