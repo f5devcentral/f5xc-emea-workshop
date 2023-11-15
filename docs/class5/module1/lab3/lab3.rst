@@ -115,6 +115,15 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       arcadia-users                                 arcadia-users.arcadiacrypto
       ==========================================    ====================================================================================================================      
 
+   .. raw:: html   
+
+      <script>c5m1l3b({name:'arcadia-frontend', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
+      <script>c5m1l3b({name:'arcadia-login', serviceName: 'arcadia-login.arcadiacrypto'});</script>
+      <script>c5m1l3b({name:'arcadia-stock-transaction', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
+      <script>c5m1l3b({name:'arcadia-stocks', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
+      <script>c5m1l3b({name:'arcadia-users', serviceName: 'arcadia-users.arcadiacrypto'});</script>
+
+
 5. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
 
    a) Go to **Multi-Cloud App Connect** -> **Manage** -> **Load Balancers** -> **HTTP Load Balancers** -> **Add HTTP Load Balancer** -> Fill the bellow data 
@@ -155,7 +164,13 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
    c) We are almost done, click **Apply** -> **Save and Exit**
 
-6. All is done our application is published. Let's check that all is working well.
+
+      .. raw:: html   
+
+         <script>c5m1l3c();</script>
+
+
+   6. All is done our application is published. Let's check that all is working well.
 
    Browse to `arcadia-ce-k8s-$$makeId$$.workshop.emea.f5se.com` and login to the app.
 
