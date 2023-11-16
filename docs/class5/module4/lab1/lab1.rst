@@ -1,117 +1,50 @@
-Lab 1 - Virtual Kubernetes
-##########################
+Lab 1 - Deploy the application
+##############################
 
-For this lab, we will create the Virtual Kubernetes environment, add the Stocks service and route the traffic to the container deployed in the F5 XC environment.
+For this lab, we will deploy the same application that we have used before right on the **Customer Edge** which will function as a **Kubernetes Cluster**.
 
-1. We will now create the **Virtual Kubernetes** environment.
+1. Go to **Distributed Apps** -> **Managed K8s** -> **Overview** -> **$$ceOnPrem.clusterName$$**.
 
-   Go to **Distributed Apps** -> **Applications** -> **Virtual K8s** -> **Add Virtual K8s** -> Set the **Name** to **$$vk8sName$$** -> **Save and Exit**
+   You can observe all the Kubernetes objects and dashboard
  
-2. Create the workload that will define the configuration on how and where to deploy the **Stocks** POD
+2. Now we need to start deploying out app. First we need to download the kubeconfig file to access our kubernetes environment.
 
-   a) Click on **$$vk8sName$$** -> **Workloads** -> **Add VK8s Workload**
+   a) **Distributed Apps** -> **Managed K8s** -> **Overview** -> Click on the **3 dots** to the right on the  **$$ceOnPrem.clusterName$$** row -> **Download Global Kubeconfig** 
+     
+   b) Go to the **UDF deployment** click **Components** on the **Jumphost** component click **Access**.  A drop down will open, click **WEB SHELL**, a new tab will shell access will open.
 
-      .. table::
-         :widths: auto
+   c) We will now need to enter the kubeconfig file contents
 
-         ==============================    ========================================================================================
-         Object                            Value
-         ==============================    ========================================================================================
-         **Name**                          arcadia-stocks
-         
-         **Select Type of Workload**       Service
-         ==============================    ========================================================================================
+      Run the bellow commands
 
-   b) In the same screen -> **Configure** -> Under **Containers** click **Add Item** -> Fill the bellow data -> **Apply**
+      .. code-block:: none
 
-      .. table::
-         :widths: auto
+         su ubuntu
+         nano /home/ubuntu/.kube/config
+      
+      Paste the **kubeconfig** file contents.
 
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Name**                            stocks
+      Click **CTRL + o** -> **Enter** to save the file
 
-         **Image Name**                      registry.hub.docker.com/sorinboiaf5/arcadia-stocks:ocp
-         ================================    ========================================================================================
-
-   c) In the same screen ->  Under **Where to Deploy the workload** choose **Regional Edge Sites** -> **Configure** -> Fill the bellow data -> **Apply **
-
-      .. table::
-         :widths: auto
-
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Input box**                       system/tn2-lon      
-         ================================    ========================================================================================
-
-   d) In the same screen -> Under **Advertise In Cluster** click **Configure** -> Toggle the **Show Advanced Fields** switch -> Fill the bellow data -> **Apply** -> **Apply** -> **Save and Exit**
-
-      .. table::
-         :widths: auto
-
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Port**                            80
-
-         **Target Port**                     Different than Port
-
-         **Different than Port**             8080
-         ================================    ========================================================================================      
+      Click **CTRL + x** -> **Enter** to exit the file editor and get back to the bash
 
 
-3. Check that the **Stocks** pod is up and running by clicking the **Pods** tabs in the Virtual Kubernetes
+   d) Check that the connectivity to the Kubernetes cluster is working by running the bellow command
 
-4. We need to create an Origin Pool which will dicover the POD
+      .. code-block:: none
 
-   a) **Web App & API Protection** -> **Load Balancers** -> **Origin Pool** -> **Add Origin Pool** -> Fill the bellow data
+         kubectl get nodes
 
-      .. table::
-         :widths: auto
+3. Run the bellow commands in order to deploy the app
 
-         ==============================    ========================================================================================
-         Object                            Value
-         ==============================    ========================================================================================
-         **Name**                          arcadia-stocks-vk8s
-         
-         **Port**                          80
-         ==============================    ========================================================================================
+   .. code-block:: none
 
-   b) In the same screen -> **Origin Servers** -> **Add Item** -> **Fill the bellow data** -> **Apply** -> **Save and exit**
+         kubectl create ns arcadiacrypto
+         kubectl config set-context --current --namespace=arcadiacrypto
+         kubectl apply -f /home/ubuntu/lab/udf/appstack/arcadia.yaml
 
-      .. table::
-         :widths: auto
+4. Return to the Kubernetes Dashboard and observe the newly created objects.
 
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Select Type of Origin Server**    K8s Service Name of Origin Server on given Sitess
-
-         **Service Name**                    arcadia-stocks.$$namespace$$
-
-         **Site or Virtual Site**            Virtual Site
-
-         **Virtual Site**                    ves-io-shared/ves-io-all-res
-
-         **Select Network on the site**      vK8s Networks on Site
-         ================================    ========================================================================================
-
-5. We need to change the routing to of the **Stocks** service to point to the Pod Origin Pool
-
- Go to **Web App & API Protection** -> **Load Balancers** -> **HTTP Load Balancer** -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Under **Routes** and click **Edit Configuration** -> **Add Item** -> Fill the bellow data -> Apply -> Apply -> Save and Exit
+   Go to **Distributed Apps** -> **Managed K8s** -> **Overview** -> **$$ceOnPrem.clusterName$$**
 
    
-   .. table:: 
-      :widths: auto
-
-      ================================    ========================================================================================================
-      Object                              Value
-      ================================    ========================================================================================================
-      **HTTP Method**                     Any
-
-      **Prefix**                          /v1/stock/
-
-      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-stocks-vk8s -> Apply
-      ================================    ========================================================================================================         

@@ -1,3 +1,46 @@
+function c5m1l2a() {        
+    const config = {
+        "metadata": {
+          "name": info.ceOnPrem.clusterName,
+          "disable": false
+        },
+        "spec": {
+          "volterra_certified_hw": "kvm-voltstack-combo",
+          "master_node_configuration": [
+            {
+              "name": "master"
+            }
+          ],
+          "no_bond_devices": {},
+          "default_network_config": {},
+          "default_storage_config": {},
+          "disable_gpu": {},
+          "coordinates": {
+            "latitude": 40,
+            "longitude": 40
+          },
+          "no_k8s_cluster": {},
+          "logs_streaming_disabled": {},
+          "deny_all_usb": {},
+          "disable_vm": {},
+          "default_blocked_services": {},
+          "sw": {
+            "default_sw_version": {}
+          },
+          "os": {
+            "default_os_version": {}
+          },
+          "offline_survivability_mode": {
+            "no_offline_survivability_mode": {}
+          },
+          "default_sriov_interface": {}
+        }
+      }
+    displayJSON(config, 'Multi-Cloud Network Connect -> Site Management -> App Stack Sites -> Add App Stack Site -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+
+
 function c5m1l3a() {        
     const config = {
         "metadata": {
@@ -282,3 +325,75 @@ function c5m3l1b() {
     
     displayJSON( config, 'Multi-Cloud App Connect -> Manage -> Load Balancers -> HTTP Load Balancer -> Click the 3 dots under the arcadia-ce-k8s-lb row -> Manage Configuration -> Edit Configuration -> -> JSON -> Copy paste the JSON config -> Save and Exit' );    
   }  
+
+
+  function c5m4l2a({name,serviceName}) {        
+    const config = {
+        "metadata": {
+          "name": name,
+          "disable": false
+        },
+        "spec": {
+          "origin_servers": [
+            {
+              "k8s_service": {
+                "service_name": serviceName,
+                "site_locator": {
+                  "site": {
+                    "tenant": "f5-emea-workshop-dblyrrcj",
+                    "namespace": "system",
+                    "name": info.ceOnPrem.clusterName,
+                    "kind": "site"
+                  }
+                },
+                "vk8s_networks": {}
+              }
+            }
+          ],
+          "no_tls": {},
+          "port": 80,
+          "same_as_endpoint_port": {},
+          "healthcheck": [
+            {
+              "tenant": "f5-emea-workshop-dblyrrcj",
+              "namespace": info.namespace,
+              "name": "arcadia-hc",
+              "kind": "healthcheck"
+            }
+          ],
+          "loadbalancer_algorithm": "LB_OVERRIDE",
+          "endpoint_selection": "LOCAL_PREFERRED"
+        }
+    }
+    displayJSON(config,'Multi-Cloud App Connect -> Manage -> Load Balancers -> Origin Pools -> Add Origin Pool -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+function c5m4l2b() {
+  
+  const config = lbConfig({
+    name: 'arcadia-ce-appstack-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-frontend-appstack',
+    domains: [`arcadia-ce-appstack-${info.makeId}.workshop.emea.f5se.com`],                  
+    routes:[
+      {
+          prefix: '/v1/users',
+          pool: 'arcadia-users-appstack'
+      },
+      {
+          prefix: '/v1/login',
+          pool: 'arcadia-login-appstack'
+      },
+      {
+        prefix: '/v1/stock/',
+        pool: 'arcadia-stocks-appstack'
+      },
+      {
+        prefix: '/v1/stockt',
+       pool: 'arcadia-stock-transaction-appstack'
+      }
+    ]
+  });
+  
+  displayJSON( config, 'Multi-Cloud App Connect -> Manage -> Load Balancers -> HTTP Load Balancers -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit' );    
+}

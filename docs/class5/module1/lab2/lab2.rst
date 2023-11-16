@@ -7,7 +7,33 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
 * Automatically discover Kubernetes services
 * Expose the onprem applications through F5 XC without exposing the app localy to the internet
 
-1. First we need to register the **CE**.
+
+1. Make sure you have logged in the F5 XC console. If you haven't yet follow the instrictions found :doc:`here <../../../intro/steps/intro3>` and then return to the guide.
+   
+   Go to **Multi-Cloud Network Connect** -> **Site Management** -> **App Stack Sites** -> **Add App Stack Site** -> Fill the bellow data -> **Save and Exit**
+
+   .. table::
+      :widths: auto
+
+      ==========================================    ========================================================================================
+      Object                                        Value
+      ==========================================    ========================================================================================
+      **Name**                                      $$ceOnPrem.clusterName$$
+   
+      **Generic Server Certified Hardware**         Enable Site Local API Access
+
+      **Master Nodes**                              Under **Name** enter the value **master**
+
+      **Latitude**                                  40
+
+      **Longitude**                                 40
+      ==========================================    ========================================================================================      
+
+   .. raw:: html   
+
+      <script>c5m1l2a();</script>
+
+2. First we need to register the **CE**.
 
    Go to the **UDF deployment** click **Components** on the **F5XC CE ( On prem )** component click **Access**.  A drop down will open, click **Site UI**, a new tab will open.
 
@@ -27,7 +53,7 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
 
 
 
-2. On the newly opened page click **Dashboard** and **Configure Now**, fill in the data as per the bellow table and finish by clicking **Save configuration**
+3. On the newly opened page click **Dashboard** and **Configure Now**, fill in the data as per the bellow table and finish by clicking **Save configuration**
 
    .. table::
       :widths: auto
@@ -46,11 +72,13 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       **Latitude**                                  40
 
       **Longitude**                                 40
+
+      **Site Local K8s API access**                 Enable Site Local K8s API access
+
+      **Enable Site Local K8s API access**          system/k8s
       ==========================================    ========================================================================================   
 
-3. Make sure you have logged in the F5 XC console. If you haven't yet follow the instrictions found :doc:`here <../../../intro/steps/intro3>` and then return to the guide.
-
-   We will need to approve on the F5 XC console the newly deployed **CE**.
+4. We will need to approve on the F5 XC console the newly deployed **CE**.
 
    Go to **Multi-Cloud Network Connect** -> **Site Management** -> **Registrations** .
 
@@ -60,7 +88,7 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
 
    This will approve and trigger the initialization of the **CE**.
 
-4. The initialization process takes around 15 - 20 minutes.
+5. The initialization process takes around 15 - 20 minutes.
 
    We can observe the status by going to **Multi-Cloud Network Connect** -> **Overview** -> **Sites**.
 
