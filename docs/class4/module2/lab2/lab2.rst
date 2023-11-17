@@ -58,7 +58,7 @@ Run the traffic generator script
 It is time to run a traffic generator script to populate the logs and the AI/ML engines.
 
 * SSH or WEBSSH to the Jumphost
-* Run this script into ./api-protection-lab folder
+* Run this script into /home/ubuntu/api-protection-lab folder
 
 .. code-block:: none
 
