@@ -1,7 +1,7 @@
 Enable API Validation
 =====================
 
-In the previous section, we enabled AOU Protection. API Protection is based on rules (allow, deny), but API Validation goes deeper into the validation.
+In the previous section, we enabled API Protection. API Protection is based on rules (allow, deny), but API Validation goes deeper into the validation.
 
 API Validation validates the requests and the responses, but also the content (JSON payload) based on the OpenAPI Specifications.
 
@@ -72,7 +72,7 @@ Update your API Load Balancer
       :align: left
       :scale: 50%
 
-* Click on ``View Configuration`` to customize the settings``
+* Click on ``View Configuration`` to customize the settings
 * Enable the ``Validation`` for ``Request`` and ``Response`` and select all the properties
 * Keep the setting ``Fall Through Mode`` to ``Allow``
 
@@ -80,9 +80,9 @@ Update your API Load Balancer
       :align: left
       :scale: 50%
 
-.. note:: The ``Fall Through Mode`` to ``Allow`` tells the system to let unknwon endpoints pass. In a nutshell, any unknown API endpoint will not be blocked and it is the API Discovery process which will take care of it.
+.. note:: The ``Fall Through Mode`` to ``Allow`` tells the system to let unknwon endpoints to pass. In a nutshell, any unknown API endpoint will not be blocked and it is the API Discovery process which will take care of it.
 
-.. warning:: Why not to block unknown endpoint ? Because this endpoint can be legitimate from Dev Teams, but SecOps are not aware. And it is better to have a visilibity on what is unknown instead of breaking the business
+.. warning:: Why not to block unknown endpoint ? Because this endpoint can be legitimate from Dev Teams, but SecOps are not aware "yet". And it is better to have a visilibity on what is unknown instead of breaking the business
 
 * SAVE your Load Balancer
 

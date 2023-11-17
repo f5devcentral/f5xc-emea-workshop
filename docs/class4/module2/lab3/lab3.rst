@@ -23,12 +23,12 @@ Understand the API Discovery elements
 
 On the top left corner, there are 3 important elements:
 
-* Inventory : Endpoints known by the OpenAPI Spec file
+* **Inventory** : Endpoints known by the OpenAPI Spec file
 
   * In our lab, there are 3 endpoints know (adjectives, animals, locations)
 
-* Discovered : What the F5 XC platform is seeing at the moment (Known and Unknown endpoints)
-* Shadow : What is ``Discovered`` but **NOT PART** of the ``Inventory``
+* **Discovered** : What the F5 XC platform is seeing at the moment (Known and Unknown endpoints)
+* **Shadow** : What is ``Discovered`` but **NOT PART** of the ``Inventory``
 
 You can filter on ``Shadow`` only for instance. You can see the ``/colors`` as a Shadow API.
 
@@ -36,11 +36,11 @@ Go deeper into the discovery
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Click on the ``/colors`` shadow API endpoint. A pop-up will appear on the right side of the screen.
-* You can see on the op right corner, 2 actions
+* You can see on the top right corner, 2 actions
 
-  * API Protection rule : if you want to block this endpoint. Let's say SecOps have this power to block unknown endpoints.
+  * **API Protection rule** : if you want to block this endpoint. Let's say SecOps have this power to block unknown endpoints.
 
-  * Rate Limiting : if you want to Rate Limit this endpoint because SecOps don't have the full power and don't want to break the app.
+  * **Rate Limiting** : if you want to Rate Limit this endpoint because SecOps don't have the full power and don't want to break the app.
 
 * Click on the ``Discovered`` tab and navigate into the sub-menus. You will see all the details discovered by the platform. We will go in details in some of them in few minutes.
 
