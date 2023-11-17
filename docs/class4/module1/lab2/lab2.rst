@@ -4,7 +4,7 @@ Protect the modern API application with F5XC - static protection
 Assign OpenAPI spec file to the LB
 ----------------------------------
 
-Copy and save the below OpenAPI Spec file. It defines the Sentence API app ``without`` COLORS.
+Copy and save the below OpenAPI Spec file (extension is .yaml). It defines the Sentence API app ``without`` COLORS.
 
 https://app.swaggerhub.com/apis/F5EMEASSA/API-Sentence-2022/v1-auth#/
 
@@ -18,7 +18,7 @@ In your Namespace, upload the file into ``Web and API Protection`` > ``Manage`` 
 Create API Definition
 ^^^^^^^^^^^^^^^^^^^^^
 You can't assign an OAS spec file to a Load Balancer or a listener (Virtual Server in BIG-IP, Server or Location in Nginx). You must create an API Definition object.
-In your Namespace, create anew API Definition the file into ``Web and API Protection`` > ``Manage`` > ``API Management`` > ``API Definition``
+In your Namespace, create a new API Definition into ``Web and API Protection`` > ``Manage`` > ``API Management`` > ``API Definition``
 
 .. image:: ../pictures/menu-api-def.png
    :align: left
@@ -101,5 +101,6 @@ As a reminder, the endpoint ``/colors`` is not defined in the specification file
       :align: center
       :scale: 50%
 
+#. Save and Exit.
 
 .. note:: You are good to test your first API Protection Load Balancer in F5 Distributes Cloud
