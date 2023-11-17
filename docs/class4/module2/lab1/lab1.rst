@@ -68,7 +68,7 @@ Update your API Load Balancer
 .. warning:: This section can't be done if you are not part of an official F5 Workshop training. It requires a specific license (API Protection), and this license is provisionned only during official F5 events.
   You can bypass this section if you are not part of an official F5 training, and continue to the API Discovery lab.
 
-.. note:: Please don't open support ticket to increase this quota. This is done by F5ers in charge of the trainings (Matthieu Dierick, Sorin )
+.. note:: Please don't open support ticket to increase this quota. This is done by F5ers in charge of the trainings (Matthieu Dierick, Sorin Boiangiu)
 
 * Edit your Load Balancer and remove all API Protection rules (click on Reset Configuration and confirm)
 * Enable API Validation for ``All Endpoints``
