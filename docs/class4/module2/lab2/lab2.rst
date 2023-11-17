@@ -58,9 +58,10 @@ Run the traffic generator script
 It is time to run a traffic generator script to populate the logs and the AI/ML engines.
 
 * SSH or WEBSSH to the Jumphost
-* Run this script
+* Run this script into ./api-protection-lab folder
 
 .. code-block:: none
 
-   sh api-all.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
+   cd api-protection-lab
+   bash api-all.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
 
