@@ -1,62 +1,10 @@
-Lab 3 - Expose the application to the world
+Lab 2 - Expose the application to the world
 ###########################################
 
-The **Customer Edge** is up an running in order to expose the inernal K8s application we will need to go through a few steps:
-
-* **CE** will discover the K8s
-* Publish the application on the F5 XC platform and define the routing to each service based on the HTTP Path.
+Just like the previous parts of the lab we need again to publish the app to the world but this time through the Kubernetes Ingress **CE**.
 
 
-1. First we need to import the **kubeconfig** file that will be used to access the Kubernetes API in order to discover the application service.
-
-   Go to the **Multi-Cloud App Connect** -> **Manage** -> **Service Discoveries** -> **Add Discovery** -> Fill in the bellow data -> **Save and Exit** .
-
-   
-
-   .. table::
-      :widths: auto
-
-      ==========================================    ====================================================================================================================      
-      Object                                        Value
-      ==========================================    ====================================================================================================================      
-      **Name**                                      $$kubeconfig$$
-         
-      **Virtual-Site or Site or Network**           Site
-
-      **Reference**                                 system/$$ceOnPrem.clusterName$$
-
-      **Network Type**                              Site Local Network
-
-      **K8S Discovery Configuration**               Click on **Configure** -> **Configure**  -> In the **Secret to Blindfold** paste the `kubeconfig`_ -> Apply -> Apply      
-      ==========================================    ====================================================================================================================      
-
-   .. _kubeconfig: /_static/files/kubeconfig.yaml
-      
-
-2. In the current view ( **Service Discoveries** ) click **Refresh**.
-
-   You can observe that **$$kubeconfig$$** has discovered 6 services. Click on the **6 Services** and you will be able to see the services and PODs of our application.
-
-3. Now we configure a HTTP health check that will help us check the availability of the kubernetes cluster and send traffic only to working servers.
-
-   Go to **Multi-Cloud App Connect** -> **Manage** -> **Load Balancers** -> **Health Checks** -> **Add Health Check** -> Fill the bellow data -> **Save and Exit**
-
-   .. table::
-      :widths: auto
-
-      ==========================================    ====================================================================================================================      
-      Object                                        Value
-      ==========================================    ====================================================================================================================      
-      **Name**                                      arcadia-hc
-         
-      **HTTP HealthCheck**                          Click **Edit Configuration** -> Change the **Path** to **/healthz** -> Apply
-      ==========================================    ====================================================================================================================      
-
-   .. raw:: html   
-
-      <script>c5m1l3a();</script>  
-
-4. Next we need to create the **Origin Pools** which will point to our services.
+1. Next we need to create the **Origin Pools** which will point to our new app services.
 
    Go to **Multi-Cloud App Connect** -> **Manage** -> **Load Balancers** -> **Origin Pools**
 
@@ -70,7 +18,7 @@ a) Click **Add Origin Pool**
       ==========================================    ====================================================================================================================      
       Object                                        Value
       ==========================================    ====================================================================================================================      
-      **Name**                                      arcadia-frontend
+      **Name**                                      arcadia-frontend-cek8s
          
       **Port**                                      80
 
@@ -89,9 +37,9 @@ b) Under **Origin Servers** click **Add Item** -> Fill the bellow data -> **Appl
 
       **Service Name**                              arcadia-frontend.arcadiacrypto
 
-      **Site**                                      system/$$ceOnPrem.clusterName$$
+      **Site**                                      system/$$cek8s$$
 
-      **Select Network on the site**                Outside Network
+      **Select Network on the site**                vK8s Networks on Site
       ==========================================    ====================================================================================================================      
 
 
@@ -106,22 +54,22 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ====================================================================================================================      
       Name                                          Service Name
       ==========================================    ====================================================================================================================      
-      arcadia-login                                 arcadia-login.arcadiacrypto
+      arcadia-login-cek8s                           arcadia-login.arcadiacrypto
 
-      arcadia-stock-transaction                     arcadia-stock-transaction.arcadiacrypto
+      arcadia-stock-transaction-cek8s               arcadia-stock-transaction.arcadiacrypto
 
-      arcadia-stocks                                arcadia-stocks.arcadiacrypto
+      arcadia-stocks-cek8s                          arcadia-stocks.arcadiacrypto
 
-      arcadia-users                                 arcadia-users.arcadiacrypto
+      arcadia-users-cek8s                           arcadia-users.arcadiacrypto
       ==========================================    ====================================================================================================================      
 
    .. raw:: html   
 
-      <script>c5m1l3b({name:'arcadia-frontend', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
-      <script>c5m1l3b({name:'arcadia-login', serviceName: 'arcadia-login.arcadiacrypto'});</script>
-      <script>c5m1l3b({name:'arcadia-stock-transaction', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
-      <script>c5m1l3b({name:'arcadia-stocks', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
-      <script>c5m1l3b({name:'arcadia-users', serviceName: 'arcadia-users.arcadiacrypto'});</script>
+      <script>c5m4l2a({name:'arcadia-frontend-cek8s', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
+      <script>c5m4l2a({name:'arcadia-login-cek8s', serviceName: 'arcadia-login.arcadiacrypto'});</script>
+      <script>c5m4l2a({name:'arcadia-stock-transaction-cek8s', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
+      <script>c5m4l2a({name:'arcadia-stocks-cek8s', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
+      <script>c5m4l2a({name:'arcadia-users-cek8s', serviceName: 'arcadia-users.arcadiacrypto'});</script>
 
 
 5. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
@@ -134,15 +82,15 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
          ====================================    =================================================================================================
          Object                                  Value
          ====================================    =================================================================================================
-         **Name**                                arcadia-ce-k8s-lb
+         **Name**                                arcadia-ce-cek8s-lb
                         
-         **Domains**                             arcadia-ce-k8s-$$makeId$$.workshop.emea.f5se.com
+         **Domains**                             arcadia-ce-cek8s-$$makeId$$.workshop.emea.f5se.com
 
          **Load Balancer Type**                  HTTP
                                                                                     
          **Automatically Manage DNS Records**    Enable 
 
-         **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-frontend -> Apply
+         **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-frontend-cek8s -> Apply
          ====================================    =================================================================================================
 
    b) On the same page go to **Routes** and click **Configure** -> Repeat this 4 times for each service ( **Add Item** -> Fill in the bellow -> **Apply** )
@@ -153,13 +101,13 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
          ================================    ========================================================================================================
          **Prefix**                          **Origin Pools**
          ================================    ========================================================================================================
-         /v1/login                           $$namespace$$/arcadia-login
+         /v1/login                           $$namespace$$/arcadia-login-cek8s
 
-         /v1/stockt                          $$namespace$$/arcadia-stock-transaction
+         /v1/stockt                          $$namespace$$/arcadia-stock-transaction-cek8s
 
-         /v1/stock/                          $$namespace$$/arcadia-stocks
+         /v1/stock/                          $$namespace$$/arcadia-stocks-cek8s
 
-         /v1/user                            $$namespace$$/arcadia-users          
+         /v1/user                            $$namespace$$/arcadia-users-cek8s          
          ================================    ========================================================================================================
 
    c) We are almost done, click **Apply** -> **Save and Exit**
@@ -167,12 +115,12 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
       .. raw:: html   
 
-         <script>c5m1l3c();</script>
+         <script>c5m5l2a();</script>
 
 
    6. All is done our application is published. Let's check that all is working well.
 
-   Browse to `arcadia-ce-k8s-$$makeId$$.workshop.emea.f5se.com` and login to the app.
+   Browse to `arcadia-ce-cek8s-$$makeId$$.workshop.emea.f5se.com` and login to the app.
 
    .. table::
       :widths: auto
@@ -186,3 +134,4 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ========================================================================================   
 
    Click on the **Exchange** tab on the left and go buy or sell some crypto currency.
+   

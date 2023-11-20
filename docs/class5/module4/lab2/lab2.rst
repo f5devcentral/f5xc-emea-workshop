@@ -35,7 +35,7 @@ b) Under **Origin Servers** click **Add Item** -> Fill the bellow data -> **Appl
       ==========================================    ====================================================================================================================      
       **Select Type of Origin Server**              K8s Service Name of Origin Server on given Sites
 
-      **Service Name**                              arcadia-frontend.arcadiacrypto
+      **Service Name**                              arcadia-frontend.default
 
       **Site**                                      system/$$ceOnPrem.clusterName$$
 
@@ -54,22 +54,22 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ====================================================================================================================      
       Name                                          Service Name
       ==========================================    ====================================================================================================================      
-      arcadia-login-appstack                        arcadia-login.arcadiacrypto
+      arcadia-login-appstack                        arcadia-login.default
 
-      arcadia-stock-transaction-appstack            arcadia-stock-transaction.arcadiacrypto
+      arcadia-stock-transaction-appstack            arcadia-stock-transaction.default
 
-      arcadia-stocks-appstack                       arcadia-stocks.arcadiacrypto
+      arcadia-stocks-appstack                       arcadia-stocks.default
 
-      arcadia-users-appstack                        arcadia-users.arcadiacrypto
+      arcadia-users-appstack                        arcadia-users.default
       ==========================================    ====================================================================================================================      
 
    .. raw:: html   
 
-      <script>c5m4l2a({name:'arcadia-frontend-appstack', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-login-appstack', serviceName: 'arcadia-login.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-stock-transaction-appstack', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-stocks-appstack', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-users-appstack', serviceName: 'arcadia-users.arcadiacrypto'});</script>
+      <script>c5m4l2a({name:'arcadia-frontend-appstack', serviceName: 'arcadia-frontend.default'});</script>
+      <script>c5m4l2a({name:'arcadia-login-appstack', serviceName: 'arcadia-login.default'});</script>
+      <script>c5m4l2a({name:'arcadia-stock-transaction-appstack', serviceName: 'arcadia-stock-transaction.default'});</script>
+      <script>c5m4l2a({name:'arcadia-stocks-appstack', serviceName: 'arcadia-stocks.default'});</script>
+      <script>c5m4l2a({name:'arcadia-users-appstack', serviceName: 'arcadia-users.default'});</script>
 
 
 5. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
@@ -105,7 +105,7 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
          /v1/stockt                          $$namespace$$/arcadia-stock-transaction-appstack
 
-         /v1/stock                           $$namespace$$/arcadia-stocks-appstack
+         /v1/stock/                          $$namespace$$/arcadia-stocks-appstack
 
          /v1/user                            $$namespace$$/arcadia-users-appstack          
          ================================    ========================================================================================================
@@ -134,3 +134,4 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ========================================================================================   
 
    Click on the **Exchange** tab on the left and go buy or sell some crypto currency.
+   
