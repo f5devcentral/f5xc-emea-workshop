@@ -404,7 +404,50 @@ function c5m4l2b() {
   displayJSON( config, 'Multi-Cloud App Connect -> Manage -> Load Balancers -> HTTP Load Balancers -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit' );    
 }
 
-function c5m5l2a() {
+
+function c5m5l2a({name,serviceName}) {        
+  const config = {
+      "metadata": {
+        "name": name,
+        "disable": false
+      },
+      "spec": {
+        "origin_servers": [
+          {
+            "k8s_service": {
+              "service_name": serviceName,
+              "site_locator": {
+                "site": {
+                  "tenant": "f5-emea-workshop-dblyrrcj",
+                  "namespace": "system",
+                  "name": info.cek8s,
+                  "kind": "site"
+                }
+              },
+              "vk8s_networks": {}
+            }
+          }
+        ],
+        "no_tls": {},
+        "port": 80,
+        "same_as_endpoint_port": {},
+        "healthcheck": [
+          {
+            "tenant": "f5-emea-workshop-dblyrrcj",
+            "namespace": info.namespace,
+            "name": "arcadia-hc",
+            "kind": "healthcheck"
+          }
+        ],
+        "loadbalancer_algorithm": "LB_OVERRIDE",
+        "endpoint_selection": "LOCAL_PREFERRED"
+      }
+  }
+  displayJSON(config,'Multi-Cloud App Connect -> Manage -> Load Balancers -> Origin Pools -> Add Origin Pool -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+
+function c5m5l2b() {
   
   const config = lbConfig({
     name: 'arcadia-ce-cek8s-lb',
@@ -430,3 +473,6 @@ function c5m5l2a() {
       }
     ]
   });
+
+  displayJSON( config, 'Multi-Cloud App Connect -> Manage -> Load Balancers -> HTTP Load Balancers -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit' );    
+}

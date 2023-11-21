@@ -65,14 +65,14 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
    .. raw:: html   
 
-      <script>c5m4l2a({name:'arcadia-frontend-cek8s', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-login-cek8s', serviceName: 'arcadia-login.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-stock-transaction-cek8s', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-stocks-cek8s', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
-      <script>c5m4l2a({name:'arcadia-users-cek8s', serviceName: 'arcadia-users.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-frontend-cek8s', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-login-cek8s', serviceName: 'arcadia-login.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-stock-transaction-cek8s', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-stocks-cek8s', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-users-cek8s', serviceName: 'arcadia-users.arcadiacrypto'});</script>
 
 
-5. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
+2. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
 
    a) Go to **Multi-Cloud App Connect** -> **Manage** -> **Load Balancers** -> **HTTP Load Balancers** -> **Add HTTP Load Balancer** -> Fill the bellow data 
    
@@ -115,10 +115,10 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
       .. raw:: html   
 
-         <script>c5m5l2a();</script>
+         <script>c5m5l2b();</script>
 
 
-   6. All is done our application is published. Let's check that all is working well.
+   3. All is done our application is published. Let's check that all is working well.
 
    Browse to `arcadia-ce-cek8s-$$makeId$$.workshop.emea.f5se.com` and login to the app.
 
@@ -134,4 +134,5 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ========================================================================================   
 
    Click on the **Exchange** tab on the left and go buy or sell some crypto currency.
+
    
