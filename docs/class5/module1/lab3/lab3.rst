@@ -30,9 +30,8 @@ The **Customer Edge** is up an running in order to expose the inernal K8s applic
       **K8S Discovery Configuration**               Click on **Configure** -> **Configure**  -> In the **Secret to Blindfold** paste the `kubeconfig`_ -> Apply -> Apply      
       ==========================================    ====================================================================================================================      
 
-   .. _kubeconfig: /_static/files/kubeconfig.yaml
+   .. _kubeconfig: ../../../_static/files/kubeconfig.yaml
       
-
 2. In the current view ( **Service Discoveries** ) click **Refresh**.
 
    You can observe that **$$kubeconfig$$** has discovered 6 services. Click on the **6 Services** and you will be able to see the services and PODs of our application.
