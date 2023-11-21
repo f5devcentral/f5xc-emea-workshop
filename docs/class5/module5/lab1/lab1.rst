@@ -28,3 +28,4 @@ Lab 1 - Deploy the CE on K8s
    We can observe the status by going to **Multi-Cloud Network Connect** -> **Overview** -> **Sites**.
 
    Once the health score of **$$cek8s$$** will reach 100% the **CE** will be fully operational.
+   

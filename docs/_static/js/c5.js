@@ -453,7 +453,7 @@ function c5m5l2b() {
     name: 'arcadia-ce-cek8s-lb',
     namespace: info.namespace,
     poolName: 'arcadia-frontend-cek8s',
-    domains: [`arcadia-ce-appstack-${info.makeId}.workshop.emea.f5se.com`],                  
+    domains: [`arcadia-ce-cek8s-${info.makeId}.workshop.emea.f5se.com`],                  
     routes:[
       {
           prefix: '/v1/user',
