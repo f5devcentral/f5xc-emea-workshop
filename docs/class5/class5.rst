@@ -1,5 +1,5 @@
-Class 5 - F5 XC K8s - UNDER CONSTRUCTION
-########################################
+Class 5 - F5 XC K8s
+###################
 
 Lab Maintainers:
 
@@ -25,7 +25,7 @@ The following components are used within the application:
 During this class we will explore how F5 XC can help publish Kubernetes deployed application while making sure they are fast and secure.
 
 
-.. image:: ./module1/pictures/class1.gif
+.. image:: ./module1/pictures/diagrams-class5.gif
    :align: center
 
 .. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content. If all good the button will turn green.

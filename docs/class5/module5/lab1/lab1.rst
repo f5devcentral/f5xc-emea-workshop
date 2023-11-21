@@ -1,117 +1,31 @@
-Lab 1 - Virtual Kubernetes
-##########################
+Lab 1 - Deploy the CE on K8s
+############################
 
-For this lab, we will create the Virtual Kubernetes environment, add the Stocks service and route the traffic to the container deployed in the F5 XC environment.
 
-1. We will now create the **Virtual Kubernetes** environment.
-
-   Go to **Distributed Apps** -> **Applications** -> **Virtual K8s** -> **Add Virtual K8s** -> Set the **Name** to **$$vk8sName$$** -> **Save and Exit**
+1. Go to the **UDF deployment** click **Components** on the **MicroK8s** component click **Access**.  A drop down will open, click **WEB SHELL**, a new tab will shell access will open.
  
-2. Create the workload that will define the configuration on how and where to deploy the **Stocks** POD
+2. Find K8s configuration for our application. In order to achive this run the bellow commands.
 
-   a) Click on **$$vk8sName$$** -> **Workloads** -> **Add VK8s Workload**
+   .. code-block:: none
 
-      .. table::
-         :widths: auto
+      su ubuntu
+      cd /home/ubuntu/cek8s
+      sed -i 's/<cluster name>/$$cek8s$$/' ce_k8s.yml
+      kubectl apply -f ce_k8s.yml
 
-         ==============================    ========================================================================================
-         Object                            Value
-         ==============================    ========================================================================================
-         **Name**                          arcadia-stocks
-         
-         **Select Type of Workload**       Service
-         ==============================    ========================================================================================
+3. Since this is a new **CE** we will need to approve on the F5 XC console.
 
-   b) In the same screen -> **Configure** -> Under **Containers** click **Add Item** -> Fill the bellow data -> **Apply**
+   Go to **Multi-Cloud Network Connect** -> **Site Management** -> **Registrations** .
 
-      .. table::
-         :widths: auto
+   You will see in the **Pending Registrations** multiple **CE** entries that need to be approved.
 
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Name**                            stocks
+   On the line respective to the **Cluster Name** **$$cek8s$$** click the **V** and after that **Save and Exit**.
 
-         **Image Name**                      registry.hub.docker.com/sorinboiaf5/arcadia-stocks:ocp
-         ================================    ========================================================================================
+   This will approve and trigger the initialization of the **CE**.
 
-   c) In the same screen ->  Under **Where to Deploy the workload** choose **Regional Edge Sites** -> **Configure** -> Fill the bellow data -> **Apply **
+5. The initialization process takes around 10 minutes.
 
-      .. table::
-         :widths: auto
+   We can observe the status by going to **Multi-Cloud Network Connect** -> **Overview** -> **Sites**.
 
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Input box**                       system/tn2-lon      
-         ================================    ========================================================================================
-
-   d) In the same screen -> Under **Advertise In Cluster** click **Configure** -> Toggle the **Show Advanced Fields** switch -> Fill the bellow data -> **Apply** -> **Apply** -> **Save and Exit**
-
-      .. table::
-         :widths: auto
-
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Port**                            80
-
-         **Target Port**                     Different than Port
-
-         **Different than Port**             8080
-         ================================    ========================================================================================      
-
-
-3. Check that the **Stocks** pod is up and running by clicking the **Pods** tabs in the Virtual Kubernetes
-
-4. We need to create an Origin Pool which will dicover the POD
-
-   a) **Web App & API Protection** -> **Load Balancers** -> **Origin Pool** -> **Add Origin Pool** -> Fill the bellow data
-
-      .. table::
-         :widths: auto
-
-         ==============================    ========================================================================================
-         Object                            Value
-         ==============================    ========================================================================================
-         **Name**                          arcadia-stocks-vk8s
-         
-         **Port**                          80
-         ==============================    ========================================================================================
-
-   b) In the same screen -> **Origin Servers** -> **Add Item** -> **Fill the bellow data** -> **Apply** -> **Save and exit**
-
-      .. table::
-         :widths: auto
-
-         ================================    ========================================================================================
-         Object                              Value
-         ================================    ========================================================================================
-         **Select Type of Origin Server**    K8s Service Name of Origin Server on given Sitess
-
-         **Service Name**                    arcadia-stocks.$$namespace$$
-
-         **Site or Virtual Site**            Virtual Site
-
-         **Virtual Site**                    ves-io-shared/ves-io-all-res
-
-         **Select Network on the site**      vK8s Networks on Site
-         ================================    ========================================================================================
-
-5. We need to change the routing to of the **Stocks** service to point to the Pod Origin Pool
-
- Go to **Web App & API Protection** -> **Load Balancers** -> **HTTP Load Balancer** -> Click the 3 dots under the **arcadia-re-lb** row -> Manage Configuration -> Edit Configuration -> Under **Routes** and click **Edit Configuration** -> **Add Item** -> Fill the bellow data -> Apply -> Apply -> Save and Exit
-
+   Once the health score of **$$cek8s$$** will reach 100% the **CE** will be fully operational.
    
-   .. table:: 
-      :widths: auto
-
-      ================================    ========================================================================================================
-      Object                              Value
-      ================================    ========================================================================================================
-      **HTTP Method**                     Any
-
-      **Prefix**                          /v1/stock/
-
-      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-stocks-vk8s -> Apply
-      ================================    ========================================================================================================         

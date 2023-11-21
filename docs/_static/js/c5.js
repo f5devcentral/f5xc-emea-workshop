@@ -1,41 +1,47 @@
 function c5m1l2a() {        
     const config = {
-        "metadata": {
-          "name": info.ceOnPrem.clusterName,
-          "disable": false
+      "metadata": {
+        "name": info.ceOnPrem.clusterName,
+        "disable": false
+      },
+      "spec": {
+        "volterra_certified_hw": "kvm-voltstack-combo",
+        "master_node_configuration": [
+          {
+            "name": "master"
+          }
+        ],
+        "no_bond_devices": {},
+        "default_network_config": {},
+        "default_storage_config": {},
+        "disable_gpu": {},
+        "coordinates": {
+          "latitude": 40,
+          "longitude": 40
         },
-        "spec": {
-          "volterra_certified_hw": "kvm-voltstack-combo",
-          "master_node_configuration": [
-            {
-              "name": "master"
-            }
-          ],
-          "no_bond_devices": {},
-          "default_network_config": {},
-          "default_storage_config": {},
-          "disable_gpu": {},
-          "coordinates": {
-            "latitude": 40,
-            "longitude": 40
-          },
-          "no_k8s_cluster": {},
-          "logs_streaming_disabled": {},
-          "deny_all_usb": {},
-          "disable_vm": {},
-          "default_blocked_services": {},
-          "sw": {
-            "default_sw_version": {}
-          },
-          "os": {
-            "default_os_version": {}
-          },
-          "offline_survivability_mode": {
-            "no_offline_survivability_mode": {}
-          },
-          "default_sriov_interface": {}
-        }
+        "k8s_cluster": {
+          "tenant": "f5-emea-workshop-dblyrrcj",
+          "namespace": "system",
+          "name": "k8s",
+          "kind": "k8s_cluster"
+        },
+        "logs_streaming_disabled": {},
+        "deny_all_usb": {},
+        "disable_vm": {},
+        "default_blocked_services": {},
+        "sw": {
+          "default_sw_version": {}
+        },
+        "os": {
+          "default_os_version": {}
+        },
+        "offline_survivability_mode": {
+          "no_offline_survivability_mode": {}
+        },
+        "default_sriov_interface": {}
       }
+    }
+    
     displayJSON(config, 'Multi-Cloud Network Connect -> Site Management -> App Stack Sites -> Add App Stack Site -> JSON -> Copy paste the JSON config -> Save and Exit');    
 }
 
@@ -116,7 +122,7 @@ function c5m1l3c() {
       domains: [`arcadia-ce-k8s-${info.makeId}.workshop.emea.f5se.com`],                  
       routes:[
         {
-            prefix: '/v1/users',
+            prefix: '/v1/user',
             pool: 'arcadia-users'
         },
         {
@@ -251,7 +257,7 @@ function c5m2l1d() {
       domains: [`arcadia-ce-k8s-${info.makeId}.workshop.emea.f5se.com`],                  
       routes:[
         {
-            prefix: '/v1/users',
+            prefix: '/v1/user',
             pool: 'arcadia-users'
         },
         {
@@ -305,7 +311,7 @@ function c5m3l1b() {
       wafPolicy: 'arcadia-waf',
       routes:[
         {
-            prefix: '/v1/users',
+            prefix: '/v1/user',
             pool: 'arcadia-users'
         },
         {
@@ -377,7 +383,7 @@ function c5m4l2b() {
     domains: [`arcadia-ce-appstack-${info.makeId}.workshop.emea.f5se.com`],                  
     routes:[
       {
-          prefix: '/v1/users',
+          prefix: '/v1/user',
           pool: 'arcadia-users-appstack'
       },
       {
@@ -395,5 +401,78 @@ function c5m4l2b() {
     ]
   });
   
+  displayJSON( config, 'Multi-Cloud App Connect -> Manage -> Load Balancers -> HTTP Load Balancers -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit' );    
+}
+
+
+function c5m5l2a({name,serviceName}) {        
+  const config = {
+      "metadata": {
+        "name": name,
+        "disable": false
+      },
+      "spec": {
+        "origin_servers": [
+          {
+            "k8s_service": {
+              "service_name": serviceName,
+              "site_locator": {
+                "site": {
+                  "tenant": "f5-emea-workshop-dblyrrcj",
+                  "namespace": "system",
+                  "name": info.cek8s,
+                  "kind": "site"
+                }
+              },
+              "vk8s_networks": {}
+            }
+          }
+        ],
+        "no_tls": {},
+        "port": 80,
+        "same_as_endpoint_port": {},
+        "healthcheck": [
+          {
+            "tenant": "f5-emea-workshop-dblyrrcj",
+            "namespace": info.namespace,
+            "name": "arcadia-hc",
+            "kind": "healthcheck"
+          }
+        ],
+        "loadbalancer_algorithm": "LB_OVERRIDE",
+        "endpoint_selection": "LOCAL_PREFERRED"
+      }
+  }
+  displayJSON(config,'Multi-Cloud App Connect -> Manage -> Load Balancers -> Origin Pools -> Add Origin Pool -> JSON -> Copy paste the JSON config -> Save and Exit');    
+}
+
+
+function c5m5l2b() {
+  
+  const config = lbConfig({
+    name: 'arcadia-ce-cek8s-lb',
+    namespace: info.namespace,
+    poolName: 'arcadia-frontend-cek8s',
+    domains: [`arcadia-ce-cek8s-${info.makeId}.workshop.emea.f5se.com`],                  
+    routes:[
+      {
+          prefix: '/v1/user',
+          pool: 'arcadia-users-cek8s'
+      },
+      {
+          prefix: '/v1/login',
+          pool: 'arcadia-login-cek8s'
+      },
+      {
+        prefix: '/v1/stock/',
+        pool: 'arcadia-stocks-cek8s'
+      },
+      {
+        prefix: '/v1/stockt',
+       pool: 'arcadia-stock-transaction-cek8s'
+      }
+    ]
+  });
+
   displayJSON( config, 'Multi-Cloud App Connect -> Manage -> Load Balancers -> HTTP Load Balancers -> Add HTTP Load Balancer -> JSON -> Copy paste the JSON config -> Save and Exit' );    
 }
