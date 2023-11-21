@@ -1,7 +1,7 @@
 Lab 2 - Expose the application to the world
 ###########################################
 
-The application has been deployed now we need to publish it to the world.
+Just like the previous parts of the lab we need again to publish the app to the world but this time through the Kubernetes Ingress **CE**.
 
 
 1. Next we need to create the **Origin Pools** which will point to our new app services.
@@ -18,7 +18,7 @@ a) Click **Add Origin Pool**
       ==========================================    ====================================================================================================================      
       Object                                        Value
       ==========================================    ====================================================================================================================      
-      **Name**                                      arcadia-frontend-appstack
+      **Name**                                      arcadia-frontend-cek8s
          
       **Port**                                      80
 
@@ -35,9 +35,9 @@ b) Under **Origin Servers** click **Add Item** -> Fill the bellow data -> **Appl
       ==========================================    ====================================================================================================================      
       **Select Type of Origin Server**              K8s Service Name of Origin Server on given Sites
 
-      **Service Name**                              arcadia-frontend.default
+      **Service Name**                              arcadia-frontend.arcadiacrypto
 
-      **Site**                                      system/$$ceOnPrem.clusterName$$
+      **Site**                                      system/$$cek8s$$
 
       **Select Network on the site**                vK8s Networks on Site
       ==========================================    ====================================================================================================================      
@@ -54,25 +54,25 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ====================================================================================================================      
       Name                                          Service Name
       ==========================================    ====================================================================================================================      
-      arcadia-login-appstack                        arcadia-login.default
+      arcadia-login-cek8s                           arcadia-login.arcadiacrypto
 
-      arcadia-stock-transaction-appstack            arcadia-stock-transaction.default
+      arcadia-stock-transaction-cek8s               arcadia-stock-transaction.arcadiacrypto
 
-      arcadia-stocks-appstack                       arcadia-stocks.default
+      arcadia-stocks-cek8s                          arcadia-stocks.arcadiacrypto
 
-      arcadia-users-appstack                        arcadia-users.default
+      arcadia-users-cek8s                           arcadia-users.arcadiacrypto
       ==========================================    ====================================================================================================================      
 
    .. raw:: html   
 
-      <script>c5m4l2a({name:'arcadia-frontend-appstack', serviceName: 'arcadia-frontend.default'});</script>
-      <script>c5m4l2a({name:'arcadia-login-appstack', serviceName: 'arcadia-login.default'});</script>
-      <script>c5m4l2a({name:'arcadia-stock-transaction-appstack', serviceName: 'arcadia-stock-transaction.default'});</script>
-      <script>c5m4l2a({name:'arcadia-stocks-appstack', serviceName: 'arcadia-stocks.default'});</script>
-      <script>c5m4l2a({name:'arcadia-users-appstack', serviceName: 'arcadia-users.default'});</script>
+      <script>c5m5l2a({name:'arcadia-frontend-cek8s', serviceName: 'arcadia-frontend.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-login-cek8s', serviceName: 'arcadia-login.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-stock-transaction-cek8s', serviceName: 'arcadia-stock-transaction.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-stocks-cek8s', serviceName: 'arcadia-stocks.arcadiacrypto'});</script>
+      <script>c5m5l2a({name:'arcadia-users-cek8s', serviceName: 'arcadia-users.arcadiacrypto'});</script>
 
 
-5. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
+2. The last step will be to configure the **HTTP Load Balancer** that will enable to expose through the F5 XC platform the Kubernetes internal application.
 
    a) Go to **Multi-Cloud App Connect** -> **Manage** -> **Load Balancers** -> **HTTP Load Balancers** -> **Add HTTP Load Balancer** -> Fill the bellow data 
    
@@ -82,15 +82,15 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
          ====================================    =================================================================================================
          Object                                  Value
          ====================================    =================================================================================================
-         **Name**                                arcadia-ce-appstack-lb
+         **Name**                                arcadia-ce-cek8s-lb
                         
-         **Domains**                             arcadia-ce-appstack-$$makeId$$.workshop.emea.f5se.com
+         **Domains**                             arcadia-ce-cek8s-$$makeId$$.workshop.emea.f5se.com
 
          **Load Balancer Type**                  HTTP
                                                                                     
          **Automatically Manage DNS Records**    Enable 
 
-         **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-frontend-appstack -> Apply
+         **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/arcadia-frontend-cek8s -> Apply
          ====================================    =================================================================================================
 
    b) On the same page go to **Routes** and click **Configure** -> Repeat this 4 times for each service ( **Add Item** -> Fill in the bellow -> **Apply** )
@@ -101,13 +101,13 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
          ================================    ========================================================================================================
          **Prefix**                          **Origin Pools**
          ================================    ========================================================================================================
-         /v1/login                           $$namespace$$/arcadia-login-appstack
+         /v1/login                           $$namespace$$/arcadia-login-cek8s
 
-         /v1/stockt                          $$namespace$$/arcadia-stock-transaction-appstack
+         /v1/stockt                          $$namespace$$/arcadia-stock-transaction-cek8s
 
-         /v1/stock/                          $$namespace$$/arcadia-stocks-appstack
+         /v1/stock/                          $$namespace$$/arcadia-stocks-cek8s
 
-         /v1/user                            $$namespace$$/arcadia-users-appstack          
+         /v1/user                            $$namespace$$/arcadia-users-cek8s          
          ================================    ========================================================================================================
 
    c) We are almost done, click **Apply** -> **Save and Exit**
@@ -115,12 +115,12 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
       .. raw:: html   
 
-         <script>c5m4l2b();</script>
+         <script>c5m5l2b();</script>
 
 
-   6. All is done our application is published. Let's check that all is working well.
+   3. All is done our application is published. Let's check that all is working well.
 
-   Browse to `arcadia-ce-appstack-$$makeId$$.workshop.emea.f5se.com` and login to the app.
+   Browse to `arcadia-ce-cek8s-$$makeId$$.workshop.emea.f5se.com` and login to the app.
 
    .. table::
       :widths: auto
@@ -134,4 +134,5 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
       ==========================================    ========================================================================================   
 
    Click on the **Exchange** tab on the left and go buy or sell some crypto currency.
+
    

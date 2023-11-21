@@ -26,7 +26,7 @@ For this lab, we will deploy the same application that we have used before right
 
       Click **CTRL + o** -> **Enter** to save the file
 
-      Click **CTRL + x** -> **Enter** to exit the file editor and get back to the bash
+      Click **CTRL + x** to exit the file editor and get back to the bash
 
 
    d) Check that the connectivity to the Kubernetes cluster is working by running the bellow command
@@ -39,8 +39,6 @@ For this lab, we will deploy the same application that we have used before right
 
    .. code-block:: none
 
-         kubectl create ns arcadiacrypto
-         kubectl config set-context --current --namespace=arcadiacrypto
          kubectl apply -f /home/ubuntu/lab/udf/appstack/arcadia.yaml
 
 4. Return to the Kubernetes Dashboard and observe the newly created objects.

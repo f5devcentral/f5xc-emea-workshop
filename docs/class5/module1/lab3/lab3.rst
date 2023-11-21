@@ -157,7 +157,7 @@ c) Repeat steps **a** and **b** for the other application services, the only thi
 
          /v1/stockt                          $$namespace$$/arcadia-stock-transaction
 
-         /v1/stock                           $$namespace$$/arcadia-stocks
+         /v1/stock/                          $$namespace$$/arcadia-stocks
 
          /v1/user                            $$namespace$$/arcadia-users          
          ================================    ========================================================================================================

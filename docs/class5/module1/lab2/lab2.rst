@@ -19,14 +19,16 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       Object                                        Value
       ==========================================    ========================================================================================
       **Name**                                      $$ceOnPrem.clusterName$$
-   
-      **Generic Server Certified Hardware**         Enable Site Local API Access
-
+         
       **Master Nodes**                              Under **Name** enter the value **master**
 
       **Latitude**                                  40
 
       **Longitude**                                 40
+
+      **Site Local K8s API accesse**                Enable Site Local API Access
+
+      **Enable Site Local K8s API access**          system/k8s
       ==========================================    ========================================================================================      
 
    .. raw:: html   
