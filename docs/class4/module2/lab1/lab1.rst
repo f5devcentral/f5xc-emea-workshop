@@ -120,7 +120,7 @@ Make a quick test of API Validation
 
 .. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
 
-* Don't expect to see any outcome from the command as we did not set ``Block`` in our settings. We set ``Report``.
+* Don't expect to see any outcome from the command as we did not set ``Block`` in our settings. We set ``Report``. We need to keep ``Report`` so that the backend responds with sensitive information for the next lab.
 * Go to Security Dashboard and check your logs (can take up to 1min to be displayed). You can see a violation ``Request Path Parameter Violation``
 
    .. image:: ../pictures/validation-log.png
