@@ -118,7 +118,7 @@ Make a quick test of API Validation
 
       curl --location --request DELETE 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives/beautiful'
 
-   .. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
+.. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
 
 * Don't expect to see any outcome from the command as we did not set ``Block`` in our settings. We set ``Report``.
 * Go to Security Dashboard and check your logs (can take up to 1min to be displayed). You can see a violation ``Request Path Parameter Violation``
@@ -126,4 +126,4 @@ Make a quick test of API Validation
    .. image:: ../pictures/validation-log.png
       :align: center
 
-   .. note:: We sent an ID with a string instead of an integer. F5XC can validate Request and Response body payload.
+.. note:: We sent an ID with a string instead of an integer. F5XC can validate Request and Response body payload.
