@@ -91,5 +91,39 @@ Update your API Load Balancer
 
 * SAVE your Load Balancer
 
-.. note:: We do not test now our configuration. We must enable API Discovery first, in order to have a full protection and visibility.
+Make a quick test of API Validation
+-----------------------------------
 
+* The OpenAPI Spec file, specify the type of data expected by the API Endpoint. Let's say we want to delete an entry for /adjectives.
+* The OAS spec file specify the type is ``integer``
+
+   .. code-block:: yaml
+      :emphasize-lines: 11
+      
+      delete:
+         description: delete an adjective
+         tags:
+           - adjectives
+         parameters:
+           - name: id
+             in: path
+             required: true
+             description: id of the adjective to retrieve
+             schema:
+               type: integer
+
+* Let send a wrong request where we replace the ID (integer) by a string
+
+   .. code-block:: bash
+
+      curl --location --request DELETE 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives/beautiful'
+
+   .. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
+
+* Don't expect to see any outcome from the command as we did not set ``Block`` in our settings. We set ``Report``.
+* Go to Security Dashboard and check your logs (can take up to 1min to be displayed). You can see a violation ``Request Path Parameter Violation``
+
+   .. image:: ../pictures/validation-log.png
+      :align: center
+
+   .. note:: We sent an ID with a string instead of an integer. F5XC can validate Request and Response body payload.
