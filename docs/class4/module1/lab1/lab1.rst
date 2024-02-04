@@ -40,6 +40,8 @@ In term of micro-services, this is how there are used by the Webapp frontend.
 Expose the application on your F5 Distributed Cloud Namespace
 -------------------------------------------------------------
 
+The tenant URL for this lab is : https://f5-emea-workshop.console.ves.volterra.io/
+
 For this lab, we will use the following configuration
 
 1. Create the Origin Pool targeting Sentence public app
