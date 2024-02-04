@@ -310,7 +310,8 @@ const lbConfig = ({
 
     if (advertiseCustom) {
       config.spec.http = {
-        "dns_volterra_managed": false
+        "dns_volterra_managed": false,
+          "port": 80
       }
       config.spec['advertise_custom'] = {
         "advertise_where": [
