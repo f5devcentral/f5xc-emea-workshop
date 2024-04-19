@@ -271,5 +271,5 @@ Check API events
 
   .. image:: ../pictures/event-view.png
     :align: center
-    :scale: 50%
+    :scale: 80%
 
