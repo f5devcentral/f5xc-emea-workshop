@@ -269,7 +269,7 @@ Check API events
 
   * If you want to see more details of the blocking, switch to JSON view
 
-.. image:: ../pictures/event-view.png
-  :align: center
-  :scale: 70%
+  .. image:: ../pictures/event-view.png
+    :align: center
+    :scale: 50%
 
