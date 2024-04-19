@@ -17,7 +17,7 @@ APIs change frequently:
 
 * Easily identify all API endpoints mapped to your applications and monitor anomalous activities or shadow APIs including blocking of suspicious requests and endpoints. 
 * Generate API schema and Swagger files to minimize manual tracking of API endpoints.
-* Reduce time spent configuring and deploying API security policies
+* Reduce time spent configuring and deploying API security policies.
 
 .. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content. If all good the button will turn green.
 
