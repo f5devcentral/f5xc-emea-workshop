@@ -87,15 +87,25 @@ Enable JWT validation on your HTTP LB
 * Edit your HTTP LB and go to section API Protection
 * In API Validation, click configure
 * We will not enable JWT validation on all endpoints, but only on /locations endpoint
-   * Target : Base Patch
-      * Prefix : /api/locations
-   * Token location : Bearer Token
-   * Action : Block
-   * Json Web Key Set (JWKS) : Click Configure and Paste the JWKS from the previous section
-   * Issuer : Exact Match
-      * Exact Match : F5XC JWT demo
-   * Audience : Disable
-   * Validate Period : Disable
+  
+  * Target : Base Patch
+  
+    * Prefix : /api/locations
+  
+  * Token location : Bearer Token
+  
+  * Action : Block
+  
+  * Json Web Key Set (JWKS) : Click Configure and Paste the JWKS from the previous section
+  
+  * Issuer : Exact Match
+  
+    * Exact Match : F5XC JWT demo
+  
+  * Audience : Disable
+  
+  * Validate Period : Disable
+
 * Click Apply
 * Save and Exit
 
@@ -105,10 +115,14 @@ Enable JWT validation on your HTTP LB
 Open Postman and test your JWT Validation
 
 * In Postman, select the Collection JWT Validation
+  
 * Click on GET /api/animals request. As you can see, there is no Authentcation applied. Send the request.
-   * It passes without any JWT because JWT Validation is only enabled on /locations
+  
+  * It passes without any JWT because JWT Validation is only enabled on /locations
+
 * Click on GET /api/locations request. The JWT is already into the Authentication tab. Check it and send the request.
-   * It passes because JWT is valid (signature is valid)
+
+  * It passes because JWT is valid (signature is valid)
 
 
 JWT Access Control
