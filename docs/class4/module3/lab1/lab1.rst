@@ -28,8 +28,8 @@ First of all, you need several inputs
 
 In order to keep this lab easy, we will **NOT** explain how to generate a JWT or JWKS. In an netshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
 
-The JWT to use for this lab
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The JWT to use in this lab
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
 
@@ -60,8 +60,8 @@ For this lab, we customised the Payload with several Claims. We will work with t
     }
 
 
-The JWKS to use for this lab
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The JWKS to use in this lab
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The JWKS is an array required by F5XC to check the JWT signature. The JWKS to use is below. We use https://mkjwk.org/ to generate it.
 
@@ -156,6 +156,120 @@ Test your configuration with Postman
 JWT Access Control
 ------------------
 
+JWT control consists of controlling if a Claim is present and if the value matches a requirement.
 
-sub title
-^^^^^^^^^
+In our lab, we will check if the user has a VP role. As a reminder, in the JWT token, the user has a SA role. We want to allow access to /api/locations only to VP. 
+
+Enable JWT Access Control
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+JWT Access Control is part of Service Policy.
+
+* Create a new Service Policy
+
+* Name: sp-jwt-access
+
+* Rules: Custom Rule List
+
+* Click configure and add a new rule to allow VP role
+
+  * Name: role-vp
+
+  * Action: Allow
+  
+  * Request Match, click on the right Trottle to show Advanced Fields
+
+  * HTTP Path:
+
+    * Add Prefix Values : /api/locations
+  
+  * JWT claims, add a new item
+  
+    * JWT claim Name: Role
+    
+    * Match Options: Match Values
+
+    * Exact Values: VP
+
+      .. image:: ../pictures/claim-vp.png
+        :align: center
+        :scale: 70%
+
+    * Save the rule
+
+* Create a **second rule** to block request on /api/locations with a wrong role
+
+  * Name: role-not-vp
+
+  * Action: Deny
+  
+  * HTTP Path:
+
+    * Add Prefix Values : /api/locations
+
+  * Save the rule
+
+* Create a **third rule** to allow the rest. By default, a Service Policy finishes by a DENY All
+
+  * Name: allow-all
+
+  * Action: Allow
+
+  * Save the rule
+
+.. image:: ../pictures/sp-rules.png
+  :align: center
+  :scale: 70%
+
+* Save your Service Policy
+
+* Edit your HTTP LB, and assign this Service Policy
+
+  * Common Security Services > Service Policies > Apply Specified Service Policies
+
+  * Select your Service Policy names sp-jwt-access
+
+
+Test JWT Access Control
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Start by sending a request to /api/animals. This endpoint is not protected by JWT validation.
+
+  .. code-block:: bash
+
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals'
+
+  * It still passes
+
+* Send a request to /api/locations but with a wrong Role. We send the same request as before, where the Role is SA.
+
+  .. code-block:: bash
+
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meKeaPPsmcVeT9E7BAK_6aBZuA3mZwL-Q'
+
+  * It do not passe because Role claim is not VP
+
+* Send a new request with the Role VP
+
+  .. code-block:: bash
+
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlZQIn0.JAp4x3PWnV9Xbn4nNC0ug775UD-Jc0UngguA64VyAIC9olMImrkVhaMTJhlJMMtxsNhDAL8JDfihJ4isfYTuDN-L4e0RJb68YyRQ9mBFBDQcpEzJDyaYwLV9agavM3qCqeHz8l1VPFqjhiUJKbrGYLTiLZYfthRLrIw2rSO-lcBexnwMMcL9g3pekKuK0e-M_a3Z5OKuNpaY4Iaa3RIwCS_zFATssTzEhYsMbcKgWZqNchbe4C0l7dbz7n-xhpPHiemfZxIeCY-HIz2Gy6XVJxsBksgtML70_Z-lTOknoFEg-ufeZpy6_wHEHU-4Hzc0gGjQVLTpiMN5zAQHV68c8g'
+
+  * It passes because Role claim is VP
+
+
+Check API events
+----------------
+
+* In Overview Security Dashboard, click on your HTTP LB
+
+* Click on Security Analytics
+
+* Find an API event and expand it
+
+  * If you want to see more details of the blocking, switch to JSON view
+
+.. image:: ../pictures/event-view.png
+  :align: center
+  :scale: 70%
+
