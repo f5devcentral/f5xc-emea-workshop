@@ -17,7 +17,12 @@ https://app.swaggerhub.com/apis/F5EMEASSA/API-Sentence-2022/v1-auth#/
 
 Upload the file
 ^^^^^^^^^^^^^^^
-In your Namespace, upload the file into ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files``
+In your Namespace, goto ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files`` and click  ``Add Swagger File`` on the top. The ``Add Swagger File`` button in the middle may not work currently due to a GUI bug. 
+
+.. image:: ../pictures/add-swagger.png
+   :align: left
+
+|
 
 .. image:: ../pictures/add-oas.png
    :align: left
