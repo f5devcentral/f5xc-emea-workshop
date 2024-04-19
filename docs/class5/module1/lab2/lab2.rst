@@ -19,6 +19,8 @@ The **Customer Edge** aka. **CE** will extend the F5 Cloud infrastructure into t
       Object                                        Value
       ==========================================    ========================================================================================
       **Name**                                      $$ceOnPrem.clusterName$$
+
+      **Generic Server Certified Hardware**         kvm-voltstack-combo
          
       **Master Nodes**                              Under **Name** enter the value **master**
 

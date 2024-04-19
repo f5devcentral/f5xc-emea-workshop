@@ -4,19 +4,33 @@ Protect the modern API application with F5XC - static protection
 Assign OpenAPI spec file to the LB
 ----------------------------------
 
-Copy and save the below OpenAPI Spec file (extension is .yaml). It defines the Sentence API app ``without`` COLORS.
+|
+
+Download the file
+^^^^^^^^^^^^^^^^^
+Go to the link below and export the OpenAPI Spec file as **YAML unresolved** file. It defines the Sentence API app **without** the COLORS API endpoint.
 
 https://app.swaggerhub.com/apis/F5EMEASSA/API-Sentence-2022/v1-auth#/
 
-Upload file
-^^^^^^^^^^^
-In your Namespace, upload the file into ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files``
+.. image:: ../pictures/swaggerhub.png
+   :align: left
+
+|
+
+Upload the file
+^^^^^^^^^^^^^^^
+**In your Namespace**, goto ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files`` and click  ``Add Swagger File`` on the top. The ``Add Swagger File`` button in the middle may not work currently due to a GUI bug. 
+
+.. image:: ../pictures/add-swagger.png
+   :align: left
+
+|
 
 .. image:: ../pictures/add-oas.png
    :align: left
 
-Create API Definition
-^^^^^^^^^^^^^^^^^^^^^
+Create the API Definition
+^^^^^^^^^^^^^^^^^^^^^^^^^
 You can't assign an OAS spec file to a Load Balancer or a listener (Virtual Server in BIG-IP, Server or Location in Nginx). You must create an API Definition object.
 In your Namespace, create a new API Definition into ``Web and API Protection`` > ``Manage`` > ``API Management`` > ``API Definition``
 
@@ -24,7 +38,10 @@ In your Namespace, create a new API Definition into ``Web and API Protection`` >
    :align: left
    :scale: 50%
 
-Create a new API Definition and select the File created in the previous step. Select the version (so far, we have only one version)
+Create a new API Definition and select the File you have created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
+
+.. image:: ../pictures/create-api-def.png
+   :align: left
 
 .. note:: The API Definition is now created, and can be assigned to a Load Balancer
 
@@ -34,7 +51,7 @@ Assign API definition to the LB
 2. Go to the section ``API Protection``
 3. Enable API Definition and select the API Definition created previously. Keep the validation ``Disabled`` at the moment.
 
-   .. image:: ../pictures/enable-api-def.png
+   .. image:: ../pictures/api-protection.png
       :align: center
       :scale: 70%
 
