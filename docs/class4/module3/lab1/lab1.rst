@@ -109,20 +109,29 @@ Enable JWT validation on your HTTP LB
 * Click Apply
 * Save and Exit
 
-   .. image:: ../pictures/config-jwt.png
-      :align: center
+  .. image:: ../pictures/config-jwt.png
+    :align: center
+    :scale: 50%
 
-Open Postman and test your JWT Validation
+
+Test your configuration with Postman
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In Windows VM, open Postman and test your JWT Validation
 
 * In Postman, select the Collection JWT Validation
   
-* Click on GET /api/animals request. As you can see, there is no Authentcation applied. Send the request.
+* Click on GET /api/animals request. As you can see, there is no Authentcation in this request. Send the request.
   
   * It passes without any JWT because JWT Validation is only enabled on /locations
 
 * Click on GET /api/locations request. The JWT is already into the Authentication tab. Check it and send the request.
 
   * It passes because JWT is valid (signature is valid)
+
+* Remove the Authentication (select No Auth), and send the request
+
+  * Request is blocked
 
 
 JWT Access Control
