@@ -51,7 +51,7 @@ Assign API definition to the LB
 2. Go to the section ``API Protection``
 3. Enable API Definition and select the API Definition created previously. Keep the validation ``Disabled`` at the moment.
 
-   .. image:: ../pictures/enable-api-def.png
+   .. image:: ../pictures/api-protection.png
       :align: center
       :scale: 70%
 
