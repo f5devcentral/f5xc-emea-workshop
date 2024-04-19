@@ -38,7 +38,10 @@ In your Namespace, create a new API Definition into ``Web and API Protection`` >
    :align: left
    :scale: 50%
 
-Create a new API Definition and select the File created in the previous step. Select the version (so far, we have only one version)
+Create a new API Definition and select the File you hacve created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
+
+.. image:: ../pictures/create-api-def.png
+   :align: left
 
 .. note:: The API Definition is now created, and can be assigned to a Load Balancer
 
