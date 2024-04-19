@@ -19,7 +19,7 @@ https://app.swaggerhub.com/apis/F5EMEASSA/API-Sentence-2022/v1-auth#/
 
 Upload the file
 ^^^^^^^^^^^^^^^
-In your Namespace, goto ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files`` and click  ``Add Swagger File`` on the top. The ``Add Swagger File`` button in the middle may not work currently due to a GUI bug. 
+**In your Namespace**, goto ``Web and API Protection`` > ``Manage`` > ``Files`` > ``Swagger Files`` and click  ``Add Swagger File`` on the top. The ``Add Swagger File`` button in the middle may not work currently due to a GUI bug. 
 
 .. image:: ../pictures/add-swagger.png
    :align: left
@@ -38,7 +38,7 @@ In your Namespace, create a new API Definition into ``Web and API Protection`` >
    :align: left
    :scale: 50%
 
-Create a new API Definition and select the File you hacve created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
+Create a new API Definition and select the File you have created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
 
 .. image:: ../pictures/create-api-def.png
    :align: left
