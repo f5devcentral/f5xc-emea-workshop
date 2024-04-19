@@ -4,9 +4,12 @@ Protect the modern API application with F5XC - static protection
 Assign OpenAPI spec file to the LB
 ----------------------------------
 
-Copy and save the below OpenAPI Spec file (extension is .yaml). It defines the Sentence API app ``without`` COLORS.
+Go to the link below and export the OpenAPI Spec file as **YAML unresolved** file. It defines the Sentence API app **without** the COLORS API endpoint.
 
 https://app.swaggerhub.com/apis/F5EMEASSA/API-Sentence-2022/v1-auth#/
+
+.. image:: ../pictures/swaggerhub.png
+   :align: left
 
 Upload file
 ^^^^^^^^^^^
