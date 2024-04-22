@@ -2,9 +2,9 @@ Enable API discovery
 ====================
 
 In the previous section, we enabled ``API Validation`` in order to enforce protection on ``what we know`` from the OpenAPI Spec file.
-But we kept the ``Fall Through Mode`` to ``Allow`` so that we do not break the business down when DevOps pushes a new version of the API, but SecOps are not ready or up to date.
+But we kept the ``Fall Through Mode`` to ``Allow`` so that we do not break the application or impact business down when DevOps push a new version of the API, but SecOps are not ready or up to date.
 
-The ``API Discovery`` will provide with visility to SecOps in order to see this ``Drift``. A drift is the difference between ``what we know`` and ``what we see / what is consumed``
+The ``API Discovery`` will provide visility for SecOps in order to see this ``Drift``. This Drift is the difference between ``what we know`` and ``what we see / what is consumed``
 
 .. image:: ../pictures/slide-api-discovery.png
    :align: center
@@ -13,7 +13,7 @@ The ``API Discovery`` will provide with visility to SecOps in order to see this 
 Enable Endpoint Discovery
 -------------------------
 
-* Edit you Load Balancer and enable API Discovery (keep the default settings)
+* Edit your Load Balancer again, go to API Protection and enable ``API Discovery`` (keep the default settings)
 
 .. image:: ../pictures/enable-api-discovery.png
    :align: left
@@ -38,8 +38,8 @@ But you want to detect your own PII, such as:
 Create custom PII
 ^^^^^^^^^^^^^^^^^
 
-* In Sensitive Data Protection, click on ``configure``
-* Add 2 new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
+* In Sensitive Data Detection, click on ``configure``.
+* Add two new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
 
   * French SSN, use this regex ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
   
@@ -49,7 +49,21 @@ Create custom PII
    :align: left
    :scale: 40%
 
-* SAVE your Load Balancer
+|
+
+.. image:: ../pictures/pii2.png
+   :align: left
+   :scale: 40%
+
+|
+
+.. image:: ../pictures/pii-both.png
+   :align: left
+   :scale: 40%
+
+|
+
+* SAVE your Load Balancer changes
 
 
 Run the traffic generator script

@@ -3,14 +3,14 @@ API Discovery outcomes
 
 At the first stage, API Discovery process requires several hours to collect datas and make them visible. Don't be surprised if you must wait 2 hours to see the first datas.
 
-But in this lab, the instructor have ``super powers`` and can force the discovery.
+But in this lab, the instructor has ``super powers`` and can force the discovery. This won't be the case for the TechXchange CY24 because every SE can make the lab whenever they want the week before the TechXchange.
 
 Endpoint Discovery
 ------------------
 
-* Switch to ``Dashboard`` > ``Security Dashboard``
+* Goto Web App & API Protection > Overview > Security > Dashboard
 * Click on your Application Load Balancer
-* Go to the ``API Endpoints`` tab
+* Click on ``API Endpoints``
 
 You can see the ``Graph`` page with the Octopus :) It represents what is known and what is seen.
 
