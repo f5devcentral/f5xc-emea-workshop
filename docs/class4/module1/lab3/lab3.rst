@@ -2,7 +2,7 @@ Test your modern API application protection
 ===========================================
 
 #. If you have curl on your machine, go to the next step. Else, connect with SSH or WEBSSH to the Jumphost machine
-#. Run the below calls
+#. Run the following curl commands
 
    .. code-block:: none
 
@@ -29,9 +29,9 @@ Test your modern API application protection
 Check the logs
 --------------
 
-* Go tho the security dashboard (Overview > Dashboards > Security Dashboard)
-* Scroll down and click on your ``sentence`` app LB
-* Go to ``Security Analytics``
+* Go tho the security dashboard (Overview > Security)
+* Scroll down and click on your ``sentence`` LB
+* Click on ``Security Analytics``
 
 .. note:: Scroll and search for API events
 
