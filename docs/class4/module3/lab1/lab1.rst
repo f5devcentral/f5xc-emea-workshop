@@ -191,7 +191,7 @@ JWT Access Control is part of Service Policy.
 
     * Add Prefix Values : /api/locations
   
-  * JWT claims, add a new item
+  * JWT claims (if you can't see it, click on top right corner Shpw Advanced Fields), add a new item
   
     * JWT claim Name: Role
     
