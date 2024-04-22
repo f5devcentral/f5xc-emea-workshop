@@ -36,8 +36,7 @@ In your Namespace, create a new API Definition into ``Web and API Protection`` >
 
 .. image:: ../pictures/menu-api-def.png
    :align: left
-   :scale: 50%
-
+   
 Create a new API Definition and select the File you have created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
 
 .. image:: ../pictures/create-api-def.png
