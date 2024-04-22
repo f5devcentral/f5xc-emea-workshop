@@ -49,7 +49,8 @@ Assign the API definition to the LB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Edit the Load Balancer created in the previous Lab (sentence-re-lb)
 2. Go to the section ``API Protection``
-3. Enable API Definition and select the API Definition you just created in the step before. Keep the validation ``Disabled`` at the moment and click on click on ``Save and Exit``.
+3. Enable API Definition and select the API Definition you just created in the step before. Keep the validation ``Disabled``. at the moment and click on click on ``Save and Exit``.
+4. Click on click on ``Save and Exit``
 
    .. image:: ../pictures/api-protection.png
       :align: center
