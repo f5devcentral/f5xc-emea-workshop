@@ -91,16 +91,16 @@ In this lab, we will create an ``API Protection rule`` to enforce and allow only
 * /animals
 * /locations
 
-As a reminder, the endpoint ``/colors`` is not defined in the specification file, and the base path is ``/api/``
+.. note:: As a reminder, the endpoint ``/colors`` is not defined in the OAS file, and the base path is ``/api/``
 
-#. Edit your Sentence Application LB
-#. In ``API Protection rules`` , create a new rule
+#. Edit your "sentence-re-lb" application LB
+#. Go to ``API Protection`` - ``API Protection Rules``
 
    .. image:: ../pictures/api-protection-rule1.png
       :align: center
       :scale: 70%
 
-#. Create 2 rules in ``Server URLs and API Groups``
+#. Click on ``Configure in Server URLs and API Groups`` and create the following two rules. Don't forget to click on ``Apply``
   
    #. Rule 1: allows the methods and endpoints defined in the OAS file.
 
