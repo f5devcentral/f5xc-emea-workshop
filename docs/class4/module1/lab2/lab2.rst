@@ -36,25 +36,27 @@ In your Namespace, create a new API Definition into ``Web and API Protection`` >
 
 .. image:: ../pictures/menu-api-def.png
    :align: left
-   :scale: 50%
+   :scale: 70%
 
-Create a new API Definition and select the File you have created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
+Create a new API Definition and select the file you just created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``.
 
 .. image:: ../pictures/create-api-def.png
    :align: left
 
 .. note:: The API Definition is now created, and can be assigned to a Load Balancer
 
-Assign API definition to the LB
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Assign the API definition to the LB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Edit the Load Balancer created in the previous Lab (sentence-re-lb)
 2. Go to the section ``API Protection``
-3. Enable API Definition and select the API Definition created previously. Keep the validation ``Disabled`` at the moment.
+3. Enable API Definition and select the API Definition you just created in the step before. Keep the validation ``Disabled``.
+4. Click on ``Save and Exit``
 
    .. image:: ../pictures/api-protection.png
       :align: center
       :scale: 70%
 
+|
 
 Apply API Protection rules
 --------------------------
@@ -69,11 +71,11 @@ In the slide below, you can understand the difference:
 * API Protection only allow ``known API endpoints and methods`` and does not enforce responses.
    * API Protection is ``Failed-Close`` by design
 
-* API Validation ``validates`` the OpenAPI Spec file with methods, endpoints and parameters. It validates also the responses.
+* API Validation ``validates`` the OpenAPI Spec (OAS) file with methods, endpoints and parameters. It validates also the responses.
    * API Validation is ``Failed-Open`` by design
 
-* API Discovery is on top of ``API Validation`` and will disovery unknown specifications (methods, endpoints and parameters)
-   * API Discovery can be used alone without API Validation if API Dev can't deliver with OAS file.
+* API Discovery is on top of ``API Validation`` and provides disovery of unknown specifications (methods, endpoints and parameters)
+   * API Discovery can be used alone without API Validation if API Dev can't deliver the OAS file.
 
 .. image:: ../pictures/slide-api-protection.png
    :align: center
@@ -83,22 +85,22 @@ In the slide below, you can understand the difference:
 Create the default API Protection rule
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this lab, we will create an ``API Protection rule`` to enforce and only allow ``known specifications``. The endpoints defined in the OAS files are:
+In this lab, we will create an ``API Protection rule`` to enforce and allow only ``known specifications``. The endpoints defined in the OAS files are:
 
 * /adjectives
 * /animals
 * /locations
 
-As a reminder, the endpoint ``/colors`` is not defined in the specification file, and the base path is ``/api/``
+.. note:: As a reminder, the endpoint ``/colors`` is not defined in the OAS file, and the base path is ``/api/``
 
-#. Edit your Sentence Application LB
-#. In ``API Protection rules`` , create a new rule
+#. Edit your "sentence-re-lb" application LB
+#. Go to ``API Protection`` - ``API Protection Rules``
 
    .. image:: ../pictures/api-protection-rule1.png
       :align: center
       :scale: 70%
 
-#. Create 2 rules in ``Server URLs and API Groups``
+#. Click on ``Configure in Server URLs and API Groups`` and create the following two rules. Don't forget to click on ``Apply``
   
    #. Rule 1: allows the methods and endpoints defined in the OAS file.
 
