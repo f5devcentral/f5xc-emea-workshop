@@ -88,7 +88,7 @@ Update your API Load Balancer
 * Enable the ``Validation`` for ``Request`` and ``Response`` and select all the properties
 * Keep the setting ``Fall Through Mode`` to ``Allow``
 
-   .. image:: ../pictures/api-validation.png
+   .. image:: ../pictures/api-validation-settings.png
       :align: left
       :scale: 50%
 
