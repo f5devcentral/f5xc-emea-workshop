@@ -49,13 +49,14 @@ Assign the API definition to the LB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Edit the Load Balancer created in the previous Lab (sentence-re-lb)
 2. Go to the section ``API Protection``
-3. Enable API Definition and select the API Definition you just created in the step before. Keep the validation ``Disabled.``
+3. Enable API Definition and select the API Definition you just created in the step before. Keep the validation ``Disabled``.
 4. Click on ``Save and Exit``
 
    .. image:: ../pictures/api-protection.png
       :align: center
       :scale: 70%
 
+|
 
 Apply API Protection rules
 --------------------------
@@ -70,11 +71,11 @@ In the slide below, you can understand the difference:
 * API Protection only allow ``known API endpoints and methods`` and does not enforce responses.
    * API Protection is ``Failed-Close`` by design
 
-* API Validation ``validates`` the OpenAPI Spec file with methods, endpoints and parameters. It validates also the responses.
+* API Validation ``validates`` the OpenAPI Spec (OAS) file with methods, endpoints and parameters. It validates also the responses.
    * API Validation is ``Failed-Open`` by design
 
-* API Discovery is on top of ``API Validation`` and will disovery unknown specifications (methods, endpoints and parameters)
-   * API Discovery can be used alone without API Validation if API Dev can't deliver with OAS file.
+* API Discovery is on top of ``API Validation`` and provides disovery of unknown specifications (methods, endpoints and parameters)
+   * API Discovery can be used alone without API Validation if API Dev can't deliver the OAS file.
 
 .. image:: ../pictures/slide-api-protection.png
    :align: center
@@ -84,7 +85,7 @@ In the slide below, you can understand the difference:
 Create the default API Protection rule
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this lab, we will create an ``API Protection rule`` to enforce and only allow ``known specifications``. The endpoints defined in the OAS files are:
+In this lab, we will create an ``API Protection rule`` to enforce and allow only ``known specifications``. The endpoints defined in the OAS files are:
 
 * /adjectives
 * /animals
