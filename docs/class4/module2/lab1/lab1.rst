@@ -72,7 +72,7 @@ Update your API Load Balancer
 
 * Edit your Load Balancer and remove all API Protection rules (click on Reset Configuration and confirm)
 
-   .. image:: ../pictures/API-protection-reset.png
+   .. image:: ../pictures/api-protection-reset.png
       :align: left
       :scale: 50%
 
@@ -80,7 +80,7 @@ Update your API Load Balancer
 
 * Enable API Validation for ``All Endpoints``
 
-   .. image:: ../pictures/enable-api-validation.png
+   .. image:: ../pictures/api-validation.png
       :align: left
       :scale: 50%
 
