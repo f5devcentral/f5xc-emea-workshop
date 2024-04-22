@@ -71,6 +71,13 @@ Update your API Load Balancer
 .. note:: Please don't open support ticket to increase this quota. This is done by F5ers in charge of the trainings (Matthieu Dierick, Sorin Boiangiu)
 
 * Edit your Load Balancer and remove all API Protection rules (click on Reset Configuration and confirm)
+
+   .. image:: ../pictures/API-protection-reset.png
+      :align: left
+      :scale: 50%
+
+|
+
 * Enable API Validation for ``All Endpoints``
 
    .. image:: ../pictures/enable-api-validation.png
