@@ -85,16 +85,17 @@ Update your API Load Balancer
       :scale: 50%
 
 * Click on ``View Configuration`` to customize the settings
-* Enable the ``Validation`` for ``Request`` and ``Response`` and select all the properties
+* Enable the ``Validation`` for ``Request`` and ``Response`` and select all the properties as shown below.
 * Keep the setting ``Fall Through Mode`` to ``Allow``
+* Click Apply and Save and Exit
 
    .. image:: ../pictures/api-validation-settings.png
       :align: left
       :scale: 50%
 
-.. note:: The ``Fall Through Mode`` to ``Allow`` tells the system to let unknwon endpoints to pass. In a nutshell, any unknown API endpoint will not be blocked and it is the API Discovery process which will take care of it.
+.. note:: ``Fall Through Mode`` set to ``Allow`` means the system allows unknwon endpoints. In a nutshell, any unknown API endpoint is not be blocked and the API Discovery process takes care of it.
 
-.. warning:: Why not to block unknown endpoint ? Because this endpoint can be legitimate from Dev Teams, but SecOps are not aware "yet". And it is better to have a visilibity on what is unknown instead of breaking the business
+.. warning:: Why not to block unknown endpoint? Because this endpoint could be legitimate by the Dev team, but SecOps are not aware "yet". And it is better to have a visilibity on what is unknown instead of impacting the application and the business.
 
 * SAVE your Load Balancer
 
@@ -127,7 +128,7 @@ Make a quick test of API Validation
 
 .. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
 
-* Don't expect to see any outcome from the command as we did not set ``Block`` in our settings. We set ``Report``. We need to keep ``Report`` so that the backend responds with sensitive information for the next lab.
+* Don't expect to see any outcome from the command as we configured to ``Report``and not to ``Block`` in the "endpoint validation". We need to keep ``Report`` so that the backend responds with sensitive information for the next lab.
 * Go to Security Dashboard and check your logs (can take up to 1min to be displayed). You can see a violation ``Request Path Parameter Violation``
 
    .. image:: ../pictures/validation-log.png
