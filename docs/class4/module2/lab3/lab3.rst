@@ -10,11 +10,9 @@ Endpoint Discovery
 
 * Goto Web App & API Protection > Overview > Security > Dashboard
 * Click on your Application Load Balancer
-* Click on ``API Endpoints``
+* Click on ``API Endpoints`` to see the endpoints in the the "Table" view.
 
-You can see the ``Graph`` page with the Octopus :) It represents what is known and what is seen.
-
-.. image:: ../pictures/octopus.png
+.. image:: ../pictures/api-endpoints-table.png
    :align: left
    :scale: 50%
 
@@ -27,10 +25,14 @@ On the top left corner, there are 3 important elements:
 
   * In our lab, there are 3 endpoints know (adjectives, animals, locations)
 
-* **Discovered** : What the F5 XC platform is seeing at the moment (Known and Unknown endpoints)
+* **Discovered** : What the F5 XC platform is sees from traffic (Known and Unknown endpoints)
 * **Shadow** : What is ``Discovered`` but **NOT PART** of the ``Inventory``
 
 You can filter on ``Shadow`` only for instance. You can see the ``/colors`` as a Shadow API.
+
+.. image:: ../pictures/shadow.png
+   :align: left
+   :scale: 50%
 
 Go deeper into the discovery
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,7 +44,7 @@ Go deeper into the discovery
 
   * **Rate Limiting** : if you want to Rate Limit this endpoint because SecOps don't have the full power and don't want to break the app.
 
-* Click on the ``Discovered`` tab and navigate into the sub-menus. You will see all the details discovered by the platform. We will go in details in some of them in few minutes.
+* Click on the ``Discovered`` tab and navigate into the sub-menus. You will see all the details discovered by the platform.
 
 .. image:: ../pictures/discovered.png
    :align: left
@@ -52,23 +54,28 @@ Go deeper into the discovery
 PII Discovery
 -------------
 
-* Switch to the ``Table`` view, instead of the ``Graph`` view
-* You can see more information in this screen, such as PII
-* Click on an endpoint with PII deteted, such as French SSN
+* Click on the ``/animals`` API endpoint. A pop-up will appear on the right side of the screen.
 
   .. image:: ../pictures/pii-1.png
      :align: left
      :scale: 50%
 
-* Click on ``Discovered`` tab and check the PII detected (request and response)
+* Click on the ``Discovered`` tab to show discovered sensitive data for requests and responses.
 
   .. image:: ../pictures/pii-2.png
      :align: left
      :scale: 50%
 
-.. warning:: I anticipate a question : Can we hide those PII in the response. Currently, only Dataguard can do it, but not with Custom PII. This feature is in the roadmap. OWASP Top 10 does not require to ``hide`` sensitive datas.
+.. warning:: Dataguard can obfuscate sensitive PII data in the response but currently not for custom created PII configurations. This feature is in the roadmap. OWASP Top 10 does not require to ``hide`` sensitive data.
 
 
+Click on the ``Graph`` tab to show the API endpoints in a different view.
+
+.. image:: ../pictures/octopus.png
+   :align: left
+   :scale: 50%
+
+ 
 Authentication Discovery
 ------------------------
 
