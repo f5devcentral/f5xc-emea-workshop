@@ -45,3 +45,8 @@ It is time to run a traffic generator script to simulate traffic load
   <body>The requested URL was rejected. Please consult with your administrator.<br/><br/>
   Your support ID is a8c0fa99-7f85-4c81-b245-2d7d94457f8a<h2>Error 429 - Too Many Requests</h2>F5 site: tn2-lon<br/><br/><a href='javascript:history.back();'>[Go Back]</a></body></html>
 
+* And you can see the logs in the Security Dashboard - Security Analytics
+
+  .. image:: ../pictures/rate-limit-logs.png
+    :align: center
+    :scale: 50%
