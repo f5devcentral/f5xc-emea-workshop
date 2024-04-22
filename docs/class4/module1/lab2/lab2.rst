@@ -38,18 +38,18 @@ In your Namespace, create a new API Definition into ``Web and API Protection`` >
    :align: left
    :scale: 70%
 
-Create a new API Definition and select the File you have created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``
+Create a new API Definition and select the file you just created in the step before. Select the version (so far, we have only one version) as shown in the screenshot below and click on ``Save and Exit``.
 
 .. image:: ../pictures/create-api-def.png
    :align: left
 
 .. note:: The API Definition is now created, and can be assigned to a Load Balancer
 
-Assign API definition to the LB
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Assign the API definition to the LB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Edit the Load Balancer created in the previous Lab (sentence-re-lb)
 2. Go to the section ``API Protection``
-3. Enable API Definition and select the API Definition created previously. Keep the validation ``Disabled`` at the moment.
+3. Enable API Definition and select the API Definition you just created in the step before. Keep the validation ``Disabled`` at the moment and click on click on ``Save and Exit``.
 
    .. image:: ../pictures/api-protection.png
       :align: center
