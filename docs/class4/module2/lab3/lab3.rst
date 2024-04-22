@@ -86,7 +86,7 @@ Authentication Discovery
      :align: left
      :scale: 50%
 
-* You can notice the information collected from the OpenAPI Spec, and also the information discovered. If both don't match, a Security Posture is raised.
+* Notice that the auth information collected from the OpenAPI Spec file differs from the discovered auth information. If both don't match, a "Security Posture" is raised.
 
   .. image:: ../pictures/basic-auth.png
      :align: left
@@ -103,6 +103,6 @@ AI/ML Security Posture
    :align: left
    :scale: 50%
 
-* You can click on the ``Evidence`` link to get more details about the logs who generated this security posture.
+* Click on the ``Evidence`` link to get more details about the logs who generated this security posture.
 
-.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developpers, but also providing visibility for unkown traffic
+.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developpers, but also providing visibility for unkown traffic.
