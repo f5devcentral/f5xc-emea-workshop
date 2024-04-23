@@ -29,7 +29,7 @@ Test your modern API application protection
 Check the logs
 --------------
 
-* Go tho the security dashboard (Overview > Security)
+* Go to the security dashboard (Overview > Security)
 * Scroll down and click on your ``sentence`` LB
 * Click on ``Security Analytics``
 

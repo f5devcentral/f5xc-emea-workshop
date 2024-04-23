@@ -21,14 +21,14 @@ Understand the API Discovery elements
 
 On the top left corner, there are 3 important elements:
 
-* **Inventory** : Endpoints known by the OpenAPI Spec file
+* **Inventory** : Endpoints known from the OpenAPI Spec file
 
   * In our lab, there are 3 endpoints know (adjectives, animals, locations)
 
-* **Discovered** : What the F5 XC platform is sees from traffic (Known and Unknown endpoints)
-* **Shadow** : What is ``Discovered`` but **NOT PART** of the ``Inventory``
+* **Discovered** : Endpoints that the XC platform has discovered/learned from live traffic (known and unknown endpoints)
+* **Shadow** : Endpoints that have been ``Discovered`` but are **NOT PART** of the ``Inventory``
 
-You can filter on ``Shadow`` only for instance. You can see the ``/colors`` as a Shadow API.
+You can filter on ``Shadow`` only to show the ``/colors`` endpoint as a Shadow API.
 
 .. image:: ../pictures/shadow.png
    :align: left
@@ -102,7 +102,7 @@ AI/ML Security Posture
 
 * Click on an endpoint with the highest ``Risk Score``
 * And click on the ``Security Posture`` tab
-* Review the recommandations done by AI/ML engines
+* Review the recommandations done by the AI/ML engine
 
 .. image:: ../pictures/security-posture.png
    :align: left
