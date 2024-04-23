@@ -79,7 +79,12 @@ Click on the ``Graph`` tab to show the API endpoints in a different view.
 Authentication Discovery
 ------------------------
 
-* Click on an endpoint with an ``Authenticated`` state.
+* Click on an endpoint with an ``Authenticated`` state, like **/api/locations**
+
+  .. image:: ../pictures/authenticated-endpoint.png
+     :align: left
+     :scale: 50%
+
 * Click on ``Discovered`` tab and check the Authentication details
 
   .. image:: ../pictures/auth-discovery.png
