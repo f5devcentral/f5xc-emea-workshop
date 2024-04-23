@@ -46,16 +46,16 @@ Add Colors shadow API into the Inventory (inclusion list)
 
 * Click ``Move to Inventory``
 
-* Now, you can see ``/api/colors`` is not a Shadow API anymore, but part of Inventory
+* Now, you can see ``/api/colors`` is not a Shadow API anymore. It is part of Inventory.
 
   .. image:: ../pictures/moved-inventory.png
      :align: left
      :scale: 50%
 
-How to find all endpoints added into the Inventory (inclusion list) ?
+How to find all endpoints added into the Inventory (Inclusion List) ?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As we said, endpoints are not added into the OAS spec file because this file is maintenained by AppDev/DevOps. Instead, we create an ``Inventory Inclusion List``
+As mentioned before, API endpoints are not added into the OAS Spec file because this file is maintenained by AppDev/DevOps. Instead, we create an ``Inventory Inclusion List``
 
 * Go to API Management > Edit your API Definition
 
@@ -71,8 +71,6 @@ As we said, endpoints are not added into the OAS spec file because this file is 
      :align: left
      :scale: 50%
 
-.. note:: 
-
-    When AppDev/DevOps will push a new version of the OpenAPI Spec file to F5XC, a new version of the file will be available for the SecOps. SecOps will update the definition with this new file (let's say v2)
-    If this version includes ``/api/colors``, the entry into the Inventory Inclusion List will not be taken in account. OAS spec file takes precedence on Inventory Inclusion List.
+.. note:: When AppDev/DevOps will push a new version of the OpenAPI Spec file to F5 XC, a new version of the file will be available for the SecOps. SecOps will update the definition with this new file (let's say v2)
+    If this version includes ``/api/colors``, the entry into the Inventory Inclusion List will not be taken into account. The OAS Spec file specified on F5 XC takes precedence over Inventory Inclusion List.
 
