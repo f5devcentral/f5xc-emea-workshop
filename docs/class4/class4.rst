@@ -5,7 +5,9 @@ Lab Maintainers:
 
   Matthieu Dierick <m.dierick@f5.com>
 
-  Sorin Boiangiu <s.boiangiu@f5.com>   
+  Alfredo Vistola <a.vistola@f5.com>   
+
+  Sorin Boiangiu <s.boiangiu@f5.com>
 
 |
 
