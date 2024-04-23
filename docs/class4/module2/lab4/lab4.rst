@@ -3,17 +3,16 @@ API Inventory Management
 
 API Inventory Management is a feature designed to enhance your API ecosystem by simplifying the management of your API inventory. 
 
-It allows for easy managing of discovered APIs, marking of non-API discoveries, removal of outdated endpoints, and seamless updates to API schemas. 
+It allows easy management of discovered APIs, marking of non-API discoveries, removal of outdated endpoints, and seamless updates for API schemas. 
 This tool keeps your API inventory organized, current, and secure, catering to your dynamic requirements.
 
 Add Shadow API into the Inventory
 ---------------------------------
 
-In the previous lab, we discoverd /api/colors as a ``shadow API``. DevOps already opened a ServiceNow ticket with SecOps to provide with the new OpenAPI Spec file including /colors.
-But SecOps are in late in their ticketing queue, and they haven't yet seen this ticket. But they must take a decision about this endpoint.
+In the previous lab, we discoverd /api/colors as a ``shadow API``. DevOps already opened a ServiceNow ticket with SecOps to provide the new OpenAPI Spec file including /colors.
+But SecOps are late in their ticketing queue, and they haven't seen this ticket yet but they must take a decision about this endpoint.
 
-SecOps can block the request with an API Protection rule. We have seen in ``Static API Protection`` lab how to create it. FYI, there is a shortcut directly into the API EndPoint screen.
-
+SecOps can block the request with an API Protection rule. We covered how to create it in the ``Static API Protection`` lab. FYI, there is a shortcut directly into the API EndPoint screen as shown in the screenshot below.
 **Don't block it now, it is a legitimate endpoint.**
 
 .. image:: ../pictures/protection-rule-colors.png
@@ -22,13 +21,11 @@ SecOps can block the request with an API Protection rule. We have seen in ``Stat
 
 
 
-We will not block it, SecOps had the information from a side channel this endpoint is part of the application updated yesterday night.
+We will not block it, SecOps had the information from a side channel this endpoint is part of the application update from yesterday night.
 
-We need to add this endpoint into the inventory (the OpenAPI Spec), but we will not update the Spec File as the source if truth are the DevOps. Instead, we will add the endpoint into the ``Inclusion List``.
+We need to add this endpoint into the inventory (the OpenAPI Spec), but we will not update the Spec File as the source of truth are the DevOps. Instead, we will add the endpoint into the ``Inclusion List``.
 
-.. note:: 
-
-  The make it simple, the inventory = OpenAPI File + Inclusion List
+.. note:: Inventory = OpenAPI File + Inclusion List
 
 Add Colors shadow API into the Inventory (inclusion list)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
