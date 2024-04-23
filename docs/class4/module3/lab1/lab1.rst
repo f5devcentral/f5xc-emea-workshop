@@ -26,7 +26,7 @@ First of all, you need several inputs
 * A RSA public key, and RSA private key
 * A JWKS (an array with the public key)
 
-In order to keep this lab easy, we will **NOT** explain how to generate a JWT or JWKS. In an netshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
+In order to keep this lab easy, we **don't** explain how to generate a JWT or JWKS. In an nutshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
 
 The JWT to use in this lab
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -119,7 +119,7 @@ Test your configuration with Postman
 
 * Use CURL to test your configuration
   
-* Send the below request (without JWT) to /api/animals. As a reminder, we **DID NOT** enabled JWT validation on this endpoint.
+* Send the request below (without JWT) to /api/animals. As a reminder, we **haven't** enabled JWT validation on this endpoint.
 
   .. code-block:: bash
 
@@ -127,15 +127,15 @@ Test your configuration with Postman
 
   * It **passes** without any JWT because JWT Validation is only enabled on /locations
 
-* Send the below request (without JWT) to /api/locations. As a reminder, we **enabled** JWT validation on this endpoint.
+* Send the request below (without JWT) to /api/locations. As a reminder, we **have** enabled JWT validation on this endpoint.
 
   .. code-block:: bash
 
     curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations'
 
-  * It **DOES NOT** pass because JWT validation is enabled on /locations
+  * It **doesn't** pass because JWT validation is enabled on /locations
 
-* Send the below request (with JWT) to /api/animals.
+* Send the request below (with JWT) to /api/animals.
 
   .. code-block:: bash
 
@@ -143,17 +143,17 @@ Test your configuration with Postman
 
   * It **passes** because JWT is valid (signature is valid)
 
-* Send the same request, but with a wrong JWT signature. As a reminder, the JWT signature is the last section of the JWT. We purposely remove some characters from the signature section of the JWT.
+* Send the same request, but with a wrong JWT signature. As a reminder, the JWT signature is the last section of the JWT. We intentionally remove some characters from the signature section of the JWT.
 
   .. code-block:: bash
 
     curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meK'
 
-  * It **DOES NOT** passe
+  * It **doesn't** pass
 
 * Now, check your API Security Events (Security Analytics tab).
 
-  * You can see API event with 401, 403 ... and more details in the JSON section of the Log Event
+  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event
 
   .. code-block:: bash
 
@@ -164,9 +164,9 @@ Test your configuration with Postman
 JWT Access Control
 ------------------
 
-JWT control consists of controlling if a Claim is present and if the value matches a requirement.
+JWT control checks if a Claim is present and if the value matches a requirement.
 
-In our lab, we will check if the user has a VP role. As a reminder, in the JWT token, the user has a SA role. We want to allow access to /api/locations only to VP. 
+In our lab, we check if the user has a VP role. As a reminder, in the JWT token, the user has a SA role. We want to allow access to /api/locations only to VP. 
 
 Enable JWT Access Control
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -241,13 +241,13 @@ JWT Access Control is part of Service Policy.
 Test JWT Access Control
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-* Start by sending a request to /api/animals. This endpoint is not protected by JWT validation.
+* Start by sending a request to /api/animals. This endpoint is not protected with JWT validation.
 
   .. code-block:: bash
 
     curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals'
 
-  * It still passes
+  * It still **passes**
 
 * Send a request to /api/locations but with a wrong Role. We send the same request as before, where the Role is SA.
 
@@ -255,7 +255,7 @@ Test JWT Access Control
 
     curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meKeaPPsmcVeT9E7BAK_6aBZuA3mZwL-Q'
 
-  * It do not passe because Role claim is not VP
+  * It **doesn't** because the Role claim is not VP
 
 * Send a new request with the Role VP
 
@@ -263,7 +263,7 @@ Test JWT Access Control
 
     curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlZQIn0.JAp4x3PWnV9Xbn4nNC0ug775UD-Jc0UngguA64VyAIC9olMImrkVhaMTJhlJMMtxsNhDAL8JDfihJ4isfYTuDN-L4e0RJb68YyRQ9mBFBDQcpEzJDyaYwLV9agavM3qCqeHz8l1VPFqjhiUJKbrGYLTiLZYfthRLrIw2rSO-lcBexnwMMcL9g3pekKuK0e-M_a3Z5OKuNpaY4Iaa3RIwCS_zFATssTzEhYsMbcKgWZqNchbe4C0l7dbz7n-xhpPHiemfZxIeCY-HIz2Gy6XVJxsBksgtML70_Z-lTOknoFEg-ufeZpy6_wHEHU-4Hzc0gGjQVLTpiMN5zAQHV68c8g'
 
-  * It passes because Role claim is VP
+  * It **passes** because the Role claim is VP
 
 
 Check API events
