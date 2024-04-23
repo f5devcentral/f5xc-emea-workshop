@@ -93,7 +93,7 @@ Update your API Load Balancer
       :align: left
       :scale: 50%
 
-.. note:: ``Fall Through Mode`` set to ``Allow`` means the system allows unknwon endpoints. In a nutshell, any unknown API endpoint is not be blocked and the API Discovery process takes care of it.
+.. note:: ``Fall Through Mode`` set to ``Allow`` means the system allows unknown endpoints. In a nutshell, any unknown API endpoint is not be blocked and the API Discovery process takes care of it.
 
 .. warning:: Why not to block unknown endpoint? Because this endpoint could be legitimate by the Dev team, but SecOps are not aware "yet". And it is better to have a visilibity on what is unknown instead of impacting the application and the business.
 
