@@ -105,4 +105,4 @@ AI/ML Security Posture
 
 * Click on the ``Evidence`` link to get more details about the logs who generated this security posture.
 
-.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developpers, but also providing visibility for unkown traffic.
+.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developers, but also providing visibility for unkown traffic.
