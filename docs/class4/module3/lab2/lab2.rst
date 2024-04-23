@@ -14,9 +14,9 @@ Enable Rate Limiting from the Security Dashboard
     :align: center
     :scale: 50%
 
-* Find ``/api/colors``, click on the 3dots at the right (...) and select ``Edit Rate Limiting``
+* Find ``/api/colors``, click on the 3dots at the right (...) and select ``Edit Rate Limit``
 
-  .. image:: ../pictures/edit-rate-limiting.png
+  .. image:: ../pictures/edit-rate-limit.png
     :align: center
     :scale: 50%
  
