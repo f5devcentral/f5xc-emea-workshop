@@ -74,7 +74,7 @@ In the slide below, you can understand the difference:
 * API Validation ``validates`` the OpenAPI Spec (OAS) file with methods, endpoints and parameters. It validates also the responses.
    * API Validation is ``Failed-Open`` by design
 
-* API Discovery is on top of ``API Validation`` and provides disovery of unknown specifications (methods, endpoints and parameters)
+* API Discovery is on top of ``API Validation`` and provides discovery of unknown specifications (methods, endpoints and parameters)
    * API Discovery can be used alone without API Validation if API Dev can't deliver the OAS file.
 
 .. image:: ../pictures/slide-api-protection.png
