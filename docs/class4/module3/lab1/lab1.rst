@@ -135,7 +135,7 @@ Test your configuration with Postman
 
   * It **doesn't** pass because JWT validation is enabled on /locations
 
-* Send the request below (with JWT) to /api/animals.
+* Send the request below (with JWT) to /api/locations.
 
   .. code-block:: bash
 
@@ -143,7 +143,7 @@ Test your configuration with Postman
 
   * It **passes** because JWT is valid (signature is valid)
 
-* Send the same request, but with a wrong JWT signature. As a reminder, the JWT signature is the last section of the JWT. We intentionally remove some characters from the signature section of the JWT.
+* Send the same request, but this time with a wrong JWT signature. As a reminder, the JWT signature is the last section of the JWT. We intentionally remove some characters from the signature section of the JWT.
 
   .. code-block:: bash
 

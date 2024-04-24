@@ -94,11 +94,11 @@ In this lab, we will create an ``API Protection rule`` to enforce and allow only
 .. note:: As a reminder, the endpoint ``/colors`` is not defined in the OAS file, and the base path is ``/api/``
 
 #. Edit your "sentence-re-lb" application LB
-#. Go to ``API Protection`` - ``API Protection Rules``
+#. Go to ``API Protection`` - ``API Protection Rules`` and click ``configure``
 
-   .. image:: ../pictures/api-protection-rule1.png
+   .. image:: ../pictures/api-protection-rules.png
       :align: center
-      :scale: 70%
+      :scale: 50%
 
 #. Click on ``Configure in Server URLs and API Groups`` and create the following two rules. Don't forget to click on ``Apply``
   
