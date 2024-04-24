@@ -110,8 +110,7 @@ In this lab, we will create an ``API Protection rule`` to enforce and allow only
 
       .. image:: ../pictures/deny-unknown.png
          :align: left
-         :scale: 70%
-
+       
 #. You should now have 2 rules. Save all your configurations.
 
    .. image:: ../pictures/all-rules.png

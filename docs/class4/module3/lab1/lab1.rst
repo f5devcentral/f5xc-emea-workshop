@@ -7,12 +7,12 @@ JWT validation is typically used to authenticate requests to an API. When a clie
 
 There are several steps involved in JWT validation:
 
-* Decode the JWT: The first step in JWT validation is to decode the JWT to extract the header, payload, and signature
-* Obtain the signing key: In order to validate the signature, you will need to obtain the signing key that was used to create the JWT. This key is typically a secret that is shared between the client and the API
-* Recreate the signature: Using the signing key and the header and payload of the JWT, recreate the signature using the same algorithm that was used to create the original signature
-* Compare the signatures: Compare the original signature that is contained in the JWT with the signature that you recreated. If the signatures are the same, the JWT has not been tampered with and the signature is considered to be valid. If the signatures are different, the JWT has been tampered with and the signature is not considered to be valid
-* Validate the claims: After the signature has been validated, the claims contained in the JWT payload should be checked to ensure that they are valid and have not expired
-* Check for authorization: Finally, the JWT should be checked to ensure that the client is authorized to perform the requested action
+* **Decode the JWT:** The first step in JWT validation is to decode the JWT to extract the header, payload, and signature
+* **Obtain the signing key:** In order to validate the signature, you will need to obtain the signing key that was used to create the JWT. This key is typically a secret that is shared between the client and the API
+* **Recreate the signature:** Using the signing key and the header and payload of the JWT, recreate the signature using the same algorithm that was used to create the original signature
+* **Compare the signatures:** Compare the original signature that is contained in the JWT with the signature that you recreated. If the signatures are the same, the JWT has not been tampered with and the signature is considered to be valid. If the signatures are different, the JWT has been tampered with and the signature is not considered to be valid
+* **Validate the claims:** After the signature has been validated, the claims contained in the JWT payload should be checked to ensure that they are valid and have not expired
+* **Check for authorization:** Finally, the JWT should be checked to ensure that the client is authorized to perform the requested action
  
 JWT Validation
 --------------
@@ -22,11 +22,11 @@ Pre-requisites
 
 First of all, you need several inputs
 
-* A JWT token signed with one of these algo RS256, RS384, RS512, PS256, PS384, PS512, and ES256
+* A JWT token signed with one of these algorithms: RS256, RS384, RS512, PS256, PS384, PS512 or ES256
 * A RSA public key, and RSA private key
 * A JWKS (an array with the public key)
 
-In order to keep this lab easy, we **don't** explain how to generate a JWT or JWKS. In an nutshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
+In order to keep this lab easy, we **don't** explain how to generate a JWT or JWKS. In a nutshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
 
 The JWT to use in this lab
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,7 +34,7 @@ The JWT to use in this lab
 In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
 
 * Header (Algo and Type)
-* Payload (Claims, issuer, audiance, timestamp)
+* Payload (Claims, issuer, audience, timestamp)
 * Signature
 
 This is the JWT we will use. You can copy / paste this JWT into https://jwt.io to decode it.
@@ -63,7 +63,7 @@ For this lab, we customised the Payload with several Claims. We will work with t
 The JWKS to use in this lab
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The JWKS is an array required by F5XC to check the JWT signature. The JWKS to use is below. We use https://mkjwk.org/ to generate it.
+The JWKS is an array required by F5XC to check the JWT signature. For the lab we use the JWKS below. We used https://mkjwk.org/ to generate it.
 
 .. code-block:: JSON
 
@@ -84,11 +84,11 @@ The JWKS is an array required by F5XC to check the JWT signature. The JWKS to us
 Enable JWT validation on your HTTP LB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Edit your HTTP LB and go to section API Protection
-* In API Validation, click configure
-* We will not enable JWT validation on all endpoints, but only on /locations endpoint
+* Edit your HTTP LB and go to the API Protection section
+* In JWT Validation, click configure
+* We don't enable JWT validation for all endpoints, only for the /api/locations endpoint
   
-  * Target : Base Patch
+  * Target : Base Paths
   
     * Prefix : /api/locations
   
@@ -96,7 +96,7 @@ Enable JWT validation on your HTTP LB
   
   * Action : Block
   
-  * Json Web Key Set (JWKS) : Click Configure and Paste the JWKS from the previous section
+  * JSON Web Key Set (JWKS) : Click Configure and Paste the JWKS from the previous section
   
   * Issuer : Exact Match
   
@@ -114,10 +114,10 @@ Enable JWT validation on your HTTP LB
     :scale: 50%
 
 
-Test your configuration with Postman
+Test your configuration with cURL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Use CURL to test your configuration
+* Use cURL to test your configuration
   
 * Send the request below (without JWT) to /api/animals. As a reminder, we **haven't** enabled JWT validation on this endpoint.
 
@@ -151,15 +151,20 @@ Test your configuration with Postman
 
   * It **doesn't** pass
 
-* Now, check your API Security Events (Security Analytics tab).
+* Now, go to the ``Security Analytics`` tab to check your API Security Events.
 
-  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event
+  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event. 
 
   .. code-block:: bash
 
     "jwt_status": "Jwt is missing",
     "jwt_status": "Jwt verification fails",    
 
+* Please see one detailed JSON example below.
+
+  .. image:: ../pictures/jwt-verification-fails.png
+    :align: center
+    :scale: 50%
 
 JWT Access Control
 ------------------
@@ -171,27 +176,35 @@ In our lab, we check if the user has a VP role. As a reminder, in the JWT token,
 Enable JWT Access Control
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-JWT Access Control is part of Service Policy.
+.. note:: JWT Access Control is part of Service Policy.
 
-* Create a new Service Policy
+* Go to ``Service Policies`` and create a new Service Policy
 
 * Name: sp-jwt-access
 
 * Rules: Custom Rule List
 
-* Click configure and add a new rule to allow VP role
+* Under ``Rules``click configure and add a new rule to allow the VP role
 
   * Name: role-vp
 
   * Action: Allow
   
-  * Request Match, click on the right Trottle to show Advanced Fields
+  .. image:: ../pictures/role-vp.png
+    :align: center
+    :scale: 50%
+
+  * Scroll down to ``Request Match``
 
   * HTTP Path:
 
-    * Add Prefix Values : /api/locations
+    Click ``Configure``and add /api/locations as ``Prefix Values``
   
-  * JWT claims (if you can't see it, click on top right corner Shpw Advanced Fields), add a new item
+  .. image:: ../pictures/prefix-values.png
+    :align: center
+    :scale: 50%
+
+  * Enable "Show Advanced Fields" for ```Request Match`` and add a new item under ``JWT Claims``
   
     * JWT claim Name: Role
     
