@@ -63,7 +63,7 @@ For this lab, we customised the Payload with several Claims. We will work with t
 The JWKS to use in this lab
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The JWKS is an array required by F5XC to check the JWT signature. The JWKS to use is below. We use https://mkjwk.org/ to generate it.
+The JWKS is an array required by F5XC to check the JWT signature. For the lab we use the JWKS below. We used https://mkjwk.org/ to generate it.
 
 .. code-block:: JSON
 
@@ -84,11 +84,11 @@ The JWKS is an array required by F5XC to check the JWT signature. The JWKS to us
 Enable JWT validation on your HTTP LB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Edit your HTTP LB and go to section API Protection
-* In API Validation, click configure
-* We will not enable JWT validation on all endpoints, but only on /locations endpoint
+* Edit your HTTP LB and go to the API Protection section
+* In JWT Validation, click configure
+* We don't enable JWT validation for all endpoints, only for the /api/locations endpoint
   
-  * Target : Base Patch
+  * Target : Base Paths
   
     * Prefix : /api/locations
   
@@ -96,7 +96,7 @@ Enable JWT validation on your HTTP LB
   
   * Action : Block
   
-  * Json Web Key Set (JWKS) : Click Configure and Paste the JWKS from the previous section
+  * JSON Web Key Set (JWKS) : Click Configure and Paste the JWKS from the previous section
   
   * Issuer : Exact Match
   
