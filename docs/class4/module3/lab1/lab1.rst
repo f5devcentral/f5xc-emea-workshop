@@ -238,18 +238,26 @@ Enable JWT Access Control
 
   * Save the rule
 
-.. image:: ../pictures/sp-rules.png
-  :align: center
-  :scale: 70%
+  .. image:: ../pictures/sp-rules.png
+    :align: center
+    :scale: 70%
 
 * Save your Service Policy
 
 * Edit your HTTP LB, and assign this Service Policy
 
-  * Common Security Services > Service Policies > Apply Specified Service Policies
-
-  * Select your Service Policy names sp-jwt-access
-
+  * Go to ``Common Security Controls`` > ``Service Policies`` > Select ``Apply Specified Service Policies``
+  
+  .. image:: ../pictures/common-security-controls.png
+    :align: center
+    :scale: 70%
+  
+* Click Configure for Policies and select your service policy sp-jwt-access
+  
+  .. image:: ../pictures/service-policy.png
+    :align: center
+    :scale: 70%
+  
 
 Test JWT Access Control
 ^^^^^^^^^^^^^^^^^^^^^^^
