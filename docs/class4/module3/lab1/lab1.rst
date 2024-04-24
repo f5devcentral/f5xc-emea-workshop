@@ -176,27 +176,35 @@ In our lab, we check if the user has a VP role. As a reminder, in the JWT token,
 Enable JWT Access Control
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-JWT Access Control is part of Service Policy.
+.. note:: JWT Access Control is part of Service Policy.
 
-* Create a new Service Policy
+* Go to ``Service Policies`` and create a new Service Policy
 
 * Name: sp-jwt-access
 
 * Rules: Custom Rule List
 
-* Click configure and add a new rule to allow VP role
+* Under ``Rules``click configure and add a new rule to allow the VP role
 
   * Name: role-vp
 
   * Action: Allow
   
-  * Request Match, click on the right Trottle to show Advanced Fields
+  .. image:: ../pictures/role-vp.png
+    :align: center
+    :scale: 50%
+
+  * Scroll down to ``Request Match``
 
   * HTTP Path:
 
-    * Add Prefix Values : /api/locations
+    Click ``Configure``and add /api/locations as ``Prefix Values``
   
-  * JWT claims (if you can't see it, click on top right corner Shpw Advanced Fields), add a new item
+  .. image:: ../pictures/prefix-values.png
+    :align: center
+    :scale: 50%
+
+  * Enable "Show Advanced Fields" for ```Request Match`` and add a new item under ``JWT Claims``
   
     * JWT claim Name: Role
     
