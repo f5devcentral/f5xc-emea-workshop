@@ -98,8 +98,7 @@ In this lab, we will create an ``API Protection rule`` to enforce and allow only
 
    .. image:: ../pictures/api-protection-rules.png
       :align: center
-      :scale: 50%
-
+      
 #. Click on ``Configure in Server URLs and API Groups`` and create the following two rules. Don't forget to click on ``Apply``
   
    #. Rule 1: allows the methods and endpoints defined in the OAS file.
