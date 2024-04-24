@@ -153,12 +153,14 @@ Test your configuration with cURL
 
 * Now, go to the ``Security Analytics`` tab to check your API Security Events.
 
-  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event. Please see the example béelow. 
+  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event. 
 
   .. code-block:: bash
 
     "jwt_status": "Jwt is missing",
     "jwt_status": "Jwt verification fails",    
+
+* Please see one detailed JSON example below.
 
   .. image:: ../pictures/jwt-verification-fails.png
     :align: center
