@@ -7,12 +7,12 @@ JWT validation is typically used to authenticate requests to an API. When a clie
 
 There are several steps involved in JWT validation:
 
-* Decode the JWT: The first step in JWT validation is to decode the JWT to extract the header, payload, and signature
-* Obtain the signing key: In order to validate the signature, you will need to obtain the signing key that was used to create the JWT. This key is typically a secret that is shared between the client and the API
-* Recreate the signature: Using the signing key and the header and payload of the JWT, recreate the signature using the same algorithm that was used to create the original signature
-* Compare the signatures: Compare the original signature that is contained in the JWT with the signature that you recreated. If the signatures are the same, the JWT has not been tampered with and the signature is considered to be valid. If the signatures are different, the JWT has been tampered with and the signature is not considered to be valid
-* Validate the claims: After the signature has been validated, the claims contained in the JWT payload should be checked to ensure that they are valid and have not expired
-* Check for authorization: Finally, the JWT should be checked to ensure that the client is authorized to perform the requested action
+* **Decode the JWT:** The first step in JWT validation is to decode the JWT to extract the header, payload, and signature
+* **Obtain the signing key:** In order to validate the signature, you will need to obtain the signing key that was used to create the JWT. This key is typically a secret that is shared between the client and the API
+* **Recreate the signature:** Using the signing key and the header and payload of the JWT, recreate the signature using the same algorithm that was used to create the original signature
+* **Compare the signatures:** Compare the original signature that is contained in the JWT with the signature that you recreated. If the signatures are the same, the JWT has not been tampered with and the signature is considered to be valid. If the signatures are different, the JWT has been tampered with and the signature is not considered to be valid
+* **Validate the claims:** After the signature has been validated, the claims contained in the JWT payload should be checked to ensure that they are valid and have not expired
+* **Check for authorization:** Finally, the JWT should be checked to ensure that the client is authorized to perform the requested action
  
 JWT Validation
 --------------
@@ -22,11 +22,11 @@ Pre-requisites
 
 First of all, you need several inputs
 
-* A JWT token signed with one of these algo RS256, RS384, RS512, PS256, PS384, PS512, and ES256
+* A JWT token signed with one of these algorithms: RS256, RS384, RS512, PS256, PS384, PS512 or ES256
 * A RSA public key, and RSA private key
 * A JWKS (an array with the public key)
 
-In order to keep this lab easy, we **don't** explain how to generate a JWT or JWKS. In an nutshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
+In order to keep this lab easy, we **don't** explain how to generate a JWT or JWKS. In a nutshell, the JWT is signed with the private key, and the JWKS is composed of the public key to verify the signature.
 
 The JWT to use in this lab
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,7 +34,7 @@ The JWT to use in this lab
 In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
 
 * Header (Algo and Type)
-* Payload (Claims, issuer, audiance, timestamp)
+* Payload (Claims, issuer, audience, timestamp)
 * Signature
 
 This is the JWT we will use. You can copy / paste this JWT into https://jwt.io to decode it.
