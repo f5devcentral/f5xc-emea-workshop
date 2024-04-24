@@ -238,18 +238,26 @@ Enable JWT Access Control
 
   * Save the rule
 
-.. image:: ../pictures/sp-rules.png
-  :align: center
-  :scale: 70%
+  .. image:: ../pictures/sp-rules.png
+    :align: center
+    :scale: 70%
 
 * Save your Service Policy
 
 * Edit your HTTP LB, and assign this Service Policy
 
-  * Common Security Services > Service Policies > Apply Specified Service Policies
-
-  * Select your Service Policy names sp-jwt-access
-
+  * Go to ``Common Security Controls`` > ``Service Policies`` > Select ``Apply Specified Service Policies``
+  
+  .. image:: ../pictures/common-security-controls.png
+    :align: center
+    :scale: 70%
+  
+* Click Configure for Policies and select your service policy sp-jwt-access
+  
+  .. image:: ../pictures/service-policy.png
+    :align: center
+    :scale: 70%
+  
 
 Test JWT Access Control
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -268,7 +276,7 @@ Test JWT Access Control
 
     curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meKeaPPsmcVeT9E7BAK_6aBZuA3mZwL-Q'
 
-  * It **doesn't** because the Role claim is not VP
+  * It **doesn't** pass because the Role claim is not VP
 
 * Send a new request with the Role VP
 
