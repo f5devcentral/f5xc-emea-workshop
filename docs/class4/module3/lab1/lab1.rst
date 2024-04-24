@@ -114,10 +114,10 @@ Enable JWT validation on your HTTP LB
     :scale: 50%
 
 
-Test your configuration with Postman
+Test your configuration with cURL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Use CURL to test your configuration
+* Use cURL to test your configuration
   
 * Send the request below (without JWT) to /api/animals. As a reminder, we **haven't** enabled JWT validation on this endpoint.
 
@@ -151,15 +151,18 @@ Test your configuration with Postman
 
   * It **doesn't** pass
 
-* Now, check your API Security Events (Security Analytics tab).
+* Now, go to the ``Security Analytics`` tab to check your API Security Events.
 
-  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event
+  * You can see API events with 401, 403 ... and more details in the JSON section of the Log Event. Please see the example béelow. 
 
   .. code-block:: bash
 
     "jwt_status": "Jwt is missing",
     "jwt_status": "Jwt verification fails",    
 
+  .. image:: ../pictures/jwt-verification-fails.png
+    :align: center
+    :scale: 50%
 
 JWT Access Control
 ------------------
