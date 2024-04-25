@@ -17,7 +17,7 @@ Lab Maintainers:
 
 * Please start this `UDF <https://udf.f5.com/b/1cb733ca-3e77-4783-a91d-98d469eb220b#documentation>`_ to get an invite via F5 email to reset your password for the "f5-emea-workshop" tenant. 
 *	You are going to run a script to generate traffic at the end of “Class 4 - Dynamic API Protection – Enable API discovery” and it can take up to 2 hours maximum to see all results in the Dashboard for the following “API Discovery outcomes” lab section. There is also a note about this in the specific lab section, maybe you combine it with a break 😉.
-*In addition, please make sure you complete the XC API Security Lab before the UDF shuts down because your XC account and configuration will be removed automatically when the UDF deployment stops.
+* Please make sure you complete the XC API Security Lab before the UDF shuts down because your XC account and configuration will be removed automatically when the UDF deployment stops.
 
 |
 
