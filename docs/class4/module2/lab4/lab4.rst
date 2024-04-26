@@ -27,10 +27,12 @@ We need to add this endpoint into the inventory (the OpenAPI Spec), but we will 
 
 .. note:: Inventory = OpenAPI File + Inclusion List
 
-Add Colors shadow API into the Inventory (inclusion list)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+|
 
-* Click on the dot (...) at the right of the /api/colors endpoint
+Add the /api/colors shadow API endpoint to the Inventory (inclusion list)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Click on the three dots (...) at the right of the **/api/colors** endpoint to open the actions menu
 
 * Click on ``Move to Inventory``
 
