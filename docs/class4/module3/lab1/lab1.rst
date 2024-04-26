@@ -184,7 +184,7 @@ Enable JWT Access Control
 
 * Rules: Custom Rule List
 
-* Under ``Rules``click configure and add a new rule to allow the VP role
+* Under ``Rules`` click configure and add a new rule to allow the VP role
 
   * Name: role-vp
 
@@ -198,13 +198,13 @@ Enable JWT Access Control
 
   * HTTP Path:
 
-    Click ``Configure``and add /api/locations as ``Prefix Values``
+    Click ``Configure`` and add /api/locations as ``Prefix Values``
   
   .. image:: ../pictures/prefix-values.png
     :align: center
     :scale: 50%
 
-  * Enable "Show Advanced Fields" for ```Request Match`` and add a new item under ``JWT Claims``
+  * Enable "Show Advanced Fields" for ``Request Match`` and add a new item under ``JWT Claims``
   
     * JWT claim Name: Role
     
