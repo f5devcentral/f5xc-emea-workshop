@@ -85,7 +85,7 @@ Authentication Discovery
 
 * Click on ``Discovered`` tab and check the Authentication details
 
-  .. image:: ../pictures/auth-discovery.png
+  .. image:: ../pictures/auth-discovery-new.png
      :align: left
      :scale: 50%
 
