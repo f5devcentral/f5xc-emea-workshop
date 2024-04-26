@@ -1,9 +1,7 @@
 API Discovery outcomes
 ======================
 
-At the first stage, API Discovery process requires several hours to collect datas and make them visible. Don't be surprised if you must wait 2 hours to see the first datas.
-
-But in this lab, the instructor has ``super powers`` and can force the discovery. This won't be the case for the TechXchange CY24 because every SE can make the lab whenever they want the week before the TechXchange.
+.. note:: The "discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section. You can also continue with the next lab "API Inventory Management" and continue here later. 
 
 Endpoint Discovery
 ------------------
@@ -87,7 +85,7 @@ Authentication Discovery
 
 * Click on ``Discovered`` tab and check the Authentication details
 
-  .. image:: ../pictures/auth-discovery.png
+  .. image:: ../pictures/auth-discovery-new.png
      :align: left
      :scale: 50%
 
