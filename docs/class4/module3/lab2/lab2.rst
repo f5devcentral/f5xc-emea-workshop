@@ -1,20 +1,20 @@
 Rate Limiting protection
 ========================
 
-There are multiple options to do Rate Limiting in F5XC. In this lab, we will focus on API Protection Rate Limiting. 
+There are multiple options to do Rate Limiting in F5XC. In this lab, we are focusing on API Protection Rate Limiting. 
 
-The goal is to rate limit an endpoint at risk because we discovered an attack or it is a shadow API we are not sure if we should allow or block it.
+The goal is to rate limit an endpoint at risk because we discovered an attack or it is a shadow API and we are not sure if we should allow or block it.
 
 Enable Rate Limiting from the Security Dashboard
 ------------------------------------------------
 
-* Go to the Security Dashboard into your application API Endpoints screen.
+* Go to the Security Dashboard for your application LB to the ``API Endpoints`` view.
 
   .. image:: ../pictures/security-endpoints.png
     :align: center
     :scale: 50%
 
-* Find ``/api/colors``, click on the 3dots at the right (...) and select ``Edit Rate Limit``
+* Look for ``/api/colors``, click on the 3three dots (...) at the right of the /api/colors endpoint and select ``Edit Rate Limit``
 
   .. image:: ../pictures/edit-rate-limit.png
     :align: center
@@ -26,12 +26,12 @@ Enable Rate Limiting from the Security Dashboard
     :align: center
     :scale: 50%
 
-* Apply, Apply ... till Save
+* Apply, Apply ... and Save
 
 Test your Rate Limiting config
 ------------------------------
 
-It is time to run a traffic generator script to simulate traffic load
+Run the traffic generator script to simulate traffic
 
 * SSH or WEBSSH to the Jumphost
 * Run the script in the /home/ubuntu/api-protection-lab folder
@@ -54,3 +54,5 @@ It is time to run a traffic generator script to simulate traffic load
   .. image:: ../pictures/rate-limit-logs.png
     :align: center
     :scale: 50%
+
+* You succesfully completed the API security lab :-)
