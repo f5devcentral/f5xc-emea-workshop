@@ -47,18 +47,18 @@ Create custom PII
 
 .. image:: ../pictures/pii.png
    :align: left
-   :scale: 40%
+   :scale: 50%
 
 |
 
 .. image:: ../pictures/pii2.png
    :align: left
-   
+   :scale: 50%
 |
 
 .. image:: ../pictures/pii-both.png
    :align: left
-   
+   :scale: 50%
 |
 
 * SAVE your Load Balancer changes
