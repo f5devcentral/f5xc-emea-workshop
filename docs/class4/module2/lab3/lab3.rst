@@ -1,7 +1,7 @@
 API Discovery outcomes
 ======================
 
-.. note:: The "discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section.
+.. note:: The "discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section. You can also continue with the next lab "API Inventory Management" and continue here later. 
 
 Endpoint Discovery
 ------------------

@@ -124,7 +124,7 @@ Make a quick test of API Validation
 
    .. code-block:: bash
 
-      curl --location --request DELETE 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives/beautiful'
+      curl --location --request DELETE "http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives/beautiful"
 
 .. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
 
