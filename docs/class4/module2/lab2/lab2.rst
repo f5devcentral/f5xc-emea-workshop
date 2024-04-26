@@ -22,7 +22,7 @@ Enable Endpoint Discovery
 Enable PII Discovery
 --------------------
 
-OWASP Top10 API requires to detect and discover sensitive datas in Request and Response. To do so, F5 Distributed Cloud has a list of known PII (Personal Identifiable Information), such as:
+OWASP Top10 API requires to detect and discover sensitive datas in Requests and Responses. F5 Distributed Cloud supports this and provides a predefined list of known PII (Personal Identifiable Information), such as:
 
 * email
 * credit card number
@@ -31,8 +31,8 @@ OWASP Top10 API requires to detect and discover sensitive datas in Request and R
 
 But you want to detect your own PII, such as:
 
-* French Social Security Number
-* French Mobile Phone Number
+* Country Social Security Number
+* Mobile Phone Number
 * Etc ...
 
 Create custom PII
@@ -41,9 +41,9 @@ Create custom PII
 * In Sensitive Data Detection, click on ``configure``.
 * Add two new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
 
-  * French SSN, use this regex ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
+  * For France/French SSN, use this regex ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
   
-  * French Mobile Phone, use this regex ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
+  * For France/French Mobile Phone, use this regex ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
 
 .. image:: ../pictures/pii.png
    :align: left
@@ -53,14 +53,12 @@ Create custom PII
 
 .. image:: ../pictures/pii2.png
    :align: left
-   :scale: 40%
-
+   
 |
 
 .. image:: ../pictures/pii-both.png
    :align: left
-   :scale: 40%
-
+   
 |
 
 * SAVE your Load Balancer changes
