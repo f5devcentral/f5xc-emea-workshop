@@ -29,13 +29,11 @@ It covers:
 
 * ``(Class 3)`` Virtual K8S 
 
-* ``(Class 4)`` Advanced API Protection 
+* ``(Class 4)`` F5 XC API Protection 
 
-  * API Discovery
-  * API Validation
-  * API PII
-
-
+  * Static API Protection
+  * Dynamic API Protection
+  * Advanced Protection
 
 
 
