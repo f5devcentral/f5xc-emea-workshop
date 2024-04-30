@@ -31,7 +31,7 @@ APIs change frequently:
 * Generate API schema and Swagger files to minimize manual tracking of API endpoints.
 * Reduce time spent configuring and deployi1ng API security policies.
 
-.. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content in the lab. For instance you will see that the hostnames are created dynamically. If everything is ok, the button "Get Data" gets green. In addition, please make sure you complete this lab before the UDF shuts down because your XC account and configuration will be removed automatically when the UDF deployment stops.
+.. warning:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content in the lab. For instance you will see that the hostnames are created dynamically. If everything is ok, the button "Get Data" gets green. In addition, please make sure you complete this lab before the UDF shuts down because your XC account and configuration will be removed automatically when the UDF deployment stops.
 
 .. raw:: html
     
