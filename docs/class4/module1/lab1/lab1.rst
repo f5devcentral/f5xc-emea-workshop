@@ -73,7 +73,7 @@ b) In the same screen -> Origin Servers -> Add Item -> Fill the bellow data -> A
       ====================    ========================================================================================
 
 
-1. Create the HTTP LB
+2. Create the HTTP LB
 
 a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP Load Balancer -> Fill the bellow data -> Save and exit
 
@@ -89,13 +89,13 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP 
 
       **Load Balancer Type**                  HTTP
                                                                                  
-      **Automatically Manage DNS Records**    Enable 
+      **Automatically Manage DNS Records**    Enable <- ``Don't forget this option``
 
       **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/sentence-public-endpoint -> Apply
       ====================================    =================================================================================================
 
 
-1. So far, Sentence application is not protected but exposed all over the world on all F5XC RE. 
+3. So far, Sentence application is not protected but exposed all over the world on all F5XC RE. 
 Check your Sentence application is exposed and reachable from the F5XC Global Network by browsing to :ext_link:`http://sentence-re-$$makeId$$.workshop.emea.f5se.com`
 
 .. warning:: Some Service Providers have a very long recursive cache. It can take several minutes to get a DNS response. You can change your DNS server to 1.1.1.1 or 8.8.8.8 to fix that.
