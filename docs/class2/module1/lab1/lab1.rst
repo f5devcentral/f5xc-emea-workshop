@@ -56,7 +56,7 @@ b) On the same page go to **Routes** and click **Configure** -> Add Item -> Fill
 
       **Prefix**                          /v1/users
 
-      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-onprem-private-endpoint -> Apply
+      **Origin Pools**                    Click **Add Item** and set the **Origin Pool** to $$namespace$$/arcadia-onprem-private-endpoint -> Apply
       ================================    ========================================================================================================
 
 c) Add Item -> Fill in the bellow -> Apply -> Apply -> Save and Exit
@@ -71,7 +71,7 @@ c) Add Item -> Fill in the bellow -> Apply -> Apply -> Save and Exit
 
       **Prefix**                          /v1/login
 
-      **Origin Pools**                    Click **Add Item** and set the **Origin Poll** to $$namespace$$/arcadia-onprem-private-endpoint -> Apply
+      **Origin Pools**                    Click **Add Item** and set the **Origin Pool** to $$namespace$$/arcadia-onprem-private-endpoint -> Apply
       ================================    ========================================================================================================
 
    .. raw:: html 
