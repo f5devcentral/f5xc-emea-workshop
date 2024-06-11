@@ -97,7 +97,7 @@ a. First let's do a **curl** request that will simulate a user login request. Al
 
       curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"satoshi@bitcoin.com\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/v1/login
 
-b. Now we will re run the same request but with the email paramter value being just a number. We won't be able to login but the request will not be blocked.
+b. Now we will re run the same request but with the email parameter value being just a number. We won't be able to login but the request will not be blocked.
 
    .. code-block:: none
 
