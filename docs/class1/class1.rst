@@ -16,7 +16,7 @@ This application is a modern application simulating a crypto trading platform ap
 The following components are used within the application:
 
 * **Frontend** - serves the non dynamic content for like html, js, css and images
-* **Login** - in in charge of dealing with anything related to the login user functionality
+* **Login** - is in charge of dealing with anything related to the login user functionality
 * **Users** - all user data interaction is done through this microservice only
 * **Stocks** - connects to external resources to get the latest crypto data and serves it to the application clients
 * **Stocks Transaction** - Deal with all related to buying or selling crypto currencies. It interact with other microservices like Users and Stocks
