@@ -60,7 +60,7 @@ In order to test we will behave as a bad actor.
 
         runRequests();
 
-3. In the browser network tab follow the request and you will observe that after some short time F5 XC will start blocking the user by returning a HTTP 503
+3. In the browser network tab follow the request and you will observe that after some short time F5 XC will start blocking the user by returning a HTTP 403
 
    We will be able to track this user in the F5XC console to **Web App & API Protection** -> **Dashboards** -> **Security** -> Click on the **arcadia-re-lb** Load Balancer -> **Malicious Users** -> **Refresh**
 
