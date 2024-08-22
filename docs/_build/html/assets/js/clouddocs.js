@@ -5,9 +5,10 @@ $(document).ready(function () {
     $('#clouddocs-header').load(host + '/header.html', loadCoveoComponents);
     $('#clouddocs-footer').load(host + '/footer.html');
 
-    Coveo.SearchEndpoint.configureCloudV2Endpoint('', 'xx366a9f75-999f-4815-bf1e-89702600e5d7');
+    Coveo.SearchEndpoint.configureCloudV2Endpoint('', 'xx564559b1-0045-48e1-953c-3addd1ee4457');
 
 });
+
 
 // Callback function that runs after loading the header component into the page
 function loadCoveoComponents() {
@@ -39,15 +40,6 @@ function showSearchBar() {
   var searchContainer = document.getElementById('search-container');
   searchContainer.style.overflow = 'visible';
   searchContainer.style.height = 'auto';
-  
-  var sidebar = document.getElementById('sidebar');
-  if (sidebar) {
-    sidebar.style['margin-top'] = '80px';
-  }
-  var rightSidebar = document.getElementById('right-sidebar');
-  if (rightSidebar) {
-    rightSidebar.style['margin-top'] = '80px';
-  }
 }
 
 // Hide Coveo search bar
@@ -55,15 +47,6 @@ function hideSearchBar() {
   var searchContainer = document.getElementById('search-container');
   searchContainer.style.overflow = 'hidden';
   searchContainer.style.height = '0px';
-  
-  var sidebar = document.getElementById('sidebar');
-  if (sidebar) {
-    sidebar.style['margin-top'] = '15px';
-  }
-  var rightSidebar = document.getElementById('right-sidebar');
-  if (rightSidebar) {
-    rightSidebar.style['margin-top'] = '15px';
-  }
 }
 
 // Hide search toggle button in the header
@@ -72,29 +55,49 @@ function hideSearchToggleBtn() {
   button.style.display = 'none';
 }
 
+
+
 //Version Warning Banner
+
 function renderVersionWarning(){
+
     $.getJSON( "../versions.json", function(versionsJson) {
+
         var pathes = document.location.pathname.split("/");
         pathes.pop();
+
         var versionUrlPathes = versionsJson.latestVersion.url.split("/");
         versionUrlPathes.pop();
+
         var currentPath = pathes.slice(0, versionUrlPathes.length).join("/") + "/";
+
         if(currentPath != versionsJson.latestVersion.url){
+
             for (var index in versionsJson.otherVersions){
+
                 if(versionsJson.otherVersions[index].url == currentPath){
+
                     $("#version-warning").show();
                     $("#currentVersion").text("This content applies to " + versionsJson.otherVersions[index].name);
+
                 }
+
             }
+
         }
+
+
     });
 }
 
 // Export PDF
+
 function exportPdf(){
+
+
         var pathes = document.location.pathname.split("/");
         pathes.pop();
+
         $("#content").printThis({
             importCSS : true,
             importStyle : true,
@@ -104,40 +107,76 @@ function exportPdf(){
             afterPrint : function() { $("#export-pdf").show(); $(".row, .next-prev-btn-row").show(); },
             printDelay : 600
         });
+
 }
 
+
+
 // Right sidebar related items
+
 var navBars_hrefs = []
+
+
 function updateHighlights(id, isAppeared){
+
    $("#sidebar a[href='#']").filter("[class*=reference]").css( "color", "#1d9cd3" );
+
+
     if(isAppeared){
+
         if(navBars_hrefs[0] == id){
+
              $("#right-sidebar a[href='#']").filter("[class*=reference]").css( "color", "#1d9cd3" );
+
         }else{
+
              $("#right-sidebar a[href$='" + id + "']").filter("[class*=reference]").css( "color", "#1d9cd3" );
         }
+
     }else{
+
         if(navBars_hrefs[0] == id){
+
              $("#right-sidebar a[href='#']").filter("[class*=reference]").css( "color", "black" );
+
         }else{
+
              $("#right-sidebar a[href$='" + id + "']").filter("[class*=reference]").css( "color", "black" );
+
         }
+
     }
+
+
 }
+
 
 
 function triggerSideBarHighlighting(){
+
        var higlightedItem = navBars_hrefs[0];
+
         for(var i=0; i < navBars_hrefs.length; i++){
+
             if($(navBars_hrefs[i]).is(':appeared')){
+
+
                 if($(navBars_hrefs[i]).offset().top - ($("#clouddocs-header").height()) < $(this).scrollTop()){
+
                     higlightedItem = navBars_hrefs[i];
+
                 }
+
+
                 updateHighlights(navBars_hrefs[i], false);
+
             }else{
+
                 updateHighlights(navBars_hrefs[i], false);
             }
+
         }
+
         updateHighlights(higlightedItem, true);
 
 }
@@ -146,107 +185,185 @@ function triggerSideBarHighlighting(){
 var originalRightSideBarHeight = $("#right-sidebar").innerHeight() - 80;
 
 function resizeRightScrollbar() {
+
   //get the right-sidebar bottom offset and the footer top offset
   var rightSidebarBottom = $("#right-sidebar").offset().top + $("#right-sidebar").outerHeight(true) - 25;
   var footerTop = $("#clouddocs-footer").offset().top;
+
   //if checks if there is a collision, if so then shrink the right-sidebar
   if (rightSidebarBottom >= footerTop) {
     var shorterNewHeight = $("#right-sidebar").height() - (rightSidebarBottom - footerTop) - 40;
     $("#right-sidebar").height(shorterNewHeight);
+
     //$("#right-sidebar").css("overflow-y", "scroll");
+
 
   //checks if the footer has moved away, so the right-sidebar needs to grow back
   }else if($("#right-sidebar").height() < originalRightSideBarHeight) {
     var tallerNewHeight  = $("#right-sidebar").height() + (footerTop - rightSidebarBottom);
+
     if($(".footer").is(':appeared')){
+
         if (rightSidebarBottom >= footerTop){
+
             $("#right-sidebar").height(tallerNewHeight);
+
         }
+
+
     }else{
+
         $("#right-sidebar").height(originalRightSideBarHeight);
         //$("#right-sidebar").css("overflow-y", "hidden");
+
     }
+
+
   }
+
   if($("#right-sidebar").height() < 140) {
     console.log("height is too short!");
     $("#right-sidebar").height(160);
   }
 }
 
+
+
 // collapsible sidebar
 $(document).ready(function () {
 
+
     //Right Sidebar related items
     $("#version-warning").hide();
+
+
     $(window).resize(function(evt) {
+
         if(evt.target.innerWidth > 1271 && $("#sidebar").hasClass("active") && !$("#content").hasClass("active")){
+
             $("#content").toggleClass("active");
             $("#sidebar").toggleClass("active");
+
         }
+
     });
 
     // Collect all href value
     navBars_hrefs = []
+
     $("#right-sidebar a").each(function(index){
+
         if ($(this).attr("href") == "#"){
+
            navBars_hrefs.push("#"  + $(this).text().replace(": ", "-").replace(/ /g,"-").replace("/","-").toLowerCase());
+
         }else{
+
            navBars_hrefs.push($(this).attr("href").toLowerCase());
+
         }
+
     });
+
     $("#right-sidebar a").hover(function(e){
+
+
         if(e.type == "mouseenter"){
+
             try {
+
                 triggerSideBarHighlighting();
+
             }catch(err){
+
                 console.log("%cException got caught on triggerSideBarHighlighting call: " + err, "color:red");
+
             }
+
             $(this).css("color", "#0c5c8d");
+
+
         }else{
+
             $(this).css("color", "black")
             try {
+
                 triggerSideBarHighlighting();
+
             }catch(err){
+
                 console.log("%cException got caught on triggerSideBarHighlighting call: " + err, "color:red");
+
             }
+
         }
+
     });
+
 
     //OnScroll event listener
     $(window).scroll(function(){
+
         try {
+
             triggerSideBarHighlighting();
+
         }catch(err){
+
             console.log("%cException got caught on triggerSideBarHighlighting call: " + err, "color:red");
+
         }
+
         try {
+
             resizeRightScrollbar();
+
         }catch(err){
+
             console.log("%cException got caught on resizeRightScrollbar call: " + err, "color:red");
+
         }
+
     });
 
+
     try {
+
         resizeRightScrollbar();
+
     }catch(err){
+
         console.log("%cException got caught on resizeRightScrollbar call: " + err, "color:red");
+
     }
+
     try {
+
          triggerSideBarHighlighting();
+
     }catch(err){
+
          console.log("%cException got caught on triggerSideBarHighlighting call: " + err, "color:red");
+
     }
+
     try {
+
         if($("#version_selector_wrapper").length){
+
              renderVersionWarning();
+
         }
 
     }catch(err){
+
          console.log("%cException got caught on renderVersionWarning call: " + err, "color:red");
+
     }
 
     // PDF Export
     $("#export-pdf").click(exportPdf);
+
 
     $('#sidebarCollapse, #dismiss').on('click', function () {
         $('#sidebar').toggleClass('active');
