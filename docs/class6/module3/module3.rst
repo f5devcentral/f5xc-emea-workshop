@@ -1,6 +1,6 @@
-#####################
-Attacking the ChatBot
-#####################
+##########################
+Protecting the Application
+##########################
 
 Know that we know how the ChatBot works we need to understand what are the attack vectors our application is vulnerable to.
 
