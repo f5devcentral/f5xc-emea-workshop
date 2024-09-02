@@ -30,9 +30,6 @@ AI Components
 During this class we will explore how application using LLMs are developed and how to protect them.
 
 
-.. image:: ./module1/pictures/diagrams-class5.gif
-   :align: center
-
 .. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content. If all good the button will turn green.
 
 .. raw:: html

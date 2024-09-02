@@ -11,9 +11,9 @@ In order to make sure all is working we will need to login into the application 
       ==========================================    ========================================================================================
       Object                                        Value
       ==========================================    ========================================================================================
-      **Username**                                  satoshi@bitcoin.com
+      **Username**                                  sorin@nginx.com
    
-      **Password**                                  bitcoin
+      **Password**                                  nginx
       ==========================================    ========================================================================================   
 
 2. Go to the **Exchange** window, open the **AI Assistant** chat box and have a discussion.
