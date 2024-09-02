@@ -202,6 +202,7 @@ html_js_files = [
     'js/c2.js',
     'js/c3.js',
     'js/c5.js',
+    'js/c6.js',
 ]# -- Options for HTMLHelp output ------------------------------------------
 
 cleanname = re.sub('\W+','',classname)
