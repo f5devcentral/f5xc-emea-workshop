@@ -18,7 +18,7 @@ LLM06: Sensitive Information Disclosure
 3. Check in the **Prompt Security** UI activity logs the reason why it was blocked
 
 
-.. image:: ../../../pictures/Slide9.png
+.. image:: "../pictures/Slide9.png"
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
