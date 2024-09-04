@@ -36,7 +36,7 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
     How should I approch investing in crypto ?
 
 
-.. image:: ../pictures/C6Slide6.png
+.. image:: ../pictures/C6Slide6.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
