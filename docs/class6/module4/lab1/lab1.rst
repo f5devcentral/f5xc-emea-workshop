@@ -13,3 +13,21 @@ Key Functions of Prompt Security:
 
 Accessing the **Prompt Security** UI
 ------------------------------------
+
+1. Browse to https://prompt-security.workshop.emea.f5se.com/ and login into the system
+
+2. Click on the **gear** icon in the top right corner → **Create homegrown applications connector**
+
+3. Give the connector a name, this will represent your AI Security Policy config. When viewing or making changes allways make sure that you are using this connector.
+
+4. The policy has been created with best practices configuration. In order for us to explore the configuration and capabilities we will uncheck all the boxes, **do that now** and click **Save**
+
+5. Go to the **Deployment** tab and copy the **API key** when traffic will be sent to Prompt Security for inspection you will use this API Key to enable the policy you just created.
+
+6. Replace the **api-key** in the bellow curl command and run it
+
+   .. code-block:: none
+
+      curl -s -k -X POST https://$$hostArcadia$$/v1/ai/security-config \
+        -H "Content-Type: application/json" \
+        -d '{"llmSecurityHost":"prompt-security.workshop.emea.f5se.com", "llmSecurityAppId":"api-key"}'
