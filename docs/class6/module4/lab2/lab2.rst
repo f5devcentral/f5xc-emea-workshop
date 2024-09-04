@@ -27,7 +27,7 @@ Let's see how we can attack our ChatBot using this attack vector.
 3. Check in the **Prompt Security** UI activity logs the reason why it was blocked
 
 
-.. image:: ../pictures/Slide7.png
+.. image:: ../pictures/Slide7.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**.

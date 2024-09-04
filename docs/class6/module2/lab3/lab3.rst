@@ -57,7 +57,7 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
 
     How much Bitcoin can I buy with all my cash?
 
-.. image:: ../pictures/Slide10.png
+.. image:: ../pictures/Slide10.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
