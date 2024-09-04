@@ -35,6 +35,7 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
 
     How should I approch investing in crypto ?
 
+
 .. image:: ../pictures/Slide6.png
    :align: center
 
