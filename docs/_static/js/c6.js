@@ -81,7 +81,7 @@ function c6m3l1b() {
     },
     "spec": {
       "swagger_specs": [
-        "https://f5-emea-workshop.console.ves.volterra.io/api/object_store/namespaces/shared/stored_objects/swagger/arcadia-crypto-oas/v1-24-08-25"
+        "https://f5-emea-workshop.console.ves.volterra.io/api/object_store/namespaces/shared/stored_objects/swagger/arcadia-crypto-oas/v5-24-09-04"
       ],
       "strict_schema_origin": {}
     }

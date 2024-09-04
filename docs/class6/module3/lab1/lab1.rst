@@ -46,7 +46,7 @@ We have already published the application, now we will finish the security confi
       ===============================    ========================================================================================
       **Name**                           arcadia-api-definition
       
-      **OpenAPI Specification Files**    **Add Item** → shared/arcadia-crypto-oas/v1-24-08-25
+      **OpenAPI Specification Files**    **Add Item** → shared/arcadia-crypto-oas/v5-24-09-04
       ===============================    ========================================================================================
 
 
