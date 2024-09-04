@@ -47,7 +47,7 @@ Now, let's add data to the RAG system.
 
 
 
-.. image:: ../pictures/Slide8.png
+.. image:: ../pictures/Slide8.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
