@@ -16,6 +16,17 @@ Accessing the **Prompt Security** UI
 
 1. Browse to https://prompt-security.workshop.emea.f5se.com/ and login into the system
 
+   .. table:: 
+      :widths: auto
+
+      ====================    ========================================================================================
+      Object                  Value
+      ====================    ========================================================================================
+      **Username**            sorinboia@gmail.com
+
+      **Password**            AnUAM5ys72GwhYD!
+      ====================    ========================================================================================
+
 2. Click on the **gear** icon in the top right corner → **Create homegrown applications connector**
 
 3. Give the connector a name, this will represent your AI Security Policy config. When viewing or making changes allways make sure that you are using this connector.
