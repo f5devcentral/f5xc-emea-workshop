@@ -24,7 +24,7 @@ Accessing the **Prompt Security** UI
       ====================    ========================================================================================
       **Username**            sorinboia@gmail.com
 
-      **Password**            AnUAM5ys72GwhYD!
+      **Password**            Can be found in the documentation of the UDF
       ====================    ========================================================================================
 
 2. Click on the **gear** icon in the top right corner → **Create homegrown applications connector**
