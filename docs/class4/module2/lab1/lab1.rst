@@ -1,4 +1,4 @@
-Enable API Validation
+Enable API validation
 =====================
 
 In the previous section, we enabled API Protection. API Protection is based on rules (allow, deny), but API Validation goes deeper into the validation.

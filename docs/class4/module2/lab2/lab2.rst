@@ -1,5 +1,5 @@
-Enable API discovery
-====================
+Enable API traffic discovery
+============================
 
 In the previous section, we enabled ``API Validation`` in order to enforce protection on ``what we know`` from the OpenAPI Spec file.
 But we kept the ``Fall Through Mode`` to ``Allow`` so that we do not break the application or impact business down when DevOps push a new version of the API, but SecOps are not ready or up to date.
