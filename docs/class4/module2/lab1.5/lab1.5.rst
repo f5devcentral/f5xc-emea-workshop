@@ -22,3 +22,7 @@ Enable Code Base Integration
     sdlkjflksdjglkdfshglkjdflgjldksfgjlksd
 
 
+.. image:: ../pictures/code-based-repo.png
+   :align: left
+
+* Save
