@@ -12,9 +12,9 @@ Enable Code Base Integration
 * Goto Web App & API Protection > API Management > Code Base Ingration
 * Add a new code base integration profile
 
-  * Name: github-sentence
-  * Code base: Github Integration
-  * Github Name: f5xclab
+  * Name: ``github-sentence``
+  * Code base: ``Github Integration``
+  * Github Name: ``f5xclab``
   * GitHub Personal Access Token: paste and blindfold below Token
 
   .. code-block:: bash
