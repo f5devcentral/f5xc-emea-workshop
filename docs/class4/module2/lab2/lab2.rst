@@ -60,30 +60,32 @@ Create custom Sensitive Data Discovery
 * But now, we want to add custom patterns to detect frenchy sensitive datas
 * Configure ``Defined Custom Sensitive Data Types``, and add 2 items
 
-  * Name: france-ssn
-  * Data Type Rules: 
+  * Name: ``france-ssn``
   
-    * Value Pattern
-    * Regex Value : ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
-
-  * Mark as Sensitive Data
-  * Mark as PII
-  * Relevant Compliance: ``GDPR``
-
-  .. image:: ../pictures/pii-ssn.png
-     :align: left
-     :scale: 50%
-
-
-  * Name: france-mobile-phone
-  * Data Type Rules: 
+    * Data Type Rules: 
   
-    * Value Pattern
-    * Regex Value : ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
+      * Value Pattern
+      * Regex Value : ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
 
-  * Mark as Sensitive Data
-  * Mark as PII
-  * Relevant Compliance: ``GDPR``
+    * Mark as Sensitive Data
+    * Mark as PII
+    * Relevant Compliance: ``GDPR``
+
+    .. image:: ../pictures/pii-ssn.png
+       :align: left
+       :scale: 50%
+
+
+  * Name: ``france-mobile-phone``
+  
+    * Data Type Rules: 
+  
+      * Value Pattern
+      * Regex Value : ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
+
+    * Mark as Sensitive Data
+    * Mark as PII
+    * Relevant Compliance: ``GDPR``
 
 * Apply and Save your LB config
 
