@@ -10,8 +10,10 @@ The ``API Discovery`` will provide visility for SecOps in order to see this ``Dr
    :align: center
    :scale: 40%
 
-Enable Endpoint Discovery
--------------------------
+But OWASP Top10 requires also to provide visibility on PII (Personal Identifiable Information) in order to avoid Data Leakage. To do so, we will enable ``Sensitive Data Disvovery``
+
+Enable API Endpoint Discovery
+-----------------------------
 
 * Edit your Load Balancer again, go to API Protection and enable ``API Discovery`` (keep the default settings)
 
@@ -19,49 +21,71 @@ Enable Endpoint Discovery
    :align: left
    :scale: 40%
 
-Enable PII Discovery
---------------------
+Enable Sensitive Data Discovery
+-------------------------------
 
-OWASP Top10 API requires to detect and discover sensitive datas in Requests and Responses. F5 Distributed Cloud supports this and provides a predefined list of known PII (Personal Identifiable Information), such as:
+OWASP Top10 API requires to detect and discover sensitive datas in Requests and Responses. F5 Distributed Cloud supports this and provides a predefined list (+400) of known PII (Personal Identifiable Information), such as:
 
 * email
 * credit card number
 * US Social Security Number
 * IP address
 
-But you want to detect your own PII, such as:
+.. note:: By default, a list is already assigned to the Load Balancer
+
+  .. image:: ../pictures/default-pii.png
+     :align: left
+     :scale: 50%
+
+
+But if you want to detect your own PII, such as:
 
 * Country Social Security Number
 * Mobile Phone Number
 * Etc ...
 
-Create custom PII
-^^^^^^^^^^^^^^^^^
+You must create your own patterns.
 
-* In Sensitive Data Detection, click on ``configure``.
-* Add two new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
+Create custom Sensitive Data Discovery
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  * For France/French SSN, use this regex ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
+* In Sensitive Data Discovery, select ``Custom``
+* Add a new item
+
+  * Give a name: custom-frenchies
+  * Select the Compliance Frameworks required for this API Application. We select ``PCI-DSS`` ``GDPR`` 
+
+.. note:: By selecting PCI-DSS and GDPR, all data patterns classified as PCI-DSS and GDPR will be added.
+
+* But now, we want to add custom patterns to detect frenchy sensitive datas
+* Configure ``Defined Custom Sensitive Data Types``, and add 2 items
+
+  * Name: france-ssn
+  * Data Type Rules: 
   
-  * For France/French Mobile Phone, use this regex ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
+    * Value Pattern
+    * Regex Value : ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
 
-.. image:: ../pictures/pii.png
-   :align: left
-   :scale: 50%
+  * Mark as Sensitive Data
+  * Mark as PII
+  * Relevant Compliance: ``GDPR``
 
-|
+  .. image:: ../pictures/pii-ssn.png
+     :align: left
+     :scale: 50%
 
-.. image:: ../pictures/pii2.png
-   :align: left
-   :scale: 50%
-|
 
-.. image:: ../pictures/pii-both.png
-   :align: left
-   :scale: 50%
-|
+  * Name: france-mobile-phone
+  * Data Type Rules: 
+  
+    * Value Pattern
+    * Regex Value : ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
 
-* SAVE your Load Balancer changes
+  * Mark as Sensitive Data
+  * Mark as PII
+  * Relevant Compliance: ``GDPR``
+
+* Apply and Save your LB config
 
 
 Run the traffic generator script
