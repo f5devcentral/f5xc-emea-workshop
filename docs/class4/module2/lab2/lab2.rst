@@ -7,8 +7,8 @@ We use the "Sentence application" source code for this lab which is available at
 
 
 .. note:: There is also a video and a FAQ avilable for F5 employees
-* FAQ -  XC API code scan FAQ.docx (sharepoint.com)
-* Video – API discovery from code.mp4 (sharepoint.com)
+ * FAQ -  XC API code scan FAQ.docx (sharepoint.com)
+ * Video – API discovery from code.mp4 (sharepoint.com)
   on the internal ) For the TechXchange 2024 - Please use this `Teams chat <https://teams.microsoft.com/l/channel/19%3Aca3de856a85c47b1809f9803723c45d2%40thread.tacv2/XC%20API%20Security%20Lab%20Support?groupId=100b8a10-f3d0-4d73-bc24-c463f941d064&tenantId=dd3dfd2f-6a3b-40d1-9be0-bf8327d81c50>`_ if you have any issues, questions or feedback for the XC API security lab
 
 
