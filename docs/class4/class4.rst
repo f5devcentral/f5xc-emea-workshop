@@ -12,9 +12,6 @@ Lab Maintainers:
 
 |
 
-
-.. note:: For the TechXchange 2024 - Please use this `Teams chat <https://teams.microsoft.com/l/channel/19%3Aca3de856a85c47b1809f9803723c45d2%40thread.tacv2/XC%20API%20Security%20Lab%20Support?groupId=100b8a10-f3d0-4d73-bc24-c463f941d064&tenantId=dd3dfd2f-6a3b-40d1-9be0-bf8327d81c50>`_ if you have any issues, questions or feedback for the XC API security lab
-
 * Please start this `UDF <https://udf.f5.com/b/1cb733ca-3e77-4783-a91d-98d469eb220b#documentation>`_ to get an invite via F5 email to reset your password for the "f5-emea-workshop" tenant. 
 *	You are going to run a script to generate traffic at the end of “Class 4 - Dynamic API Protection – Enable API discovery” and it can take up to 2 hours maximum to see all results in the Dashboard for the following “API Discovery outcomes” lab section. There is also a note about this in the specific lab section, maybe you combine it with a break 😉.
 * Please make sure you complete the XC API Security Lab before the UDF shuts down because your XC account and configuration will be removed automatically when the UDF deployment stops.
