@@ -21,18 +21,16 @@ Enable Code Base Integration
 
   * Name: ``github-sentence``
   * Code base: ``Github Integration``
-  * Github UserName: ``redf5``
-  * GitHub Personal Access Token: copy and paste the classic token below to Blindfold
+  * Github UserName: ``please check the "internal" tab in UDF deployment for the username``
+  * GitHub Personal Access Token: ``please check the "internal" tab in UDF deployment for the token``
 
-  .. code-block:: bash
-
-    1234
-
-
+  
 .. image:: ../pictures/code-base-integration-username.png
    :align: left
 
 |
+
+* Click on Configure in "GitHub Personal Access Token" to enter the token into "Secret to Blindfold". 
 
 .. image:: ../pictures/code-base-integration-token-blindfold.png
       :align: left
