@@ -15,9 +15,9 @@ But OWASP Top10 requires also to provide visibility on PII (Personal Identifiabl
 Enable API Endpoint Discovery
 -----------------------------
 
-* Edit your Load Balancer again, go to API Protection and enable ``API Discovery`` (keep the default settings)
+* If you skipped the lab2 "Enable Code Scanning Discovery, edit your Load Balancer again, go to API Protection and enable ``API Discovery`` (keep the default settings)
 
-.. image:: ../pictures/enable-api-discovery.png
+.. image:: ../pictures/enable-traffic-discovery.png
    :align: left
    :scale: 40%
 
@@ -33,7 +33,7 @@ OWASP Top10 API requires to detect and discover sensitive datas in Requests and 
 
 .. note:: By default, a list is already assigned to the Load Balancer
 
-  .. image:: ../pictures/default-pii.png
+  .. image:: ../pictures/default-pii-setting.png
      :align: left
      :scale: 50%
 
