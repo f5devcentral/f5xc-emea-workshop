@@ -46,7 +46,7 @@ Enable Code Base Integration
 
 * XC is going to scan the code, so give it some time until you see further updates on e.g. the "Number of API Repositories"  
 
-.. image:: ../code-base-integration-connected.png
+.. image:: ../pictures/code-base-integration-connected.png
    :align: left
 
 |
@@ -57,10 +57,16 @@ Assign the Code Base Integration to the Load Balancer
 * Edit your Load Balancer, go to the API Protection and enable API Discovery (keep the default settings)
 
 
-.. image:: ../code-base-integration-connected-connected.png
+.. image:: ../pictures/API-discovery-enable.png
    :align: left
 
-* In the same configuration screen, look for API repositories and click on Configure
+1. In the same configuration screen, look for API repositories and click on Configure
+2. In "Select Code Base Integrations" click on "Add Item"
+3. Select the previously created Code Base "github-sentence"
+4. Select "Selected API Repositories"
+5. Select ca-scans/sentence-source-code-v2
 
-.. image:: ../code-base-integration-connected-connected.png
+.. image:: ../pictures/select-api-repo-code.png
    :align: left
+
+Select Apply twice and Save and Exit
