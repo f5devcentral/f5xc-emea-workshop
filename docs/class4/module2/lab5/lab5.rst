@@ -1,9 +1,9 @@
 API Discovery outcomes
 ======================
 
-.. note:: The "code base and traffic discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section. You can also continue with the next lab "Advanced Protection - "JWT validation and access control" (module 3) and continue here later.
+.. note:: The "traffic discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section. You can also continue with the next lab "Advanced Protection - "JWT validation and access control" (module 3) and continue here later.
 
-.. note:: The code base "repo discovery" is done once a day
+.. note:: The "code base repo discovery" is done once a day
 
 Endpoint Discovery
 ------------------
