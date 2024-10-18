@@ -21,8 +21,8 @@ Enable Code Base Integration
 
   * Name: ``github-sentence``
   * Code base: ``Github Integration``
-  * Github UserName: ``please check the "internal" tab in UDF deployment for the username``
-  * GitHub Personal Access Token: ``please check the "internal" tab in UDF deployment for the token``
+  * Github UserName: ``please check the "internal" tab in the UDF deployment for the username``
+  * GitHub Personal Access Token: ``please check the "internal" tab in the UDF deployment for the token``
 
   
 .. image:: ../pictures/code-base-integration-username.png
@@ -30,14 +30,14 @@ Enable Code Base Integration
 
 |
 
-* Click on Configure in "GitHub Personal Access Token" to enter the token into "Secret to Blindfold". 
+* Click on Configure under "GitHub Personal Access Token" to enter the token into "Secret to Blindfold". 
 
 .. image:: ../pictures/code-base-integration-token-blindfold.png
       :align: left
 
 
 * Click Apply and Save and Exit
-* Go to settings and change it as shown in the screenshot to show further information. The Health status should change from "INITIALIZING" to "CONNECTED".
+* Go to settings and change it as shown in the screenshot below to display further information. The Health status should change from "INITIALIZING" to "CONNECTED".
 
 .. image:: ../pictures/code-base-integration-initializing-and-show-settings.png
    :align: left
