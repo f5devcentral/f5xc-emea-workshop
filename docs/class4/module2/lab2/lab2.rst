@@ -3,14 +3,15 @@ Enable API code scanning discovery (under construction)
 
 F5 solutions can detect and protect APIs during the full API develoment lifecycle which includes also to learn API endpoints and further information to e.g. build the schema from the source code the developers create and maintain on the code repository.
 
-We use the "Sentence application" source code for this lab which is available at the public Github repository: https://github.com/ca-scans/sentence-source-code-v2
+We use the "Sentence application" source code for this lab: https://github.com/ca-scans/sentence-source-code-v2
 
 
 .. note:: There is also a video and a FAQ available for F5 employees
 
  * FAQ -  XC API code scan `FAQ <https://f5.sharepoint.com/sites/SalesCoP/SitePages/XC-API-code-scan-FAQ.aspx>`_
- *  * Video – API discovery from `code <https://f5.sharepoint.com/sites/SalesCoP/SitePages/API-discovery-from-code---introduction-video.aspx>`_
+ * Video – API discovery from `code <https://f5.sharepoint.com/sites/SalesCoP/SitePages/API-discovery-from-code---introduction-video.aspx>`_
 
+|
 
 Enable Code Base Integration
 ----------------------------
@@ -33,21 +34,21 @@ Enable Code Base Integration
 
 |
 
-.. image:: ../pictures/c123.png
-   :align: left
+.. image:: ../pictures/code-base-integration-token-blindfold.png
+      :align: left
 
 
 * Click Apply and Save and Exit
 * Go to settings and change it as shown in the screenshot to show further information. The Health status should change from "INITIALIZING" to "CONNECTED".
 
-.. image:: ../pictures/code-base- integration- initializing-and-show-settings.png
+.. image:: ../pictures/code-base-integration-initializing-and-show-settings.png
    :align: left
 
 |
 
 * XC is going to scan the code, so give it some time until you see further updates on e.g. the "Number of API Repositories"  
 
-.. image:: ../code-base-integration-connected-connected.png
+.. image:: ../code-base-integration-connected.png
    :align: left
 
 |
