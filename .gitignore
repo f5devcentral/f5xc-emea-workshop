@@ -2,3 +2,4 @@
 #!/docs/_build/html/
 #/docs/_build/html/*
 #!/docs/_build/html/assets/
+docs/__pycache__/custom_roles.cpython-311.pyc

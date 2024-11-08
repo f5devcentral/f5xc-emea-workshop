@@ -1,79 +1,72 @@
-Enable API discovery
-====================
+Enable API code scanning discovery (under construction)
+=======================================================
 
-In the previous section, we enabled ``API Validation`` in order to enforce protection on ``what we know`` from the OpenAPI Spec file.
-But we kept the ``Fall Through Mode`` to ``Allow`` so that we do not break the application or impact business down when DevOps push a new version of the API, but SecOps are not ready or up to date.
+F5 solutions can detect and protect APIs during the full API develoment lifecycle which includes also to learn API endpoints and further information to e.g. build the schema from the source code the developers create and maintain on the code repository.
 
-The ``API Discovery`` will provide visility for SecOps in order to see this ``Drift``. This Drift is the difference between ``what we know`` and ``what we see / what is consumed``
+We use the "Sentence application" source code for this lab: https://github.com/ca-scans/sentence-source-code-v2
 
-.. image:: ../pictures/slide-api-discovery.png
-   :align: center
-   :scale: 40%
 
-Enable Endpoint Discovery
--------------------------
+.. note:: There is also a video and a FAQ available for F5 employees
 
-* Edit your Load Balancer again, go to API Protection and enable ``API Discovery`` (keep the default settings)
+ * FAQ -  XC API code scan `FAQ <https://f5.sharepoint.com/sites/SalesCoP/SitePages/XC-API-code-scan-FAQ.aspx>`_
+ * Video – API discovery from `code <https://f5.sharepoint.com/sites/SalesCoP/SitePages/API-discovery-from-code---introduction-video.aspx>`_
 
-.. image:: ../pictures/enable-api-discovery.png
-   :align: left
-   :scale: 40%
+|
 
-Enable PII Discovery
---------------------
+Enable Code Base Integration
+----------------------------
 
-OWASP Top10 API requires to detect and discover sensitive datas in Requests and Responses. F5 Distributed Cloud supports this and provides a predefined list of known PII (Personal Identifiable Information), such as:
+* Goto Web App & API Protection > API Management > Code Base Ingration
+* Add a new "Code Base Integration" with the following values
 
-* email
-* credit card number
-* US Social Security Number
-* IP address
+  * Name: ``github-sentence``
+  * Code base: ``Github Integration``
+  * Github UserName: ``please check the "internal" tab in the UDF deployment for the username``
+  * GitHub Personal Access Token: ``please check the "internal" tab in the UDF deployment for the token``
 
-But you want to detect your own PII, such as:
-
-* Country Social Security Number
-* Mobile Phone Number
-* Etc ...
-
-Create custom PII
-^^^^^^^^^^^^^^^^^
-
-* In Sensitive Data Detection, click on ``configure``.
-* Add two new ``Defined Custom Sensitive Data Types``, enable detection for ``All Endpoint, Request and Response, Value Pattern``
-
-  * For France/French SSN, use this regex ``[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})``
   
-  * For France/French Mobile Phone, use this regex ``^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$``
-
-.. image:: ../pictures/pii.png
+.. image:: ../pictures/code-base-integration-username.png
    :align: left
-   :scale: 50%
 
 |
 
-.. image:: ../pictures/pii2.png
+* Click on Configure under "GitHub Personal Access Token" to enter the token into "Secret to Blindfold". 
+
+.. image:: ../pictures/code-base-integration-token-blindfold.png
+      :align: left
+
+
+* Click Apply and Save and Exit
+* Go to settings and change it as shown in the screenshot below to display further information. The Health status should change from "INITIALIZING" to "CONNECTED".
+
+.. image:: ../pictures/code-base-integration-initializing-and-show-settings.png
    :align: left
-   :scale: 50%
+
 |
 
-.. image:: ../pictures/pii-both.png
+* XC is going to scan the code, so give it some time until you see further updates on e.g. the "Number of API Repositories"  
+
+.. image:: ../pictures/code-base-integration-connected.png
    :align: left
-   :scale: 50%
+
 |
 
-* SAVE your Load Balancer changes
+Assign the Code Base Integration to the Load Balancer
+-----------------------------------------------------
+
+* Edit your Load Balancer, go to the API Protection and enable API Discovery (keep the default settings)
 
 
-Run the traffic generator script
---------------------------------
+.. image:: ../pictures/API-discovery-enable.png
+   :align: left
 
-It is time to run a traffic generator script to populate the logs and the AI/ML engines.
+1. In the same configuration screen, look for API repositories and click on Configure
+2. In "Select Code Base Integrations" click on "Add Item"
+3. Select the previously created Code Base "github-sentence"
+4. Select "Selected API Repositories"
+5. Select ca-scans/sentence-source-code-v2
 
-* SSH or WEBSSH to the Jumphost
-* Run this script into /home/ubuntu/api-protection-lab folder
+.. image:: ../pictures/select-api-repo-code.png
+   :align: left
 
-.. code-block:: none
-
-   cd /home/ubuntu/api-protection-lab
-   bash api-all.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
-
+Select Apply twice and Save and Exit
