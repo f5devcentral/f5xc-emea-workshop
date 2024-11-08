@@ -1,5 +1,5 @@
-Enable API code scanning discovery (under construction)
-=======================================================
+Enable API code scanning discovery
+==================================
 
 F5 solutions can detect and protect APIs during the full API develoment lifecycle which includes also to learn API endpoints and further information to e.g. build the schema from the source code the developers create and maintain on the code repository.
 
