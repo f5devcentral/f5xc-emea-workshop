@@ -1,4 +1,4 @@
-Class 6 - AI Security
+Class 6 - AI Gateway
 #####################
 
 Lab Maintainers:
@@ -34,7 +34,7 @@ During this class we will explore how application using LLMs are developed and h
 
 .. raw:: html
     
-    <script>getStudentData('f5xcemeaaiworkshop');</script>
+    <script>getStudentData('f5xcemeaaigwworkshop');</script>
 
 
 .. toctree::
