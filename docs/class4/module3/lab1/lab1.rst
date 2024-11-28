@@ -41,7 +41,7 @@ This is the JWT we will use. You can copy / paste this JWT into https://jwt.io t
 
 .. code-block:: bash
 
-    eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meKeaPPsmcVeT9E7BAK_6aBZuA3mZwL-Q
+    eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImUyYmI0MTJiODNmZmQwNDJjOTczYmFmNmE4MmFlNGQyIn0.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE5ODUyNjg2MzQsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.WA7_DP40VK1kP76-S68qxadnTyRnaKXX9QvRL5Jhhq9tIJdNE8ULY27JY8-lpJ69F2Ne1bupoKv5Eu3QSWjOK5Etqe_pfqKhN_Yh5iyG7TmAE95h1yqehuRnPsvjaMXju7MY0nl_SGe774eXScOs-8GzkdXOVp--GMbERWsEjHTkbBlVrT4Mp2DmI3I7gKJoFGkYeSCf3MLI0rrIqMNzqrCy4cWoO2_Ttm17pfmDzcHgeyuYwN1p4m5Unq9_0SLIIg_CbrQLev2bKzft_n_-VWZaPz1VI1paqCeah5r7QIrTRRJjCJPGR9SSTMia8gvqnlDO5nnDami7y431VooiNwII5M3GVO9Uw7WHUw7lHG0HBfsvknC6-hfQbws-I5X3DhU2suKhCl_cNrST9nHLDS49uaF5c75yAEpUWgfukqQbZmaHvu7itFX8LoC1qhQWIHtFj-pkAvFTR82YwLsi8RrpGp4UNvUjxiISfXOr_SyvEvtp4wal2CMHIHea3bSv
 
 For this lab, we customised the Payload with several Claims. We will work with the Claims in the Access Control section.
 
@@ -52,7 +52,7 @@ For this lab, we customised the Payload with several Claims. We will work with t
         "sub": "sa@f5.com",
         "aud": "mylb-f5xc.f5se.com",
         "iat": 1713538501,
-        "exp": 1713539101,
+        "exp": 1985268634,
         "GivenName": "Bob",
         "LastName": "TheSponge",
         "Email": "bob@f5.com",
@@ -70,12 +70,12 @@ The JWKS is an array required by F5XC to check the JWT signature. For the lab we
     {
         "keys": [
             {
-                "kty": "RSA",
-                "e": "AQAB",
-                "use": "sig",
-                "kid": "AbkXtSo-G6BFmDUWqUiA-I8qkUl7mpL-aOw6N1dCnQY",
-                "alg": "RS256",
-                "n": "spXVIAhMBZfwxz1ORtnfb_Dg8DM2aZxTmKTDw-_xaSXMWXSDs2Sh18VtCL46pKhwPLCvhre9xplDyLgPn1HlLZ9yHiLWj8HSz-f1pI98fVw3kgwCSslB-y0DYN8JWR0ivb-3Meg2y0kGyaDC7gnnDyxi_lXe7i_VL9oCVeWsd01C7sxTPNkFO_DwGVsewU7207FKHgLWWyVEDRF81atkqD4VlUeVpE1asmxJaSGwAxOFo2U_LRMSC7gpR7bVydouF2IXtE6-mnbtdZ9JF3bTQzFZUziVW5zOjAQJYQKlarJbrqzjfp5UqyqSJU4zmHzUOhU4_L6hWyRLJOsQylAUsQ"
+              "alg": "RS256",
+              "e": "AQAB",
+              "kty": "RSA",
+              "n": "vS3RS_OLjGZKt7-UfdJH0N0yRC9JB64WeHUUmc-CeSh__E0SCZKu7oV0munxfKZmH7JPnKb1w8RnQaPfW0-pqKZgTNXlzqeSfEwL1bkmEZ8xyUBdN9zHDo7nioHUUPZKimJUIZDFhbic2VOh9oLI4wp2ucRk9uOgFbxFoAjtG_4cL2wKTAD-E0OB7qgw0f1mfKP5KeiSZCex8V7vnVA8jFqCY8rQMsNiC40H1odi-n6cvFI3LpwLN7GYTvKtwTWvw5CBTvAOjEK8avh7QzZyEVq9tNDuSywpdfQOkZjw0ThN25KmVRgYq_5igtDABRt54GLb9phyyDVeZjfBFh-r70H4rsfYlYqFmNCD8A6EwBlpOjO8gtmGQxXPM1GxLHOy-CnccmgzLduE8dDRnTssJ4TguG9Y41QYyrxIXJoyN4MaHOJwZc8qVHDEB2eP5MF8s1TltxKQwprxaV3XIBlHc7XaZCkJ7Dc9-Zrpi5bRlXoILRlL-bnovPglWfRvYlNv",
+              "use": "sig",
+              "kid": "e2bb412b83ffd042c973baf6a82ae4d2"
             }
         ]
     }
