@@ -13,7 +13,7 @@ The AI Orchestrator acts as the central hub of the entire AI system, managing th
 * **State Management**: The Orchestrator  maintains the state of the conversation, ensuring continuity across multiple user interactions.
 * **Error Handling**: It manages any errors or exceptions that occur during the process, ensuring graceful failure modes.
 
-**Ollama**
+**Ollama ( Inference Services )**
 
 Ollama is an advanced AI tool that facilitates the local execution of large language models (LLMs), such as Llama 2, Mistral, and in our case LLama 3.1 8B.
 The key Features of Ollama:
@@ -36,12 +36,12 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
     How should I approch investing in crypto ?
 
 
-.. image:: ../pictures/C6Slide6.PNG
+.. image:: ../pictures/Slide1.PNG
    :align: center
 
-1. **User** sends question to **AI Orchestrator**
-2. **AI Orchestrator** forwards the user prompt to the **LLM**
-3. **LLM** returns response to **AI Orchestrator**
-4. **AI Orchestrator** sends the **LLM** response back to the **user**
+1. **User** sends question to **LLM Orchestrator**
+2. **LLM Orchestrator** forwards the user prompt to the **LLM**
+3. **LLM** returns response to **LLM Orchestrator**
+4. **ALLM Orchestrator** sends the **LLM** response back to the **user**
 
 This is the most **basic interaction** with the **LLM**. The **LLM** response is generated based only from the **training data**.

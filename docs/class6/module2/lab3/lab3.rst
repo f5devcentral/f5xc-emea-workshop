@@ -4,9 +4,9 @@ Function calling
 
 Let's start by explaining the different functions.
 
-**AI Orchestrator**
+**LLM Orchestrator**
 
-The AI Orchestrator has additional roles when using it with LLM function calling:
+The LLM Orchestrator has additional roles when using it with LLM function calling:
 
 * **Function Calling**: When the LLM indicates a need for additional information, the Orchestrator manages API calls to relevant microservices (e.g., Users, Stocks) to fetch real-time data.
 
@@ -55,21 +55,19 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
 
 ::
 
-    How much Bitcoin can I buy with all my cash?
+    How many bitcoins to I have?
 
-.. image:: ../pictures/Slide10.PNG
+.. image:: ../pictures/Slide3.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
-2. **AI Orchestrator** combines the prompt + contextual data ( not shown in the diagram ) and sends it to the **LLM**
-3. **LLM** decides that it needs to know how much cash the users has and responses by asking the **AI Orchestrator** to run **get_user_data** with the relevant account ID
-4. **AI Orchestrator** runs the **get_user_data** which is an API call to the **users** microservice and gets the user balance
-5. **AI Orchestrator**  sends the retrieved balance to the **LLM**
-6. **LLM** decides that it still has not enough information and it needs to know the current Bitcoin price and responses by asking the **AI Orchestrator** to run **get_all_stock_prices** 
-7. **AI Orchestrator** runs the **get_all_stock_prices** which is an API call to the **Stocks** microservice and gets current Crypto prices
-8. **AI Orchestrator**  sends the retrieved prices to the **LLM** for final processing
-9. Based on all the information provided so far the **LLM** returns the response to **AI Orchestrator**
-10. **AI Orchestrator** sends the **LLM** response back to the **user**
+2. **LLM Orchestrator** combines the prompt + contextual data ( not shown in the diagram ) and sends it to the **LLM**
+3. **LLM** decides that it needs to know how much cash the users has and responses by asking the **LLM Orchestrator** to run **get_user_data** with the relevant account ID
+4. **LLM Orchestrator** runs the **get_user_data** which is an API call to the **users** microservice and gets the user balance
+5. The internal app microservice respond to the API call with the relevant **user** data
+8. **LLM Orchestrator**  sends the retrieved user data to the **LLM** for final processing
+9. Based on all the information provided so far the **LLM** returns the response to **LLM Orchestrator**
+10. **LLM Orchestrator** sends the **LLM** response back to the **user**
 
 
 Bot joke to make things clear :)
