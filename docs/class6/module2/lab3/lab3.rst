@@ -65,9 +65,9 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
 3. **LLM** decides that it needs to know how much cash the users has and responses by asking the **LLM Orchestrator** to run **get_user_data** with the relevant account ID
 4. **LLM Orchestrator** runs the **get_user_data** which is an API call to the **users** microservice and gets the user balance
 5. The internal app microservice respond to the API call with the relevant **user** data
-8. **LLM Orchestrator**  sends the retrieved user data to the **LLM** for final processing
-9. Based on all the information provided so far the **LLM** returns the response to **LLM Orchestrator**
-10. **LLM Orchestrator** sends the **LLM** response back to the **user**
+6. **LLM Orchestrator**  sends the retrieved user data to the **LLM** for final processing
+7. Based on all the information provided so far the **LLM** returns the response to **LLM Orchestrator**
+8. **LLM Orchestrator** sends the **LLM** response back to the **user**
 
 
 Bot joke to make things clear :)

@@ -3,7 +3,8 @@ Inserting AI Gateway in the traffic flow
 
 Now that we have an understanding of what AI Gateway is and how it works we will need to achive the bellow architecture.
 
-**HERE WILL BE A DIAGRAM**
+.. image:: ../pictures/Slide4.PNG
+   :align: center
 
 1. First we need to modify the Arcadia Crypto App to point to the **AIGW** instead of the Ollama endpoint
 
