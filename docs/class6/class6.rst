@@ -22,7 +22,7 @@ The following components are used within the application:
 
 AI Components
 
-* **AI Orchestrator** - is in charge of getting the user prompt, storing the conversation and orchastrating all other AI components
+* **LLM Orchestrator** - is in charge of getting the user prompt, storing the conversation and orchastrating all other AI components
 * **RAG** - contains Arcadia Crypto specific knowledge which isn't available to the LLM 
 * **Ollama** - is hosting the LLM. In our case we are using LLama 3.1 8B with Q4 quantization
 

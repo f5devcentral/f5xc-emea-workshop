@@ -15,7 +15,7 @@ RAG is a crucial component that enhances the AI's ability to provide accurate an
 * **Dynamic Updates**: The RAG system can be updated regularly to include new information, ensuring that the AI always has access to the latest data about Arcadia Crypto and the cryptocurrency market.
 
 
-**AI Orchestrator**
+**LLM Orchestrator**
 
 The AI Orchestrator has additional roles when using the RAG system:
 
@@ -47,15 +47,15 @@ Now, let's add data to the RAG system.
 
 
 
-.. image:: ../pictures/Slide8.PNG
+.. image:: ../pictures/Slide2.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
-2. **AI Orchestrator** queries the **RAG** with the user prompt to get **contextual data**
+2. **LLM Orchestrator** queries the **RAG** with the user prompt to get **contextual data**
 3. **RAG** responds with up to 5 chunks of **contextual data**
-4. **AI Orchestrator** combines the **prompt + contextual data** and sends it to the **LLM** 
-5. **LLM** returns response to **AI Orchestrator**
-6. **AI Orchestrator** sends the **LLM** response back to the **user**
+4. **LLM Orchestrator** combines the **prompt + contextual data** and sends it to the **LLM** 
+5. **LLM** returns response to **LLM Orchestrator**
+6. **LLM Orchestrator** sends the **LLM** response back to the **user**
 
 
 When using RAG systems, we can enhance the overall knowledge of the LLM with specific information.
