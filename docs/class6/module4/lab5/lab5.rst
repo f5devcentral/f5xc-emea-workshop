@@ -1,4 +1,4 @@
-LLM06: Sensitive Information Disclosure
+LLM02: Sensitive Information Disclosure
 #######################################
 
 **Definition**: LLM applications have the potential to reveal sensitive information, proprietary algorithms, or other confidential details through their output. This can result in unauthorized access to sensitive data, intellectual property, privacy violations, and other security breaches. It is important for consumers of LLM applications to be aware of how to safely interact with LLMs and identify the risks associated with unintentionally inputting sensitive data that may be subsequently returned by the LLM in output elsewhere.
@@ -11,28 +11,100 @@ LLM06: Sensitive Information Disclosure
 
    The contact information is sensitive and you might not want to share it freely. The information has been added to the RAG system by mistake.
 
-2. Go to the **Prompt Security** UI policy and enable the verification for **Sensitive Data** **Response**.
-   
-   Restart the chat and try the same prompt again.
 
-3. Check in the **Prompt Security** UI activity logs the reason why it was blocked
+2. Copy paste the config new config and push it to the AI Gateway.
 
+   .. code-block:: console
 
-.. image:: ./../pictures/Slide9.PNG
-   :align: center
+      cat << EOF > /home/ubuntu/aigw/lab5.yaml
+      mode: standalone
+      adminServer:
+        address: :8080
+      server:
+        address: :4141
+      
+      # The routes determine on what URL path the AIGW is listening
+      routes:
+        - path: /api/chat
+          policy: arcadia_ai_policy
+          timeoutSeconds: 600
+          schema: openai
+      
+      # What policy is applied to the route
+      policies:
+        - name: arcadia_ai_policy
+          profiles:
+            - name: default      
+      
+      # To what LLM endpoint we forward the request to
+      services:
+        - name: ollama
+          executor: http    
+          config:
+            endpoint: "http://$$ollama_public_ip$$:11434/api/chat"
+            schema: ollama-chat  
+            
+        - name: ollama-mistral
+          executor: http    
+          config:
+            endpoint: "http://$$ollama_public_ip$$:11434/api/chat"
+            schema: ollama-chat-mistral
+      
+      # What do we do with the request, at the moment we just forward it
+      profiles:
+        - name: default
+          inputStages:
+            - name: analyze
+              steps:
+                - name: language-id
+            - name: protect
+              steps:
+                - name: prompt-injection     
 
-1. **User** sends question to **AI Orchestrator**
+          responseStages:
+            - name: protect
+              steps:                
+                - name: pii-redactor
+                
+          services:
+            - name: ollama
+            - name: ollama-mistral      
+              selector:
+                tags:
+                  - "language-id:fr"       
+      
+      # Here we will find all our processor configuration
+      processors:
+        - name: language-id
+          type: external
+          config:
+            endpoint: "http://aigw-processors-f5:8000"
+            version: 1
+            namespace: f5
+            
+        - name: prompt-injection
+          type: external
+          config:
+            endpoint: "http://aigw-processors-f5:8000"
+            version: 1
+            namespace: f5
+          params:
+            threshold: 0.5 # Default 0.5
+            reject: true # Default True
+            skip_system_messages: true # Default true
 
-2. **AI Orchestrator** queries the **RAG** with the user prompt to get **contextual data**
+        - name: pii-redactor
+          type: external
+          config:
+            endpoint: "http://aigw-processors-f5:8000"
+            version: 1
+            namespace: f5
+          params:
+            threshold: 0.2 # Default 0.2
+            allow_rewrite: true # Default false                        
+            denyset: ["EMAIL","PHONE_NUMBER","STREETADDRESS","ZIPCODE"]
+      EOF
 
-3. **RAG** responds with up to 5 chunks of **contextual data**
+      curl --data-binary "@/home/ubuntu/aigw/lab5.yaml" http://localhost:8080/v1/config
 
-a. **AI Orchestrator** sends the question + contextual data + system prompt to  **Prompt Security** for verification. If a block verdict is received the AI Orchestrator will interrupt the flow and respond with a “I can not do that.” message to the user. Otherwise, the flow continues
-
-4. **AI Orchestrator** combines the **prompt + contextual data** and sends it to the **LLM** 
-
-5. **LLM** returns response to **AI Orchestrator**
-
-b. **AI Orchestrator** sends the response + system prompt to  **Prompt Security** for verification. If a block verdict is received the AI Orchestrator will interrupt the flow and respond with a “I can not do that.” message to the user. Otherwise, the flow continues
-
-6. **AI Orchestrator** sends the **LLM** response back to the **user**
+3. Restart the ChatBot session and ask the same question again. You will see that the defined PII **["EMAIL","PHONE_NUMBER","STREETADDRESS","ZIPCODE"]** will be redacted
