@@ -1,44 +1,39 @@
-Prompt Security
-###############
+AI Gateway
+##########
 
-Prompt Security is a platform designed to protect organizations from the various risks associated with Generative AI (GenAI). It addresses several critical security concerns that arise from the use of AI technologies, particularly those involving large language models (LLMs).
+F5 **AI Gateway** is a specialized platform designed to route, protect, and manage generative AI traffic between clients and Large Language Model (LLM) backends. It addresses the unique challenges posed by AI applications, particularly their non-deterministic nature and the need for bidirectional traffic monitoring.
 
-Key Functions of Prompt Security:
+The main AI Gateway functions are:
 
-* **Protection Against Prompt Injection**: Prompt injection is a technique where attackers manipulate AI inputs to produce unintended or harmful outputs. Prompt Security helps prevent this by inspecting prompts and model responses to block harmful content and secure against GenAI-specific attacks
-* **Data Privacy and Intellectual Property Protection**: The platform aims to prevent data leaks and the unauthorized disclosure of proprietary information embedded in system prompts. This is crucial in maintaining data privacy and protecting intellectual property.
-* **Denial of Wallet/Service Mitigation**: These attacks involve excessive engagement with LLM-based applications, leading to resource overuse and potential financial costs. Prompt Security helps mitigate these risks by monitoring and managing resource consumption.
-* **Privilege Escalation Prevention**: By monitoring for and blocking prompts that could lead to unauthorized access, Prompt Security helps prevent privilege escalation, ensuring that AI systems do not grant more access than intended.
-* **Comprehensive Visibility and Governance**: The platform provides enterprise leaders with visibility and governance over AI tools used within their organizations, ensuring that AI adoption is secure and compliant with internal policies and regulations.
+* Implementing traffic steering policies
+* Inspects and filters client requests and LLM responses
+* Prevents malicious inputs from reaching LLM backends
+* Ensures safe LLM responses to clients
+* Protects against sensitive information leaks
+* Providing comprehensive logging of all requests and responses
+* Generating observability data through OpenTelemetry
 
-Accessing the **Prompt Security** UI
-------------------------------------
+Core
+""""
 
-1. Browse to https://prompt-security.workshop.emea.f5se.com/ and login into the system
+The AI Gateway core handles HTTP(S) requests destined for an LLM backend. It performs the following tasks:
 
-   .. table:: 
-      :widths: auto
+* Performs Authn/Authz checks, such as validating JWTs and inspecting request headers.
+* Parses and performs basic validation on client requests.
+* Applies processors to incoming requests, which may modify or reject the request.
+* Selects and routes each request to an appropriate LLM backend, transforming requests/responses to match the LLM/client schema.
+* Applies processors to the response from the LLM backend, which may modify or reject the response.
+* Optionally, stores an auditable record of every request/response and the specific activity of each processor. These records can be exported to AWS S3 or S3-compatible storage.
+* Generates and exports observability data via OpenTelemetry.
+* Provides a configuration interface (via API and a config file).
 
-      ====================    ========================================================================================
-      Object                  Value
-      ====================    ========================================================================================
-      **Username**            sorinboia@gmail.com
+Processors
+""""""""""
 
-      **Password**            Can be found in the documentation of the UDF
-      ====================    ========================================================================================
+A processor runs separately from the core and can perform one or more of the following actions on a request or response:
 
-2. Click on the **gear** icon in the top right corner → **Create homegrown applications connector**
+* **Modify**: A processor may rewrite a request or response. For example, by redacting credit card numbers.
+* **Reject**: A processor may reject a request or response, causing the core to halt processing of the given request/response.
+* **Annotate**: A processor may add tags or metadata to a request/response, providing additional information to the administrator. The core can also select the LLM backend based on these tags.
 
-3. Give the connector a name, this will represent your AI Security Policy config. When viewing or making changes allways make sure that you are using this connector.
-
-4. The policy has been created with best practices configuration. In order for us to explore the configuration and capabilities we will uncheck all the boxes, **do that now** and click **Save**
-
-5. Go to the **Deployment** tab and copy the **API key** when traffic will be sent to Prompt Security for inspection you will use this API Key to enable the policy you just created.
-
-6. Replace the **api-key** in the bellow curl command and run it
-
-   .. code-block:: none
-
-      curl -s -k -X POST https://$$hostArcadia$$/v1/ai/security-config \
-        -H "Content-Type: application/json" \
-        -d '{"llmSecurityHost":"prompt-security.workshop.emea.f5se.com", "llmSecurityAppId":"api-key"}'
+Each processor provides specific protection or transformation capabilities to AI Gateway. For example, a processor can detect and remove Personally Identifiable Information (PII) from the input or output of the AI model.
