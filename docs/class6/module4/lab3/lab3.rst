@@ -5,7 +5,7 @@ One of the AIGW capabilities is to use processors to tag prompts and make routin
 
 We are going to configure our first **processor**. The processor will indetify the prompt language and it will tag it so that the **AIGW Core** will route it to a specialized LLM.
 
-In our application we want to fully support the French language. To achive this we have deployed a specialized model ( phi3 ) for the French language.
+In our application we want to fully support the French language. To achive this we have deployed a specialized model ( mistral ) for the Italian language.
 
 1. Copy paste the config new config and push it to the AI Gateway.
 
@@ -43,7 +43,7 @@ In our application we want to fully support the French language. To achive this 
           executor: http    
           config:
             endpoint: "http://$$ollama_public_ip$$:11434/api/chat"
-            schema: ollama-chat-mistral
+            schema: ollama-mistral
       
       # What do we do with the request, at the moment we just forward it
       profiles:
@@ -58,7 +58,7 @@ In our application we want to fully support the French language. To achive this 
             - name: ollama-mistral      
               selector:
                 tags:
-                  - "language-id:fr"       
+                  - "language:it"       
       
       # Here we will find all our processor configuration
       processors:
@@ -72,4 +72,4 @@ In our application we want to fully support the French language. To achive this 
 
       curl --data-binary "@/home/ubuntu/aigw/lab3.yaml" http://localhost:8080/v1/config
 
-2. Go ahead and chat with the **ChatBot** in French, **Comment ça va ?** .
+2. Go ahead and chat with the **ChatBot** in Italian, **Come va la tua giornata, amico mio, tutto bene?** .
