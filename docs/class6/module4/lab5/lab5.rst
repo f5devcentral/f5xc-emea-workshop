@@ -48,7 +48,7 @@ LLM02: Sensitive Information Disclosure
           executor: http    
           config:
             endpoint: "http://$$ollama_public_ip$$:11434/api/chat"
-            schema: ollama-chat-mistral
+            schema: ollama-mistral
       
       # What do we do with the request, at the moment we just forward it
       profiles:
@@ -71,7 +71,7 @@ LLM02: Sensitive Information Disclosure
             - name: ollama-mistral      
               selector:
                 tags:
-                  - "language-id:fr"       
+                  - "language:it"       
       
       # Here we will find all our processor configuration
       processors:
