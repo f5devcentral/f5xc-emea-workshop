@@ -30,12 +30,6 @@ AI Components
 During this class we will explore how application using LLMs are developed and how to protect them.
 
 
-.. note:: Before you procced to the lab it is mandatory to enter the email that you have joined the UDF with in order to populate any dynamic content. If all good the button will turn green.
-
-.. raw:: html
-    
-    <script>getStudentData('f5xcemeaaigwworkshop');</script>
-
 
 .. toctree::
    :maxdepth: 2

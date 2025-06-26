@@ -1,61 +1,144 @@
-RAG implementation
-##################
+Inserting AI Gateway in the traffic flow
+########################################
 
-Let's start by explaining the different functions.
+Now that we have an understanding of what AI Gateway let's explore how AIGW is deployed in our environment and how it is integrated with the Arcadia Crypto application.
 
-**RAG (Retrieval-Augmented Generation)**  
-
-RAG is a crucial component that enhances the AI's ability to provide accurate and contextually relevant responses. Here's a detailed breakdown of its function:
-
-* **Purpose**: RAG combines the power of large language models with the ability to retrieve specific, up-to-date information from a knowledge base.
-* **Knowledge Base**: RAG maintains a repository of information relevant to Arcadia Crypto. This could include details about cryptocurrencies, trading strategies, market trends, company policies, and user guides.
-* **Information Retrieval**: When a user query is received, RAG searches its knowledge base for the most relevant pieces of information. It can return up to 5 chunks of contextual data related to the query.
-* **Vector Embeddings**: RAG likely uses vector embeddings to represent both the user's query and the documents in its knowledge base. This allows for efficient semantic search, finding information that's conceptually related even if it doesn't contain exact keyword matches.
-* **Ranking Algorithm**: RAG employs a sophisticated ranking algorithm to determine which pieces of information are most relevant to the user's query. This ensures that the most pertinent information is provided to the AI model.
-* **Dynamic Updates**: The RAG system can be updated regularly to include new information, ensuring that the AI always has access to the latest data about Arcadia Crypto and the cryptocurrency market.
-
-
-**LLM Orchestrator**
-
-The AI Orchestrator has additional roles when using the RAG system:
-
-* **RAG Integration**: The Orchestrator sends user queries to the RAG system to retrieve relevant contextual information.
-* **Prompt Construction**: It combines the user's query with the contextual information from RAG and any necessary system prompts to create a comprehensive input for the language model.
-
-Understanding the interactions
-------------------------------
-
-Go to the **AI Assistant** start a new conversation and ask him the bellow question, did you find out who the CEO is?
-
-::
-
-    Who is the Arcadia CEO?
-
-The reason we couldn't find out who the CEO is is because is because the LLM doesn't have specific knowldge about Arcadia Crypto and we also haven't provided more information through the RAG system.
-Now, let's add data to the RAG system.
-
-1. Download `companyinfo`_ file which contains Arcadia Crypto specific information.
-
-.. _companyinfo: ../../../_static/files/company_info.txt
-
-2. Browse to :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/v1/ai-rag/` and upload the **companyinfo** file
-
-3. Enter :code:`Who is the Arcadia CEO?` in the **Query** and click **Send**.
-   You will see up to 5 different text blocks of relevant information. This is the same information that the **AI Orchestrator** will retrive for this prompt
-
-4. Reset the chat with the **AI Assistant** and ask the question again. Did you get any relevant information this time?
-
-
-
-.. image:: ../pictures/Slide2.PNG
+.. image:: ../pictures/Slide4.PNG
    :align: center
 
-1. **User** sends question to **AI Orchestrator**
-2. **LLM Orchestrator** queries the **RAG** with the user prompt to get **contextual data**
-3. **RAG** responds with up to 5 chunks of **contextual data**
-4. **LLM Orchestrator** combines the **prompt + contextual data** and sends it to the **LLM** 
-5. **LLM** returns response to **LLM Orchestrator**
-6. **LLM Orchestrator** sends the **LLM** response back to the **user**
+
+1. From now on the configuration we will do is from the Jumphost bash, to access it go to **Access** under **Jumphost** -> **Web Shell** and change to the **ubuntu** user.
+
+   .. code-block:: console
+
+     su ubuntu
+     
+2. AIGW has been deployed using helm in the **AIGW** namespace.
+
+   .. code-block:: console
+
+     ubuntu@ubuntu:~$ kubectl get pods -n aigw
+     NAME                                                 READY   STATUS    RESTARTS   AGE
+     aigw-ui-66cb6cb9b9-ddh79                             1/1     Running   0          39m
+     aigw-processor-labs-data-security-7c8bb7bf88-dsvgd   1/1     Running   0          20m
+     aigw-processor-labs-prompt-guard-78f69dcc66-knckl    1/1     Running   0          20m
+     aigw-77db7898c7-rt7sx                                1/1     Running   0          20m
+     aigw-processors-f5-64d58f5487-cg8xp                  1/1     Running   0          2m15s
+     minio-deployment-68f57dbd5-5ld4j                     1/1     Running   0          88s
+
+   **aigw-77db7898c7-rt7sx** is the core container.
+
+   **aigw-processors-f5-64d58f5487-cg8xp** is one of the processors containers.
+
+   **aigw-processor-labs-data-security-7c8bb7bf88-dsvgd** is one of the processors containers.
+
+   **aigw-processor-labs-prompt-guard-78f69dcc66-knckl** is one of the processors containers.
+
+3. These are the helm initial values used to deploy the AI Gateway:
+
+   .. code-block:: yaml
+
+      ubuntu@ubuntu:~$ helm get values aigw
+      USER-SUPPLIED VALUES:
+      aigw:
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: minioadmin
+        - name: AWS_REGION
+          value: us-west-2
+        - name: AWS_SECRET_ACCESS_KEY
+          value: minioadmin
+        - name: AWS_ENDPOINT_URL
+          value: http://minio-data.aigw.svc.cluster.local:9000
+        exporter:
+          enabled: true
+          s3Bucket: aigw
+          s3UsePathStyle: true
+          type: s3
+        image:
+          tag: v1.1.0
+        service:
+          port: 4141
+          type: NodePort
+      config:
+        contents: |+
+          server:
+            address: ':4141'
+            tls:
+              enabled: false
+            mtls:
+              enabled: false
+          routes:
+            - schema: v1/chat_completions
+              path: /api/chat
+              policy: ollama
+              timeoutSeconds: 500
+          policies:
+            - profiles:
+                - name: ollama
+              name: ollama
+          profiles:
+            - services:
+                - name: ollama
+              name: ollama
+
+          services:
+            - executor: ollama
+              config:
+                endpoint: http://34.216.15.125:11434/api/chat
+              name: ollama
+              type: llama3.1:8b
+
+        name: aigw
+      imagePullSecrets:
+      - name: f5-registry-secret
+      processorLabs:
+        dataSecurity:
+          enabled: true
+          image:
+            tag: v0.0.1
+        promptGuard:
+          enabled: true
+          image:
+            tag: v0.0.1
+      processors:
+        f5:
+          image:
+            tag: v1.1.0
+
+4. The **LLM Orchestrator** is sending the traffic to the core container within the K8s cluster.
+
+   .. code-block:: console
+      
+     ubuntu@ubuntu:~$ kubectl  get svc aigw -n aigw
+     NAME   TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+     aigw   NodePort   172.17.0.149   <none>        4141:30941/TCP   79d
+
+   .. code-block:: console
+       
+     ubuntu@ubuntu:~$ kubectl  get deployment -n arcadiacrypto arcadia-ai -ojson | jq .spec.template.spec.containers[0].env
+     [
+       {
+         "name": "LLM",
+         "value": "aigw.aigw.svc.cluster.local:4141"
+       },
+       {
+         "name": "STOCKTAPIHOST",
+         "value": "arcadia-stock-transaction"
+       },
+       {
+         "name": "LLMMODEL",
+         "value": "none"
+       }
+     ]
+
+5. In order to see access logs that pass through the AIGW click on **Access** under **MicroK8s** -> **AIGW Experimmental UI** -> **Monitor** -> **Access** -> **Fetch Logs**
+   
+   This is **not part of the official product and should be treated as an opensource project in terms of support**.
 
 
-When using RAG systems, we can enhance the overall knowledge of the LLM with specific information.
+6. In the next parts of the lab we will demonstrate how an LLM can be attacked and how we can protect it with AIGW.
+
+   The AIGW configs will not be shown directly in the lab guide since they might change over time but they can be observed in the Jumphost bash.
+
+   For each step we will provide the relevant helm command and the path to the config file.

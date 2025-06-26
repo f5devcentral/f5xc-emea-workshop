@@ -1,47 +1,39 @@
-LLM only
-########
+AI Gateway
+##########
 
-Let's start by explaining the different functions.
+F5 **AI Gateway** is a specialized platform designed to route, protect, and manage generative AI traffic between clients and Large Language Model (LLM) backends. It addresses the unique challenges posed by AI applications, particularly their non-deterministic nature and the need for bidirectional traffic monitoring.
 
-**AI Orchestrator**
+The main AI Gateway functions are:
 
-The AI Orchestrator acts as the central hub of the entire AI system, managing the flow of information between various components. Here's a detailed look at its functions:
+* Implementing traffic steering policies
+* Inspects and filters client requests and LLM responses
+* Prevents malicious inputs from reaching LLM backends
+* Ensures safe LLM responses to clients
+* Protects against sensitive information leaks
+* Providing comprehensive logging of all requests and responses
+* Generating observability data through OpenTelemetry
 
-* **Request Handling**: It receives and processes user queries, preparing them for further processing.
-* **LLM Interaction**: The Orchestrator sends the constructed prompt to Ollama (the LLM) and receives its responses.
-* **Response Formatting**: It processes the LLM's output, potentially formatting or filtering it before sending it back to the user.
-* **State Management**: The Orchestrator  maintains the state of the conversation, ensuring continuity across multiple user interactions.
-* **Error Handling**: It manages any errors or exceptions that occur during the process, ensuring graceful failure modes.
+Core
+""""
 
-**Ollama ( Inference Services )**
+The AI Gateway core handles HTTP(S) requests destined for an LLM backend. It performs the following tasks:
 
-Ollama is an advanced AI tool that facilitates the local execution of large language models (LLMs), such as Llama 2, Mistral, and in our case LLama 3.1 8B.
-The key Features of Ollama:
+* Performs Authn/Authz checks, such as validating JWTs and inspecting request headers.
+* Parses and performs basic validation on client requests.
+* Applies processors to incoming requests, which may modify or reject the request.
+* Selects and routes each request to an appropriate LLM backend, transforming requests/responses to match the LLM/client schema.
+* Applies processors to the response from the LLM backend, which may modify or reject the response.
+* Optionally, stores an auditable record of every request/response and the specific activity of each processor. These records can be exported to AWS S3 or S3-compatible storage.
+* Generates and exports observability data via OpenTelemetry.
+* Provides a configuration interface (via API and a config file).
 
-* **Local Execution**: Users can run powerful language models directly on their machines, enhancing privacy and control over data.
-* **Model Customization**: Ollama supports the creation and customization of models, allowing users to tailor them for specific applications, such as chatbots or summarization tools.
-* **User-Friendly Setup**: The tool provides an intuitive interface for easy installation and configuration, currently supporting macOS and Linux, with Windows support planned for the future.
-* **Diverse Model Support**: Ollama supports various models, including Llama 2, uncensored Llama, Code Llama, and others, making it versatile for different natural language processing tasks.
-* **Open Source**: Ollama is an open-source platform, which means its source code is publicly available, allowing for community contributions and transparency.
+Processors
+""""""""""
 
+A processor runs separately from the core and can perform one or more of the following actions on a request or response:
 
+* **Modify**: A processor may rewrite a request or response. For example, by redacting credit card numbers.
+* **Reject**: A processor may reject a request or response, causing the core to halt processing of the given request/response.
+* **Annotate**: A processor may add tags or metadata to a request/response, providing additional information to the administrator. The core can also select the LLM backend based on these tags.
 
-Understading the interactions
------------------------------
-
-Go to the **AI Assistant** start a new conversation and ask him the bellow question.
-
-::
-
-    How should I approch investing in crypto ?
-
-
-.. image:: ../pictures/Slide1.PNG
-   :align: center
-
-1. **User** sends question to **LLM Orchestrator**
-2. **LLM Orchestrator** forwards the user prompt to the **LLM**
-3. **LLM** returns response to **LLM Orchestrator**
-4. **ALLM Orchestrator** sends the **LLM** response back to the **user**
-
-This is the most **basic interaction** with the **LLM**. The **LLM** response is generated based only from the **training data**.
+Each processor provides specific protection or transformation capabilities to AI Gateway. For example, a processor can detect and remove Personally Identifiable Information (PII) from the input or output of the AI model.
