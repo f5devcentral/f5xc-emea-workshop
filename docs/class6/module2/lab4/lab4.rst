@@ -1,7 +1,9 @@
-LLM02: Sensitive Information Disclosure
-=======================================
+Sensitive Information Disclosure
+================================
 
-**Definition**: LLM applications have the potential to reveal sensitive information, proprietary algorithms, or other confidential details through their output. This can result in unauthorized access to sensitive data, intellectual property, privacy violations, and other security breaches. It is important for consumers of LLM applications to be aware of how to safely interact with LLMs and identify the risks associated with unintentionally inputting sensitive data that may be subsequently returned by the LLM in output elsewhere.
+LLM applications have the potential to reveal sensitive information, proprietary algorithms, or other confidential details through their output. This can result in unauthorized access to sensitive data, intellectual property, privacy violations, and other security breaches. It is important for consumers of LLM applications to be aware of how to safely interact with LLMs and identify the risks associated with unintentionally inputting sensitive data that may be subsequently returned by the LLM in output elsewhere.
+
+For reference the **data security processor** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/processors/data-security.html`.
 
 Attack
 ------

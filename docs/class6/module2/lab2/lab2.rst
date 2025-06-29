@@ -3,6 +3,8 @@ Inserting AI Gateway in the traffic flow
 
 Now that we have an understanding of what AI Gateway let's explore how AIGW is deployed in our environment and how it is integrated with the Arcadia Crypto application.
 
+For reference the **AI Gateway** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/`.
+
 .. image:: ../pictures/Slide4.PNG
    :align: center
 

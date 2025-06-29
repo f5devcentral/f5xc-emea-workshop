@@ -5,6 +5,8 @@ Prompt Injection processor
 
 In this part of the lab, we are going to use this attack vector and **trick** the **AI Assistant** and expose information about a different user who is **NOT sorin@ngix.com**.
 
+For reference the **Prompt Injection processor** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/processors/prompt-injection.html`.
+
 
 Attack
 ------

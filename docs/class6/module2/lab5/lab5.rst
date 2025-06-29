@@ -1,7 +1,7 @@
 Allow only specific languages
 #############################
 
-
+For reference the **language identification processor** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/processors/language-id.html`.
 
 Attack
 ------
