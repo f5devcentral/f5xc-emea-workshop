@@ -2,12 +2,12 @@
 Getting to know the ChatBot
 ###########################
 
-Before we move forward we need to get a better understanding of how the ChatBot in Arcadia is working.  
-In the next sections we will go through the different capabilities of the ChatBot and how they have been implemented.
+Before we move forward, we need to get a better understanding of how the ChatBot in Arcadia works.
+In the next sections, we will go through the different capabilities of the ChatBot and how they have been implemented.
 
-1. In the UDF deployment click on **Components** -> **Access** under **MicroK8s** -> **Arcadia Onprem**
+1. In the UDF deployment, click on **Components** -> **Access** under **MicroK8s** -> **Arcadia Onprem**.
 
-2. Login with the following credentials
+2. Log in with the following credentials:
 
    .. table::
       :widths: auto
@@ -18,12 +18,12 @@ In the next sections we will go through the different capabilities of the ChatBo
       sorin@nginx.com                       nginx
       ==================================    ========================================================================================
 
-3. Click on **Exchange**
+3. Click on **Exchange**.
 
-4. Click on the bot on the right bottom
+4. Click on the bot at the bottom right.
 
    
-**Module 1 - All sections**
+**Module 1 – All sections**
 
 .. toctree::
    :maxdepth: 1

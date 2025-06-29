@@ -25,13 +25,13 @@ The AI Orchestrator has additional roles when using the RAG system:
 Understanding the interactions
 ------------------------------
 
-Go to the **AI Assistant** start a new conversation and ask him the bellow question, did you find out who the CEO is?
+Go to the **AI Assistant**, start a new conversation, and ask the following question: Did you find out who the CEO is?
 
 ::
 
     Who is the Arcadia CEO?
 
-The reason we couldn't find out who the CEO is is because is because the LLM doesn't have specific knowldge about Arcadia Crypto and we also haven't provided more information through the RAG system.
+The reason we couldn't find out who the CEO is, is because the LLM doesn't have specific knowledge about Arcadia Crypto, and we also haven't provided more information through the RAG system.
 Now, let's add data to the RAG system.
 
 1. Download `companyinfo`_ file which contains Arcadia Crypto specific information.
@@ -41,7 +41,7 @@ Now, let's add data to the RAG system.
 2. Browse to **https://<Arcadia App Domain>/v1/ai-rag/** and upload the **companyinfo** file
 
 3. Enter :code:`Who is the Arcadia CEO?` in the **Query** and click **Send**.
-   You will see up to 5 different text blocks of relevant information. This is the same information that the **AI Orchestrator** will retrive for this prompt
+   You will see up to 5 different text blocks of relevant information. This is the same information that the **AI Orchestrator** will retrieve for this prompt.
 
 4. Reset the chat with the **AI Assistant** and ask the question again. Did you get any relevant information this time?
 

@@ -1,19 +1,19 @@
 Custom Processors
 #################
 
-AI Gateway allows you to create  your own custom processors and insert them into the logic flow of the AI Gateway. This is useful when you want to implement a specific logic that is not covered by the existing processors.
+AI Gateway allows you to create your own custom processors and insert them into the logic flow of the AI Gateway. This is useful when you want to implement specific logic that is not covered by the existing processors.
 
-During this lab we will show how to integrate a previously created custom processor into the AI Gateway.
+During this lab, we will show how to integrate a previously created custom processor into the AI Gateway.
 
-The custom processor uses the Nvidia prompt task and complexity classifier open source model. More info can be found here :ext_link:`https://huggingface.co/nvidia/prompt-task-and-complexity-classifier`.
+The custom processor uses the Nvidia prompt task and complexity classifier open-source model. More info can be found here: :ext_link:`https://huggingface.co/nvidia/prompt-task-and-complexity-classifier`.
 
-We have use the AIGW Python SDK to create a custom processor that uses the Nvidia model to classify the complexity of the prompt and return the result to the AI Gateway. The code can be found here :ext_link:`https://github.com/sorinboia/processor-complexity-classifier`.
+We have used the AIGW Python SDK to create a custom processor that uses the Nvidia model to classify the complexity of the prompt and return the result to the AI Gateway. The code can be found here: :ext_link:`https://github.com/sorinboia/processor-complexity-classifier`.
 
-The AI Gateway configuration that will be applied will first include a new **service** which will point to the same ollama endpoint but to a different model which is specilized for **summarization**.
+The AI Gateway configuration that will be applied will first include a new **service** which will point to the same Ollama endpoint but to a different model specialized for **summarization**.
 
-When the task will be classified as **summarization** the prompt will be sent to the specilized model and not the dfault one.
+When the task is classified as **summarization**, the prompt will be sent to the specialized model and not the default one.
 
-For reference how to create a **custom processor** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/sdk/python/tutorial.html`.
+For reference, documentation on how to create a **custom processor** can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/sdk/python/tutorial.html`.
 
 
 1. The custom processor code has already been containarized and we need only to deploy it.      

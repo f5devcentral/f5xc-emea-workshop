@@ -2,9 +2,9 @@
 Protecting the AI Assistant
 ###########################
 
-Know that we know how the ChatBot works we need to understand what are the attack vectors our application is vulnerable to.
+Now that we know how the ChatBot works, we need to understand what attack vectors our application is vulnerable to.
 
-Let's go brifely over the attacks defined in **OWASP Top 10 GenAi**:
+Let's briefly go over the attacks defined in **OWASP Top 10 GenAI**:
 
 * **LLM01: Prompt Injection** occurs when user prompts alter the LLM's behavior in unintended ways through direct or indirect inputs, potentially causing the model to violate guidelines, generate harmful content, enable unauthorized access, or influence critical decisions, even when the manipulated content is imperceptible to humans.  
 * **LLM02: Sensitive Information Disclosure** happens when LLMs expose confidential data, including personal information, financial details, health records, proprietary algorithms, and security credentials through their outputs, potentially leading to unauthorized data access, privacy violations, and intellectual property breaches.  

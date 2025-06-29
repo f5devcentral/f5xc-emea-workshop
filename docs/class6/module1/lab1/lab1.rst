@@ -15,8 +15,8 @@ The AI Orchestrator acts as the central hub of the entire AI system, managing th
 
 **Ollama ( Inference Services )**
 
-Ollama is an advanced AI tool that facilitates the local execution of large language models (LLMs), such as Llama 2, Mistral, and in our case LLama 3.1 8B.
-The key Features of Ollama:
+Ollama is an advanced AI tool that facilitates the local execution of large language models (LLMs), such as Llama 2, Mistral, and in our case, Llama 3.1 8B.
+The key features of Ollama:
 
 * **Local Execution**: Users can run powerful language models directly on their machines, enhancing privacy and control over data.
 * **Model Customization**: Ollama supports the creation and customization of models, allowing users to tailor them for specific applications, such as chatbots or summarization tools.
@@ -25,15 +25,15 @@ The key Features of Ollama:
 * **Open Source**: Ollama is an open-source platform, which means its source code is publicly available, allowing for community contributions and transparency.
 
 
+Understanding the interactions
+------------------------------
 
-Understading the interactions
------------------------------
-
-Go to the **AI Assistant** start a new conversation and ask him the bellow question.
+Go to the **AI Assistant**, start a new conversation, and ask the following question.
 
 ::
 
-    How should I approch investing in crypto ?
+    How should I approach investing in crypto?
+
 
 
 .. image:: ../pictures/Slide1.PNG
@@ -42,6 +42,6 @@ Go to the **AI Assistant** start a new conversation and ask him the bellow quest
 1. **User** sends question to **LLM Orchestrator**
 2. **LLM Orchestrator** forwards the user prompt to the **LLM**
 3. **LLM** returns response to **LLM Orchestrator**
-4. **ALLM Orchestrator** sends the **LLM** response back to the **user**
+4. **LLM Orchestrator** sends the **LLM** response back to the **user**
 
-This is the most **basic interaction** with the **LLM**. The **LLM** response is generated based only from the **training data**.
+This is the most **basic interaction** with the **LLM**. The **LLM** response is generated based only on the **training data**.

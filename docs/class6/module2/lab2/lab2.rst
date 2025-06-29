@@ -1,21 +1,21 @@
 Inserting AI Gateway in the traffic flow
 ########################################
 
-Now that we have an understanding of what AI Gateway let's explore how AIGW is deployed in our environment and how it is integrated with the Arcadia Crypto application.
+Now that we have an understanding of what AI Gateway is, let's explore how AIGW is deployed in our environment and how it is integrated with the Arcadia Crypto application.
 
-For reference the **AI Gateway** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/`.
+For reference, the **AI Gateway** documentation can be found here: :ext_link:`https://aigateway.clouddocs.f5.com/`.
 
 .. image:: ../pictures/Slide4.PNG
    :align: center
 
 
-1. From now on the configuration we will do is from the Jumphost bash, to access it go to **Access** under **Jumphost** -> **Web Shell** and change to the **ubuntu** user.
+1. From now on, all configuration will be done from the Jumphost bash. To access it, go to **Access** under **Jumphost** -> **Web Shell** and switch to the **ubuntu** user.
 
    .. code-block:: console
 
      su ubuntu
      
-2. AIGW has been deployed using helm in the **AIGW** namespace.
+2. AIGW has been deployed using Helm in the **AIGW** namespace.
 
    .. code-block:: console
 
@@ -36,7 +36,7 @@ For reference the **AI Gateway** documentation can be found here: :ext_link:`htt
 
    **aigw-processor-labs-prompt-guard-78f69dcc66-knckl** is one of the processors containers.
 
-3. These are the helm initial values used to deploy the AI Gateway:
+3. These are the initial Helm values used to deploy the AI Gateway:
 
    .. code-block:: yaml
 
@@ -134,13 +134,13 @@ For reference the **AI Gateway** documentation can be found here: :ext_link:`htt
        }
      ]
 
-5. In order to see access logs that pass through the AIGW click on **Access** under **MicroK8s** -> **AIGW Experimmental UI** -> **Monitor** -> **Access** -> **Fetch Logs**
+5. To view access logs that pass through the AIGW, click on **Access** under **MicroK8s** -> **AIGW Experimental UI** -> **Monitor** -> **Access** -> **Fetch Logs**.
    
-   This is **not part of the official product and should be treated as an opensource project in terms of support**.
+   This is **not part of the official product and should be treated as an open-source project in terms of support**.
 
 
-6. In the next parts of the lab we will demonstrate how an LLM can be attacked and how we can protect it with AIGW.
+6. In the next parts of the lab, we will demonstrate how an LLM can be attacked and how we can protect it with AIGW.
 
-   The AIGW configs will not be shown directly in the lab guide since they might change over time but they can be observed in the Jumphost bash.
+   The AIGW configs will not be shown directly in the lab guide since they might change over time, but they can be observed in the Jumphost bash.
 
-   For each step we will provide the relevant helm command and the path to the config file.
+   For each step, we will provide the relevant Helm command and the path to the config file.

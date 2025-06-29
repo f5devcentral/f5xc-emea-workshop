@@ -13,7 +13,7 @@ The LLM Orchestrator has additional roles when using it with LLM function callin
 
 **Ollama (the LLM)**
 
-If the LLM which is hosted on the Ollama is the brain function calling is give it a body with hands and legs.
+If the LLM, which is hosted on Ollama, is the brain, function calling gives it a body with hands and legs.
 
 * **Function Calling**: When the LLM determines that it needs additional information to provide an accurate response, it can request specific data through function calls. For example, it might request current cryptocurrency prices or user account information.
 
@@ -48,25 +48,25 @@ Use Cases for Function Calling in Arcadia Crypto:
 * Use Case: When users inquire about their trading history or performance, this function can retrieve their recent transactions.
 * Example: "Show me my last 5 trades."
 
-Understading the interactions
------------------------------
+Understanding the interactions
+------------------------------
 
-Go to the **AI Assistant** start a new conversation and ask him the bellow question.
+Go to the **AI Assistant**, start a new conversation, and ask the following question.
 
 ::
 
-    How many bitcoins to I have?
+    How many bitcoins do I have?
 
 .. image:: ../pictures/Slide3.PNG
    :align: center
 
 1. **User** sends question to **AI Orchestrator**
 2. **LLM Orchestrator** combines the prompt + contextual data ( not shown in the diagram ) and sends it to the **LLM**
-3. **LLM** decides that it needs to know how much cash the users has and responses by asking the **LLM Orchestrator** to run **get_user_data** with the relevant account ID
+3. **LLM** decides that it needs to know how much cash the user has and responds by asking the **LLM Orchestrator** to run **get_user_data** with the relevant account ID
 4. **LLM Orchestrator** runs the **get_user_data** which is an API call to the **users** microservice and gets the user balance
-5. The internal app microservice respond to the API call with the relevant **user** data
+5. The internal app microservice responds to the API call with the relevant **user** data
 6. **LLM Orchestrator**  sends the retrieved user data to the **LLM** for final processing
-7. Based on all the information provided so far the **LLM** returns the response to **LLM Orchestrator**
+7. Based on all the information provided so far, the **LLM** returns the response to **LLM Orchestrator**
 8. **LLM Orchestrator** sends the **LLM** response back to the **user**
 
 

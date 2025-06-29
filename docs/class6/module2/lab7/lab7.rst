@@ -6,12 +6,12 @@ We hope you enjoyed the **AI Gateway**  lab and have gained a better understandi
 In case you just want to apply the full configuration at the same time for all that has been presented in this lab you can run the bellow commands.
 
 
-1. The deploy the custom processor.      
+1. Deploy the custom processor.
   .. code-block:: console
-  
-     kubectl  apply -f /home/ubuntu/configs/aigw/lab6_k8s.yaml
 
-2. Configure the AI Gateway by running the bellow command.
+     kubectl apply -f /home/ubuntu/configs/aigw/lab6_k8s.yaml
+
+2. Configure the AI Gateway by running the following command.
 
   .. code-block:: console
 
