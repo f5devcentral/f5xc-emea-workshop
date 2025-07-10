@@ -190,7 +190,6 @@ activeServicePolicies,
 ipi,
 userIdentification,
 botDefense,
-ddos,
 advertiseCustom,
 routes
 
@@ -222,7 +221,11 @@ routes
           "priority": 1,
           "endpoint_subsets": {}
         }
-      ]
+      ],
+      "l7_ddos_protection": {
+        "mitigation_block": {},
+        "ddos_policy_none": {}
+      },
     }
   }
 
@@ -306,12 +309,6 @@ routes
         "disable_mobile_sdk": {}
       },
       "timeout": 1000
-    }
-  }
-
-  if (ddos) {
-    config.spec.enable_ddos_detection = {
-      enable_auto_mitigation: {}
     }
   }
 

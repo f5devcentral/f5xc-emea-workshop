@@ -8,7 +8,7 @@ This will first provide us with built in visibility for the application behaviou
 .. image:: ./pictures/Slide1.png
    :align: center
 
-
+ 
 **Module 1 - All sections**
 
 .. toctree::

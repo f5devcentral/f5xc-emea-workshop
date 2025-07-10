@@ -339,7 +339,7 @@ function c1m9l1b({ instructions } = { instructions: 'Web App & API Protection ->
     ipi: ['SPAM_SOURCES','PROXY'],
     userIdentification: 'arcadia-user-identification',
     botDefense: 'enable',
-    ddos: 'enable',
+    
   });
   
   displayJSON(config, instructions);    
