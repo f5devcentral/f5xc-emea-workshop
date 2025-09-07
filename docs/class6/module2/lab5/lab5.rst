@@ -29,7 +29,7 @@ We will now configure the **AI Gateway** to allow only **English** language ques
 
    .. code-block:: console
 
-      helm upgrade aigw oci://private-registry.f5.com/aigw/charts/aigw  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab5.yaml
+      helm upgrade aigw .  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab5.yaml
 
 2. Restart the chat and run the attack again.
 
