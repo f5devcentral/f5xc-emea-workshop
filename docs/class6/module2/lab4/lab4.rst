@@ -33,7 +33,7 @@ The `AIGW processor labs` processors are a set of processors which are experimen
 
    .. code-block:: console
 
-      helm upgrade aigw oci://private-registry.f5.com/aigw/charts/aigw  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab4.yaml
+      helm upgrade aigw .  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab4.yaml
 
 2. Restart the chat and run the attack again.
 
