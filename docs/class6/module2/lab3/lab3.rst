@@ -30,7 +30,7 @@ We will now configure the **AI Gateway** to protect the AI Assistant by using th
 
    .. code-block:: console
 
-      helm upgrade aigw .  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab3.yaml
+      helm upgrade aigw /home/ubuntu/aigw/helm  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab3.yaml
 
 2. Restart the chat and run the attack again.
 

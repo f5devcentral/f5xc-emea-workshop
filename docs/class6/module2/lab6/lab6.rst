@@ -39,7 +39,7 @@ For reference, documentation on how to create a **custom processor** can be foun
 
   .. code-block:: console
 
-     helm upgrade aigw .  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab6_aigw.yaml
+     helm upgrade aigw /home/ubuntu/aigw/helm  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab6_aigw.yaml
 
 4. First ask the **AI Assistant** the bellow question. If you look in the access logs you can see it classified as **Open QA**. Look at the result of **processorResponse/v1** result.
 
