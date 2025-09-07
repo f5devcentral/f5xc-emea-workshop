@@ -15,5 +15,5 @@ In case you just want to apply the full configuration at the same time for all t
 
   .. code-block:: console
 
-     helm upgrade aigw .  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab7.yaml
+     helm upgrade aigw /home/ubuntu/aigw/helm  --namespace aigw --reuse-values --set-file config.contents=/home/ubuntu/configs/aigw/lab7.yaml
 
