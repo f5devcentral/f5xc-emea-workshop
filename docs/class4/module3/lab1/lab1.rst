@@ -1,6 +1,8 @@
 JWT validation and access control
 =================================
 
+**DO NOT RUN THROUGH THIS LAB !!!!!! FIX REQUIRED !!!!**
+
 JSON Web Token (JWT) validation is the process of verifying the authenticity and integrity of a JWT. A JWT is a JSON object that is used to represent a set of claims. It consists of a header, a payload, and a signature, and is typically used to transmit information that can be verified and trusted.
 
 JWT validation is typically used to authenticate requests to an API. When a client wants to make an authenticated request to an API, it sends a JWT in the request header. The API verifies the JWT to ensure that it has not been tampered with and that it was issued by a trusted party. If the JWT is valid, the API processes the request; if it is not valid, the API returns an error.
