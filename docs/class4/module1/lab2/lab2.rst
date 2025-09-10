@@ -6,9 +6,9 @@ Assign OpenAPI spec file to the LB
 
 |
 
-Download the file
-^^^^^^^^^^^^^^^^^
-Go to the link below and export the OpenAPI Spec file as **YAML unresolved** file. It defines the Sentence API app **without** the COLORS API endpoint.
+Copy Paste the SWAGGER File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Go to the link below and copy the OpenAPI Spec file on your laptop with extension .yaml. It defines the Sentence API app **without** the COLORS API endpoint.
 
 https://app.swaggerhub.com/apis/F5EMEASSA/API-Sentence-2022/v1-auth#/
 
