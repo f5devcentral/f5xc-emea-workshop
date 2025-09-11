@@ -18,7 +18,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Click the
       **Bot Defense Region**                        EU
       ==========================================    ========================================================================================
 
-b) On the same place click **Configure** under **Bot Defense Policy** -> Configure -> Add Item -> Fill the bellow data -> Apply -> Apply -> Apply -> Save and Exit
+b) On the same place click **Configure** under **Bot Defense Policy** -> Configure -> App Endpoint Type -> Configure -> Add Item -> Fill the bellow data -> Apply -> Apply -> Apply -> Save and Exit
 
    .. table::
       :widths: auto
@@ -29,6 +29,8 @@ b) On the same place click **Configure** under **Bot Defense Policy** -> Configu
       **Name**                                      login
    
       **HTTP Methods**                              POST
+
+      **Endpoint Label**                            Undefined
 
       **Prefix**                                    /v1/login
 
