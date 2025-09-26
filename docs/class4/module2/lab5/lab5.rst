@@ -85,10 +85,27 @@ After few minutes, you can click on Refresh button, you should see ``1 services`
 .. note:: At this stage, the BIG-IP is onboarded in F5 Distributed Cloud and API Discovery can be enabled on this BIG-IP (from the F5XC Console) so that the BIG-IP sends traffic logs to F5XC.
 
 
-
 Enable API Discovery on BIG-IP Virtual Server
 ---------------------------------------------
 
+Click on the ``1 Services`` blue link to be redirected to the Multi-Cloud App Connect ``discovered services`` page where we will enable the different features on the BIG-IP. If you are lost, you can access this page as well by Multi-Cloud App Connect tile > Overview > Discovered Services
+You can see now the BIG-IP Virtual Server 
+
+.. image:: ../pictures/mcn-vs.png
+   :align: left
+   :scale: 50%
+
+Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
+
+.. image:: ../pictures/enable-visibility.png
+   :align: left
+   :scale: 50%
+
+.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see 2 new Virtual add-service-discovery
+
+  .. image:: ../pictures/bigip-tmui.png
+   :align: left
+   :scale: 50%
 
 
 
