@@ -152,3 +152,8 @@ And then click on API Endpoints. You can see all the API Discovery Outcomes
 .. image:: ../pictures/cbip-outcomes.png
    :align: left
    :scale: 50%
+
+
+.. note:: As you can see, you are able to get all API Discovery added values for an on-premises BIG-IP without having to use a cloud HTTP LB. The traffic remains private in the datacenter on the BIG-IP and only anonymized logs are sent to the cloud to generate the API Discovery outcomes.
+
+  
