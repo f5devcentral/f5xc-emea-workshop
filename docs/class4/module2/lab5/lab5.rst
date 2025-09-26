@@ -1,5 +1,5 @@
-Enable API on-premises discovery  (under construction)
-======================================================
+Enable API discovery for BIG-IP (under construction)
+====================================================
 
 In the previous lab, we learnt how F5 Distributed Cloud can discover API Endpoints when those endpoints are exposed on F5 Distributed Cloud infrastructure. 
 But many modern applications (API firt) reside on-premises behind BIG-IP. In order to offer the same level of services, F5 deployed the on-premises API Discovery for BIG-IP.
@@ -52,7 +52,7 @@ Go to Multi-Cloud App Connect tile > Manage > Service Discovery, and create a ne
 Configure the service discovery so it can find the BIG-IP
 
 * Select your CE under ``Reference``
-* Select ``Site Local Network`` under ``Network Type`` <- This is the interface on the BIG-IP Mgmt network
+* Select ``Site Local Inside Network`` under ``Network Type`` <- This is the interface on the BIG-IP Mgmt network
 * Click ``Add Item`` under ``Classic BIG-IP Clusters``
 
 .. image:: ../pictures/create-service-discovery.png
@@ -63,7 +63,7 @@ Configure the service discovery so it can find the BIG-IP
 * Click Add Item under ``Classic BIG-IP Devices``
 * Configure with the BIG-IP settings
   
-  * Management IP: ``10.1.1.8``
+  * Management IP: ``10.1.20.8``
   * Admin username: ``admin``
   * Admin password: ``admin``
 
@@ -74,6 +74,16 @@ Your configuration should look like this
 .. image:: ../pictures/cbip-config.png
    :align: left
    :scale: 50%
+
+After few minutes, you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
+
+.. image:: ../pictures/vs-services.png
+   :align: left
+   :scale: 50%
+
+
+.. note:: At this stage, the BIG-IP is onboarded in F5 Distributed Cloud and API Discovery can be enabled on this BIG-IP (from the F5XC Console) so that the BIG-IP sends traffic logs to F5XC.
+
 
 
 Enable API Discovery on BIG-IP Virtual Server
