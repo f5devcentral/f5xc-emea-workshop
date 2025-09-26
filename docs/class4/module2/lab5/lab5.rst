@@ -81,7 +81,6 @@ After few minutes, you can click on Refresh button, you should see ``1 services`
    :align: left
    :scale: 50%
 
-
 .. note:: At this stage, the BIG-IP is onboarded in F5 Distributed Cloud and API Discovery can be enabled on this BIG-IP (from the F5XC Console) so that the BIG-IP sends traffic logs to F5XC.
 
 
@@ -101,13 +100,36 @@ Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
    :align: left
    :scale: 50%
 
-.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see 2 new Virtual add-service-discovery
+.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see 2 new Virtual Servers. Those 2 VS collect logs and security insights.
 
   .. image:: ../pictures/bigip-tmui.png
    :align: left
    :scale: 50%
 
 
+In the F5XC Console, you can see that the VS has a new option called ``Manage in WAAP``. Click on it.
+
+.. image:: ../pictures/manage-in-waap.png
+   :align: left
+   :scale: 50%
+
+You will be redirected to the WAAP menu but in a new section dedicated to BIG-IP Virtual Servers. Click on ``Enable`` under ``API Discovery``
+
+.. image:: ../pictures/vs-waap.png
+   :align: left
+   :scale: 50%
+
+Configure the Virtual Server similar to what you did in the previous lab for the F5XC HTTP Load Balancer. We will reuse the same profiles
+
+* Select your API Definition
+* Enable API Discovery
+* Select your Custom Sensitive Date Detection Policy
+
+.. image:: ../pictures/cbip-config-apid.png
+   :align: left
+   :scale: 50%
+
+.. note:: You are done. Now, let's wait 2 hours so that F5XC can handle logs sent by CE. There is a traffic generator already running in your lab environment to populate BIG-IP logs.
 
 Check API Endpoints discovered on BIG-IP VS
 -------------------------------------------
