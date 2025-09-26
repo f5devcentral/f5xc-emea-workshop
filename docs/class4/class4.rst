@@ -33,9 +33,9 @@ APIs change frequently:
 .. raw:: html
     
     <script>getStudentData('f5xcemeaapiworkshop');</script>
-
 .. toctree::
    :maxdepth: 2
    :glob:
 
    module*/module*
+
