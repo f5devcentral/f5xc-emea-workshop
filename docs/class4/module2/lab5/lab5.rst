@@ -133,3 +133,22 @@ Configure the Virtual Server similar to what you did in the previous lab for the
 
 Check API Endpoints discovered on BIG-IP VS
 -------------------------------------------
+
+Let's see if discovery is done.
+Click on the Virtual Server
+
+.. image:: ../pictures/click-vs.png
+   :align: left
+   :scale: 50%
+
+And then click on API Endpoints. You can see all the API Discovery Outcomes
+
+  * Inventory
+  * Security Insights risks
+  * Compliance
+  * Authentication state
+  * Sensitive Data
+
+.. image:: ../pictures/cbip-outcomes.png
+   :align: left
+   :scale: 50%
