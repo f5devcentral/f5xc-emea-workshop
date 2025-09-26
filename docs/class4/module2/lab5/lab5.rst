@@ -52,7 +52,7 @@ Go to Multi-Cloud App Connect tile > Manage > Service Discovery, and create a ne
 Configure the service discovery so it can find the BIG-IP
 
 * Select your CE under ``Reference``
-* Select ``Site Local Inside Network`` under ``Network Type`` <- This is the interface on the BIG-IP Mgmt network
+* Select ``Site Local Inside Network`` under ``Network Type`` <- This is the interface on the BIG-IP Self-IP (but we could have used the mgmt interface)
 * Click ``Add Item`` under ``Classic BIG-IP Clusters``
 
 .. image:: ../pictures/create-service-discovery.png
@@ -63,7 +63,7 @@ Configure the service discovery so it can find the BIG-IP
 * Click Add Item under ``Classic BIG-IP Devices``
 * Configure with the BIG-IP settings
   
-  * Management IP: ``10.1.20.8``
+  * Management IP: ``10.1.20.8`` <- Self-IP address
   * Admin username: ``admin``
   * Admin password: ``admin``
 
@@ -156,4 +156,3 @@ And then click on API Endpoints. You can see all the API Discovery Outcomes
 
 .. note:: As you can see, you are able to get all API Discovery added values for an on-premises BIG-IP without having to use a cloud HTTP LB. The traffic remains private in the datacenter on the BIG-IP and only anonymized logs are sent to the cloud to generate the API Discovery outcomes.
 
-  
