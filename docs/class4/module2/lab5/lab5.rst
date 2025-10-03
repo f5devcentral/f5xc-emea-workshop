@@ -44,14 +44,13 @@ In UDF environment, connect to the Customer Edge (CE) UI with credentials below
 * Creds : ``admin`` / ``Volterra123``
 * Click on ``Configure Now`` button
 
-.. image:: ../pictures/cbip-apid-archi.png
+.. image:: ../pictures/configure-ce.png
    :align: left
-   :scale: 50%
 
-  * Token: $$smsv2Token$$
-  * Cluster Name: $$smsv2SiteName$$
-  * Hostname: master0
-  * Click ``Save Configuration``
+* Token: $$smsv2Token$$
+* Cluster Name: $$smsv2SiteName$$
+* Hostname: master0
+* Click ``Save Configuration``
 
 Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
 
