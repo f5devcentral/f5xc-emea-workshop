@@ -163,7 +163,7 @@ function displayJSON(jsonInput, statusText) {
 
 document.addEventListener("DOMContentLoaded", function() {
   const data = JSON.parse(localStorage.getItem('data'))
-  const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName, kubeconfig, cek8s, ollama } = data;
+  const { makeId, hostArcadia, ceArcadia, namespace, ceOnPrem, awsSiteName, vk8sName, kubeconfig, cek8s, ollama, smsv2Site } = data;
   replacePlaceholderWithValue('makeId', makeId);
   replacePlaceholderWithValue('hostArcadia', hostArcadia);
   replacePlaceholderWithValue('ceArcadia', ceArcadia);
@@ -173,10 +173,10 @@ document.addEventListener("DOMContentLoaded", function() {
   replacePlaceholderWithValue('vk8sName', vk8sName);
   replacePlaceholderWithValue('kubeconfig', kubeconfig);
   replacePlaceholderWithValue('cek8s', cek8s);
-  replacePlaceholderWithValue('smsv2SiteName',smsv2Site.siteName.value);
-  replacePlaceholderWithValue('smsv2Token',smsv2Site.token.value);
+  replacePlaceholderWithValue('smsv2SiteName',smsv2Site.siteName);
+  replacePlaceholderWithValue('smsv2Token',smsv2Site.token);
   replacePlaceholderWithValue('ollama_public_ip',ollama.ollama_public_ip.value);
-  
+
 });
 
 const info = JSON.parse(localStorage.getItem('data'));
