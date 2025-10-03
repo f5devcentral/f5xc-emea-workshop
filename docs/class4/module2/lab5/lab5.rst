@@ -60,9 +60,14 @@ In UDF environment, connect to the Customer Edge (CE) UI with credentials below
       **Hostname**            master0
       ====================    ========================================================================================
 
+* Token (copy paste using the copy button below)
+
 .. code-block:: none
-   
+
    $$smsv2Token$$
+
+* Cluster Name: $$smsv2SiteName$$
+* Hostmane: master0
 
 * Click ``Save Configuration``
 
