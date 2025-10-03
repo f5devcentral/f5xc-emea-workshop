@@ -61,23 +61,6 @@ In UDF environment, connect to the Customer Edge (CE) UI with credentials below
       **Hostname**            master0
       ====================    ========================================================================================
 
-
-* Token: 
-
-  .. code-block:: BASH
-
-    \$\$smsv2Token\$\$
-
-
-* Token: 
-
-  .. raw:: html
-
-    $$smsv2Token$$
-
-* Cluster Name: $$smsv2SiteName$$
-* Hostname: master0
-
 * Click ``Save Configuration``
 
 Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
