@@ -1,5 +1,5 @@
-Enable API discovery for BIG-IP (under construction)
-====================================================
+Enable API discovery for BIG-IP
+===============================
 
 In the previous lab, we learnt how F5 Distributed Cloud can discover API Endpoints when those endpoints are exposed on F5 Distributed Cloud infrastructure. 
 But many modern applications (API firt) reside on-premises behind BIG-IP. In order to offer the same level of services, F5 deployed the on-premises API Discovery for BIG-IP.
@@ -59,6 +59,14 @@ In UDF environment, connect to the Customer Edge (CE) UI with credentials below
 
       **Hostname**            master0
       ====================    ========================================================================================
+
+
++------------+-------------------------------------------------------------------------------------------------------+
+| Header 1   | Header 2                                                                                              |
++============+=======================================================================================================+
+| Short      | $$smsv2Token$$                                                                                        |
++------------+-------------------------------------------------------------------------------------------------------+
+
 
 * Click ``Save Configuration``
 
