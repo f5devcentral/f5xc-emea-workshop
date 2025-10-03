@@ -173,9 +173,9 @@ document.addEventListener("DOMContentLoaded", function() {
   replacePlaceholderWithValue('vk8sName', vk8sName);
   replacePlaceholderWithValue('kubeconfig', kubeconfig);
   replacePlaceholderWithValue('cek8s', cek8s);
-  replacePlaceholderWithValue('ollama_public_ip',ollama.ollama_public_ip.value);
   replacePlaceholderWithValue('smsv2SiteName',smsv2Site.siteName.value);
   replacePlaceholderWithValue('smsv2Token',smsv2Site.token.value);
+  replacePlaceholderWithValue('ollama_public_ip',ollama.ollama_public_ip.value);
   
 });
 
