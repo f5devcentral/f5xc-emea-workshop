@@ -22,7 +22,6 @@ Key take aways before jumping into the lab:
 
 .. image:: ../pictures/cbip-apid-archi.png
    :align: left
-   :scale: 50%
 
 
 Deploy and register Customer Edge (CE)
@@ -78,7 +77,6 @@ In F5 Distributed Cloud Console
 
 .. image:: ../pictures/site-view.png
    :align: left
-   :scale: 50%
 
 
 .. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
@@ -93,7 +91,6 @@ Go to Multi-Cloud App Connect tile > Manage > Service Discovery, and create a ne
 
 .. image:: ../pictures/add-service-discovery.png
    :align: left
-   :scale: 50%
 
 
 Configure the service discovery so it can find the BIG-IP
@@ -104,7 +101,6 @@ Configure the service discovery so it can find the BIG-IP
 
 .. image:: ../pictures/create-service-discovery.png
    :align: left
-   :scale: 50%
 
 * Give a name to the BIG-IP such as ``bigip1``
 * Click Add Item under ``Classic BIG-IP Devices``
@@ -120,13 +116,11 @@ Your configuration should look like this
 
 .. image:: ../pictures/cbip-config.png
    :align: left
-   :scale: 50%
 
 After few minutes, you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
 
 .. image:: ../pictures/vs-services.png
    :align: left
-   :scale: 50%
 
 .. note:: At this stage, the BIG-IP is onboarded in F5 Distributed Cloud and API Discovery can be enabled on this BIG-IP (from the F5XC Console) so that the BIG-IP sends traffic logs to F5XC.
 
@@ -139,32 +133,27 @@ You can see now the BIG-IP Virtual Server
 
 .. image:: ../pictures/mcn-vs.png
    :align: left
-   :scale: 50%
 
 Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
 
 .. image:: ../pictures/enable-visibility.png
    :align: left
-   :scale: 50%
 
 .. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see 2 new Virtual Servers. Those 2 VS collect logs and security insights.
 
   .. image:: ../pictures/bigip-tmui.png
    :align: left
-   :scale: 50%
 
 
 In the F5XC Console, you can see that the VS has a new option called ``Manage in WAAP``. Click on it.
 
 .. image:: ../pictures/manage-in-waap.png
    :align: left
-   :scale: 50%
 
 You will be redirected to the WAAP menu but in a new section dedicated to BIG-IP Virtual Servers. Click on ``Enable`` under ``API Discovery``
 
 .. image:: ../pictures/vs-waap.png
    :align: left
-   :scale: 50%
 
 Configure the Virtual Server similar to what you did in the previous lab for the F5XC HTTP Load Balancer. We will reuse the same profiles
 
@@ -174,7 +163,6 @@ Configure the Virtual Server similar to what you did in the previous lab for the
 
 .. image:: ../pictures/cbip-config-apid.png
    :align: left
-   :scale: 50%
 
 .. note:: You are done. Now, let's wait 2 hours so that F5XC can handle logs sent by CE. There is a traffic generator already running in your lab environment to populate BIG-IP logs.
 
@@ -197,7 +185,6 @@ And then click on API Endpoints. You can see all the API Discovery Outcomes
 
 .. image:: ../pictures/cbip-outcomes.png
    :align: left
-   :scale: 50%
 
 
 .. note:: As you can see, you are able to get all API Discovery added values for an on-premises BIG-IP without having to use a cloud HTTP LB. The traffic remains private in the datacenter on the BIG-IP and only anonymized logs are sent to the cloud to generate the API Discovery outcomes.
