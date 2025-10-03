@@ -52,10 +52,6 @@ In UDF environment, connect to the Customer Edge (CE) UI with credentials below
 * Hostname: master0
 * Click ``Save Configuration``
 
-.. raw:: html   
-
-   <script>c1m1l2a();</script>  
-
 Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
 
 
