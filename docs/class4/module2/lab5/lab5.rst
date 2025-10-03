@@ -25,16 +25,44 @@ Key take aways before jumping into the lab:
    :scale: 50%
 
 
-Deploy Customer Edge (CE)
--------------------------
+Deploy and register Customer Edge (CE)
+--------------------------------------
 
-The CE (Customer Edge) is already deployed for you. You can find it into Multi-Cloud Network Connect > Overview > Infrastructure > Sites
+The CE (Customer Edge) is not yet registered. But it is already deployed in your UDF environment.
 The CE is deployed with 2 NICs
 
 * NIC Outside in charge of IPSEC tunnels between CE and RE
 * NIC Inside in charge of configuring BIG-IP and collect logs from BIG-IP
 
-In a nutshell, F5XC will configure the BIG-IP to collect request logs from the Virtual Server, and send those logs to the CE. Then the CE will anonymize the logs and send them to the F5XC infrastructure to render the API Discovery endpoints and insights.
+.. note:: In a nutshell, F5XC will configure the BIG-IP to collect request logs from the Virtual Server, and send those logs to the CE. Then the CE will anonymize the logs and send them to the F5XC infrastructure to render the API Discovery endpoints and insights.
+
+Register the CE
+^^^^^^^^^^^^^^^
+
+In UDF environment, connect to the Customer Edge (CE) UI with credentials below
+
+* Creds : ``admin`` / ``Volterra123``
+* Click on ``Configure Now`` button
+
+.. image:: ../pictures/cbip-apid-archi.png
+   :align: left
+   :scale: 50%
+
+  * Token: $$smsv2Token$$
+  * Cluster Name: $$smsv2SiteName$$
+  * Hostname: master0
+  * Click ``Save Configuration``
+
+Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
+
+
+Check Registration on the F5 Distributed Cloud Console
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In F5 Distributed Cloud Console
+
+* 
+
 
 
 Onboard on-premises BIG-IP
