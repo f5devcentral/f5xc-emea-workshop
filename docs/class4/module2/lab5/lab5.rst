@@ -186,7 +186,6 @@ Click on the Virtual Server
 
 .. image:: ../pictures/click-vs.png
    :align: left
-   :scale: 50%
 
 And then click on API Endpoints. You can see all the API Discovery Outcomes
 
