@@ -434,7 +434,7 @@ getDataBtn.onclick = function() {
   var email = emailInput.value;
   localStorage.setItem('email', email);
 
-  fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/${courseId}/${btoa(email)}`, {
+  fetch(`https://f5xclabmgmt.emea-ent.f5demos.com/v1/student/${courseId}/${btoa(email)}`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json'
