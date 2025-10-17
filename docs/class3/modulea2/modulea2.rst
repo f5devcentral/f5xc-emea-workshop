@@ -31,7 +31,7 @@ If you have reached this stage after finishing **Class 2** you can simply contin
 
         var email = emailInput.value;
         localStorage.setItem('email', email);
-        fetch(`https://f5xclabmgmt.vltr.nginx-experience.com/v1/student/${btoa(email)}`, {
+        fetch(`https://f5xclabmgmt.emea-ent.f5demos.com/v1/student/${btoa(email)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
