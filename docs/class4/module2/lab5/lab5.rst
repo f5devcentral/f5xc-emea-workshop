@@ -90,7 +90,8 @@ Go to Multi-Cloud App Connect tile > Manage > Service Discovery, and create a ne
 
 Configure the service discovery so it can find the BIG-IP
 
-* Select your CE under ``Reference``
+* Name: ``cbip-apid``
+* Select your CE named ``$$smsv2SiteName$$`` under ``Reference``
 * Select ``Site Local Inside Network`` under ``Network Type`` <- This is the interface on the BIG-IP Self-IP (but we could have used the mgmt interface)
 * Click ``Add Item`` under ``Classic BIG-IP Clusters``
 
@@ -103,7 +104,9 @@ Configure the service discovery so it can find the BIG-IP
   
   * Management IP: ``10.1.20.8`` <- Self-IP address
   * Admin username: ``admin``
-  * Admin password: ``admin``
+  * Admin password: 
+    * Select Clear Secret instead of Blindfold
+    * Secret is: ``admin``
 
 * Apply
 
@@ -112,7 +115,7 @@ Your configuration should look like this
 .. image:: ../pictures/cbip-config.png
    :align: left
 
-After few minutes, you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
+After few minutes (up to 2min), you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
 
 .. image:: ../pictures/vs-services.png
    :align: left
