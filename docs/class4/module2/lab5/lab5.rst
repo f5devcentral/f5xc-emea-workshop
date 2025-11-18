@@ -99,13 +99,14 @@ Configure the service discovery so it can find the BIG-IP
    :align: left
 
 * Give a name to the BIG-IP such as ``bigip1``
-* Click Add Item under ``Classic BIG-IP Devices``
 * Configure with the BIG-IP settings
   
   * Management IP: ``10.1.20.8`` <- Self-IP address
+  * Management Port: ``443``
   * Admin username: ``admin``
-  * Admin password: 
-    * Select Clear Secret instead of Blindfold
+  * Admin password:
+
+    * Select ``Clear Secret`` instead of ``Blindfold``
     * Secret is: ``admin``
 
 * Apply
@@ -137,7 +138,7 @@ Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
 .. image:: ../pictures/enable-visibility.png
    :align: left
 
-.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see 2 new Virtual Servers. Those 2 VS collect logs and security insights.
+.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see one new Virtual Server. This VS collects logs and security insights.
 
   .. image:: ../pictures/bigip-tmui.png
    :align: left
