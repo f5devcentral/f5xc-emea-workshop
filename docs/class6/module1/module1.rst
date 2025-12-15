@@ -1,26 +1,10 @@
-###########################
-Getting to know the ChatBot
-###########################
+################
+F5 AI Guardrails
+################
 
-Before we move forward, we need to get a better understanding of how the ChatBot in Arcadia works.
-In the next sections, we will go through the different capabilities of the ChatBot and how they have been implemented.
+**F5 AI Guardrails** is an enterprise-grade AI runtime security and governance solution developed by F5, Inc. that helps organizations protect, control, and monitor how their AI systems behave in real-world usage. It acts as a layer of safeguards around generative AI and AI agents — ensuring security, compliance, and responsible operation beyond what is built into the AI models themselves.
 
-1. In the UDF deployment, click on **Components** -> **Access** under **MicroK8s** -> **Arcadia Onprem**.
-
-2. Log in with the following credentials:
-
-   .. table::
-      :widths: auto
-
-      ==================================    ========================================================================================
-      Username                              Password
-      ==================================    ========================================================================================
-      sorin@nginx.com                       nginx
-      ==================================    ========================================================================================
-
-3. Click on **Exchange**.
-
-4. Click on the bot at the bottom right.
+The focus of this module will be to understand the deployment options and how to operate the F5 AI Guardrails console.
 
    
 **Module 1 – All sections**

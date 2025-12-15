@@ -1,47 +1,17 @@
-LLM only
-########
+General info
+############
 
-Let's start by explaining the different functions.
+There are three options to deploy **F5 AI Guardrails** infrastructure.
 
-**AI Orchestrator**
+1. **F5 SaaS** ( not F5XC ) where **F5 AI Guardrails** is already deployed.
+   This is the fastest approch to get things running.
 
-The AI Orchestrator acts as the central hub of the entire AI system, managing the flow of information between various components. Here's a detailed look at its functions:
+2. **Self hosted in the cloud**, the solution can be deployed on any of the following environments: **EKS** ( AWS ), **AKS** ( Azure ), **GKE** ( Google )
 
-* **Request Handling**: It receives and processes user queries, preparing them for further processing.
-* **LLM Interaction**: The Orchestrator sends the constructed prompt to Ollama (the LLM) and receives its responses.
-* **Response Formatting**: It processes the LLM's output, potentially formatting or filtering it before sending it back to the user.
-* **State Management**: The Orchestrator  maintains the state of the conversation, ensuring continuity across multiple user interactions.
-* **Error Handling**: It manages any errors or exceptions that occur during the process, ensuring graceful failure modes.
-
-**Ollama ( Inference Services )**
-
-Ollama is an advanced AI tool that facilitates the local execution of large language models (LLMs), such as Llama 2, Mistral, and in our case, Llama 3.1 8B.
-The key features of Ollama:
-
-* **Local Execution**: Users can run powerful language models directly on their machines, enhancing privacy and control over data.
-* **Model Customization**: Ollama supports the creation and customization of models, allowing users to tailor them for specific applications, such as chatbots or summarization tools.
-* **User-Friendly Setup**: The tool provides an intuitive interface for easy installation and configuration, currently supporting macOS and Linux, with Windows support planned for the future.
-* **Diverse Model Support**: Ollama supports various models, including Llama 2, uncensored Llama, Code Llama, and others, making it versatile for different natural language processing tasks.
-* **Open Source**: Ollama is an open-source platform, which means its source code is publicly available, allowing for community contributions and transparency.
-
-
-Understanding the interactions
-------------------------------
-
-Go to the **AI Assistant**, start a new conversation, and ask the following question.
-
-::
-
-    How should I approach investing in crypto?
+3. **Self hosted on prem**, the main requirnments for F5 to support the installation is to be performed on **Redhat Openshift**
 
 
 
-.. image:: ../pictures/Slide1.PNG
-   :align: center
 
-1. **User** sends question to **LLM Orchestrator**
-2. **LLM Orchestrator** forwards the user prompt to the **LLM**
-3. **LLM** returns response to **LLM Orchestrator**
-4. **LLM Orchestrator** sends the **LLM** response back to the **user**
+**PLACEHOLDER** - Maybe add a little bit of info about the GPU requirnements. 
 
-This is the most **basic interaction** with the **LLM**. The **LLM** response is generated based only on the **training data**.
