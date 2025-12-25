@@ -10,15 +10,15 @@ We will use **prompt-evaluator** with a validation dataset to test our scanners.
 
 1. First thing we need to ensure that all our prompt injection scanners in the **Test project** are enabled.
 
-   In the main left tab go to **Projects** -> Click **View** for the **Test project** -> Click on the **Prompt injection package** and make sure that all scanners are enabled.
+   In the main left tab go to **Projects** ⇒ Click **View** for the **Test project** ⇒ Click on the **Prompt injection package** and make sure that all scanners are enabled.
 
-2. Go back to the **Test project** and click on **API Tokens** -> **Generate API token** -> Name it **f1testing** and click **Save**
+2. Go back to the **Test project** and click on **API Tokens** ⇒ **Generate API token** ⇒ Name it **f1testing** and click **Save**
 
    Copy the token and save it in your notepad, we will use it shortly.
 
    With this token we will be able to send the data from the validation dataset to mesure the performance of our guardrails.
 
-3. Go the the UDF deployment in the **Components** tab click on **Access** under **Jumphost** -> **Web shell** 
+3. Go the the UDF deployment in the **Components** tab click on **Access** under **Jumphost** ⇒ **Web shell** 
 
 4. First we are going to clone the **prompt-evaluator** git repository and install the necessary requirnements.
 

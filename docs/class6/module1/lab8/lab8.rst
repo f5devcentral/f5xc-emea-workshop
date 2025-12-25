@@ -6,13 +6,13 @@ The **GenAI Scanner** is a natural-language scanner, what you use when “matchi
 For example if we would like to make sure that people specific salary is not leaked but we would still want to allow questions about general salary information we would need to build a **GenAI scanner**.
 
 
-1. In the main left tab go to **Scanners** -> **Build a custom scanner** -> **GenAI scanner**
+1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **GenAI scanner**
 
 2. Set the **Name** to **Specific Salaries**
 
 3. In the **Description** enter ``individual salary information``
 
-4. Click **Save** -> **Save version**
+4. Click **Save** ⇒ **Save version**
 
 After saving the scanner we find outselves in the **Playground** area. Here we can directly test all customer scanner against different text patterns.
 

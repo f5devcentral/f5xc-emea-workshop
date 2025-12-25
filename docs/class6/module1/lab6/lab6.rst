@@ -10,7 +10,7 @@ When creating a **Project** it will initially default to the scanner config whic
 We can also enforce a scanner on all projects if we enable **Enforce** at the global level.
 
 
-1. Let's create a new project, in the main left tab go to **Projects** -> Select **CalypsoAI chat** -> **Create** -> Set **Chat name** to **Test project** -> **Create**
+1. Let's create a new project, in the main left tab go to **Projects** ⇒ Select **CalypsoAI chat** ⇒ **Create** ⇒ Set **Chat name** to **Test project** ⇒ **Create**
 
    You can see that the global level scanners have been added automatically to the project.
    

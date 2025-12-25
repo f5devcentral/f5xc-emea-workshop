@@ -23,13 +23,13 @@ Use exact-word guardrails when:
 For example we have an internal projects called **Phoenix**, **Scooby Doo** and we want to make sure that if it is referenced tat message will get blocked.
 
 
-1. In the main left tab go to **Scanners** -> **Build a custom scanner** -> **Keyword scanner**
+1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **Keyword scanner**
 
 2. Set the **Name** to **Internal Projects**
 
 3. In the **Keywords** enter **Phoenix** and **Scooby Doo**
 
-4. Click **Save** -> **Save version**
+4. Click **Save** ⇒ **Save version**
 
 After saving the scanner we find outselves in the **Playground** area. Here we can directly test all customer scanner against different text patterns.
 
@@ -56,13 +56,13 @@ Use regex guardrails when:
 
 For example we want to ensure that the response will not contain any internal private IPs of our company.
 
-1. In the main left tab go to **Scanners** -> **Build a custom scanner** -> **Regex scanner**
+1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **Regex scanner**
 
 2. Set the **Name** to **Internal IPs**
 
 3. In the **Regular expression** enter: ``(?i)\bhttps?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0|10\.(?:\d\d?\d?\.)\d\d?\d?|172\.(?:1[6-9]|2\d|3[0-1])\.(?:\d\d?\d?\.)\d\d?\d?|192\.168\.(?:\d\d?\d?\.)\d\d?\d?)(?::\d+)?(?:\/[^\s]*)?``
 
-4. Click **Save** -> **Save version**
+4. Click **Save** ⇒ **Save version**
 
 After saving the scanner we find outselves in the **Playground** area. Here we can directly test all customer scanner against different text patterns.
 
