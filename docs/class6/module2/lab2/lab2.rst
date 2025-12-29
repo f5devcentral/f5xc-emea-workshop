@@ -45,9 +45,9 @@ Let's start protecting.
 
       **JSON path**                     .messages[-1].content
 
-      **PATH**                          .messages
+      **PATH**                          .messages[-1].role
 
-      **exists**                        enabled
+      **contains**                      user
       ==============================    ========================================================================================
  
 8. Go back to the **Host Config** ⇒ in the **Request extractors** add the **Prompt** patter rule ⇒ **Save changes**
