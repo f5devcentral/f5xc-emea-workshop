@@ -14,7 +14,7 @@ Now that we have a basic understanding on how **F5 AI Guardrails** is implemente
    
    Login into the **F5 AI Guardrails** console, the credentials are admin/admin
 
-2. When deploying a model inline ( not needed for out of band) we need to point **F5 AI Guardrails** to a backend inference server.
+3. When deploying a model inline ( not needed for out of band) we need to point **F5 AI Guardrails** to a backend inference server.
 
    In the main left tab go to **Connections**, observe all the built in inference endpoints that we can connect to. You can also see the Ollama inference which has been pre configured. 
 
@@ -22,15 +22,15 @@ Now that we have a basic understanding on how **F5 AI Guardrails** is implemente
 
    You can oberve the custom config we have created in order to connect to the model on the **Ollama** inference endpoint.
 
-3. Next let's have a chat. In the main left tab go to **Chat**.
+4. Next let's have a chat. In the main left tab go to **Chat**.
 
    In the **Project** input make sure **Global** is selected and in the **Chat with** input **Llama3-2** is selected.
 
    Now go ahead and have a chat with the backend model.
 
-4. Finaly let's do a prompt injection attack and get the model to speak in cat language
+5. Finaly let's do a prompt injection attack and get the model to speak in cat language
 
-3. Try the bellow prompt injection attack in the chat.
+6. Try the bellow prompt injection attack in the chat.
 
    .. code-block:: none
 
