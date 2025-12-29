@@ -6,8 +6,13 @@ Now that we have a basic understanding on how **F5 AI Guardrails** is implemente
 
 
 
-1. Go the the UDF deployment in the **Components** tab click on **Access** under **F5 AI Guardrails** ⇒ **F5 AI Guardrails console**.   
-   Now you can see the console.
+1. Go the the UDF deployment in the **Components** tab click on **Access** under **Ubuntu Host** ⇒ **XRDP**.   
+   
+   The credentials are ubuntu/HelloUDF.
+
+2. Click on the desktop icon that looks like a **star**.
+   
+   Login into the **F5 AI Guardrails** console, the credentials are admin/admin
 
 2. When deploying a model inline ( not needed for out of band) we need to point **F5 AI Guardrails** to a backend inference server.
 
