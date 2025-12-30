@@ -3,7 +3,7 @@ General info
 
 There are three options to deploy **F5 AI Guardrails** infrastructure.
 
-1. **F5 SaaS** ( not F5XC ) where **F5 AI Guardrails** is already deployed.
+1. **F5 SaaS** where **F5 AI Guardrails** is already deployed.
    This is the fastest approch to get things running.
 
 2. **Self hosted in the cloud**, the solution can be deployed on any of the following environments: **EKS** ( AWS ), **AKS** ( Azure ), **GKE** ( Google )
