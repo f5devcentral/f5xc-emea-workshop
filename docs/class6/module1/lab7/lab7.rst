@@ -3,13 +3,13 @@ Custom scanners
 
 This is where the magic starts.
 
-There are three different types of scanner:
+There are three different types of scanners:
 
 1. **Keyword scanner** - you can define specific keywords which will trigger the scanner. It can not only **block** but also **redact**.
 
 2. **Regex scanner** - you can define specific regex filters which will trigger the scanner. It can not only **block** but also **redact**.
 
-3. **GenAI scanner** - this is the real magic, define in natural language what you want to be identified and blocked. We will go in depth in the next section.
+3. **GenAI scanner** - this is the real magic: define in natural language what you want to be identified and blocked. We will go in-depth in the next section.
 
 
 **Keyword scanner**
@@ -20,7 +20,7 @@ Use exact-word guardrails when:
 * The word is rare
 * The word has binary meaning (present = act, absent = ignore)
 
-For example we have an internal projects called **Phoenix**, **Scooby Doo** and we want to make sure that if it is referenced tat message will get blocked.
+For example, we have internal projects called **Phoenix** and **Scooby Doo**, and we want to make sure that if either is referenced, that message will get blocked.
 
 
 1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **Keyword scanner**
@@ -31,17 +31,17 @@ For example we have an internal projects called **Phoenix**, **Scooby Doo** and 
 
 4. Click **Save** ⇒ **Save version**
 
-After saving the scanner we find outselves in the **Playground** area. Here we can directly test all customer scanner against different text patterns.
+After saving the scanner we find ourselves in the **Playground** area. Here we can directly test all custom scanners against different text patterns.
 
-1. Enable the **Test** in for the **Internal Projects** scanner in the right side of the page.
+1. Enable **Test** for the **Internal Projects** scanner on the right-hand side of the page.
 
-2. In the message input part of the **Playground** enter the bellow text.
+2. In the message input area of the **Playground** enter the below text.
 
    .. code-block:: none
 
       Project Phoenix has the potential of taking over the world. This information should be kept private by all means and at any cost.
 
-3. The previous message got blocked, enter anything which is not **Phoenix** or **Scooby Doo** and the message will pass.
+3. The previous message was blocked. Enter anything that is not **Phoenix** or **Scooby Doo** and the message will pass.
    
 
 **Regex scanner**
@@ -54,7 +54,7 @@ Use regex guardrails when:
 * You want to block or allow a specific structure
 * You’re defending against known attack templates
 
-For example we want to ensure that the response will not contain any internal private IPs of our company.
+For example, we want to ensure that the response does not contain any internal private IPs from our company.
 
 1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **Regex scanner**
 
@@ -64,21 +64,20 @@ For example we want to ensure that the response will not contain any internal pr
 
 4. Click **Save** ⇒ **Save version**
 
-After saving the scanner we find outselves in the **Playground** area. Here we can directly test all customer scanner against different text patterns.
+After saving the scanner we find ourselves in the **Playground** area. Here we can directly test all custom scanners against different text patterns.
 
-1. Enable the **Test** in for the **Internal IPs** scanner in the right side of the page.
+1. Enable **Test** for the **Internal IPs** scanner on the right-hand side of the page.
 
-2. In the message input part of the **Playground** enter the bellow text.
+2. In the message input area of the **Playground** enter the below text.
 
    .. code-block:: none
      
-      To access the to the admin site is https://192.168.0.1/admin .
+      To access the admin site, use https://192.168.0.1/admin.
 
        
 
-3. The previous message got blocked, change the IP to something public like 112.44.223.44 and the message will not get blocked.
+3. The previous message was blocked. Change the IP to something public like 112.44.223.44 and the message will not be blocked.
    
-
 
 
 

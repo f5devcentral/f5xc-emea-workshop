@@ -1,7 +1,7 @@
 F5 CASI Leaderboard
 ###################
 
-This is the last part of our lab we hope you enjoyed it would like to mention one last topic, the **F5 CASI Leaderboard**.
+This is the last part of our lab. We hope you enjoyed it and would like to mention one last topic: the **F5 CASI Leaderboard**.
 
 The **CASI Leaderboard** (Comprehensive AI Security Index) is a security-focused ranking of large language models published by **F5 Labs**. 
 It is designed to help organizations evaluate and compare AI models based not only on performance,
@@ -11,7 +11,7 @@ CASI emphasizes that AI adoption should consider **security posture alongside ca
 
 You can find the **F5 CASI Leaderboard** at :ext_link:`https://www.f5.com/labs/casi`.
 
-Detailed explination about each metric at :ext_link:`https://www.f5.com/labs/articles/introducing-the-casi-leaderboards`
+A detailed explanation of each metric is available at :ext_link:`https://www.f5.com/labs/articles/introducing-the-casi-leaderboards`
 
 
 

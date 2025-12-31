@@ -1,19 +1,17 @@
-Built in Scanners
+Built-in Scanners
 #################
 
-Now that we have a working chat interface we need to discuss how this should be protect.
+Now that we have a working chat interface we need to discuss how this should be protected.
 
-In the main left tab go to **Scanners**, you can see all the built in scanners packages that can help us protect against the **OWASP Top Ten GenAI** attacks.
+In the main left tab go to **Scanners**, you can see all the built-in scanner packages that can help us protect against the **OWASP Top Ten GenAI** attacks.
 
-Take the time to go over the different packages and their built in scanners.
-
-**PLACEHOLDER** - Maybe we should add a mapping to OWASP GenAI 
+Take the time to go over the different packages and their built-in scanners.
 
 1. Let's enable the scanners under the **Prompt Injection package**, click on it and enable all scanners.
 
 2. Go back to the web chat.
 
-3. Try the bellow prompt injection attack in the chat.
+3. Try the below prompt injection attack in the chat.
 
    .. code-block:: none
 
@@ -27,7 +25,7 @@ Take the time to go over the different packages and their built in scanners.
 
 5. In the main left tab go to **Logs** and let's inspect the logs and the blocking reason.
 
-   Click on each logs, for each one you will see in the **Scanner details** the scanner that fired. 
+   Click on each log. For each one, you will see the scanner that fired in **Scanner details**. 
    
    Click on **Prompt and response**, you will be able to see the text that has been scanned.
 
@@ -42,7 +40,6 @@ Take the time to go over the different packages and their built in scanners.
    
 
    
-
 
 
 
