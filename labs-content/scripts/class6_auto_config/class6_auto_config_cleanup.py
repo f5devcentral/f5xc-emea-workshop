@@ -13,7 +13,9 @@ except ImportError:  # pragma: no cover - dependency guard
     print("Missing dependency: requests. Install it with 'pip install requests'.", file=sys.stderr)
     sys.exit(1)
 
-BASE_URL = "https://0dbc781f-823a-4e2b-ac4c-a7e1bddbaa1d.access.udf.f5.com"
+BASE_URL = "http://10.1.1.8"
+STORE_BASE_URL = "http://10.1.1.5:32100"
+DEFAULT_API_KEY = "MDE5Yjc5MTItZDY0Mi03MDZjLThiNjQtNDI5ODkzODRkZWEz/ebw3mSJmxVffMt8KqbJrH0hPIwse40vXtCfyhdQMfYHC9NucqFKMw5YhJRR30TjS59nqyRUTQO9TGiHXkjiQ"
 DEBUG = os.getenv("CALYPSO_DEBUG", "").lower() in {"1", "true", "yes", "on"}
 
 TARGET_PROJECT_NAMES = {"Test project", "request", "response", "MCP"}
@@ -40,9 +42,12 @@ def _debug(msg: str) -> None:
 
 
 def _require_api_key() -> str:
-    api_key = os.getenv("CALYPSO_API_KEY")
+    api_key = os.getenv("CALYPSO_API_KEY") or DEFAULT_API_KEY
     if not api_key:
-        print("CALYPSO_API_KEY is not set.", file=sys.stderr)
+        print(
+            "CALYPSO_API_KEY is not set and DEFAULT_API_KEY is empty.",
+            file=sys.stderr,
+        )
         sys.exit(1)
     return api_key
 
@@ -235,6 +240,59 @@ def _delete_provider(api_key: str, provider_id: str) -> None:
     _request(api_key, "DELETE", f"/backend/v1/providers/{provider_id}")
 
 
+def _put_guardrails_store_cleanup() -> None:
+    payload = {
+        "version": 1,
+        "hosts": ["__default__", "chat-app.lab"],
+        "hostConfigs": {
+            "__default__": {
+                "inspectMode": "both",
+                "redactMode": "both",
+                "logLevel": "info",
+                "requestForwardMode": "sequential",
+                "backendOrigin": "https://api.openai.com",
+                "requestExtractor": "",
+                "responseExtractor": "",
+                "requestExtractors": [],
+                "responseExtractors": [],
+                "extractorParallel": False,
+                "responseStreamEnabled": True,
+                "responseStreamChunkSize": 2048,
+                "responseStreamChunkOverlap": 128,
+                "responseStreamFinalEnabled": True,
+                "responseStreamCollectFullEnabled": False,
+                "responseStreamBufferingMode": "buffer",
+                "responseStreamChunkGatingEnabled": False,
+            },
+            "chat-app.lab": {
+                "inspectMode": "both",
+                "backendOrigin": "http://10.1.10.100:22434",
+                "requestExtractor": "",
+                "responseExtractor": "",
+                "requestExtractors": [],
+                "responseExtractors": [],
+                "logLevel": "debug",
+                "responseStreamEnabled": False,
+                "responseStreamBufferingMode": "buffer",
+            },
+        },
+        "apiKeys": [],
+        "patterns": [],
+        "collector": {"entries": [], "total": 0, "remaining": 0},
+    }
+
+    url = f"{STORE_BASE_URL}/config/api/store"
+    _debug(f"Request PUT {url}")
+    resp = requests.put(url, json=payload, timeout=30)
+    if not resp.ok:
+        if DEBUG:
+            _debug(f"Request PUT {url} json={payload}")
+            _debug(f"Response status={resp.status_code} headers={dict(resp.headers)}")
+            _debug(f"Response body={resp.text}")
+        print(f"Request failed PUT {url} ({resp.status_code}).", file=sys.stderr)
+        sys.exit(1)
+
+
 def main() -> None:
     api_key = _require_api_key()
 
@@ -296,6 +354,8 @@ def main() -> None:
             )
             continue
         _delete_provider(api_key, provider_id)
+
+    _put_guardrails_store_cleanup()
 
     print("Cleanup completed.")
 

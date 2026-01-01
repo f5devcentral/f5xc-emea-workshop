@@ -10,7 +10,7 @@
 
 ## Implementation Notes
 
-- Base URL: `https://0dbc781f-823a-4e2b-ac4c-a7e1bddbaa1d.access.udf.f5.com`
+- Base URL: `http://10.1.1.8`
 - Debug mode: `CALYPSO_DEBUG=1` prints HTTP request/response details to stderr.
 - `class6_auto_config.py`:
   - Enables the vendor `Prompt injection package` on the global project and enables all scanners from that package (publishes them first).

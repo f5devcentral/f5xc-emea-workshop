@@ -14,7 +14,9 @@ except ImportError:  # pragma: no cover - dependency guard
     print("Missing dependency: requests. Install it with 'pip install requests'.", file=sys.stderr)
     sys.exit(1)
 
-BASE_URL = "https://0dbc781f-823a-4e2b-ac4c-a7e1bddbaa1d.access.udf.f5.com"
+BASE_URL = "http://10.1.1.8"
+STORE_BASE_URL = "http://10.1.1.5:32100"
+DEFAULT_API_KEY = "MDE5Yjc5MTItZDY0Mi03MDZjLThiNjQtNDI5ODkzODRkZWEz/ebw3mSJmxVffMt8KqbJrH0hPIwse40vXtCfyhdQMfYHC9NucqFKMw5YhJRR30TjS59nqyRUTQO9TGiHXkjiQ"
 DEBUG = os.getenv("CALYPSO_DEBUG", "").lower() in {"1", "true", "yes", "on"}
 
 
@@ -24,9 +26,12 @@ def _debug(msg: str) -> None:
 
 
 def _require_api_key() -> str:
-    api_key = os.getenv("CALYPSO_API_KEY")
+    api_key = os.getenv("CALYPSO_API_KEY") or DEFAULT_API_KEY
     if not api_key:
-        print("CALYPSO_API_KEY is not set.", file=sys.stderr)
+        print(
+            "CALYPSO_API_KEY is not set and DEFAULT_API_KEY is empty.",
+            file=sys.stderr,
+        )
         sys.exit(1)
     return api_key
 
@@ -299,6 +304,166 @@ def _add_scanner_to_project(
     _upsert_config_item(config.setdefault("scanners", []), scanner_id, enabled=enabled)
 
 
+def _put_guardrails_store(tokens: Dict[str, str]) -> None:
+    def require_token(name: str) -> str:
+        value = tokens.get(name)
+        if not value:
+            print(f"Missing API token for {name}.", file=sys.stderr)
+            sys.exit(1)
+        return value
+
+    payload = {
+        "version": 1,
+        "hosts": ["__default__", "chat-app.lab"],
+        "hostConfigs": {
+            "__default__": {
+                "inspectMode": "both",
+                "redactMode": "both",
+                "logLevel": "info",
+                "requestForwardMode": "sequential",
+                "backendOrigin": "https://api.openai.com",
+                "requestExtractor": "",
+                "responseExtractor": "",
+                "requestExtractors": [],
+                "responseExtractors": [],
+                "extractorParallel": False,
+                "responseStreamEnabled": True,
+                "responseStreamChunkSize": 2048,
+                "responseStreamChunkOverlap": 128,
+                "responseStreamFinalEnabled": True,
+                "responseStreamCollectFullEnabled": False,
+                "responseStreamBufferingMode": "buffer",
+                "responseStreamChunkGatingEnabled": False,
+            },
+            "chat-app.lab": {
+                "inspectMode": "both",
+                "backendOrigin": "http://10.1.10.100:22434",
+                "requestExtractor": "pat_1767273197405_3mp1",
+                "responseExtractor": "pat_1767273224093_2bui",
+                "requestExtractors": ["pat_1767273197405_3mp1"],
+                "responseExtractors": ["pat_1767273224093_2bui", "pat_1767273340580_57a3"],
+                "logLevel": "debug",
+                "responseStreamEnabled": False,
+                "responseStreamBufferingMode": "buffer",
+            },
+        },
+        "apiKeys": [
+            {
+                "id": "ak_1767273052283_77di",
+                "name": "Request",
+                "key": require_token("request"),
+                "blockingResponse": {
+                    "status": 200,
+                    "contentType": "application/json; charset=utf-8",
+                    "body": "{\"message\":{\"role\":\"assistant\",\"content\":\"F5 AI Guardrails blocked this request\"}}",
+                },
+                "created_at": "2026-01-01T13:10:52.283Z",
+                "updated_at": "2026-01-01T13:10:52.283Z",
+            },
+            {
+                "id": "ak_1767273073311_gxvr",
+                "name": "Response",
+                "key": require_token("response"),
+                "blockingResponse": {
+                    "status": 200,
+                    "contentType": "application/json; charset=utf-8",
+                    "body": "{\"message\":{\"role\":\"assistant\",\"content\":\"F5 AI Guardrails blocked this response\"}}",
+                },
+                "created_at": "2026-01-01T13:11:13.311Z",
+                "updated_at": "2026-01-01T13:11:13.311Z",
+            },
+            {
+                "id": "ak_1767273136186_55nq",
+                "name": "MCP",
+                "key": require_token("MCP"),
+                "blockingResponse": {
+                    "status": 200,
+                    "contentType": "application/json; charset=utf-8",
+                    "body": "{\"message\":{\"role\":\"assistant\",\"content\":\"F5 AI Guardrails blocked this due to bad MCP data\"}}",
+                },
+                "created_at": "2026-01-01T13:12:16.186Z",
+                "updated_at": "2026-01-01T13:12:16.186Z",
+            },
+        ],
+        "patterns": [
+            {
+                "id": "pat_1767273197405_3mp1",
+                "name": "Prompt",
+                "context": "request",
+                "apiKeyName": "Request",
+                "paths": [".messages[-1].content"],
+                "matchers": [
+                    {
+                        "path": ".messages[-1].role",
+                        "equals": "",
+                        "contains": "user",
+                        "exists": False,
+                    }
+                ],
+                "notes": "",
+                "created_at": "2026-01-01T13:13:17.405Z",
+                "updated_at": "2026-01-01T13:13:17.405Z",
+            },
+            {
+                "id": "pat_1767273224093_2bui",
+                "name": "Response",
+                "context": "response",
+                "apiKeyName": "Response",
+                "paths": [".message.content"],
+                "matchers": [
+                    {"path": "message", "equals": "", "contains": "", "exists": True}
+                ],
+                "notes": "",
+                "created_at": "2026-01-01T13:13:44.093Z",
+                "updated_at": "2026-01-01T13:13:44.093Z",
+            },
+            {
+                "id": "pat_1767273257896_11z6",
+                "name": "MCP tools definition",
+                "context": "request",
+                "apiKeyName": "MCP",
+                "paths": [".tools"],
+                "matchers": [
+                    {"path": ".tools", "equals": "", "contains": "", "exists": True}
+                ],
+                "notes": "",
+                "created_at": "2026-01-01T13:14:17.896Z",
+                "updated_at": "2026-01-01T13:15:03.076Z",
+            },
+            {
+                "id": "pat_1767273340580_57a3",
+                "name": "Tools call",
+                "context": "response",
+                "apiKeyName": "MCP",
+                "paths": [".message.tool_calls"],
+                "matchers": [
+                    {
+                        "path": ".message.tool_calls",
+                        "equals": "",
+                        "contains": "",
+                        "exists": True,
+                    }
+                ],
+                "notes": "",
+                "created_at": "2026-01-01T13:15:40.580Z",
+                "updated_at": "2026-01-01T13:15:40.580Z",
+            },
+        ],
+        "collector": {"entries": [], "total": 0, "remaining": 0},
+    }
+
+    url = f"{STORE_BASE_URL}/config/api/store"
+    _debug(f"Request PUT {url}")
+    resp = requests.put(url, json=payload, timeout=30)
+    if not resp.ok:
+        if DEBUG:
+            _debug(f"Request PUT {url} json={payload}")
+            _debug(f"Response status={resp.status_code} headers={dict(resp.headers)}")
+            _debug(f"Response body={resp.text}")
+        print(f"Request failed PUT {url} ({resp.status_code}).", file=sys.stderr)
+        sys.exit(1)
+
+
 def main() -> None:
     api_key = _require_api_key()
     tokens: Dict[str, str] = {}
@@ -408,7 +573,10 @@ def main() -> None:
     )
     _patch_project_config(api_key, mcp_project_id, mcp_config)
 
-    # 10. Output all created tokens.
+    # 10. Store Guardrails API config using the created tokens.
+    _put_guardrails_store(tokens)
+
+    # 11. Output all created tokens.
     print("Created API tokens:")
     for label, value in tokens.items():
         print(f"- {label}: {value}")
