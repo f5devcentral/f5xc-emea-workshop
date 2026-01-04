@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover - dependency guard
 
 BASE_URL = "http://10.1.1.8"
 STORE_BASE_URL = "http://10.1.1.5:32100"
-DEFAULT_API_KEY = "MDE5Yjc5MTItZDY0Mi03MDZjLThiNjQtNDI5ODkzODRkZWEz/ebw3mSJmxVffMt8KqbJrH0hPIwse40vXtCfyhdQMfYHC9NucqFKMw5YhJRR30TjS59nqyRUTQO9TGiHXkjiQ"
+DEFAULT_API_KEY = ""
 DEBUG = os.getenv("CALYPSO_DEBUG", "").lower() in {"1", "true", "yes", "on"}
 
 

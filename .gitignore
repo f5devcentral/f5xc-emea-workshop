@@ -5,3 +5,4 @@
 docs/__pycache__/custom_roles.cpython-311.pyc
 docs/__pycache__/custom_roles.cpython-313.pyc
 */.DS_Store
+__pycache__
