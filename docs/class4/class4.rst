@@ -26,6 +26,7 @@ F5 offers flexible deployment models for API Discovery, including inline process
 
 .. image:: ./pictures/apid-models.png
    :align: left
+   :scale: 50%
 
 APIs change frequently:
 
