@@ -24,7 +24,7 @@ Distributed Cloud API Security provides discovery and deep insights from use of 
 
 F5 offers flexible deployment models for API Discovery, including inline processing through F5 Distributed Cloud for real-time traffic analysis, out-of-band configurations via BIG-IP, Nginx, Kong and also APIGee. And the latest is an Air Gapped API Discovery solution disconnected from any cloud.
 
-.. image:: ../pictures/apid-models.png
+.. image:: /pictures/apid-models.png
    :align: left
 
 APIs change frequently:
