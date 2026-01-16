@@ -35,9 +35,12 @@ You will see the environment details
 
 .. note:: 
   💡  Your environment is now accessible via the following links:
-  Name        URL                    User           Password       Description
-  ----        ---                    ----           --------       -----------
-  Dashboard   https://localhost:8000 N/A            N/A            API Discovery Dashboard
+  
+  =========  ======================  =============  ============   =======================
+  Name       URL                     User           Password       Description
+  =========  ======================  =============  ============   =======================
+  Dashboard  https://localhost:8000  N/A            N/A            API Discovery Dashboard
+  =========  ======================  =============  ============   =======================
 
   🌐  Usable IP addresses on this host: 10.1.1.9, 10.1.20.9, 172.17.0.1, 172.18.0.1
 
@@ -54,3 +57,4 @@ Connect to LAD Console
    :align: left
    :scale: 50%
 
+Next step is to configure the BIG-IP to send traffic datas to LAD server
