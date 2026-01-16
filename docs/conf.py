@@ -86,6 +86,7 @@ extensions = [
   'sphinxcontrib.nwdiag',
   'sphinx_copybutton',
   'sphinxcontrib.blockdiag'
+  'sphinx_toolbox.collapse'
   #'sphinx.ext.autosectionlabel'
 ]
 
