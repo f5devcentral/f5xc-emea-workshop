@@ -68,12 +68,13 @@ This Pool is used to target the Internal VS created previously. It will be calle
 Create the iRule and assign to the Internal VS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Go to Local Traffic -> iRules
-* Create the iRules with the code below. Name the iRules ``MyApiDiscoveryRule```
+* Go to Local Traffic -> iRules -> iRules list
+* Create the iRules with the code below. Name the iRules ``MyApiDiscoveryRule``
+* Copy the irule. There is a Copy button below, on the top right corner, to copy the full text. 
 
 .. note:: 
 
-    Check that the Internal Pool name is ``logging-pool-tls``. This name is used into this iRule. If you have follow the below steps and used the same names as defined in the lab, the iRule is ready and can be copy/paste.
+    Check that your Internal Pool name is ``logging-pool-tls``. This name is used into this iRule. If you have followed the above steps and used the same names as defined in the lab, the iRule is ready and can be copy/paste.
 
     .. image:: ../pictures/irule2.png
        :align: left
@@ -573,12 +574,12 @@ Create the iRule and assign to the Internal VS
 Attach the iRule to the Internal VS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Edit the Internal VS and attach the iRule on it
+* Edit the API Application VS named ``lad-vs-sentence`` and attach the iRule on it
 
 .. image:: ../pictures/irule-vs2.png
    :align: left
 
-* SAVE
+* FINISHED
 
 .. note::
 
