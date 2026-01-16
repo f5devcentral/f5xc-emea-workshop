@@ -85,8 +85,7 @@ extensions = [
   'sphinx.ext.graphviz',
   'sphinxcontrib.nwdiag',
   'sphinx_copybutton',
-  'sphinxcontrib.blockdiag',
-  'sphinx_toolbox.collapse'
+  'sphinxcontrib.blockdiag'
   #'sphinx.ext.autosectionlabel'
 ]
 
