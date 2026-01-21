@@ -6,4 +6,4 @@ Local API Discovery collects and analyzes per-request HTTP metadata from BIG-IP 
 
 Designed for security-sensitive or air-gapped environments, LAD empowers teams to gain actionable API visibility, manage schema governance, and take mitigation actions all without exposing data outside your trusted network boundary.
 
-**The lab guide is directly available** into the UDF Blueprint used for this API Security and Discovery Workshop : <https://udf.f5.com/b/1cb733ca-3e77-4783-a91d-98d469eb220b#documentation>
+**The lab guide is directly available** into the UDF Blueprint used for this API Security and Discovery Workshop : https://udf.f5.com/b/1cb733ca-3e77-4783-a91d-98d469eb220b#documentation
