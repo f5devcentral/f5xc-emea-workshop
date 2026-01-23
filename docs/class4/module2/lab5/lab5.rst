@@ -1,190 +1,179 @@
-Enable API discovery for BIG-IP
-===============================
+API Discovery outcomes
+======================
 
-In the previous lab, we learnt how F5 Distributed Cloud can discover API Endpoints when those endpoints are exposed on F5 Distributed Cloud infrastructure. 
-But many modern applications (API firt) reside on-premises behind BIG-IP. In order to offer the same level of services, F5 deployed the on-premises API Discovery for BIG-IP.
+.. note:: The "traffic discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section. You can also continue with the next lab "Advanced Protection - "JWT validation and access control" (module 3) and continue here later.
 
-In this lab, you will learn how to ``onboard`` a BIG-IP into F5XC, in order to enable the API Discovery feature on this BIG-IP.
+.. note:: The "code base repo discovery" is done once a day
 
-Key take aways before jumping into the lab:
+Endpoint Discovery
+------------------
 
-* Out of Band Discovery
-* CE required on BIG-IP Network
-* CE collects and anonymises logs from BIG-IP
-* F5XC runs API Discovery engine in F5XC infrastructure
-* Outcomes
+* Goto Web App & API Protection > Overview > Security > Dashboard
+* Click on your Application Load Balancer
+* Click on ``API Endpoints`` to see the endpoints in the the "Table" view.
 
-  * Inventory
-  * Security Insights risks
-  * Compliance
-  * Authentication state
-  * Sensitive Data
-
-.. image:: ../pictures/cbip-apid-archi.png
+.. image:: ../pictures/api-endpoints-table.png
    :align: left
+   :scale: 50%
 
+Understand the API Discovery elements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Deploy and register Customer Edge (CE)
---------------------------------------
+API Category
+************
 
-The CE (Customer Edge) is not yet registered. But it is already deployed in your UDF environment.
-The CE is deployed with 2 NICs
+On the top left corner, there are 3 important elements:
 
-* NIC Outside in charge of IPSEC tunnels between CE and RE
-* NIC Inside in charge of configuring BIG-IP and collect logs from BIG-IP
+* **Inventory** : Endpoints known from the OpenAPI Spec file
 
-.. note:: In a nutshell, F5XC will configure the BIG-IP to collect request logs from the Virtual Server, and send those logs to the CE. Then the CE will anonymize the logs and send them to the F5XC infrastructure to render the API Discovery endpoints and insights.
+  * In our lab, there are 3 endpoints know (adjectives, animals, locations)
 
-Register the CE
-^^^^^^^^^^^^^^^
+* **Discovered** : Endpoints that the XC platform has discovered/learned from live traffic (known and unknown endpoints)
+* **Shadow** : Endpoints that have been ``Discovered`` but are **NOT PART** of the ``Inventory``
 
-In UDF environment, connect to the Customer Edge (CE) UI with credentials below
+You can filter on ``Shadow`` only to show the ``/colors`` endpoint as a Shadow API.
 
-* Creds : ``admin`` / ``Volterra123``
-* Click on ``Configure Now`` button
-
-.. image:: ../pictures/configure-ce.png
+.. image:: ../pictures/shadow.png
    :align: left
-
-* Token (copy paste using the copy button below)
-
-.. code-block:: none
-
-   $$smsv2Token$$
-
-* Cluster Name: ``$$smsv2SiteName$$``
-* Hostmane: ``master0``
-
-* Click ``Save Configuration``
-
-Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
+   :scale: 50%
 
 
-Check Registration on the F5 Distributed Cloud Console
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discovery Source and Schema Status
+**********************************
 
-In F5 Distributed Cloud Console
+The ``Discovery Source`` tells you from which source each EndPoint has been discovered
 
-* Go to Multi-Cloud Network Connect > Overview > Infrastructure > Sites
-* Search for your site $$smsv2SiteName$$
-* Click on it
-* Refresh the page till upgrades are finished and every flag is green
+* Traffic: discovered thanks to traffic passing through XC (real traffic)
+* Code Analysis: discovered by scanning the source code into the repositories
 
-.. image:: ../pictures/site-view.png
+The ``Schema status`` tells you if this Endpoint is part of the OpenAPI specification file
+
+.. image:: ../pictures/code-base-table.png
    :align: left
+   :scale: 50%
+
+.. note:: These 2 columns are very important. First of all, this shows if the Endpoint is part of the source code. Then, it shows if this Endpoint is exposed (traffic) and also part of the OpenAPI specification file. The best outcome is when an Endpoint is part of Code Base and Traffic discovery and also in OpenAPI Spec file.
 
 
-.. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
+Go deeper into the discovery
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* Click on the ``/colors`` shadow API endpoint. A pop-up will appear on the right side of the screen.
+* You can see on the top right corner, 2 actions
 
-Onboard on-premises BIG-IP
---------------------------
+  * **API Protection rule** : if you want to block this endpoint. Let's say SecOps have this power to block unknown endpoints.
 
-The BIG-IP is already up and running into your lab environment. Each student has his own BIG-IP.
+  * **Rate Limiting** : if you want to Rate Limit this endpoint because SecOps don't have the full power and don't want to break the app.
 
-Go to Multi-Cloud App Connect tile > Manage > Service Discovery, and create a new Service Discovery type BIG-IP
+* Click on the ``Discovered`` tab and navigate into the sub-menus. You will see all the details discovered by the platform.
 
-.. image:: ../pictures/add-service-discovery.png
+.. image:: ../pictures/discovered.png
    :align: left
+   :scale: 50%
 
 
-Configure the service discovery so it can find the BIG-IP
+Sensitive Data Discovery
+------------------------
 
-* Name: ``cbip-apid``
-* Select your CE named ``$$smsv2SiteName$$`` under ``Reference``
-* Select ``Site Local Inside Network`` under ``Network Type`` <- This is the interface on the BIG-IP Self-IP (but we could have used the mgmt interface)
-* Click ``Add Item`` under ``Classic BIG-IP Clusters``
+* Click on the ``/animals`` API endpoint. A pop-up will appear on the right side of the screen.
 
-.. image:: ../pictures/create-service-discovery.png
+  .. image:: ../pictures/pii-1.png
+     :align: left
+     :scale: 50%
+
+* Click on the ``Discovered`` tab to show discovered sensitive data for requests and responses.
+
+  .. image:: ../pictures/pii-2.png
+     :align: left
+     :scale: 50%
+
+.. warning:: Dataguard can obfuscate sensitive PII data in the response but currently not for custom created PII configurations. This feature is in the roadmap. OWASP Top 10 does not require to ``hide`` sensitive data.
+
+
+Click on the ``Graph`` tab to show the API endpoints in a different view.
+
+.. image:: ../pictures/octopus.png
    :align: left
+   :scale: 50%
 
-* Give a name to the BIG-IP such as ``bigip1``
-* Configure with the BIG-IP settings
-  
-  * Management IP: ``10.1.20.8`` <- Self-IP address
-  * Management Port: ``443``
-  * Admin username: ``admin``
-  * Admin password:
+ 
+Authentication Discovery
+------------------------
 
-    * Select ``Clear Secret`` instead of ``Blindfold``
-    * Secret is: ``admin``
+* Click on an endpoint with an ``Authenticated`` state, like **/api/locations**
 
-* Apply
+  .. image:: ../pictures/authenticated-endpoint.png
+     :align: left
+     :scale: 50%
 
-Your configuration should look like this
+* Click on ``Discovered`` tab and check the Authentication details
 
-.. image:: ../pictures/cbip-config.png
+  .. image:: ../pictures/auth-discovery-new.png
+     :align: left
+     :scale: 50%
+
+* Notice that the auth information collected from the OpenAPI Spec file differs from the discovered auth information. If both don't match, a "Security Posture" is raised.
+
+  .. image:: ../pictures/basic-auth.png
+     :align: left
+     :scale: 50%
+
+AI/ML Security Posture
+----------------------
+
+* Click on an endpoint with the highest ``Risk Score``
+* And click on the ``Security Posture`` tab
+* Review the recommandations done by the AI/ML engine
+
+.. image:: ../pictures/security-posture.png
    :align: left
+   :scale: 50%
 
-After few minutes (up to 2min), you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
+* Click on the ``Evidence`` link to get more details about the logs who generated this security posture.
 
-.. image:: ../pictures/vs-services.png
-   :align: left
+.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developers, but also providing visibility for unkown traffic.
 
-.. note:: At this stage, the BIG-IP is onboarded in F5 Distributed Cloud and API Discovery can be enabled on this BIG-IP (from the F5XC Console) so that the BIG-IP sends traffic logs to F5XC.
+Compliance
+----------
 
+The last information provided by F5XC is the ``compliance``. In lab ``Enable API traffic discovery`` we created 2 custom Sensitive Data (called Data Type)
 
-Enable API Discovery on BIG-IP Virtual Server
----------------------------------------------
+* The ``French Social Security Number``
+* The ``French Phone Number``
 
-Click on the ``1 Services`` blue link to be redirected to the Multi-Cloud App Connect ``discovered services`` page where we will enable the different features on the BIG-IP. If you are lost, you can access this page as well by Multi-Cloud App Connect tile > Overview > Discovered Services
-You can see now the BIG-IP Virtual Server 
+To each, we assigned a compliance ``GDPR``. But the F5XC platform has +400 data types into its database. Each data type has one or more compliance assigned.
+For instance, the ``payment-details`` data type is defined as below. You can find it into API Management > Data Types
 
-.. image:: ../pictures/mcn-vs.png
-   :align: left
+.. code-block:: json
+   :emphasize-lines: 24, 25
 
-Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
+   "get_spec": {
+    "rules": [
+      {
+        "key_pattern": {
+          "exact_values": {
+            "exact_values": [
+              "payment_method",
+              "pay_method",
+              "payment_type",
+              "payment_option",
+              "payment_mode",
+              "payType",
+              "payment_source",
+              "pay_method_type",
+              "payment_service",
+              "payment_system"
+            ]
+          }
+        }
+      }
+    ],
+    "is_sensitive_data": true,
+    "is_pii": false,
+    "compliances": [
+      "PCI_DSS"
+    ],
 
-.. image:: ../pictures/enable-visibility.png
-   :align: left
+This data type has the PCI-DSS compliance assigned. It means, if such pattern is seen in the request or in the response for an API Endpoint, F5XC dashboard will categorize this endpoint as PCI-DSS compliance.
 
-.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see one new Virtual Server. This VS collects logs and security insights.
-
-  .. image:: ../pictures/bigip-tmui.png
-   :align: left
-
-
-In the F5XC Console, you can see that the VS has a new option called ``Manage in WAAP``. Click on it.
-
-.. image:: ../pictures/manage-in-waap.png
-   :align: left
-
-You will be redirected to the WAAP menu but in a new section dedicated to BIG-IP Virtual Servers. Click on ``Enable`` under ``API Discovery``
-
-.. image:: ../pictures/vs-waap.png
-   :align: left
-
-Configure the Virtual Server similar to what you did in the previous lab for the F5XC HTTP Load Balancer. We will reuse the same profiles
-
-* Select your API Definition
-* Enable API Discovery
-* Select your Custom Sensitive Date Detection Policy
-
-.. image:: ../pictures/cbip-config-apid.png
-   :align: left
-
-.. note:: You are done. Now, let's wait 2 hours so that F5XC can handle logs sent by CE. There is a traffic generator already running in your lab environment to populate BIG-IP logs.
-
-Check API Endpoints discovered on BIG-IP VS
--------------------------------------------
-
-Let's see if discovery is done.
-Click on the Virtual Server
-
-.. image:: ../pictures/click-vs.png
-   :align: left
-
-And then click on API Endpoints. You can see all the API Discovery Outcomes
-
-  * Inventory
-  * Security Insights risks
-  * Compliance
-  * Authentication state
-  * Sensitive Data
-
-.. image:: ../pictures/cbip-outcomes.png
-   :align: left
-
-
-.. note:: As you can see, you are able to get all API Discovery added values for an on-premises BIG-IP without having to use a cloud HTTP LB. The traffic remains private in the datacenter on the BIG-IP and only anonymized logs are sent to the cloud to generate the API Discovery outcomes.
-
+.. note:: This compliance is an ``information`` not an ``enforcement``. It shows to SecOps, for each Endpoint, the compliance to apply based on the sensitive datas detected. In our exmaple, the company must rely to PCI-DSS in order to be compliant as a sensitive data belonging to PCI-DSS has been discovered.
