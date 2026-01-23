@@ -1,179 +1,78 @@
-API Discovery outcomes
-======================
+API Inventory Management
+========================
 
-.. note:: The "traffic discovery" scheduler runs on a random interval within a two hours time window and therefore it can take up to 2 hours (maximum) to see all results in the Dashboard for the "API Discovery outcomes" lab section. You can also continue with the next lab "Advanced Protection - "JWT validation and access control" (module 3) and continue here later.
+API Inventory Management is a feature designed to enhance your API ecosystem by simplifying the management of your API inventory. 
 
-.. note:: The "code base repo discovery" is done once a day
+It allows easy management of discovered APIs, marking of non-API discoveries, removal of outdated endpoints, and seamless updates for API schemas. 
+This tool keeps your API inventory organized, current, and secure, catering to your dynamic requirements.
 
-Endpoint Discovery
-------------------
+Add Shadow API into the Inventory
+---------------------------------
 
-* Goto Web App & API Protection > Overview > Security > Dashboard
-* Click on your Application Load Balancer
-* Click on ``API Endpoints`` to see the endpoints in the the "Table" view.
+In the previous lab, we discoverd /api/colors as a ``shadow API``. DevOps already opened a ServiceNow ticket with SecOps to provide the new OpenAPI Spec file including /colors.
+But SecOps are late in their ticketing queue, and they haven't seen this ticket yet but they must take a decision about this endpoint.
 
-.. image:: ../pictures/api-endpoints-table.png
-   :align: left
-   :scale: 50%
+SecOps can block the request with an API Protection rule. We covered how to create it in the ``Static API Protection`` lab. FYI, there is a shortcut directly into the API EndPoint screen as shown in the screenshot below.
+**Don't block it now, it is a legitimate endpoint.**
 
-Understand the API Discovery elements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-API Category
-************
-
-On the top left corner, there are 3 important elements:
-
-* **Inventory** : Endpoints known from the OpenAPI Spec file
-
-  * In our lab, there are 3 endpoints know (adjectives, animals, locations)
-
-* **Discovered** : Endpoints that the XC platform has discovered/learned from live traffic (known and unknown endpoints)
-* **Shadow** : Endpoints that have been ``Discovered`` but are **NOT PART** of the ``Inventory``
-
-You can filter on ``Shadow`` only to show the ``/colors`` endpoint as a Shadow API.
-
-.. image:: ../pictures/shadow.png
+.. image:: ../pictures/protection-rule-colors.png
    :align: left
    :scale: 50%
 
 
-Discovery Source and Schema Status
-**********************************
 
-The ``Discovery Source`` tells you from which source each EndPoint has been discovered
+We will not block it, SecOps had the information from a side channel this endpoint is part of the application update from yesterday night.
 
-* Traffic: discovered thanks to traffic passing through XC (real traffic)
-* Code Analysis: discovered by scanning the source code into the repositories
+We need to add this endpoint into the inventory (the OpenAPI Spec), but we will not update the Spec File as the source of truth are the DevOps. Instead, we will add the endpoint into the ``Inclusion List``.
 
-The ``Schema status`` tells you if this Endpoint is part of the OpenAPI specification file
+.. note:: Inventory = OpenAPI File + Inclusion List
 
-.. image:: ../pictures/code-base-table.png
-   :align: left
-   :scale: 50%
+|
 
-.. note:: These 2 columns are very important. First of all, this shows if the Endpoint is part of the source code. Then, it shows if this Endpoint is exposed (traffic) and also part of the OpenAPI specification file. The best outcome is when an Endpoint is part of Code Base and Traffic discovery and also in OpenAPI Spec file.
+Add the /api/colors shadow API endpoint to the Inventory (inclusion list)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* Click on the three dots (...) at the right of the **/api/colors** endpoint to open the actions menu
 
-Go deeper into the discovery
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* Click on ``Move to Inventory``
 
-* Click on the ``/colors`` shadow API endpoint. A pop-up will appear on the right side of the screen.
-* You can see on the top right corner, 2 actions
-
-  * **API Protection rule** : if you want to block this endpoint. Let's say SecOps have this power to block unknown endpoints.
-
-  * **Rate Limiting** : if you want to Rate Limit this endpoint because SecOps don't have the full power and don't want to break the app.
-
-* Click on the ``Discovered`` tab and navigate into the sub-menus. You will see all the details discovered by the platform.
-
-.. image:: ../pictures/discovered.png
-   :align: left
-   :scale: 50%
-
-
-Sensitive Data Discovery
-------------------------
-
-* Click on the ``/animals`` API endpoint. A pop-up will appear on the right side of the screen.
-
-  .. image:: ../pictures/pii-1.png
+  .. image:: ../pictures/move-to-inventory.png
      :align: left
      :scale: 50%
 
-* Click on the ``Discovered`` tab to show discovered sensitive data for requests and responses.
+* A warning message will confirm the add
 
-  .. image:: ../pictures/pii-2.png
+  .. image:: ../pictures/warning-inventory.png
      :align: left
      :scale: 50%
 
-.. warning:: Dataguard can obfuscate sensitive PII data in the response but currently not for custom created PII configurations. This feature is in the roadmap. OWASP Top 10 does not require to ``hide`` sensitive data.
+* Click ``Move to Inventory``
 
+* Now, you can see ``/api/colors`` is not a Shadow API anymore. It is part of Inventory.
 
-Click on the ``Graph`` tab to show the API endpoints in a different view.
-
-.. image:: ../pictures/octopus.png
-   :align: left
-   :scale: 50%
-
- 
-Authentication Discovery
-------------------------
-
-* Click on an endpoint with an ``Authenticated`` state, like **/api/locations**
-
-  .. image:: ../pictures/authenticated-endpoint.png
+  .. image:: ../pictures/moved-inventory.png
      :align: left
      :scale: 50%
 
-* Click on ``Discovered`` tab and check the Authentication details
+How to find all endpoints added into the Inventory (Inclusion List) ?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  .. image:: ../pictures/auth-discovery-new.png
+As mentioned before, API endpoints are not added into the OAS Spec file because this file is maintenained by AppDev/DevOps. Instead, we create an ``Inventory Inclusion List``
+
+* Go to API Management > Edit your API Definition
+
+* You can see an API Inventory Inclusion List
+
+  .. image:: ../pictures/oas-inclusion-list.png
      :align: left
      :scale: 50%
 
-* Notice that the auth information collected from the OpenAPI Spec file differs from the discovered auth information. If both don't match, a "Security Posture" is raised.
+* Click on ``Edit Configuration`` to see the content
 
-  .. image:: ../pictures/basic-auth.png
+  .. image:: ../pictures/inclusion-list.png
      :align: left
      :scale: 50%
 
-AI/ML Security Posture
-----------------------
+.. note:: When AppDev/DevOps will push a new version of the OpenAPI Spec file to F5 XC, a new version of the file will be available for the SecOps. SecOps will update the definition with this new file (let's say v2)
+    If this version includes ``/api/colors``, the entry into the Inventory Inclusion List will not be taken into account. The OAS Spec file specified on F5 XC takes precedence over Inventory Inclusion List.
 
-* Click on an endpoint with the highest ``Risk Score``
-* And click on the ``Security Posture`` tab
-* Review the recommandations done by the AI/ML engine
-
-.. image:: ../pictures/security-posture.png
-   :align: left
-   :scale: 50%
-
-* Click on the ``Evidence`` link to get more details about the logs who generated this security posture.
-
-.. note:: Congratulation, your application is now protected by a modern engine enforcing (validating) what is provided by the developers, but also providing visibility for unkown traffic.
-
-Compliance
-----------
-
-The last information provided by F5XC is the ``compliance``. In lab ``Enable API traffic discovery`` we created 2 custom Sensitive Data (called Data Type)
-
-* The ``French Social Security Number``
-* The ``French Phone Number``
-
-To each, we assigned a compliance ``GDPR``. But the F5XC platform has +400 data types into its database. Each data type has one or more compliance assigned.
-For instance, the ``payment-details`` data type is defined as below. You can find it into API Management > Data Types
-
-.. code-block:: json
-   :emphasize-lines: 24, 25
-
-   "get_spec": {
-    "rules": [
-      {
-        "key_pattern": {
-          "exact_values": {
-            "exact_values": [
-              "payment_method",
-              "pay_method",
-              "payment_type",
-              "payment_option",
-              "payment_mode",
-              "payType",
-              "payment_source",
-              "pay_method_type",
-              "payment_service",
-              "payment_system"
-            ]
-          }
-        }
-      }
-    ],
-    "is_sensitive_data": true,
-    "is_pii": false,
-    "compliances": [
-      "PCI_DSS"
-    ],
-
-This data type has the PCI-DSS compliance assigned. It means, if such pattern is seen in the request or in the response for an API Endpoint, F5XC dashboard will categorize this endpoint as PCI-DSS compliance.
-
-.. note:: This compliance is an ``information`` not an ``enforcement``. It shows to SecOps, for each Endpoint, the compliance to apply based on the sensitive datas detected. In our exmaple, the company must rely to PCI-DSS in order to be compliant as a sensitive data belonging to PCI-DSS has been discovered.

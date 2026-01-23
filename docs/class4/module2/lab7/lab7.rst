@@ -1,78 +1,190 @@
-API Inventory Management
-========================
+Enable API discovery for BIG-IP
+===============================
 
-API Inventory Management is a feature designed to enhance your API ecosystem by simplifying the management of your API inventory. 
+In the previous lab, we learnt how F5 Distributed Cloud can discover API Endpoints when those endpoints are exposed on F5 Distributed Cloud infrastructure. 
+But many modern applications (API firt) reside on-premises behind BIG-IP. In order to offer the same level of services, F5 deployed the on-premises API Discovery for BIG-IP.
 
-It allows easy management of discovered APIs, marking of non-API discoveries, removal of outdated endpoints, and seamless updates for API schemas. 
-This tool keeps your API inventory organized, current, and secure, catering to your dynamic requirements.
+In this lab, you will learn how to ``onboard`` a BIG-IP into F5XC, in order to enable the API Discovery feature on this BIG-IP.
 
-Add Shadow API into the Inventory
----------------------------------
+Key take aways before jumping into the lab:
 
-In the previous lab, we discoverd /api/colors as a ``shadow API``. DevOps already opened a ServiceNow ticket with SecOps to provide the new OpenAPI Spec file including /colors.
-But SecOps are late in their ticketing queue, and they haven't seen this ticket yet but they must take a decision about this endpoint.
+* Out of Band Discovery
+* CE required on BIG-IP Network
+* CE collects and anonymises logs from BIG-IP
+* F5XC runs API Discovery engine in F5XC infrastructure
+* Outcomes
 
-SecOps can block the request with an API Protection rule. We covered how to create it in the ``Static API Protection`` lab. FYI, there is a shortcut directly into the API EndPoint screen as shown in the screenshot below.
-**Don't block it now, it is a legitimate endpoint.**
+  * Inventory
+  * Security Insights risks
+  * Compliance
+  * Authentication state
+  * Sensitive Data
 
-.. image:: ../pictures/protection-rule-colors.png
+.. image:: ../pictures/cbip-apid-archi.png
    :align: left
-   :scale: 50%
 
 
+Deploy and register Customer Edge (CE)
+--------------------------------------
 
-We will not block it, SecOps had the information from a side channel this endpoint is part of the application update from yesterday night.
+The CE (Customer Edge) is not yet registered. But it is already deployed in your UDF environment.
+The CE is deployed with 2 NICs
 
-We need to add this endpoint into the inventory (the OpenAPI Spec), but we will not update the Spec File as the source of truth are the DevOps. Instead, we will add the endpoint into the ``Inclusion List``.
+* NIC Outside in charge of IPSEC tunnels between CE and RE
+* NIC Inside in charge of configuring BIG-IP and collect logs from BIG-IP
 
-.. note:: Inventory = OpenAPI File + Inclusion List
+.. note:: In a nutshell, F5XC will configure the BIG-IP to collect request logs from the Virtual Server, and send those logs to the CE. Then the CE will anonymize the logs and send them to the F5XC infrastructure to render the API Discovery endpoints and insights.
 
-|
+Register the CE
+^^^^^^^^^^^^^^^
 
-Add the /api/colors shadow API endpoint to the Inventory (inclusion list)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In UDF environment, connect to the Customer Edge (CE) UI with credentials below
 
-* Click on the three dots (...) at the right of the **/api/colors** endpoint to open the actions menu
+* Creds : ``admin`` / ``Volterra123``
+* Click on ``Configure Now`` button
 
-* Click on ``Move to Inventory``
+.. image:: ../pictures/configure-ce.png
+   :align: left
 
-  .. image:: ../pictures/move-to-inventory.png
-     :align: left
-     :scale: 50%
+* Token (copy paste using the copy button below)
 
-* A warning message will confirm the add
+.. code-block:: none
 
-  .. image:: ../pictures/warning-inventory.png
-     :align: left
-     :scale: 50%
+   $$smsv2Token$$
 
-* Click ``Move to Inventory``
+* Cluster Name: ``$$smsv2SiteName$$``
+* Hostmane: ``master0``
 
-* Now, you can see ``/api/colors`` is not a Shadow API anymore. It is part of Inventory.
+* Click ``Save Configuration``
 
-  .. image:: ../pictures/moved-inventory.png
-     :align: left
-     :scale: 50%
+Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
 
-How to find all endpoints added into the Inventory (Inclusion List) ?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As mentioned before, API endpoints are not added into the OAS Spec file because this file is maintenained by AppDev/DevOps. Instead, we create an ``Inventory Inclusion List``
+Check Registration on the F5 Distributed Cloud Console
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Go to API Management > Edit your API Definition
+In F5 Distributed Cloud Console
 
-* You can see an API Inventory Inclusion List
+* Go to Multi-Cloud Network Connect > Overview > Infrastructure > Sites
+* Search for your site $$smsv2SiteName$$
+* Click on it
+* Refresh the page till upgrades are finished and every flag is green
 
-  .. image:: ../pictures/oas-inclusion-list.png
-     :align: left
-     :scale: 50%
+.. image:: ../pictures/site-view.png
+   :align: left
 
-* Click on ``Edit Configuration`` to see the content
 
-  .. image:: ../pictures/inclusion-list.png
-     :align: left
-     :scale: 50%
+.. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
 
-.. note:: When AppDev/DevOps will push a new version of the OpenAPI Spec file to F5 XC, a new version of the file will be available for the SecOps. SecOps will update the definition with this new file (let's say v2)
-    If this version includes ``/api/colors``, the entry into the Inventory Inclusion List will not be taken into account. The OAS Spec file specified on F5 XC takes precedence over Inventory Inclusion List.
+
+Onboard on-premises BIG-IP
+--------------------------
+
+The BIG-IP is already up and running into your lab environment. Each student has his own BIG-IP.
+
+Go to Multi-Cloud App Connect tile > Manage > Service Discovery, and create a new Service Discovery type BIG-IP
+
+.. image:: ../pictures/add-service-discovery.png
+   :align: left
+
+
+Configure the service discovery so it can find the BIG-IP
+
+* Name: ``cbip-apid``
+* Select your CE named ``$$smsv2SiteName$$`` under ``Reference``
+* Select ``Site Local Inside Network`` under ``Network Type`` <- This is the interface on the BIG-IP Self-IP (but we could have used the mgmt interface)
+* Click ``Add Item`` under ``Classic BIG-IP Clusters``
+
+.. image:: ../pictures/create-service-discovery.png
+   :align: left
+
+* Give a name to the BIG-IP such as ``bigip1``
+* Configure with the BIG-IP settings
+  
+  * Management IP: ``10.1.20.8`` <- Self-IP address
+  * Management Port: ``443``
+  * Admin username: ``admin``
+  * Admin password:
+
+    * Select ``Clear Secret`` instead of ``Blindfold``
+    * Secret is: ``admin``
+
+* Apply
+
+Your configuration should look like this
+
+.. image:: ../pictures/cbip-config.png
+   :align: left
+
+After few minutes (up to 2min), you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
+
+.. image:: ../pictures/vs-services.png
+   :align: left
+
+.. note:: At this stage, the BIG-IP is onboarded in F5 Distributed Cloud and API Discovery can be enabled on this BIG-IP (from the F5XC Console) so that the BIG-IP sends traffic logs to F5XC.
+
+
+Enable API Discovery on BIG-IP Virtual Server
+---------------------------------------------
+
+Click on the ``1 Services`` blue link to be redirected to the Multi-Cloud App Connect ``discovered services`` page where we will enable the different features on the BIG-IP. If you are lost, you can access this page as well by Multi-Cloud App Connect tile > Overview > Discovered Services
+You can see now the BIG-IP Virtual Server 
+
+.. image:: ../pictures/mcn-vs.png
+   :align: left
+
+Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
+
+.. image:: ../pictures/enable-visibility.png
+   :align: left
+
+.. note:: At this moment, F5XC will configure the BIG-IP with some extra settings in order to send logs traffic to the CE. If you connect to the BIG-IP TMUI, you can see one new Virtual Server. This VS collects logs and security insights.
+
+  .. image:: ../pictures/bigip-tmui.png
+   :align: left
+
+
+In the F5XC Console, you can see that the VS has a new option called ``Manage in WAAP``. Click on it.
+
+.. image:: ../pictures/manage-in-waap.png
+   :align: left
+
+You will be redirected to the WAAP menu but in a new section dedicated to BIG-IP Virtual Servers. Click on ``Enable`` under ``API Discovery``
+
+.. image:: ../pictures/vs-waap.png
+   :align: left
+
+Configure the Virtual Server similar to what you did in the previous lab for the F5XC HTTP Load Balancer. We will reuse the same profiles
+
+* Select your API Definition
+* Enable API Discovery
+* Select your Custom Sensitive Date Detection Policy
+
+.. image:: ../pictures/cbip-config-apid.png
+   :align: left
+
+.. note:: You are done. Now, let's wait 2 hours so that F5XC can handle logs sent by CE. There is a traffic generator already running in your lab environment to populate BIG-IP logs.
+
+Check API Endpoints discovered on BIG-IP VS
+-------------------------------------------
+
+Let's see if discovery is done.
+Click on the Virtual Server
+
+.. image:: ../pictures/click-vs.png
+   :align: left
+
+And then click on API Endpoints. You can see all the API Discovery Outcomes
+
+  * Inventory
+  * Security Insights risks
+  * Compliance
+  * Authentication state
+  * Sensitive Data
+
+.. image:: ../pictures/cbip-outcomes.png
+   :align: left
+
+
+.. note:: As you can see, you are able to get all API Discovery added values for an on-premises BIG-IP without having to use a cloud HTTP LB. The traffic remains private in the datacenter on the BIG-IP and only anonymized logs are sent to the cloud to generate the API Discovery outcomes.
 
