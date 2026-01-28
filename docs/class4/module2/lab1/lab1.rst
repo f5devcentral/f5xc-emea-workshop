@@ -1,15 +1,7 @@
 Enable API validation
 =====================
 
-In the previous section, we enabled API Protection. API Protection is based on rules (allow, deny), but API Validation goes deeper into the validation.
-
 API Validation validates the requests and the responses, but also the content (JSON payload) based on the OpenAPI Specifications.
-
-As a reminder, this is the difference between Protection and API Validation. 
-
-.. image:: ../pictures/slide-api-protection.png
-   :align: center
-   :scale: 40%
 
 .. note:: As an example, API Validation validates if the value of a JSON key matches the specifications (integer, string, array ...)
 
@@ -60,7 +52,7 @@ Example below
                 id: 4
                 name: worried
 
-Having said, let's enable API Validation, and disable API Protection. It does not make sense to use both at the same time except if you need a specific rule for a specific endpoint.
+Having said, let's enable API Validation.
 
 Update your API Load Balancer
 -----------------------------
@@ -69,13 +61,7 @@ Update your API Load Balancer
   You can bypass this section if you are not part of an official F5 training, and continue to the API Discovery lab.
 
 .. note:: Please don't open support ticket to increase this quota. This is done by F5ers in charge of the trainings (Matthieu Dierick, Sorin Boiangiu)
-
-* Edit your Load Balancer and remove all API Protection rules (click on Reset Configuration and confirm)
-
-   .. image:: ../pictures/api-protection-reset.png
-      :align: left
-      :scale: 50%
-
+  
 |
 
 * Enable API Validation for ``All Endpoints``

@@ -16,25 +16,3 @@ Test your modern API application protection
 
       curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations
 
-   .. note:: The 3 calls are successful because there are defined in the OAS file (method + endpoint)
-
-#. Now, run the below call
-
-   .. code-block:: none
-
-      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/colors
-
-   .. note:: This call is denied because not part of the OAS file
-
-Check the logs
---------------
-
-* Go to the security dashboard (Overview > Security)
-* Scroll down and click on your ``sentence`` LB
-* Click on ``Security Analytics``
-
-.. note:: Scroll and search for API events
-
-.. image:: ../pictures/api-protect-event.png
-   :align: center
-
