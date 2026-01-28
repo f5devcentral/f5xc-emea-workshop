@@ -1,5 +1,5 @@
-Protect the modern API application with F5XC - static protection
-================================================================
+Start Protecting the modern API application with F5XC
+=====================================================
 
 Assign OpenAPI spec file to the LB
 ----------------------------------
@@ -55,68 +55,3 @@ Assign the API definition to the LB
    .. image:: ../pictures/api-protection.png
       :align: center
       :scale: 70%
-
-|
-
-Apply API Protection rules
---------------------------
-
-Understand the difference between API Protection and API Validation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Before enforcing any policy, it is important to understand the differences between ``API Protection`` and ``API Validation`` (+API Discovery)
-
-In the slide below, you can understand the difference:
-
-* API Protection only allow ``known API endpoints and methods`` and does not enforce responses.
-   * API Protection is ``Failed-Close`` by design
-
-* API Validation ``validates`` the OpenAPI Spec (OAS) file with methods, endpoints and parameters. It validates also the responses.
-   * API Validation is ``Failed-Open`` by design
-
-* API Discovery is on top of ``API Validation`` and provides discovery of unknown specifications (methods, endpoints and parameters)
-   * API Discovery can be used alone without API Validation if API Dev can't deliver the OAS file.
-
-.. image:: ../pictures/slide-api-protection.png
-   :align: center
-   :scale: 40%
-
-
-Create the default API Protection rule
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In this lab, we will create an ``API Protection rule`` to enforce and allow only ``known specifications``. The endpoints defined in the OAS files are:
-
-* /adjectives
-* /animals
-* /locations
-
-.. note:: As a reminder, the endpoint ``/colors`` is not defined in the OAS file, and the base path is ``/api/``
-
-#. Edit your "sentence-re-lb" application LB
-#. Go to ``API Protection`` - ``API Protection Rules`` and click ``configure``
-
-   .. image:: ../pictures/api-protection-rules.png
-      :align: center
-      
-#. Click on ``Configure in Server URLs and API Groups`` and create the following two rules. Don't forget to click on ``Apply``
-  
-   #. Rule 1: allows the methods and endpoints defined in the OAS file.
-
-      .. image:: ../pictures/allow-all-rule.png
-         :align: left
-         
-   #. Rule 2: deny the rest
-
-      .. image:: ../pictures/deny-unknown.png
-         :align: left
-       
-#. You should now have 2 rules. Save all your configurations.
-
-   .. image:: ../pictures/all-rules.png
-      :align: center
-      :scale: 50%
-
-#. Save and Exit.
-
-.. note:: You are good to test your first API Protection Load Balancer in F5 Distributes Cloud
