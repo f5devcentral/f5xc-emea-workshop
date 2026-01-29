@@ -41,6 +41,7 @@ Register the CE
 In UDF environment, connect to the Customer Edge (CE) UI with credentials below
 
 * Creds : ``admin`` / ``Volterra123``
+* Update credentials, you can reuse the same password ``Volterra123``
 * Click on ``Configure Now`` button
 
 .. image:: ../pictures/configure-ce.png
