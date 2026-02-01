@@ -4,7 +4,7 @@ Protecting the AI Agent
 
 Now that we have seen how to operate the **F5 AI Guardrails** solution, we need to use it to protect our **AI Agent**.
 
-Go to the UDF deployment in the **Components** tab and click on **Access** under **BIGIP** ⇒ **CHAT APP** ⇒ **Sign in**
+Go to the UDF deployment in the **Components** tab and click on **Access** under **MicroK8s - 2** ⇒ **CHAT APP** ⇒ **Sign in**
 
 Click on **New Chat** and start a conversation.
 

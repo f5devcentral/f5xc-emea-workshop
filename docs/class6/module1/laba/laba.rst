@@ -32,7 +32,7 @@ We will use **prompt-evaluator** with a validation dataset to test our scanners.
 
    .. code-block:: none   
 
-      export CALYPSOAI_URL=http://10.1.1.8
+      export CALYPSOAI_URL=https://us2.calypsoai.app
       export CALYPSOAI_TOKEN=<YOUR API TOKEN HERE>
 
 6. Run the **prompt-evaluator** with a dataset. We will only run it with the first 20 entries.
