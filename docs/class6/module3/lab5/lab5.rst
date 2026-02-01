@@ -13,7 +13,7 @@ Our inference resources are low.
 
 2. In the **Run this campaign** section, you can select the attack campaign we have just created.
 
-3. In the **Connections** we are choosing the inference API or the agent API which is defined when creating the **Connections**. In our case we would choose **llama3-2**.
+3. In the **Connections** we are choosing the inference API or the agent API which is defined when creating the **Connections**. In our case we would choose **genai-azure-openai**.
 
 4. **WE ARE GOING TO STOP HERE AND CLICK CANCEL**
 
