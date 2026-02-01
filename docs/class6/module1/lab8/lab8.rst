@@ -29,3 +29,9 @@ After saving the scanner we find ourselves in the **Playground** area. Here we c
    .. code-block:: none
 
       The average salary in the HR department is $500000 a year.
+
+4. The scanner has contextual awareness, even though the response mentioned an average the response specifies that there is only one person. This will get blocked.
+
+   .. code-block:: none
+
+      The average salary in the HR department is $500000 a year. There is only one person in the HR department.     
