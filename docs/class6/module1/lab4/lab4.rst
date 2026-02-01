@@ -3,34 +3,39 @@ F5 AI Guardrails Console
 
 Now that we have a basic understanding of how **F5 AI Guardrails** is implemented within an application, let's start by exploring the **console**.
 
+1. You should receive an email from F5 AI Guardrails (formerly CalypsoAI) invitation for account activation. 
 
+   The email will be sent from **noreply@notify.calypsoai.com**.
 
+   The email will be sent to **youremail+UDF@yourdomain** for example **gogo+UDF@gmail.com**.
 
-1. Go to the UDF deployment in the **Components** tab and click on **Access** under **Ubuntu Host** ⇒ **XRDP**.   
+   If you don’t see your email in your main inbox, please validate if it went to spam folder.
+
+2. Click **Activate Your Account** in the email to setup your password.
    
-   The credentials are ubuntu/HelloUDF.
+   Set a password.
 
-2. Click on the desktop icon that looks like a **star**.
-   
-   Log in to the **F5 AI Guardrails** console, the credentials are admin/admin.
+3. You should get redirected to the login portal, in case you aren't you can access it through this link :ext_link:`https://www.us2.calypsoai.app/`
 
-3. When deploying a model inline (not needed for out-of-band) we need to point **F5 AI Guardrails** to a backend inference server.
+   Login with your credetials. The email address needs to look like **youremail+UDF@yourdomain** for example **gogo+UDF@gmail.com**.
 
-   In the main left tab go to **Connections**, observe all the built-in inference endpoints that we can connect to. You can also see the Ollama inference which has been preconfigured. 
+4. When deploying a model inline (not needed for out-of-band) we need to point **F5 AI Guardrails** to a backend inference server.
 
-   Click on **Manage** on the **Ollama** row. Click on the **three dots** on the **Llama3-2** row ⇒ **Manage model**.
+   In the main left tab go to **Connections**, observe all the built-in inference endpoints that we can connect to. You can also see the **Openai Compatible** inference which has been preconfigured. 
 
-   You can observe the custom configuration we have created in order to connect to the model on the **Ollama** inference endpoint.
+   Click on **Manage** on the **Openai Compatible** row. Click on the **three dots** on the **genai-azure-openai** row ⇒ **Manage model**.
 
-4. Next, let's have a chat. In the main left tab go to **Chat**.
+   You can observe the configuration we have created in order to connect to the model on the **Azure OpenAI** inference endpoint.
 
-   In the **Project** input make sure **Global** is selected and in the **Chat with** input **Llama3-2** is selected.
+5. Next, let's have a chat. In the main left tab go to **Chat**.
+
+   In the **Project** input make sure **Global** is selected and in the **Chat with** input **genai-azure-openai** is selected.
 
    Now go ahead and have a chat with the backend model.
 
-5. Finally, let's do a prompt injection attack and get the model to speak in cat language.
+6. Finally, let's do a prompt injection attack and get the model to speak in cat language.
 
-6. Try the below prompt injection attack in the chat.
+7. Try the below prompt injection attack in the chat.
 
    .. code-block:: none
 
