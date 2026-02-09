@@ -16,7 +16,7 @@ We use the "Sentence application" source code for this lab: https://github.com/c
 Enable Code Base Integration
 ----------------------------
 
-* Goto Web App & API Protection > API Management > Code Base Ingration
+* Goto Web App & API Protection > API Security > Code Base Ingration
 * Add a new "Code Base Integration" with the following values
 
   * Name: ``github-sentence``

@@ -117,7 +117,7 @@ Your configuration should look like this
 .. image:: ../pictures/cbip-config.png
    :align: left
 
-After few minutes (up to 2min), you can click on Refresh button, you should see ``1 services``. This service is the BIG-IP Virtual Server
+After few minutes (up to 2min), you can click on Refresh button, you should see ``2 services``. This service is the BIG-IP Virtual Server
 
 .. image:: ../pictures/vs-services.png
    :align: left
