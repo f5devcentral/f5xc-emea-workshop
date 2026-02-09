@@ -89,7 +89,7 @@ a) Web App & API Protection -> Load Balancers -> HTTP Load Balancer -> Add HTTP 
 
       **Load Balancer Type**                  HTTP
                                                                                  
-      **Automatically Manage DNS Records**    Enable <- ``Don't forget this option``
+      **Automatically Manage DNS Records**    **Enable <- Don't forget this option**
 
       **Origin Pools**                        Click **Add Item**, for the **Origin Pool** select $$namespace$$/sentence-public-endpoint -> Apply
       ====================================    =================================================================================================

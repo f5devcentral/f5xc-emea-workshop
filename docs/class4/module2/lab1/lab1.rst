@@ -110,11 +110,11 @@ Make a quick test of API Validation
 
    .. code-block:: bash
 
-      curl --location --request DELETE 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives/beautiful'
+      curl --location --request DELETE "http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives/beautiful"
 
 .. note:: Here we replace the ID such as ``4``, by a string ``beautiful``
 
-* Don't expect to see any outcome from the command as we configured to ``Report``and not to ``Block`` in the "endpoint validation". We need to keep ``Report`` so that the backend responds with sensitive information for the next lab.
+* Don't expect to see any outcome from the command as we configured to ``Report`` and not to ``Block`` in the "endpoint validation". We need to keep ``Report`` so that the backend responds with sensitive information for the next lab.
 * Go to Security Dashboard and check your logs (can take up to 1min to be displayed). You can see a violation ``Request Path Parameter Violation``
 
    .. image:: ../pictures/validation-log.png
