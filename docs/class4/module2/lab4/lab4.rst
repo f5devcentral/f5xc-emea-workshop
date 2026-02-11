@@ -52,7 +52,7 @@ Create custom Sensitive Data Discovery
 * In Sensitive Data Discovery, select ``Custom``
 * Add a new item
 
-  * Give a name: custom-frenchies
+  * Give a name: ``custom-frenchies``
   * Select the Compliance Frameworks required for this API Application. We select ``PCI-DSS`` ``GDPR`` 
 
 .. note:: By selecting PCI-DSS and GDPR, all data patterns classified as PCI-DSS and GDPR will be added.
