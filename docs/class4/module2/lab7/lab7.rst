@@ -128,11 +128,13 @@ After few minutes (up to 2min), you can click on Refresh button, you should see 
 Enable API Discovery on BIG-IP Virtual Server
 ---------------------------------------------
 
-Click on the ``1 Services`` blue link to be redirected to the Multi-Cloud App Connect ``discovered services`` page where we will enable the different features on the BIG-IP. If you are lost, you can access this page as well by Multi-Cloud App Connect tile > Overview > Discovered Services
+Click on the ``2 Services`` blue link to be redirected to the Multi-Cloud App Connect ``discovered services`` page where we will enable the different features on the BIG-IP. If you are lost, you can access this page as well by Multi-Cloud App Connect tile > Overview > Discovered Services
 You can see now the BIG-IP Virtual Server 
 
 .. image:: ../pictures/mcn-vs.png
    :align: left
+
+You can see several VS. Enable API Discovery on the VS named ``cbip-apid-bigip1-vs-sentence``
 
 Click on ``Actions dots`` and ``Enable Visibility in All workspaces```
 
