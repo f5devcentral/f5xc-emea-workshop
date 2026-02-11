@@ -103,3 +103,6 @@ It is time to run a traffic generator script to populate the logs and the AI/ML 
    cd /home/ubuntu/api-protection-lab
    bash api-all.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
 
+.. note:: 
+
+  Please tell your instructor you reached this point.
