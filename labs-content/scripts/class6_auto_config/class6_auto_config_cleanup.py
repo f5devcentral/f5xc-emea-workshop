@@ -13,9 +13,9 @@ except ImportError:  # pragma: no cover - dependency guard
     print("Missing dependency: requests. Install it with 'pip install requests'.", file=sys.stderr)
     sys.exit(1)
 
-BASE_URL = "http://10.1.1.8"
+BASE_URL = "https://us2.calypsoai.app"
 STORE_BASE_URL = "http://10.1.1.5:32100"
-DEFAULT_API_KEY = ""
+DEPLOYMENT_API_URL = "http://localhost:8080/proxy-api/deployment"
 DEBUG = os.getenv("CALYPSO_DEBUG", "").lower() in {"1", "true", "yes", "on"}
 
 TARGET_PROJECT_NAMES = {"Test project", "request", "response", "MCP"}
@@ -33,7 +33,6 @@ TOKEN_NAMES_BY_PROJECT = {
     "MCP": {"MCP"},
 }
 PROMPT_PACKAGE_NAME = "Prompt injection package"
-PROVIDER_NAME = "llama3-2"
 
 
 def _debug(msg: str) -> None:
@@ -42,13 +41,35 @@ def _debug(msg: str) -> None:
 
 
 def _require_api_key() -> str:
-    api_key = os.getenv("CALYPSO_API_KEY") or DEFAULT_API_KEY
-    if not api_key:
-        print(
-            "CALYPSO_API_KEY is not set and DEFAULT_API_KEY is empty.",
-            file=sys.stderr,
-        )
+    _debug(f"Request GET {DEPLOYMENT_API_URL}")
+    try:
+        resp = requests.get(DEPLOYMENT_API_URL, timeout=30)
+    except requests.RequestException as exc:
+        print(f"Request failed GET {DEPLOYMENT_API_URL}: {exc}", file=sys.stderr)
         sys.exit(1)
+
+    if not resp.ok:
+        if DEBUG:
+            _debug(f"Response status={resp.status_code} headers={dict(resp.headers)}")
+            _debug(f"Response body={resp.text}")
+        print(f"Request failed GET {DEPLOYMENT_API_URL} ({resp.status_code}).", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        data = resp.json()
+    except ValueError:
+        if DEBUG:
+            _debug(f"Non-JSON response body={resp.text}")
+        print(f"Non-JSON response from GET {DEPLOYMENT_API_URL}.", file=sys.stderr)
+        sys.exit(1)
+
+    api_key = data.get("apiKey")
+    if not isinstance(api_key, str) or not api_key:
+        if DEBUG:
+            _debug(f"Deployment payload keys={list(data.keys())}")
+        print(f"Missing 'apiKey' in response from {DEPLOYMENT_API_URL}.", file=sys.stderr)
+        sys.exit(1)
+
     return api_key
 
 
@@ -340,20 +361,6 @@ def main() -> None:
     for projects in projects_by_name.values():
         for project in projects:
             _delete_project(api_key, project["id"])
-
-    providers = [p for p in _list_providers(api_key) if p.get("name") == PROVIDER_NAME]
-    for provider in providers:
-        provider_id = provider["id"]
-        used_by = _projects_using_provider(api_key, provider_id)
-        other_projects = [
-            proj for proj in used_by if proj.get("name") not in TARGET_PROJECT_NAMES
-        ]
-        if other_projects:
-            _debug(
-                f"Provider {PROVIDER_NAME} used by other projects; skipping delete."
-            )
-            continue
-        _delete_provider(api_key, provider_id)
 
     _put_guardrails_store_cleanup()
 
