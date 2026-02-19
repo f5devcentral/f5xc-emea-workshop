@@ -152,6 +152,52 @@ def _remove_scanners_from_config(config: Dict[str, Any], scanner_ids: Iterable[s
     ]
 
 
+def _get_existing_backend_origins() -> Dict[str, str]:
+    url = f"{STORE_BASE_URL}/config/api/store"
+    _debug(f"Request GET {url}")
+    try:
+        resp = requests.get(url, timeout=30)
+    except requests.RequestException as exc:
+        print(f"Request failed GET {url}: {exc}", file=sys.stderr)
+        sys.exit(1)
+
+    if not resp.ok:
+        if DEBUG:
+            _debug(f"Response status={resp.status_code} headers={dict(resp.headers)}")
+            _debug(f"Response body={resp.text}")
+        print(f"Request failed GET {url} ({resp.status_code}).", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        data = resp.json()
+    except ValueError:
+        if DEBUG:
+            _debug(f"Non-JSON response body={resp.text}")
+        print(f"Non-JSON response from GET {url}.", file=sys.stderr)
+        sys.exit(1)
+
+    host_configs: Optional[Dict[str, Any]] = None
+    if isinstance(data.get("hostConfigs"), dict):
+        host_configs = data["hostConfigs"]
+    elif isinstance(data.get("config"), dict) and isinstance(data["config"].get("hostConfigs"), dict):
+        host_configs = data["config"]["hostConfigs"]
+
+    if host_configs is None:
+        if DEBUG:
+            _debug(f"Store payload keys={list(data.keys())}")
+        print(f"Missing 'hostConfigs' in response from GET {url}.", file=sys.stderr)
+        sys.exit(1)
+
+    origins: Dict[str, str] = {}
+    for host, host_config in host_configs.items():
+        if not isinstance(host_config, dict):
+            continue
+        origin = host_config.get("backendOrigin")
+        if isinstance(origin, str) and origin:
+            origins[host] = origin
+    return origins
+
+
 def _disable_scanners_in_config(config: Dict[str, Any], scanner_ids: Iterable[str]) -> None:
     for scanner_id in scanner_ids:
         for item in config.get("scanners", []):
@@ -262,6 +308,10 @@ def _delete_provider(api_key: str, provider_id: str) -> None:
 
 
 def _put_guardrails_store_cleanup() -> None:
+    existing_backend_origins = _get_existing_backend_origins()
+    default_backend_origin = existing_backend_origins.get("__default__", "https://api.openai.com")
+    chat_app_backend_origin = existing_backend_origins.get("chat-app.lab", "http://10.1.10.100:22434")
+
     payload = {
         "version": 1,
         "hosts": ["__default__", "chat-app.lab"],
@@ -271,7 +321,7 @@ def _put_guardrails_store_cleanup() -> None:
                 "redactMode": "both",
                 "logLevel": "info",
                 "requestForwardMode": "sequential",
-                "backendOrigin": "https://api.openai.com",
+                "backendOrigin": default_backend_origin,
                 "requestExtractor": "",
                 "responseExtractor": "",
                 "requestExtractors": [],
@@ -287,7 +337,7 @@ def _put_guardrails_store_cleanup() -> None:
             },
             "chat-app.lab": {
                 "inspectMode": "both",
-                "backendOrigin": "http://10.1.10.100:22434",
+                "backendOrigin": chat_app_backend_origin,
                 "requestExtractor": "",
                 "responseExtractor": "",
                 "requestExtractors": [],
