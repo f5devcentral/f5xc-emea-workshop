@@ -14,9 +14,9 @@ except ImportError:  # pragma: no cover - dependency guard
     print("Missing dependency: requests. Install it with 'pip install requests'.", file=sys.stderr)
     sys.exit(1)
 
-BASE_URL = "http://10.1.1.8"
+BASE_URL = "https://us2.calypsoai.app"
 STORE_BASE_URL = "http://10.1.1.5:32100"
-DEFAULT_API_KEY = ""
+DEPLOYMENT_API_URL = "http://localhost:8080/proxy-api/deployment"
 DEBUG = os.getenv("CALYPSO_DEBUG", "").lower() in {"1", "true", "yes", "on"}
 
 
@@ -26,13 +26,35 @@ def _debug(msg: str) -> None:
 
 
 def _require_api_key() -> str:
-    api_key = os.getenv("CALYPSO_API_KEY") or DEFAULT_API_KEY
-    if not api_key:
-        print(
-            "CALYPSO_API_KEY is not set and DEFAULT_API_KEY is empty.",
-            file=sys.stderr,
-        )
+    _debug(f"Request GET {DEPLOYMENT_API_URL}")
+    try:
+        resp = requests.get(DEPLOYMENT_API_URL, timeout=30)
+    except requests.RequestException as exc:
+        print(f"Request failed GET {DEPLOYMENT_API_URL}: {exc}", file=sys.stderr)
         sys.exit(1)
+
+    if not resp.ok:
+        if DEBUG:
+            _debug(f"Response status={resp.status_code} headers={dict(resp.headers)}")
+            _debug(f"Response body={resp.text}")
+        print(f"Request failed GET {DEPLOYMENT_API_URL} ({resp.status_code}).", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        data = resp.json()
+    except ValueError:
+        if DEBUG:
+            _debug(f"Non-JSON response body={resp.text}")
+        print(f"Non-JSON response from GET {DEPLOYMENT_API_URL}.", file=sys.stderr)
+        sys.exit(1)
+
+    api_key = data.get("apiKey")
+    if not isinstance(api_key, str) or not api_key:
+        if DEBUG:
+            _debug(f"Deployment payload keys={list(data.keys())}")
+        print(f"Missing 'apiKey' in response from {DEPLOYMENT_API_URL}.", file=sys.stderr)
+        sys.exit(1)
+
     return api_key
 
 
@@ -44,6 +66,7 @@ def _request(
     params: Optional[Dict[str, Any]] = None,
     json_body: Optional[Dict[str, Any]] = None,
     allow_not_found: bool = False,
+    allow_forbidden: bool = False,
 ) -> Any:
     url = f"{BASE_URL}{path}"
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -59,6 +82,10 @@ def _request(
     if allow_not_found and resp.status_code == 404:
         if DEBUG:
             _debug(f"Request {method} {path} returned 404; continuing.")
+        return None
+    if allow_forbidden and resp.status_code == 403:
+        if DEBUG:
+            _debug(f"Request {method} {path} returned 403; continuing.")
         return None
     if not resp.ok:
         if DEBUG:
@@ -177,27 +204,16 @@ def _create_project(api_key: str, name: str, project_type: str) -> str:
     return resp["id"]
 
 
-def _find_provider_by_name(api_key: str, name: str) -> Optional[Dict[str, Any]]:
+def _find_any_provider(api_key: str) -> Optional[Dict[str, Any]]:
     providers = _get_all(
         api_key,
         "/backend/v1/providers",
         "providers",
-        params={"search": name, "limit": 100},
+        params={"limit": 100},
     )
-    for provider in providers:
-        if provider.get("name") == name:
-            return provider
+    if providers:
+        return providers[0]
     return None
-
-
-def _create_provider_from_system(
-    api_key: str, name: str, system_provider: str, project_id: Optional[str] = None
-) -> str:
-    payload: Dict[str, Any] = {"name": name, "systemProvider": system_provider}
-    if project_id:
-        payload["projectId"] = project_id
-    resp = _request(api_key, "POST", "/backend/v1/providers", json_body=payload)
-    return resp["id"]
 
 
 def _add_provider_to_project(
@@ -238,6 +254,7 @@ def _publish_scanner(api_key: str, scanner_id: str) -> None:
         "PATCH",
         f"/backend/v1/scanners/{scanner_id}",
         json_body={"published": True},
+        allow_forbidden=True,
     )
 
 
@@ -485,14 +502,11 @@ def main() -> None:
     tokens["Test project"] = _create_token(api_key, "Test project token", test_project_id)
     test_project = _get_project(api_key, test_project_id)
     test_config = _normalize_config(test_project.get("config"))
-    provider_name = "llama3-2"
-    provider = _find_provider_by_name(api_key, provider_name)
-    if provider:
-        provider_id = provider["id"]
-    else:
-        provider_id = _create_provider_from_system(
-            api_key, provider_name, provider_name, project_id=test_project_id
-        )
+    provider = _find_any_provider(api_key)
+    if not provider:
+        print("No providers available to attach to Test project.", file=sys.stderr)
+        sys.exit(1)
+    provider_id = provider["id"]
     _add_provider_to_project(api_key, test_project_id, provider_id, test_config)
     _patch_project_config(api_key, test_project_id, test_config)
 
