@@ -3,11 +3,11 @@ Built-in Scanners
 
 Now that we have a working chat interface we need to discuss how this should be protected.
 
-In the main left tab go to **Scanners**, you can see all the built-in scanner packages that can help us protect against the **OWASP Top Ten GenAI** attacks.
+In the main left tab go to **Guardrails**, you can see all the built-in guardrail packages that can help us protect against the **OWASP Top Ten GenAI** attacks.
 
-Take the time to go over the different packages and their built-in scanners.
+Take the time to go over the different packages and their built-in guardrails.
 
-1. Let's enable the scanners under the **Prompt Injection package**, click on it and enable all scanners.
+1. Let's enable the guardrails under the **Prompt Injection package**, click on it and enable all scanners.
 
 2. Go back to the web chat.
 
@@ -25,11 +25,11 @@ Take the time to go over the different packages and their built-in scanners.
 
 5. In the main left tab go to **Logs** and let's inspect the logs and the blocking reason.
 
-   Click on each log. For each one, you will see the scanner that fired in **Scanner details**. 
+   Click on each log. For each one, you will see the guardrail that fired in **Guardrail details**. 
    
    Click on **Prompt and response**, you will be able to see the text that has been scanned.
 
-   Click on **Analyse**, you will see the part of the text that triggered the scanners.
+   Click on **Analyse**, you will see the part of the text that triggered the guardrails.
 
    
 
