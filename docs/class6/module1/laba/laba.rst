@@ -6,11 +6,11 @@ Now that we have an understanding of the F1 score, it is also important to under
 For this task, we have the **prompt-evaluator** :ext_link:`https://gitlab.com/Artemouse/prompt-evaluator`, 
 a lightweight evaluation tool for AI prompts and model responses: it lets you systematically test, score, and compare outputs from large language models against criteria you define. Instead of manually judging whether a model’s reply is good or bad, this tool runs structured evaluations to measure qualities like accuracy, relevance, safety, and adherence to rules (e.g., F5 AI Guardrails). It’s useful for developers and AI teams who want repeatable, automated quality checks as they improve prompts, switch models, or tweak AI behavior.
 
-We will use **prompt-evaluator** with a validation dataset to test our scanners.
+We will use **prompt-evaluator** with a validation dataset to test our guardrails.
 
-1. First, we need to ensure that all our prompt injection scanners in the **Test project** are enabled.
+1. First, we need to ensure that all our prompt injection guardrails in the **Test project** are enabled.
 
-   In the main left tab go to **Projects** ⇒ Click **View** for the **Test project** ⇒ Click on the **Prompt injection package** and make sure that all scanners are enabled.
+   In the main left tab go to **Projects** ⇒ Click **View** for the **Test project** ⇒ Click on the **Prompt injection package** and make sure that all guardrails are enabled.
 
 2. Go back to the **Test project** and click on **API Tokens** ⇒ **Generate API token** ⇒ Name it **f1testing** and click **Save**
 
