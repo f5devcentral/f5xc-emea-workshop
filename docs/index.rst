@@ -33,6 +33,9 @@ It covers:
   * Dynamic API Protection
   * Advanced Protection
 
+* ``(Class 5)`` F5 XC k8s
+
+* ``(Class 6)`` F5 AI Security
 
 
 .. toctree::
