@@ -129,8 +129,13 @@ Download the certificates
       .. image:: ../pictures/3rd-access-fqdn.png
          :align: left 
 
+  * Now from your terminal, use the scp command to copy the zip file to the Nginx instance
 
+    .. code-block:: bash
 
+       scp -O -P 47005 <certificate-zip-file> ubuntu@<FQDN-of-nginx-instance>:/home/ubuntu/
+    
+    .. note:: example -> scp -O -P 47005 pumped-eel.nginx-sd.certificates.zip ubuntu@04398a92-397f-4b70-acf8-54d6129bc80b.access.udf.f5.com:/home/ubuntu
 
 Enable API Disovery and Download the token
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
