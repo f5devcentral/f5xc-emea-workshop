@@ -118,6 +118,7 @@ Download the certificates
 
   * You need a terminal and scp tool on your laptop
   * Copy the FQDN of the Nginx instance
+  
     * In UDF, click on ``Deployment`` tab, then find the ``Nginx`` instance, and click on ``Details``
 
       .. image:: ../pictures/3rd-access-button.png
@@ -144,11 +145,11 @@ Enable API Disovery and Download the token
 * Enable and select your API Definition (created in the previous labs)
 * Enable API Discovery
 
-.. image:: ../pictures/3rd-enable-apid.png.png
+.. image:: ../pictures/3rd-enable-apid.png
    :align: left
 
 
-* Click on the 3-dots, and ``Generate Token```
+* Click on the 3-dots, and ``Generate Token``
 * Copy and save the token, you will need it to configure the JS module on the Nginx
 
 .. note:: You have finished the configuration on the F5 Distributed Cloud side, now you need to configure the JS module on the Nginx side to start sending logs to the CE and see API Discovery in action.
