@@ -22,8 +22,7 @@ Key take aways before jumping into the lab:
 .. image:: ../pictures/nginx-apid-archi.png
    :align: left
 
-
-.. note:: If you have already ran the lab 7, you can reuse the same CE and skip to the sections "Deploy and Register CE. If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
+.. note:: If you have already run the lab 7 (API Discovery for BIG-IP), you can reuse the same CE and skip to the sections "Deploy and Register CE". If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
 
 
 Deploy and register Customer Edge (CE)
@@ -69,13 +68,12 @@ Check Registration on the F5 Distributed Cloud Console
 In F5 Distributed Cloud Console
 
 * Go to Multi-Cloud Network Connect > Overview > Infrastructure > Sites
-* Search for your site $$smsv2SiteName$$
+* Search for your site ``$$smsv2SiteName$$``
 * Click on it
 * Refresh the page till upgrades are finished and every flag is green
 
 .. image:: ../pictures/site-view.png
    :align: left
-
 
 .. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
 
@@ -96,17 +94,42 @@ Create a new Service Discovery configuration for 3rd Parties Services
 .. image:: ../pictures/3rd-sd-page.png
    :align: left
 
-* Name : nginx-sd
-* Site : select your site name $$smsv2SiteName$$
-* Network type : Site Local Inside Network
+* Name : ``nginx-sd``
+* Site : select your site name ``$$smsv2SiteName$$``
+* Network type : ``Site Local Inside Network``
 
 In the discovery section, create an application associated to the Nginx application
 
-* Application Source Name : nginx-sentence-app
-* Source Subnet IP : 10.1.0.0/16 (this is the subnet used by the Nginx)
+* Application Source Name : ``nginx-sentence-app``
+* Source Subnet IP : ``10.1.0.0/16`` (this is the subnet used by the Nginx)
 
 .. image:: ../pictures/3rd-sd-config.png
    :align: left
+
+Download the certificates
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Click on Generate button to download the certificates that will be used by the JS module on the Nginx to send logs to the CE securely.
+
+.. image:: ../pictures/3rd-gen-cert.png.png
+   :align: left
+
+
+Enable API Disovery and Download the token
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* In Web Application and API Protection > Third-Party Applications, enable API Discovery for the application ``nginx-sd-nginx-sentence-app``
+* Enable and select your API Definition (created in the previous labs)
+* Enable API Discovery
+
+.. image:: ../pictures/3rd-enable-apid.png.png
+   :align: left
+
+
+* Click on the 3-dots, and ``Generate Token```
+* Copy and save the token, you will need it to configure the JS module on the Nginx
+
+.. note:: You have finished the configuration on the F5 Distributed Cloud side, now you need to configure the JS module on the Nginx side to start sending logs to the CE and see API Discovery in action.
 
 Configure the Nginx instance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
