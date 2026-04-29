@@ -114,6 +114,23 @@ Download the certificates
 .. image:: ../pictures/3rd-gen-cert.png.png
    :align: left
 
+* Now, you must upload the zip file into the Nginx instance. Unfortunately, with UDF, this will require some preaparation. Please follow each step carefully
+
+  * You need a terminal and scp tool on your laptop
+  * Copy the FQDN of the Nginx instance
+    * In UDF, click on ``Deployment`` tab, then find the ``Nginx`` instance, and click on ``Details``
+
+      .. image:: ../pictures/3rd-access-button.png
+         :align: left 
+
+    * Click on the ``Access Methods`` tab, and find the SSH (not the Web Shell)
+    * Copy the FQDN from the SSH command line (if you can't only select the FQDN, copy the full command and extract it from your Notepad for example)
+
+      .. image:: ../pictures/3rd-access-fqdn.png
+         :align: left 
+
+
+
 
 Enable API Disovery and Download the token
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -134,3 +151,4 @@ Enable API Disovery and Download the token
 Configure the Nginx instance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* SSH or WEBSSH to the Nginx instance
