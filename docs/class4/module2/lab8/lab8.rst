@@ -1,0 +1,81 @@
+Enable API discovery for Nginx
+==============================
+
+In the previous lab, we learnt how F5 Distributed Cloud can discover API Endpoints on traffic handled by BIG-IP.
+
+In this lab, you will replicate the same use case but with Nginx as a Dataplane instead of BIG-IP. You will learn how to ``onboard`` a Nginx into F5XC, in order to enable the API Discovery feature on this Nginx.
+
+Key take aways before jumping into the lab:
+
+* Out of Band Discovery
+* CE required on Nginx Network
+* CE collects and anonymises logs from Nginx
+* F5XC runs API Discovery engine in F5XC infrastructure
+* Outcomes
+
+  * Inventory
+  * Security Insights risks
+  * Compliance
+  * Authentication state
+  * Sensitive Data
+
+.. image:: ../pictures/nginx-apid-archi.png
+   :align: left
+
+
+note:: If you have already ran the lab 7, you can reuse the same CE and skip to the sections "Deploy and Register CE. If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
+
+
+Deploy and register Customer Edge (CE)
+--------------------------------------
+
+The CE (Customer Edge) is not yet registered. But it is already deployed in your UDF environment.
+The CE is deployed with 2 NICs
+
+* NIC Outside in charge of IPSEC tunnels between CE and RE
+* NIC Inside in charge of configuring BIG-IP and collect logs from BIG-IP
+
+.. note:: In a nutshell, F5XC will configure the BIG-IP to collect request logs from the Virtual Server, and send those logs to the CE. Then the CE will anonymize the logs and send them to the F5XC infrastructure to render the API Discovery endpoints and insights.
+
+Register the CE
+^^^^^^^^^^^^^^^
+
+In UDF environment, connect to the Customer Edge (CE) UI with credentials below
+
+* Creds : ``admin`` / ``Volterra123``
+* Update credentials, you can reuse the same password ``Volterra123``
+* Click on ``Configure Now`` button
+
+.. image:: ../pictures/configure-ce.png
+   :align: left
+
+* Token (copy paste using the copy button below)
+
+.. code-block:: none
+
+   $$smsv2Token$$
+
+* Cluster Name: ``$$smsv2SiteName$$``
+* Hostmane: ``master0``
+
+* Click ``Save Configuration``
+
+Wait 15min to see the CE registered in the F5 Distributed Cloud Console.
+
+
+Check Registration on the F5 Distributed Cloud Console
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In F5 Distributed Cloud Console
+
+* Go to Multi-Cloud Network Connect > Overview > Infrastructure > Sites
+* Search for your site $$smsv2SiteName$$
+* Click on it
+* Refresh the page till upgrades are finished and every flag is green
+
+.. image:: ../pictures/site-view.png
+   :align: left
+
+
+.. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
+
