@@ -23,7 +23,7 @@ Key take aways before jumping into the lab:
    :align: left
 
 
-note:: If you have already ran the lab 7, you can reuse the same CE and skip to the sections "Deploy and Register CE. If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
+.. note:: If you have already ran the lab 7, you can reuse the same CE and skip to the sections "Deploy and Register CE. If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
 
 
 Deploy and register Customer Edge (CE)
@@ -78,4 +78,36 @@ In F5 Distributed Cloud Console
 
 
 .. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
+
+
+Onboard Nginx instance
+----------------------
+
+Onboard Nginx is different from onboarding a BIG-IP as Nginx is not natively integrated with F5XC like BIG-IP. This type of integration is called 3rd Party Proxy integration. 
+Therefore, we will need to install a lightweight JS module on the Nginx to collect logs and send them to the CE.
+
+The Nginx instance is already up and running in your UDF environment, but it is not yet onboarded to F5XC. To onboard it, you will need to connect to the Nginx instance and make some "changes".
+
+Create the Service Discovery profile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a new Service Discovery configuration for 3rd Parties Services
+
+.. image:: ../pictures/3rd-sd-page.png
+   :align: left
+
+* Name : nginx-sd
+* Site : select your site name $$smsv2SiteName$$
+* Network type : Site Local Inside Network
+
+In the discovery section, create an application associated to the Nginx application
+
+* Application Source Name : nginx-sentence-app
+* Source Subnet IP : 10.1.0.0/16 (this is the subnet used by the Nginx)
+
+.. image:: ../pictures/3rd-sd-config.png
+   :align: left
+
+Configure the Nginx instance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
