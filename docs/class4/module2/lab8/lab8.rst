@@ -111,14 +111,14 @@ Download the certificates
 
 * Click on Generate button to download the certificates that will be used by the JS module on the Nginx to send logs to the CE securely.
 
-.. image:: ../pictures/3rd-gen-cert.png.png
+.. image:: ../pictures/3rd-gen-cert.png
    :align: left
 
 * Now, you must upload the zip file into the Nginx instance. Unfortunately, with UDF, this will require some preaparation. Please follow each step carefully
 
   * You need a terminal and scp tool on your laptop
   * Copy the FQDN of the Nginx instance
-  
+
     * In UDF, click on ``Deployment`` tab, then find the ``Nginx`` instance, and click on ``Details``
 
       .. image:: ../pictures/3rd-access-button.png
