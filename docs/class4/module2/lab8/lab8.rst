@@ -133,12 +133,14 @@ Enable API Disovery and Download the token
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * In Web Application and API Protection > Third-Party Applications, enable API Discovery for the application ``nginx-sd-nginx-sentence-app``
+
+  .. image:: ../pictures/3rd-enable-apid.png
+     :align: left
+
 * Enable and select your API Definition (created in the previous labs)
 * Enable API Discovery
-
-.. image:: ../pictures/3rd-enable-apid.png
-   :align: left
-
+* Select also the Sensitive Data Detection Policy created in the previous labs, or keep the Default.
+* Save
 
 * Click on the 3-dots, and ``Generate Token``
 * Copy and save the token, you will need it to configure the JS module on the Nginx
@@ -151,6 +153,10 @@ Configure the Nginx instance
 .. note:: The Nginx instance is already pre-configured to avoid too many copy-paste between this lab guide and the SSH session. You will just adapt the configuration to collect the logs from Nginx application and forward the logs to the CE.
 
 * SSH or WEBSSH to the Nginx instance
+
+  .. image:: ../pictures/3rd-nginx-ssh.png
+     :align: left
+     :scale: 70%
 
 Copy the certificats
 ^^^^^^^^^^^^^^^^^^^^
@@ -193,6 +199,7 @@ Update the nginx configuration
 
   .. note:: Block Server 18080 -> the API Discovery configuration to collect the logs, format them, and send them to the CE.
 
+
 * At the end of the file, ``uncomment`` those 5 lines. Ctrl+X to exit, Y to save and Enter to confirm.
 
   .. code-block:: bash
@@ -208,4 +215,39 @@ Update the nginx configuration
   .. code-block:: bash
 
      sudo nginx -s reload
+
+
+Check your lab
+--------------
+
+Now it is time to check if
+
+* Nginx is proxying the sentence application
+* Nginx is sending logs to the CE
+
+To do so, we will simulate some traffic to the sentence application, and check if we can see the logs.
+
+.. note:: A traffic generator script is running every 9 minutes. It is already running, you don't have to run it.
+
+* Connect in SSH or WebSSH to the Nginx instance and run the command below, keep the terminal opened.
+
+  .. code-block:: bash
+
+     tail -f /var/log/nginx/location_debug.log
+
+* Connect in SSH or WebSSH to the Traffic Gen instance. It opens a second terminal
+* Run the command below
+
+  .. code-block:: bash
+
+     curl -k --location 'http://10.1.10.10/api/colors' --header 'Host: api.sentence.com'
+
+* Now, look into the nginx instance terminal, you should see the logs being collected by the nginx and sent to the CE.
+
+  .. code-block:: bash
+
+    { "time":"2026-04-30T18:48:56+00:00",  "server":"127.0.0.1",  "uri":"/logs/third_party_application/access",  "method":"POST",  "status":500,  "token":"",  "body":"{\"method\":\"GET\",\"url\":\"http://api.sentence.com/api/colors\",\"client_ip\":\"10.1.10.6\",\"req_headers\":{\"host\":\"api.sentence.com\",\"user-agent\":\"curl/7.81.0\",\"accept\":\"*/*\"},\"request_timestamp\":1777574936841,\"req_payload\":\"\",\"rsp_status\":200,\"rsp_headers\":{\"content-type\":\"application/json; charset=utf-8\",\"content-length\":\"210\",\"x-powered-by\":\"Express\",\"vary\":\"Origin, Accept-Encoding\",\"access-control-allow-credentials\":\"true\",\"cache-control\":\"no-cache\",\"pragma\":\"no-cache\",\"expires\":\"-1\",\"x-content-type-options\":\"nosniff\",\"etag\":\"W/\\\"d2-RfZ0XwcFqRWrzPouuyCT4I7Dhlo\\\"\"},\"response_timestamp\":1777574936841,\"rsp_payload\":\"WwogIHsKICAgICJpZCI6IDEsCiAgICAibmFtZSI6ICJyZWQiCiAgfSwKICB7CiAgICAiaWQiOiAyLAogICAgIm5hbWUiOiAiYmx1ZSIKICB9LAogIHsKICAgICJpZCI6IDMsCiAgICAibmFtZSI6ICJncmVlbiIKICB9LAogIHsKICAgICJuYW1lIjogImJsYWNrIiwKICAgICJpZCI6IDQKICB9LAogIHsKICAgICJuYW1lIjogInllbGxvdyIsCiAgICAiaWQiOiA1CiAgfQpd\",\"req_id\":\"3bc650014be3462ebd99fc8d3f3dd06f\",\"dst\":\"10.1.20.7:31220\",\"rsp_code_details\":\"200\"}" }
+
+.. note:: you can notice all the datas from the request and also the response is encoded in Base64. You can decode it with https://www.base64decode.org/
+
 
