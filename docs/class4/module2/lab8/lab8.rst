@@ -120,11 +120,13 @@ Download the certificates
 
     .. image:: ../pictures/3rd-udf-upload.png
        :align: left
+       :scale: 50%
 
   * Upload your zip file from this website. It will be uploaded into the Nginx instance.
 
     .. image:: ../pictures/3rd-upload-site.png
        :align: left
+       :scale: 70%
 
 
 Enable API Disovery and Download the token
@@ -144,11 +146,14 @@ Enable API Disovery and Download the token
 .. note:: You have finished the configuration on the F5 Distributed Cloud side, now you need to configure the JS module on the Nginx side to start sending logs to the CE and see API Discovery in action.
 
 Configure the Nginx instance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
-.. note:: The Nginx instance is already pre-configured to avoid to many copy-paste between this lab guide and the SSH session. You will just adapt the configuration to collect the logs from Nginx application and forward the logs to the CE.
+.. note:: The Nginx instance is already pre-configured to avoid too many copy-paste between this lab guide and the SSH session. You will just adapt the configuration to collect the logs from Nginx application and forward the logs to the CE.
 
 * SSH or WEBSSH to the Nginx instance
+
+Copy the certificats
+^^^^^^^^^^^^^^^^^^^^
 
 * Copy the certificates zip file into /home/ubuntu directory and unzup it
 
@@ -169,4 +174,38 @@ Configure the Nginx instance
      sudo chmod 644 /etc/nginx/certs/client.crt
      sudo chmod 644 /etc/nginx/certs/server_ca.crt
 
+Update the nginx configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Modify the nginx.conf file
+
+  .. code-block:: bash
+
+     sudo nano /etc/nginx/nginx.conf
+
+  .. note:: Have a look on the nginx.conf file, and check the blocks that are already configured for you. I added comments so you can understand them.
+
+  .. note:: Block Upstream obelix -> this is the CE
+
+  .. note:: Block Server 8080 -> website to upload the certificates
+
+  .. note:: Block Server 80 -> the Nginx LB proxying the sentence application
+
+  .. note:: Block Server 18080 -> the API Discovery configuration to collect the logs, format them, and send them to the CE.
+
+* At the end of the file, ``uncomment`` those 5 lines. Ctrl+X to exit, Y to save and Enter to confirm.
+
+  .. code-block:: bash
+
+     proxy_ssl_certificate           /etc/nginx/certs/client.crt;
+     proxy_ssl_certificate_key       /etc/nginx/certs/client.key;
+     proxy_ssl_trusted_certificate   /etc/nginx/certs/server_ca.crt;
+     proxy_ssl_verify                on;
+     proxy_ssl_server_name   off;          # keep off unless Telemetry_Ingestion_Service cert CN matches host
+
+* Reload nginx configuration
+
+  .. code-block:: bash
+
+     sudo nginx -s reload
 
