@@ -220,6 +220,9 @@ Update the nginx configuration
 Check your lab
 --------------
 
+From the Nginx instance
+^^^^^^^^^^^^^^^^^^^^^^^
+
 Now it is time to check if
 
 * Nginx is proxying the sentence application
@@ -251,3 +254,19 @@ To do so, we will simulate some traffic to the sentence application, and check i
 .. note:: you can notice all the datas from the request and also the response is encoded in Base64. You can decode it with https://www.base64decode.org/
 
 
+From the F5 Distributed Cloud Console
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Connect to the F5 Distributed Cloud Console, in the WAAP section, and click on the ``Third-Party Applications`` menu on the left
+* Click on the application ``nginx-sd-nginx-sentence-app``
+
+  .. image:: ../pictures/3rd-menu-apid.png
+     :align: left
+
+* After 2 hours, or if the trainer can run the job for you, you will find all the outcomes of the API Discovery, such as Inventory, Security Insights, Compliance, Authentication state, Sensitive Data, etc...
+
+  .. image:: ../pictures/3rd-apid-outcomes.png
+     :align: left
+
+
+.. note:: Congrats, the lab is finished.
