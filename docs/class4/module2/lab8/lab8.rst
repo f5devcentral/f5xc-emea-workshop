@@ -245,12 +245,50 @@ To do so, we will simulate some traffic to the sentence application, and check i
 
      curl -k --location 'http://10.1.10.10/api/colors' --header 'Host: api.sentence.com'
 
-* Now, look into the nginx instance terminal, you should see the logs being collected by the nginx and sent to the CE.
+* Now, look into the nginx instance terminal, you should see the logs being collected by the nginx and sent to the CE. Below the JSON in a pretty format:
 
-  .. code-block:: bash
+  .. code-block:: json
 
-    { "time":"2026-04-30T18:48:56+00:00",  "server":"127.0.0.1",  "uri":"/logs/third_party_application/access",  "method":"POST",  "status":500,  "token":"",  "body":"{\"method\":\"GET\",\"url\":\"http://api.sentence.com/api/colors\",\"client_ip\":\"10.1.10.6\",\"req_headers\":{\"host\":\"api.sentence.com\",\"user-agent\":\"curl/7.81.0\",\"accept\":\"*/*\"},\"request_timestamp\":1777574936841,\"req_payload\":\"\",\"rsp_status\":200,\"rsp_headers\":{\"content-type\":\"application/json; charset=utf-8\",\"content-length\":\"210\",\"x-powered-by\":\"Express\",\"vary\":\"Origin, Accept-Encoding\",\"access-control-allow-credentials\":\"true\",\"cache-control\":\"no-cache\",\"pragma\":\"no-cache\",\"expires\":\"-1\",\"x-content-type-options\":\"nosniff\",\"etag\":\"W/\\\"d2-RfZ0XwcFqRWrzPouuyCT4I7Dhlo\\\"\"},\"response_timestamp\":1777574936841,\"rsp_payload\":\"WwogIHsKICAgICJpZCI6IDEsCiAgICAibmFtZSI6ICJyZWQiCiAgfSwKICB7CiAgICAiaWQiOiAyLAogICAgIm5hbWUiOiAiYmx1ZSIKICB9LAogIHsKICAgICJpZCI6IDMsCiAgICAibmFtZSI6ICJncmVlbiIKICB9LAogIHsKICAgICJuYW1lIjogImJsYWNrIiwKICAgICJpZCI6IDQKICB9LAogIHsKICAgICJuYW1lIjogInllbGxvdyIsCiAgICAiaWQiOiA1CiAgfQpd\",\"req_id\":\"3bc650014be3462ebd99fc8d3f3dd06f\",\"dst\":\"10.1.20.7:31220\",\"rsp_code_details\":\"200\"}" }
-
+     {
+      "time": "2026-04-30T18:48:56+00:00",
+      "server": "127.0.0.1",
+      "uri": "/logs/third_party_application/access",
+      "method": "POST",
+      "status": 500,
+      "token": "",
+      "body": 
+         {
+            "method": "GET",
+            "url": "http://api.sentence.com/api/colors",
+            "client_ip": "10.1.10.6",
+            "req_headers": {
+               "host": "api.sentence.com",
+               "user-agent": "curl/7.81.0",
+               "accept": "*/*"
+            },
+            "request_timestamp": 1777574936841,
+            "req_payload": "",
+            "rsp_status": 200,
+            "rsp_headers": {
+               "content-type": "application/json; charset=utf-8",
+               "content-length": "210",
+               "x-powered-by": "Express",
+               "vary": "Origin, Accept-Encoding",
+               "access-control-allow-credentials": "true",
+               "cache-control": "no-cache",
+               "pragma": "no-cache",
+               "expires": "-1",
+               "x-content-type-options": "nosniff",
+               "etag": "W/\"d2-RfZ0XwcFqRWrzPouuyCT4I7Dhlo\""
+            },
+            "response_timestamp": 1777574936841,
+            "rsp_payload": "WwogIHsKICAgICJpZCI6IDEsCiAgICAibmFtZSI6ICJyZWQiCiAgfSwKICB7CiAgICAiaWQiOiAyLAogICAgIm5hbWUiOiAiYmx1ZSIKICB9LAogIHsKICAgICJpZCI6IDMsCiAgICAibmFtZSI6ICJncmVlbiIKICB9LAogIHsKICAgICJuYW1lIjogImJsYWNrIiwKICAgICJpZCI6IDQKICB9LAogIHsKICAgICJuYW1lIjogInllbGxvdyIsCiAgICAiaWQiOiA1CiAgfQpd",
+            "req_id": "3bc650014be3462ebd99fc8d3f3dd06f",
+            "dst": "10.1.20.7:31220",
+            "rsp_code_details": "200"
+         }
+      }
+    
 .. note:: you can notice all the datas from the request and also the response is encoded in Base64. You can decode it with https://www.base64decode.org/
 
 
