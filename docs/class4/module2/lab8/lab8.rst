@@ -114,29 +114,18 @@ Download the certificates
 .. image:: ../pictures/3rd-gen-cert.png
    :align: left
 
-* Now, you must upload the zip file into the Nginx instance. Unfortunately, with UDF, this will require some preaparation. Please follow each step carefully
+* Now, you must upload the zip file into the Nginx instance. 
 
-  * You need a terminal and scp tool on your laptop
-  * Copy the FQDN of the Nginx instance
+  * In UDF portal, on the Nginx instance, there is a Access Method called ``UPLOAD CERTS``. Click on it, it will open a new browser page to an Upload file website.
 
-    * In UDF, click on ``Deployment`` tab, then find the ``Nginx`` instance, and click on ``Details``
+    .. image:: ../pictures/3rd-udf-upload.png
+       :align: left
 
-      .. image:: ../pictures/3rd-access-button.png
-         :align: left 
+  * Upload your zip file from this website. It will be uploaded into the Nginx instance.
 
-    * Click on the ``Access Methods`` tab, and find the SSH (not the Web Shell)
-    * Copy the FQDN from the SSH command line (if you can't only select the FQDN, copy the full command and extract it from your Notepad for example)
+    .. image:: ../pictures/3rd-upload-site.png
+       :align: left
 
-      .. image:: ../pictures/3rd-access-fqdn.png
-         :align: left 
-
-  * Now from your terminal, use the scp command to copy the zip file to the Nginx instance
-
-    .. code-block:: bash
-
-       scp -O -P 47005 <certificate-zip-file> ubuntu@<FQDN-of-nginx-instance>:/home/ubuntu/
-    
-    .. note:: example -> scp -O -P 47005 pumped-eel.nginx-sd.certificates.zip ubuntu@04398a92-397f-4b70-acf8-54d6129bc80b.access.udf.f5.com:/home/ubuntu
 
 Enable API Disovery and Download the token
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -157,4 +146,27 @@ Enable API Disovery and Download the token
 Configure the Nginx instance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. note:: The Nginx instance is already pre-configured to avoid to many copy-paste between this lab guide and the SSH session. You will just adapt the configuration to collect the logs from Nginx application and forward the logs to the CE.
+
 * SSH or WEBSSH to the Nginx instance
+
+* Copy the certificates zip file into /home/ubuntu directory and unzup it
+
+  .. code-block:: bash
+
+     sudo cp /var/www/nginx-upload-file/uploads/<your-file-name>.zip /home/ubuntu/certs.zip
+     unzip certs.zip
+
+* Copy the certs and key files into the right directories, and modify the permissions. Those certs+key are use to initiate the MTLS between the Nginx and the CE.
+
+  .. code-block:: bash
+
+     sudo cp client.crt /etc/nginx/certs/client.crt
+     sudo cp client.key /etc/nginx/certs/client.key
+     sudo cp server_ca.crt /etc/nginx/certs/server_ca.crt
+
+     sudo chmod 600 /etc/nginx/certs/client.key
+     sudo chmod 644 /etc/nginx/certs/client.crt
+     sudo chmod 644 /etc/nginx/certs/server_ca.crt
+
+
