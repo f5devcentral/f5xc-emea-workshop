@@ -22,7 +22,7 @@ Key take aways before jumping into the lab:
 .. image:: ../pictures/nginx-apid-archi.png
    :align: left
 
-.. note:: If you have already run the lab 7 (API Discovery for BIG-IP), you can reuse the same CE and skip to the sections "Deploy and Register CE". If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
+.. note:: If you have already run the lab 7 (API Discovery for BIG-IP), you can reuse the same CE and skip to the sections "Deploy and Register CE" and go directly to :ref:`onboard-nginx`. If not, please follow the instructions below to deploy and register a new CE in order to connect your Nginx to F5XC.
 
 
 Deploy and register Customer Edge (CE)
@@ -77,6 +77,7 @@ In F5 Distributed Cloud Console
 
 .. note:: Your CE is up and running and ready to connect to the BIG-IP in order to collect logs.
 
+.. _onboard-nginx:
 
 Onboard Nginx instance
 ----------------------
@@ -138,6 +139,9 @@ Enable API Disovery and Download the token
      :align: left
 
 * Enable and select your API Definition (created in the previous labs)
+
+  .. note:: If you have not done the previous labs, you can create the API Definition now by following the instructions in the lab 2 -> :ref:`swagger-lab`. Stop the lab when the Definition is created, and come back to this lab to select the API Definition and enable API Discovery.
+
 * Enable API Discovery
 * Select also the Sensitive Data Detection Policy created in the previous labs, or keep the Default.
 * Save

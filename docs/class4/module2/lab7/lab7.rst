@@ -160,6 +160,9 @@ You will be redirected to the WAAP menu but in a new section dedicated to BIG-IP
 Configure the Virtual Server similar to what you did in the previous lab for the F5XC HTTP Load Balancer. We will reuse the same profiles
 
 * Select your API Definition
+
+  .. note:: If you have not done the previous labs, you can create the API Definition now by following the instructions in the lab 2 -> :ref:`swagger-lab`. Stop the lab when the Definition is created, and come back to this lab to select the API Definition and enable API Discovery.
+
 * Enable API Discovery
 * Select your Custom Sensitive Date Detection Policy
 
