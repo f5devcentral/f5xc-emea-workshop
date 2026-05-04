@@ -184,9 +184,31 @@ Copy the certificats
      sudo chmod 644 /etc/nginx/certs/client.crt
      sudo chmod 644 /etc/nginx/certs/server_ca.crt
 
-* Add your token in the ``Main server`` section
+
+Update the nginx configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Modify the nginx.conf file
 
   .. code-block:: bash
+
+     sudo nano /etc/nginx/nginx.conf
+
+  .. note:: Have a look on the nginx.conf file, and check the blocks that are already configured for you. I added comments so you can understand them.
+
+    * Block Upstream obelix -> this is the CE
+
+    * Block Server 8080 -> website to upload the certificates
+
+    * Block Server 80 -> the Nginx LB proxying the sentence application
+
+    * Block Server 18080 -> the API Discovery configuration to collect the logs, format them, and send them to the CE.
+
+
+* Add your token in the ``Main Server`` section
+
+  .. code-block:: bash
+     :emphasize-lines: 6
 
      location / {
             proxy_pass http://10.1.20.7:31220;
@@ -200,27 +222,6 @@ Copy the certificats
 
             proxy_set_header Accept-Encoding "";
         }
-
-
-Update the nginx configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* Modify the nginx.conf file
-
-  .. code-block:: bash
-
-     sudo nano /etc/nginx/nginx.conf
-
-  .. note:: Have a look on the nginx.conf file, and check the blocks that are already configured for you. I added comments so you can understand them.
-
-  .. note:: Block Upstream obelix -> this is the CE
-
-  .. note:: Block Server 8080 -> website to upload the certificates
-
-  .. note:: Block Server 80 -> the Nginx LB proxying the sentence application
-
-  .. note:: Block Server 18080 -> the API Discovery configuration to collect the logs, format them, and send them to the CE.
-
 
 * At the end of the file, ``uncomment`` those 5 lines. Ctrl+X to exit, Y to save and Enter to confirm.
 
