@@ -184,6 +184,24 @@ Copy the certificats
      sudo chmod 644 /etc/nginx/certs/client.crt
      sudo chmod 644 /etc/nginx/certs/server_ca.crt
 
+* Add your token in the ``Main server`` section
+
+  .. code-block:: bash
+
+     location / {
+            proxy_pass http://10.1.20.7:31220;
+            proxy_set_header Host $host;
+
+            # Add your token below inside the ""
+            set $token "<your-token-value>";
+
+            js_header_filter main.header_filter;
+            js_body_filter   main.body_filter;
+
+            proxy_set_header Accept-Encoding "";
+        }
+
+
 Update the nginx configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
