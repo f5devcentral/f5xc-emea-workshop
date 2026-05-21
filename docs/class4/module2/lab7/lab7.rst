@@ -67,7 +67,7 @@ Check Registration on the F5 Distributed Cloud Console
 In F5 Distributed Cloud Console
 
 * Go to Multi-Cloud Network Connect > Overview > Infrastructure > Sites
-* Search for your site $$smsv2SiteName$$
+* Search for your site ``$$smsv2SiteName$$``
 * Click on it
 * Refresh the page till upgrades are finished and every flag is green
 
