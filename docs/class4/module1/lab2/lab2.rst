@@ -8,10 +8,6 @@ Assign OpenAPI spec file to the LB
 
 .. _swagger-lab:
 
-.. figure:: Swagger
-
-   Link to the lab to import the SWAGGER
-
 Copy Paste the SWAGGER File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Go to the link below and copy the OpenAPI Spec file on your laptop with extension .yaml. It defines the Sentence API app **without** the COLORS API endpoint.
