@@ -161,7 +161,7 @@ Configure the Virtual Server similar to what you did in the previous lab for the
 
 * Select your API Definition
 
-  .. note:: If you have not done the previous labs, you can create the API Definition now by following the instructions in the lab 2 -> :ref:`swagger-lab`. Stop the lab when the Definition is created, and come back to this lab to select the API Definition and enable API Discovery.
+  .. note:: If you have not done the previous labs, you can create the API Definition now by following the instructions in the lab 2 -> :ref:`Link to import swagger <swagger-lab>`. Stop the lab when the Definition is created, and come back to this lab to select the API Definition and enable API Discovery.
 
 * Enable API Discovery
 * Select your Custom Sensitive Date Detection Policy
