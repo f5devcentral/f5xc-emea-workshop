@@ -140,7 +140,7 @@ Enable API Disovery and Download the token
 
 * Enable and select your API Definition (created in the previous labs)
 
-  .. note:: If you have not done the previous labs, you can create the API Definition now by following the instructions in the lab 2 -> :ref:`swagger-lab`. Stop the lab when the Definition is created, and come back to this lab to select the API Definition and enable API Discovery.
+  .. note:: If you have not done the previous labs, you can create the API Definition now by following the instructions in the lab 2 -> :ref:`Link to import swagger <swagger-lab>`. Stop the lab when the Definition is created, and come back to this lab to select the API Definition and enable API Discovery.
 
 * Enable API Discovery
 * Select also the Sensitive Data Detection Policy created in the previous labs, or keep the Default.
