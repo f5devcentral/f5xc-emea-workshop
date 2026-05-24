@@ -49,7 +49,7 @@ Then:
 Real-world scenarios where teams use F1
 =======================================
 
-1) “We can’t leak customer data” (DLP / PII scanners)
+1) “We can’t leak customer data” (DLP / PII guardrails)
 -----------------------------------------------------
 
 - **FN is unacceptable** (letting PII through is a breach).
@@ -57,7 +57,7 @@ Real-world scenarios where teams use F1
 - F1 helps quantify whether you’re getting strong protection *without*
   blocking everything.
 
-2) “We can’t get jailbroken in production” (prompt injection scanners)
+2) “We can’t get jailbroken in production” (prompt injection guardrails)
 ------------------------------------------------------------------------
 
 - Risky example:  
@@ -65,7 +65,7 @@ Real-world scenarios where teams use F1
 - You want high recall against jailbreak attempts, but:
 - If precision is poor, devs/testers and power users get blocked constantly
   and will route around controls.
-- F1 helps tune scanner sensitivity so you’re not
+- F1 helps tune guardrail sensitivity so you’re not
   “secure but unusable.”
 
 3) “We need audit-ready compliance controls” (EU AI Act / restricted categories)
@@ -73,13 +73,13 @@ Real-world scenarios where teams use F1
 
 - You need consistent enforcement and reporting.
 - F1 is useful per category (PII vs jailbreak vs toxicity) to show where
-  controls are strong or weak, and to track **regressions** after scanner
+  controls are strong or weak, and to track **regressions** after guardrail
   updates.
 
 How it’s typically used in a guardrails program (non-technical)
 ================================================================
 
-- Test **one scanner alone** to reduce noisy false positives (isolated scanner testing).
+- Test **one guardrail alone** to reduce noisy false positives (isolated guardrail testing).
 - Test the **full stack together** to see real production behavior (combined pipeline testing).
 - Track **F1 over time per category** to prove improvements (or catch regressions).
 - Always look at **latency** too for inline deployments (fast enough to ship).
