@@ -1,12 +1,12 @@
-GenAI scanner
+GenAI guardrail
 ##############
 
-The **GenAI Scanner** is a natural-language scanner. What you use when “matching” depends on meaning, intent, or context, not a fixed string/pattern.
+The **GenAI Guardrail** is a natural-language guardrail. What you use when “matching” depends on meaning, intent, or context, not a fixed string/pattern.
 
-For example, if we want to make sure that a person's specific salary is not leaked but still allow questions about general salary information, we would need to build a **GenAI scanner**.
+For example, if we want to make sure that a person's specific salary is not leaked but still allow questions about general salary information, we would need to build a **GenAI guardrail**.
 
 
-1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **GenAI scanner**
+1. In the main left tab go to **Guardrails** ⇒ **Build a custom guardrail** ⇒ **GenAI guardrail**
 
 2. Set the **Name** to **Specific Salaries**
 
@@ -14,9 +14,9 @@ For example, if we want to make sure that a person's specific salary is not leak
 
 4. Click **Save** ⇒ **Save version**
 
-After saving the scanner we find ourselves in the **Playground** area. Here we can directly test all custom scanners against different text patterns.
+After saving the guardrail we find ourselves in the **Playground** area. Here we can directly test all custom guardrails against different text patterns.
 
-1. Enable **Test** for the **Specific Salaries** scanner on the right-hand side of the page.
+1. Enable **Test** for the **Specific Salaries** guardrail on the right-hand side of the page.
 
 2. In the message input area of the **Playground** enter the text below. This will get blocked because it is a response with someone's salary.
 
@@ -30,7 +30,7 @@ After saving the scanner we find ourselves in the **Playground** area. Here we c
 
       The average salary in the HR department is $500000 a year.
 
-4. The scanner has contextual awareness, even though the response mentioned an average the response specifies that there is only one person. This will get blocked.
+4. The guardrail has contextual awareness, even though the response mentioned an average the response specifies that there is only one person. This will get blocked.
 
    .. code-block:: none
 
