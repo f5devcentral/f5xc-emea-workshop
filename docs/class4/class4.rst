@@ -7,9 +7,6 @@ Lab Maintainers:
 
   Alfredo Vistola <a.vistola@f5.com>   
 
-  Sorin Boiangiu <s.boiangiu@f5.com>
-
-
 |
 
 * Please start this `UDF <https://udf.f5.com/b/1cb733ca-3e77-4783-a91d-98d469eb220b#documentation>`_ to get an invite via F5 email to reset your password for the "f5-emea-workshop" tenant. 
