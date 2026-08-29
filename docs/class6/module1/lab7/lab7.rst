@@ -1,18 +1,18 @@
-Custom scanners
-###############
+Custom guardrails
+#################
 
 This is where the magic starts.
 
-There are three different types of scanners:
+There are three different types of guardrails:
 
-1. **Keyword scanner** - you can define specific keywords which will trigger the scanner. It can not only **block** but also **redact**.
+1. **Keyword guardrail** - you can define specific keywords which will trigger the guardrail. It can not only **block** but also **redact**.
 
-2. **Regex scanner** - you can define specific regex filters which will trigger the scanner. It can not only **block** but also **redact**.
+2. **Regex guardrail** - you can define specific regex filters which will trigger the guardrail. It can not only **block** but also **redact**.
 
-3. **GenAI scanner** - this is the real magic: define in natural language what you want to be identified and blocked. We will go in-depth in the next section.
+3. **GenAI guardrail** - this is the real magic: define in natural language what you want to be identified and blocked. We will go in-depth in the next section.
 
 
-**Keyword scanner**
+**Keyword guardrail**
 
 Use exact-word guardrails when:
 
@@ -23,7 +23,7 @@ Use exact-word guardrails when:
 For example, we have internal projects called **Phoenix** and **Scooby Doo**, and we want to make sure that if either is referenced, that message will get blocked.
 
 
-1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **Keyword scanner**
+1. In the main left tab go to **guardrails** ⇒ **Build a custom guardrail** ⇒ **Keyword guardrail**
 
 2. Set the **Name** to **Internal Projects**
 
@@ -31,9 +31,9 @@ For example, we have internal projects called **Phoenix** and **Scooby Doo**, an
 
 4. Click **Save** ⇒ **Save version**
 
-After saving the scanner we find ourselves in the **Playground** area. Here we can directly test all custom scanners against different text patterns.
+After saving the guardrail we find ourselves in the **Playground** area. Here we can directly test all custom guardrails against different text patterns.
 
-1. Enable **Test** for the **Internal Projects** scanner on the right-hand side of the page.
+1. Enable **Test** for the **Internal Projects** guardrail on the right-hand side of the page.
 
 2. In the message input area of the **Playground** enter the below text.
 
@@ -44,7 +44,7 @@ After saving the scanner we find ourselves in the **Playground** area. Here we c
 3. The previous message was blocked. Enter anything that is not **Phoenix** or **Scooby Doo** and the message will pass.
    
 
-**Regex scanner**
+**Regex guardrail**
 
 Use regex guardrails when:
 
@@ -56,7 +56,7 @@ Use regex guardrails when:
 
 For example, we want to ensure that the response does not contain any internal private IPs from our company.
 
-1. In the main left tab go to **Scanners** ⇒ **Build a custom scanner** ⇒ **Regex scanner**
+1. In the main left tab go to **guardrails** ⇒ **Build a custom guardrail** ⇒ **Regex guardrail**
 
 2. Set the **Name** to **Internal IPs**
 
@@ -64,9 +64,9 @@ For example, we want to ensure that the response does not contain any internal p
 
 4. Click **Save** ⇒ **Save version**
 
-After saving the scanner we find ourselves in the **Playground** area. Here we can directly test all custom scanners against different text patterns.
+After saving the guardrail we find ourselves in the **Playground** area. Here we can directly test all custom guardrails against different text patterns.
 
-1. Enable **Test** for the **Internal IPs** scanner on the right-hand side of the page.
+1. Enable **Test** for the **Internal IPs** guardrail on the right-hand side of the page.
 
 2. In the message input area of the **Playground** enter the below text.
 
