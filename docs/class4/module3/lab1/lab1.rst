@@ -125,7 +125,7 @@ Test your configuration with cURL
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/animals'
 
   * It **passes** without any JWT because JWT Validation is only enabled on /locations
 
@@ -133,7 +133,7 @@ Test your configuration with cURL
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/locations'
 
   * It **doesn't** pass because JWT validation is enabled on /locations
 
@@ -141,7 +141,7 @@ Test your configuration with cURL
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImUyYmI0MTJiODNmZmQwNDJjOTczYmFmNmE4MmFlNGQyIn0.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE5ODUyNjg2MzQsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.WA7_DP40VK1kP76-S68qxadnTyRnaKXX9QvRL5Jhhq9tIJdNE8ULY27JY8-lpJ69F2Ne1bupoKv5Eu3QSWjOK5Etqe_pfqKhN_Yh5iyG7TmAE95h1yqehuRnPsvjaMXju7MY0nl_SGe774eXScOs-8GzkdXOVp--GMbERWsEjHTkbBlVrT4Mp2DmI3I7gKJoFGkYeSCf3MLI0rrIqMNzqrCy4cWoO2_Ttm17pfmDzcHgeyuYwN1p4m5Unq9_0SLIIg_CbrQLev2bKzft_n_-VWZaPz1VI1paqCeah5r7QIrTRRJjCJPGR9SSTMia8gvqnlDO5nnDami7y431VooiNwII5M3GVO9Uw7WHUw7lHG0HBfsvknC6-hfQbws-I5X3DhU2suKhCl_cNrST9nHLDS49uaF5c75yAEpUWgfukqQbZmaHvu7itFX8LoC1qhQWIHtFj-pkAvFTR82YwLsi8RrpGp4UNvUjxiISfXOr_SyvEvtp4wal2CMHIHea3bSv'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImUyYmI0MTJiODNmZmQwNDJjOTczYmFmNmE4MmFlNGQyIn0.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE5ODUyNjg2MzQsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.WA7_DP40VK1kP76-S68qxadnTyRnaKXX9QvRL5Jhhq9tIJdNE8ULY27JY8-lpJ69F2Ne1bupoKv5Eu3QSWjOK5Etqe_pfqKhN_Yh5iyG7TmAE95h1yqehuRnPsvjaMXju7MY0nl_SGe774eXScOs-8GzkdXOVp--GMbERWsEjHTkbBlVrT4Mp2DmI3I7gKJoFGkYeSCf3MLI0rrIqMNzqrCy4cWoO2_Ttm17pfmDzcHgeyuYwN1p4m5Unq9_0SLIIg_CbrQLev2bKzft_n_-VWZaPz1VI1paqCeah5r7QIrTRRJjCJPGR9SSTMia8gvqnlDO5nnDami7y431VooiNwII5M3GVO9Uw7WHUw7lHG0HBfsvknC6-hfQbws-I5X3DhU2suKhCl_cNrST9nHLDS49uaF5c75yAEpUWgfukqQbZmaHvu7itFX8LoC1qhQWIHtFj-pkAvFTR82YwLsi8RrpGp4UNvUjxiISfXOr_SyvEvtp4wal2CMHIHea3bSv'
 
   * It **passes** because JWT is valid (signature is valid)
 
@@ -149,7 +149,7 @@ Test your configuration with cURL
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meK'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.bz6XTCLN6Nioz56pzs8nJTJ4OExkNsYNiGmHa23BEbcWRA4O3UFPBfII110yd4l2wbYuaaWbEWXZLkkqRb-0LJHyOMg1TvI15HZKvwqVN7nj4g-qtSpfnrmd4w2pAyRvMeqxt_r2apAzmyjvTrwFamxKtZ9IDhQ7CB1O8XsT0yJB2lpU9tS09PrM3kJNbbr5yzgVCk1eSOGE0Uh7qhcgrnDqpHcGVd0pm_Z2R-mZH-DMN99jwcgrFlOW28XYo9YWodHpwBAe3ZxWqnxDjIberk55EkfqlEPaFj6GK2IyzEsLbazMQuQB2meK'
 
   * It **doesn't** pass
 
@@ -268,7 +268,7 @@ Test JWT Access Control
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/animals'
 
   * It still **passes**
 
@@ -276,7 +276,7 @@ Test JWT Access Control
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImUyYmI0MTJiODNmZmQwNDJjOTczYmFmNmE4MmFlNGQyIn0.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE5ODUyNjg2MzQsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.WA7_DP40VK1kP76-S68qxadnTyRnaKXX9QvRL5Jhhq9tIJdNE8ULY27JY8-lpJ69F2Ne1bupoKv5Eu3QSWjOK5Etqe_pfqKhN_Yh5iyG7TmAE95h1yqehuRnPsvjaMXju7MY0nl_SGe774eXScOs-8GzkdXOVp--GMbERWsEjHTkbBlVrT4Mp2DmI3I7gKJoFGkYeSCf3MLI0rrIqMNzqrCy4cWoO2_Ttm17pfmDzcHgeyuYwN1p4m5Unq9_0SLIIg_CbrQLev2bKzft_n_-VWZaPz1VI1paqCeah5r7QIrTRRJjCJPGR9SSTMia8gvqnlDO5nnDami7y431VooiNwII5M3GVO9Uw7WHUw7lHG0HBfsvknC6-hfQbws-I5X3DhU2suKhCl_cNrST9nHLDS49uaF5c75yAEpUWgfukqQbZmaHvu7itFX8LoC1qhQWIHtFj-pkAvFTR82YwLsi8RrpGp4UNvUjxiISfXOr_SyvEvtp4wal2CMHIHea3bSv'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImUyYmI0MTJiODNmZmQwNDJjOTczYmFmNmE4MmFlNGQyIn0.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE5ODUyNjg2MzQsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlNBIn0.WA7_DP40VK1kP76-S68qxadnTyRnaKXX9QvRL5Jhhq9tIJdNE8ULY27JY8-lpJ69F2Ne1bupoKv5Eu3QSWjOK5Etqe_pfqKhN_Yh5iyG7TmAE95h1yqehuRnPsvjaMXju7MY0nl_SGe774eXScOs-8GzkdXOVp--GMbERWsEjHTkbBlVrT4Mp2DmI3I7gKJoFGkYeSCf3MLI0rrIqMNzqrCy4cWoO2_Ttm17pfmDzcHgeyuYwN1p4m5Unq9_0SLIIg_CbrQLev2bKzft_n_-VWZaPz1VI1paqCeah5r7QIrTRRJjCJPGR9SSTMia8gvqnlDO5nnDami7y431VooiNwII5M3GVO9Uw7WHUw7lHG0HBfsvknC6-hfQbws-I5X3DhU2suKhCl_cNrST9nHLDS49uaF5c75yAEpUWgfukqQbZmaHvu7itFX8LoC1qhQWIHtFj-pkAvFTR82YwLsi8RrpGp4UNvUjxiISfXOr_SyvEvtp4wal2CMHIHea3bSv'
 
   * It **doesn't** pass because the Role claim is not VP
 
@@ -284,7 +284,7 @@ Test JWT Access Control
 
   .. code-block:: bash
 
-    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlZQIn0.JAp4x3PWnV9Xbn4nNC0ug775UD-Jc0UngguA64VyAIC9olMImrkVhaMTJhlJMMtxsNhDAL8JDfihJ4isfYTuDN-L4e0RJb68YyRQ9mBFBDQcpEzJDyaYwLV9agavM3qCqeHz8l1VPFqjhiUJKbrGYLTiLZYfthRLrIw2rSO-lcBexnwMMcL9g3pekKuK0e-M_a3Z5OKuNpaY4Iaa3RIwCS_zFATssTzEhYsMbcKgWZqNchbe4C0l7dbz7n-xhpPHiemfZxIeCY-HIz2Gy6XVJxsBksgtML70_Z-lTOknoFEg-ufeZpy6_wHEHU-4Hzc0gGjQVLTpiMN5zAQHV68c8g'
+    curl -H "Content-Type: application/json;charset=UTF-8" --location 'http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/locations' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGNVhDIEpXVCBkZW1vIiwic3ViIjoic2FAZjUuY29tIiwiYXVkIjoibXlsYi1mNXhjLmY1c2UuY29tIiwiaWF0IjoxNzEzNTM4NTAxLCJleHAiOjE3MTM1MzkxMDEsIkdpdmVuTmFtZSI6IkJvYiIsIkxhc3ROYW1lIjoiVGhlU3BvbmdlIiwiRW1haWwiOiJib2JAZjUuY29tIiwiUm9sZSI6IlZQIn0.JAp4x3PWnV9Xbn4nNC0ug775UD-Jc0UngguA64VyAIC9olMImrkVhaMTJhlJMMtxsNhDAL8JDfihJ4isfYTuDN-L4e0RJb68YyRQ9mBFBDQcpEzJDyaYwLV9agavM3qCqeHz8l1VPFqjhiUJKbrGYLTiLZYfthRLrIw2rSO-lcBexnwMMcL9g3pekKuK0e-M_a3Z5OKuNpaY4Iaa3RIwCS_zFATssTzEhYsMbcKgWZqNchbe4C0l7dbz7n-xhpPHiemfZxIeCY-HIz2Gy6XVJxsBksgtML70_Z-lTOknoFEg-ufeZpy6_wHEHU-4Hzc0gGjQVLTpiMN5zAQHV68c8g'
 
   * It **passes** because the Role claim is VP
 

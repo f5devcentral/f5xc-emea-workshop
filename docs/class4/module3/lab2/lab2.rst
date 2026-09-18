@@ -39,7 +39,7 @@ Run the traffic generator script to simulate traffic
 .. code-block:: none
 
    cd /home/ubuntu/api-protection-lab
-   bash rate-limit.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
+   bash rate-limit.sh sentence-re-$$makeId$$.workshop-sa.emea.f5se.com
 
 * You should see a respone code 429 - Too Many Requests
 

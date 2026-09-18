@@ -14,7 +14,7 @@ We have listed bellow a few tests that you can try out.
 
    .. code-block:: none
 
-      curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"11223344\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/v1/login
+      curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"11223344\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/v1/login
    
 3. BOT Protection
 
