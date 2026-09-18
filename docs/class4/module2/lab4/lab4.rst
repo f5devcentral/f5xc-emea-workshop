@@ -101,7 +101,7 @@ It is time to run a traffic generator script to populate the logs and the AI/ML 
 .. code-block:: none
 
    cd /home/ubuntu/api-protection-lab
-   bash api-all.sh sentence-re-$$makeId$$.workshop.emea.f5se.com
+   bash api-all.sh sentence-re-$$makeId$$.workshop-sa.emea.f5se.com
 
 .. note:: 
 

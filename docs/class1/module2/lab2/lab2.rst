@@ -4,7 +4,7 @@ Lab 2 - Testing and Visibility
 1. First lets try and attack out application with an **XSS attack** using the bellow URL. Th attack will be blocked and a **support ID** will be provided. Save the **support ID** as it will be used in the next step.
 
 
-   :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/?a=%3Cscript%3Ealert(%27xss%27)`
+   :ext_link:`http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/?a=%3Cscript%3Ealert(%27xss%27)`
 
 
 

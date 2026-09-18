@@ -6,13 +6,13 @@ Test your modern API application protection
 
    .. code-block:: none
 
-      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/adjectives
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/adjectives
 
    .. code-block:: none
 
-      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/animals
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/animals
 
    .. code-block:: none
 
-      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop.emea.f5se.com/api/locations
+      curl -H "Content-Type: application/json;charset=UTF-8" http://sentence-re-$$makeId$$.workshop-sa.emea.f5se.com/api/locations
 

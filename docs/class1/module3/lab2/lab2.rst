@@ -5,7 +5,7 @@ Lab 2 - Testing
 
    .. code-block:: none
 
-      curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"satoshi@bitcoin.com\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/v1/login
+      curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"satoshi@bitcoin.com\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/v1/login
 
 
 
@@ -13,7 +13,7 @@ Lab 2 - Testing
 
    .. code-block:: none
 
-      curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"11223344\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/v1/login
+      curl -H "Content-Type: application/json;charset=UTF-8" --data-raw "{\"email\":\"11223344\",\"password\":\"bitcoin\"}" http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/v1/login
 
 
 We just have been able to demonstrate that F5 XC is not just a basic Web Application Firewall but also has also advanced **Positive Security Policy** capabilities which greatly enhance the security of the application.

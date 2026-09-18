@@ -3,7 +3,7 @@ Lab 2 - Testing
 
 In order to test we will behave as a bad actor.
 
-1. Browse to the app :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/` and login
+1. Browse to the app :ext_link:`http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/` and login
 
    .. table::
       :widths: auto
@@ -64,7 +64,7 @@ In order to test we will behave as a bad actor.
 
    We will be able to track this user in the F5XC console to **Web App & API Protection** -> **Dashboards** -> **Security** -> Click on the **arcadia-re-lb** Load Balancer -> **Malicious Users** -> **Refresh**
 
-4. Hacker understands that he can't attack the internal APIs and decides to move to public endpoints. We will simulate this by browsing to the following URLs :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/?a=/etc/passwd`  and holding **F5 button** on the keyboard to generate multiple requests
+4. Hacker understands that he can't attack the internal APIs and decides to move to public endpoints. We will simulate this by browsing to the following URLs :ext_link:`http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/?a=/etc/passwd`  and holding **F5 button** on the keyboard to generate multiple requests
 
 5. Since the user has not logged in we will block it based on IP address go to the **Malicious Users** dashboard like in step 3 and you will be able to follow and indetify these attacks
 
@@ -72,4 +72,4 @@ In order to test we will behave as a bad actor.
 
    Go to the **Malicious Users** dashboard and click on the IP identifier ( it should look similar to this **IP-156.33.44.55** ) -> Click **Add To Allow List** -> Apply -> Apply -> Save and Exit
 
-7. Close all previous application tabs and open a new one, when browsing :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/` the app will be fine.
+7. Close all previous application tabs and open a new one, when browsing :ext_link:`http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/` the app will be fine.

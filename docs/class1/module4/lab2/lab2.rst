@@ -12,7 +12,7 @@ To perform this test you can use any of the following proxy sites:
 
 
 
-1. Use proxy server of you choosing and enter the Arcadia App URL: :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com/`
+1. Use proxy server of you choosing and enter the Arcadia App URL: :ext_link:`http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com/`
 
 2. The requests coming from the proxy servers will be blocked with a 403 status code.
 

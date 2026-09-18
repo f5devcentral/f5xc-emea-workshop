@@ -3,7 +3,7 @@ Lab 2 - Testing and Visibility
 
 In order to make sure all is going to the internal endpoint we will need to generate traffic and look at the relevant dashboards.
 
-1. Login into the app while using the **arcadia-re-lb** load balancer :ext_link:`http://arcadia-re-$$makeId$$.workshop.emea.f5se.com`
+1. Login into the app while using the **arcadia-re-lb** load balancer :ext_link:`http://arcadia-re-$$makeId$$.workshop-sa.emea.f5se.com`
 
    .. table::
       :widths: auto
